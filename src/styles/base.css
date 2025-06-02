@@ -1,0 +1,239 @@
+/* Mo-Slide Base Styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.mo-container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.mo-slides {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.mo-slide {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Typography */
+.mo-slide h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+  text-align: center;
+}
+
+.mo-slide h2 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  text-align: center;
+}
+
+.mo-slide h3 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+}
+
+.mo-slide p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin: 0 0 1rem 0;
+  text-align: center;
+  max-width: 800px;
+}
+
+.mo-slide ul, .mo-slide ol {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  max-width: 600px;
+  text-align: left;
+}
+
+.mo-slide li {
+  margin-bottom: 0.5rem;
+}
+
+.mo-slide code {
+  font-family: 'Monaco', 'Consolas', monospace;
+  font-size: 0.9em;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+}
+
+.mo-slide pre {
+  font-family: 'Monaco', 'Consolas', monospace;
+  font-size: 1rem;
+  line-height: 1.5;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  max-width: 90%;
+  text-align: left;
+}
+
+.mo-slide a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.mo-slide a:hover {
+  opacity: 0.8;
+}
+
+/* Progress Bar */
+.mo-progress-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  z-index: 1000;
+}
+
+.mo-progress-fill {
+  height: 100%;
+  transition: width 0.3s ease;
+  width: 0%;
+}
+
+/* Slide Number */
+.mo-slide-number {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  z-index: 1000;
+}
+
+/* Controller */
+.mo-controller {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 1000;
+}
+
+.mo-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.mo-btn:hover {
+  opacity: 0.8;
+  transform: translateY(-1px);
+}
+
+/* Overview Mode */
+.mo-overview-mode .mo-slides {
+  display: none;
+}
+
+.mo-overview-grid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+  z-index: 999;
+  overflow-y: auto;
+}
+
+.mo-overview-slide {
+  border-radius: 8px;
+  padding: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+}
+
+.mo-overview-slide:hover {
+  transform: scale(1.05);
+}
+
+.mo-overview-slide h1,
+.mo-overview-slide h2,
+.mo-overview-slide h3 {
+  font-size: 1rem;
+  margin: 0.2rem 0;
+  text-align: center;
+}
+
+.mo-overview-slide p {
+  font-size: 0.7rem;
+  margin: 0.1rem 0;
+  text-align: center;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .mo-slide {
+    padding: 1rem;
+  }
+  
+  .mo-slide h1 {
+    font-size: 2rem;
+  }
+  
+  .mo-slide h2 {
+    font-size: 1.5rem;
+  }
+  
+  .mo-controller {
+    bottom: 10px;
+    gap: 5px;
+  }
+  
+  .mo-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+  
+  .mo-slide-number {
+    bottom: 10px;
+    right: 10px;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+}

@@ -1,0 +1,97 @@
+/* Dark Theme - mo-slide */
+.mo-container {
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+  color: #e2e8f0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  min-height: 100vh;
+}
+
+.mo-slide {
+  background: rgba(26, 32, 44, 0.9);
+  color: #e2e8f0;
+  border: 1px solid rgba(74, 85, 104, 0.6);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.3),
+    0 8px 16px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.mo-slide h1, .mo-slide h2, .mo-slide h3, .mo-slide h4, .mo-slide h5, .mo-slide h6 {
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.mo-slide h1 {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.mo-slide code {
+  background: rgba(74, 85, 104, 0.6);
+  color: #fbb6ce;
+  border: 1px solid rgba(113, 128, 150, 0.4);
+}
+
+.mo-slide pre {
+  background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+  color: #e2e8f0;
+  border: 1px solid rgba(74, 85, 104, 0.6);
+}
+
+.mo-slide blockquote {
+  color: #cbd5e0;
+  background: rgba(74, 85, 104, 0.3);
+  border-left-color: #667eea;
+}
+
+.mo-slide a {
+  color: #90cdf4;
+}
+
+.mo-slide a:hover {
+  color: #63b3ed;
+}
+
+.mo-progress-bar {
+  background: rgba(26, 32, 44, 0.8);
+  backdrop-filter: blur(10px);
+}
+
+.mo-progress-fill {
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+}
+
+.mo-slide-number {
+  background: rgba(26, 32, 44, 0.9);
+  color: #cbd5e0;
+  border-color: rgba(74, 85, 104, 0.6);
+}
+
+.mo-btn {
+  background: rgba(26, 32, 44, 0.9);
+  color: #cbd5e0;
+  border-color: rgba(74, 85, 104, 0.6);
+}
+
+.mo-btn:hover {
+  background: rgba(45, 55, 72, 0.9);
+  color: #e2e8f0;
+  border-color: rgba(113, 128, 150, 0.8);
+}
+
+.mo-overview-slide {
+  background: rgba(26, 32, 44, 0.9);
+  border: 2px solid rgba(74, 85, 104, 0.6);
+  color: #e2e8f0;
+}
+
+.mo-overview-slide:hover {
+  background: rgba(45, 55, 72, 0.9);
+  border-color: rgba(113, 128, 150, 0.8);
+}
+
+.mo-overview-slide.active {
+  border-color: #667eea;
+}

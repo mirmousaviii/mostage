@@ -1,0 +1,97 @@
+/* Dracula Theme - mo-slide */
+.mo-container {
+  background: linear-gradient(135deg, #282a36 0%, #1e1f29 100%);
+  color: #f8f8f2;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  min-height: 100vh;
+}
+
+.mo-slide {
+  background: rgba(68, 71, 90, 0.9);
+  color: #f8f8f2;
+  border: 1px solid rgba(189, 147, 249, 0.3);
+  box-shadow: 
+    0 20px 40px rgba(189, 147, 249, 0.1),
+    0 8px 16px rgba(189, 147, 249, 0.05);
+  backdrop-filter: blur(10px);
+}
+
+.mo-slide h1, .mo-slide h2, .mo-slide h3, .mo-slide h4, .mo-slide h5, .mo-slide h6 {
+  color: #bd93f9;
+  text-shadow: 0 2px 4px rgba(189, 147, 249, 0.3);
+}
+
+.mo-slide h1 {
+  background: linear-gradient(135deg, #bd93f9 0%, #ff79c6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.mo-slide code {
+  background: rgba(189, 147, 249, 0.2);
+  color: #ffb86c;
+  border: 1px solid rgba(189, 147, 249, 0.3);
+}
+
+.mo-slide pre {
+  background: linear-gradient(135deg, #44475a 0%, #383a59 100%);
+  color: #f8f8f2;
+  border: 1px solid rgba(189, 147, 249, 0.3);
+}
+
+.mo-slide blockquote {
+  color: #6272a4;
+  background: rgba(189, 147, 249, 0.1);
+  border-left-color: #ff79c6;
+}
+
+.mo-slide a {
+  color: #8be9fd;
+}
+
+.mo-slide a:hover {
+  color: #50fa7b;
+}
+
+.mo-progress-bar {
+  background: rgba(68, 71, 90, 0.8);
+  backdrop-filter: blur(10px);
+}
+
+.mo-progress-fill {
+  background: linear-gradient(90deg, #ff79c6 0%, #bd93f9 100%);
+}
+
+.mo-slide-number {
+  background: rgba(68, 71, 90, 0.9);
+  color: #f8f8f2;
+  border-color: rgba(189, 147, 249, 0.3);
+}
+
+.mo-btn {
+  background: rgba(68, 71, 90, 0.9);
+  color: #f8f8f2;
+  border-color: rgba(189, 147, 249, 0.3);
+}
+
+.mo-btn:hover {
+  background: rgba(98, 114, 164, 0.9);
+  color: #bd93f9;
+  border-color: rgba(189, 147, 249, 0.5);
+}
+
+.mo-overview-slide {
+  background: rgba(68, 71, 90, 0.9);
+  border: 2px solid rgba(189, 147, 249, 0.3);
+  color: #f8f8f2;
+}
+
+.mo-overview-slide:hover {
+  background: rgba(98, 114, 164, 0.9);
+  border-color: rgba(189, 147, 249, 0.5);
+}
+
+.mo-overview-slide.active {
+  border-color: #ff79c6;
+}

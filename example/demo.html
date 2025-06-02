@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mo-Slide Demo - All Features</title>
+    <style>
+        body { 
+            margin: 0; 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; 
+            background: #f8f9fa;
+        }
+        
+        .demo-controls {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 2000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 280px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .control-section {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .control-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        
+        .control-section h4 {
+            margin: 0 0 0.5rem 0;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #495057;
+        }
+        
+        .theme-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+        }
+        
+        .theme-btn {
+            padding: 0.5rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+        
+        .theme-btn.light { background: #ffffff; color: #333; border: 1px solid #dee2e6; }
+        .theme-btn.dark { background: #343a40; color: #ffffff; }
+        .theme-btn.solarized { background: #fdf6e3; color: #586e75; }
+        .theme-btn.dracula { background: #282a36; color: #f8f8f2; }
+        
+        .theme-btn:hover { 
+            transform: translateY(-1px); 
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .theme-btn.active { 
+            box-shadow: 0 0 0 2px #007acc; 
+        }
+        
+        .plugin-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+        }
+        
+        .plugin-checkbox {
+            display: flex;
+            align-items: center;
+            font-size: 0.8rem;
+        }
+        
+        .plugin-checkbox input {
+            margin-right: 0.5rem;
+        }
+        
+        .transition-select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            background: white;
+        }
+        
+        .info-display {
+            background: #e3f2fd;
+            padding: 0.5rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            color: #1565c0;
+            margin-top: 0.5rem;
+        }
+        
+        .action-btn {
+            width: 100%;
+            padding: 0.75rem;
+            background: #007acc;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            margin-top: 0.5rem;
+            transition: background 0.2s ease;
+        }
+        
+        .action-btn:hover {
+            background: #0056b3;
+        }
+        
+        @media (max-width: 768px) {
+            .demo-controls {
+                position: relative;
+                max-width: none;
+                margin: 10px;
+                max-height: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-controls">
+        <div class="control-section">
+            <h4>Themes</h4>
+            <div class="theme-buttons">
+                <button class="theme-btn light active" data-theme="light">Light</button>
+                <button class="theme-btn dark" data-theme="dark">Dark</button>
+                <button class="theme-btn solarized" data-theme="solarized">Solarized</button>
+                <button class="theme-btn dracula" data-theme="dracula">Dracula</button>
+            </div>
+        </div>
+        
+        <div class="control-section">
+            <h4>Plugins</h4>
+            <div class="plugin-grid">
+                <label class="plugin-checkbox">
+                    <input type="checkbox" id="progress-bar" checked>
+                    Progress Bar
+                </label>
+                <label class="plugin-checkbox">
+                    <input type="checkbox" id="slide-number" checked>
+                    Slide Number
+                </label>
+                <label class="plugin-checkbox">
+                    <input type="checkbox" id="controller" checked>
+                    Controller
+                </label>
+                <label class="plugin-checkbox">
+                    <input type="checkbox" id="overview-mode" checked>
+                    Overview
+                </label>
+            </div>
+        </div>
+        
+        <div class="control-section">
+            <h4>Transition</h4>
+            <select class="transition-select" id="transition-select">
+                <option value="horizontal">Horizontal</option>
+                <option value="vertical">Vertical</option>
+                <option value="fade">Fade</option>
+            </select>
+        </div>
+        
+        <div class="control-section">
+            <button class="action-btn" onclick="applyChanges()">Apply Changes</button>
+            <button class="action-btn" onclick="toggleOverview()" style="background: #28a745;">Toggle Overview</button>
+        </div>
+        
+        <div class="info-display" id="info-display">
+            Current: light theme, 4 plugins
+        </div>
+    </div>
+    
+    <div id="app"></div>
+    
+    <script type="module">
+        import Mo from '../src/index.ts';
+        
+        let currentMo = null;
+        
+        async function initPresentation() {
+            const theme = document.querySelector('.theme-btn.active').dataset.theme;
+            const transition = document.getElementById('transition-select').value;
+            
+            const plugins = [];
+            if (document.getElementById('progress-bar').checked) plugins.push('ProgressBar');
+            if (document.getElementById('slide-number').checked) plugins.push('SlideNumber');
+            if (document.getElementById('controller').checked) plugins.push('Controller');
+            if (document.getElementById('overview-mode').checked) plugins.push('OverviewMode');
+            
+            // Destroy existing instance
+            if (currentMo) {
+                currentMo.destroy();
+            }
+            
+            try {
+                currentMo = new Mo({
+                    element: '#app',
+                    theme: theme,
+                    markdown: './slides.md',
+                    transition: transition,
+                    plugins: plugins
+                });
+                
+                await currentMo.start();
+                
+                // Update info display
+                document.getElementById('info-display').textContent = 
+                    `Current: ${theme} theme, ${plugins.length} plugins, ${transition} transition`;
+                    
+                console.log(`Presentation loaded: ${theme} theme, ${plugins.length} plugins`);
+            } catch (error) {
+                console.error('Error initializing presentation:', error);
+            }
+        }
+        
+        // Theme button handling
+        document.querySelectorAll('.theme-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                initPresentation();
+            });
+        });
+        
+        // Plugin checkbox handling
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', initPresentation);
+        });
+        
+        // Global functions for buttons
+        window.applyChanges = initPresentation;
+        
+        window.toggleOverview = () => {
+            if (currentMo) {
+                // Simulate 'O' key press for overview mode
+                const event = new KeyboardEvent('keydown', { key: 'o' });
+                document.dispatchEvent(event);
+            }
+        };
+        
+        // Auto-apply changes when selects change
+        document.getElementById('transition-select').addEventListener('change', initPresentation);
+        
+        // Initialize with default settings
+        initPresentation();
+    </script>
+</body>
+</html>

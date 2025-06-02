@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mo-Slide Example</title>
+</head>
+<body>
+    <div id="app"></div>
+    
+    <script type="module">
+        import Mo from '../src/index.ts';
+        
+        const mo = new Mo({
+            element: '#app',
+            theme: 'light',
+            markdown: './slides.md',
+            plugins: ['ProgressBar', 'SlideNumber', 'Controller', 'OverviewMode']
+        });
+        
+        mo.start();
+    </script>
+</body>
+</html>
