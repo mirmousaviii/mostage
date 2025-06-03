@@ -223,7 +223,11 @@ export class Mo {
     const previousIndex = this.currentSlideIndex;
     this.currentSlideIndex = index;
 
-    this.animateTransition(previousIndex, index);
+    if (previousIndex === index) {
+      this.showSlide(index);
+    } else {
+      this.animateTransition(previousIndex, index);
+    }
 
     this.emit('slidechange', {
       type: 'slidechange',
@@ -233,12 +237,27 @@ export class Mo {
     });
   }
 
+  private showSlide(index: number): void {
+    const slides = this.container.querySelectorAll('.mo-slide');
+    slides.forEach((slide, i) => {
+      const slideElement = slide as HTMLElement;
+      slideElement.style.display = i === index ? 'block' : 'none';
+      slideElement.style.opacity = '1';
+      slideElement.style.transform = '';
+    });
+  }
+
   private animateTransition(fromIndex: number, toIndex: number): void {
     const slides = this.container.querySelectorAll('.mo-slide');
     const fromSlide = slides[fromIndex] as HTMLElement;
     const toSlide = slides[toIndex] as HTMLElement;
 
     if (!fromSlide || !toSlide) return;
+
+    if (fromIndex === toIndex) {
+      this.showSlide(toIndex);
+      return;
+    }
 
     // Apply transition based on config
     switch (this.config.transition) {
