@@ -1,4 +1,4 @@
-# Mo-Slide
+# Mostage
 
 A modern slide presentation framework. 
 Create simple presentations using **Markdown** with smooth transitions and an extensible plugin system.
@@ -72,7 +72,7 @@ Create simple presentations using **Markdown** with smooth transitions and an ex
 ## Installation
 
 ```bash
-npm install mo-slide
+npm install mostage
 ```
 
 ## Quick Start
@@ -89,7 +89,7 @@ npm install mo-slide
     <div id="app"></div>
     
     <script type="module">
-        import Mo from "mo-slide";
+        import Mo from "mostage";
         
         const mo = new Mo({ 
             element: "#app", 
@@ -107,30 +107,12 @@ npm install mo-slide
 ### Inline Content
 
 ```javascript
-import Mo from "mo-slide";
+import Mo from "mostage";
 
 const mo = new Mo({
     element: "#app",
     theme: "dark",
-    content: `
-# Welcome to Mo-Slide
-
-A modern presentation framework
-
----
-
-## Features
-
-- Easy to use
-- Customizable themes
-- Plugin system
-
----
-
-## Thank You!
-
-Questions?
-    `,
+    markdown: "./slides.md",
     plugins: ["ProgressBar", "SlideNumber"]
 });
 
@@ -142,7 +124,7 @@ mo.start();
 For older projects using CommonJS or Node.js without ES modules:
 
 ```javascript
-const Mo = require("mo-slide");
+const Mo = require("mostage");
 
 const mo = new Mo({
     element: "#app",
@@ -168,7 +150,7 @@ For projects without any build system, use the UMD build:
     <div id="app"></div>
     
     <!-- Load from CDN -->
-    <script src="https://unpkg.com/mo-slide@latest/dist/mo-slide.umd.js"></script>
+    <script src="https://unpkg.com/mostage@latest/dist/mostage.umd.js"></script>
     
     <script>
         // Mo is available globally
@@ -192,11 +174,11 @@ For projects using AMD loaders like RequireJS:
 ```javascript
 require.config({
     paths: {
-        'mo-slide': 'node_modules/mo-slide/dist/mo-slide.umd'
+        'mostage': 'node_modules/mostage/dist/mostage.umd'
     }
 });
 
-require(['mo-slide'], function(Mo) {
+require(['mostage'], function(Mo) {
     const mo = new Mo({
         element: "#app", 
         theme: "light",
@@ -213,7 +195,7 @@ require(['mo-slide'], function(Mo) {
 For projects using SystemJS:
 
 ```javascript
-System.import('mo-slide').then(function(Mo) {
+System.import('mostage').then(function(Mo) {
     const mo = new Mo.default({
         element: "#app",
         theme: "dark", 
@@ -347,16 +329,16 @@ Create a custom theme by adding a CSS file:
     color: white;
 }
 
-.mo-slide h1 {
+.mostage-slide h1 {
     color: #ffd700;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
-.mo-slide h2 {
+.mostage-slide h2 {
     color: #87ceeb;
 }
 
-.mo-slide code {
+.mostage-slide code {
     background: rgba(255,255,255,0.1);
     padding: 0.2em 0.4em;
     border-radius: 3px;
@@ -390,7 +372,7 @@ plugins: ["OverviewMode"]
 ### Creating Custom Plugins
 
 ```typescript
-import { MoPlugin, Mo } from 'mo-slide';
+import { MoPlugin, Mo } from 'mostage';
 
 class TimerPlugin implements MoPlugin {
     name = 'TimerPlugin';
@@ -499,29 +481,29 @@ mo.on('themechange', (event) => {
 
 ## CLI Usage
 
-The mo-slide CLI provides tools for creating and building presentations:
+The mostage CLI provides tools for creating and building presentations:
 
 ```bash
 # Create a new presentation project
-npx mo-slide init my-presentation
+npx mostage init my-presentation
 
 # Create with example content
-npx mo-slide init my-presentation --with-example
+npx mostage init my-presentation --with-example
 
 # Start development server
-npx mo-slide serve slides.md
+npx mostage serve slides.md
 
 # Build static HTML file
-npx mo-slide build slides.md --output presentation.html
+npx mostage build slides.md --output presentation.html
 
 # Build with specific theme
-npx mo-slide build slides.md --theme dark --output dark-presentation.html
+npx mostage build slides.md --theme dark --output dark-presentation.html
 
 # List available themes
-npx mo-slide themes
+npx mostage themes
 
 # Show help
-npx mo-slide --help
+npx mostage --help
 ```
 
 ## API Reference
@@ -585,8 +567,8 @@ interface ThemeChangeEvent {
 
 ```bash
 # Clone the repository
-git clone https://github.com/mirmousaviii/mo-slide.git
-cd mo-slide
+git clone https://github.com/mirmousaviii/mostage.git
+cd mostage
 
 # Install dependencies  
 npm install
@@ -626,7 +608,7 @@ npm run format
 <body>
     <div id="app"></div>
     <script type="module">
-        import Mo from "mo-slide";
+        import Mo from "mostage";
         
         const mo = new Mo({
             element: "#app",
@@ -634,7 +616,7 @@ npm run format
             content: `
 # Hello World
 
-Welcome to Mo-Slide!
+Welcome to Mostage!
 
 ---
 
@@ -665,7 +647,7 @@ For a quick start, check the `example/index.html` file:
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Mo-Slide Basic Example</title>
+    <title>Mostage Basic Example</title>
 </head>
 <body>
     <div id="app"></div>
@@ -725,7 +707,7 @@ MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Links
 
-- **NPM Package**: [npmjs.com/package/mo-slide](https://npmjs.com/package/mo-slide)
-- **GitHub Repository**: [github.com/mirmousaviii/mo-slide](https://github.com/mojs/mo-slide)
-- **Documentation**: [mo.js.org](https://mo.js.org)
-- **Issues & Support**: [github.com/mirmousaviii/mo-slide/issues](https://github.com/mirmousaviii/mo-slide/issues)
+- **NPM Package**: [npmjs.com/package/mostage](https://npmjs.com/package/mostage)
+- **GitHub Repository**: [github.com/mirmousaviii/mostage](https://github.com/mirmousaviii/mostage)
+- **Documentation**: [mostage.js.org](https://mostage.js.org)
+- **Issues & Support**: [github.com/mirmousaviii/mostage/issues](https://github.com/mirmousaviii/mostage/issues)

@@ -1,4 +1,4 @@
-# Welcome to Mo-Slide
+# Welcome to Mostage
 
 A modern TypeScript presentation framework
 
@@ -16,16 +16,18 @@ A modern TypeScript presentation framework
 
 ## Getting Started
 
-Install Mo-Slide via npm:
+Install Mostage via npm:
 
 ```bash
-npm install mo-slide
+npm install mostage
 ```
+
+Then use it:
 
 Basic usage:
 
 ```javascript
-import Mo from 'mo-slide';
+import Mo from 'mostage';
 
 const mo = new Mo({
   element: '#app',
@@ -94,7 +96,7 @@ class CustomPlugin {
 
 ## Code Syntax
 
-Mo-Slide supports syntax highlighting:
+Mostage supports syntax highlighting:
 
 ```typescript
 interface SlideConfig {

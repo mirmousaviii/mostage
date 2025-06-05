@@ -1,5 +1,5 @@
 {
-  "name": "mo-slide",
+  "name": "mostage",
   "version": "1.0.0",
   "description": "A modern, plugin-based, themeable slide presentation framework",
   "main": "dist/index.cjs",
@@ -13,7 +13,7 @@
     }
   },
   "bin": {
-    "mo-slide": "./dist/cli.js"
+    "mostage": "./dist/cli.js"
   },
   "files": [
     "dist"
@@ -42,10 +42,10 @@
   "homepage": "https://mo.js.org",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mojs/mo-slide.git"
+    "url": "https://github.com/mirmousaviii/mostage.git"
   },
   "bugs": {
-    "url": "https://github.com/mojs/mo-slide/issues"
+    "url": "https://github.com/mirmousaviii/mostage/issues"
   },
   "devDependencies": {
     "@types/node": "^24.3.0",
