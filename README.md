@@ -641,7 +641,7 @@ Welcome to Mostage!
 
 ### Basic Example
 
-For a quick start, check the `example/index.html` file:
+For a quick start, check the `example/basic.html` file:
 
 ```html
 <!DOCTYPE html>
@@ -670,17 +670,17 @@ For a quick start, check the `example/index.html` file:
 
 This example loads slides from `slides.md` and includes all basic plugins.
 
-Run `npm run dev` and visit http://localhost:5173/ to see this simple example.
+Run `npm run dev` and visit http://localhost:5173/basic.html to see this simple example.
 
 ### Advanced Example
 
-Check the `example/demo.html` file for a complete interactive demo with:
+Check the `example/index.html` file for a complete interactive demo with:
 - Theme switching
 - Plugin toggling  
 - Multiple transition types
 - Real-time controls
 
-Run `npm run dev` and visit http://localhost:5173/demo.html
+Run `npm run dev` and visit http://localhost:5173/ to see the full demo
 
 ## Contributing
 
