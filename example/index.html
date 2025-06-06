@@ -9,188 +9,229 @@
             margin: 0; 
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; 
             background: #f8f9fa;
+            height: 100vh;
+            overflow: hidden; /* Prevent page scroll */
         }
         
-        .demo-controls {
+        #app {
             position: fixed;
-            top: 10px;
-            right: 10px;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            transition: top 0.3s ease;
+        }
+        
+        #app.with-header {
+            top: 60px;
+        }
+        
+        .demo-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
             z-index: 2000;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            padding: 1rem;
-            border-radius: 12px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            max-width: 280px;
-            max-height: 90vh;
-            overflow-y: auto;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
         }
         
-        .control-section {
-            margin-bottom: 1rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid #e9ecef;
+        .demo-header.minimized {
+            transform: translateY(-100%);
         }
         
-        .control-section:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
-        .control-section h4 {
-            margin: 0 0 0.5rem 0;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #495057;
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
         
-        .theme-buttons {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.5rem;
+        .logo {
+            font-weight: 700;
+            font-size: 18px;
+            color: #333;
+            margin-right: 10px;
         }
         
-        .theme-btn {
-            padding: 0.5rem;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.8rem;
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .control-label {
+            font-size: 14px;
+            color: #666;
             font-weight: 500;
-            transition: all 0.2s ease;
-            text-align: center;
         }
         
-        .theme-btn.light { background: #ffffff; color: #333; border: 1px solid #dee2e6; }
-        .theme-btn.dark { background: #343a40; color: #ffffff; }
-        .theme-btn.solarized { background: #fdf6e3; color: #586e75; }
-        .theme-btn.dracula { background: #282a36; color: #f8f8f2; }
-        
-        .theme-btn:hover { 
-            transform: translateY(-1px); 
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        }
-        
-        .theme-btn.active { 
-            box-shadow: 0 0 0 2px #007acc; 
-        }
-        
-        .plugin-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.5rem;
+        .theme-dropdown {
+            padding: 6px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            background: white;
+            cursor: pointer;
+            min-width: 100px;
         }
         
         .plugin-checkbox {
             display: flex;
             align-items: center;
-            font-size: 0.8rem;
+            font-size: 14px;
+            color: #666;
+            gap: 6px;
         }
         
         .plugin-checkbox input {
-            margin-right: 0.5rem;
+            margin: 0;
         }
         
         .transition-select {
-            width: 100%;
-            padding: 0.5rem;
-            border: 1px solid #dee2e6;
+            padding: 6px 12px;
+            border: 1px solid #ddd;
             border-radius: 6px;
-            font-size: 0.8rem;
+            font-size: 14px;
             background: white;
+            cursor: pointer;
+            min-width: 100px;
         }
         
-        .info-display {
-            background: #e3f2fd;
-            padding: 0.5rem;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            color: #1565c0;
-            margin-top: 0.5rem;
-        }
-        
-        .action-btn {
-            width: 100%;
-            padding: 0.75rem;
-            background: #007acc;
+        .minimize-btn {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 2001;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
-            border-radius: 6px;
+            border-radius: 3px;
+            height: 28px;
             cursor: pointer;
-            font-weight: 500;
-            margin-top: 0.5rem;
-            transition: background 0.2s ease;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            backdrop-filter: blur(10px);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         }
         
-        .action-btn:hover {
-            background: #0056b3;
+        .minimize-btn:hover {
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+            background: linear-gradient(135deg, #5a6fd8 0%, #6a4c93 100%);
         }
+        
+        
+        .minimize-btn.minimized {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+            top: 15px;
+            animation: bounce 0.5s ease;
+        }
+        
+        .minimize-btn.minimized:hover {
+            background: linear-gradient(135deg, #218838 0%, #1fa587 100%);
+            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.6);
+        }
+    
         
         @media (max-width: 768px) {
-            .demo-controls {
-                position: relative;
-                max-width: none;
-                margin: 10px;
-                max-height: none;
+            #app.with-header {
+                top: 80px;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 10px;
+                padding: 10px;
+            }
+            
+            .header-left {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            .control-group {
+                gap: 6px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="demo-controls">
-        <div class="control-section">
-            <h4>Themes</h4>
-            <div class="theme-buttons">
-                <button class="theme-btn light active" data-theme="light">Light</button>
-                <button class="theme-btn dark" data-theme="dark">Dark</button>
-                <button class="theme-btn solarized" data-theme="solarized">Solarized</button>
-                <button class="theme-btn dracula" data-theme="dracula">Dracula</button>
+    <div class="demo-header" id="demo-header">
+        <div class="header-content">
+            <div class="header-left">
+                <div class="logo">Mostage Demo</div>
+                
+                <div class="control-group">
+                    <span class="control-label">Theme:</span>
+                    <select class="theme-dropdown" id="theme-select">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="solarized">Solarized</option>
+                        <option value="dracula">Dracula</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <span class="control-label">Transition:</span>
+                    <select class="transition-select" id="transition-select">
+                        <option value="horizontal">Horizontal</option>
+                        <option value="vertical">Vertical</option>
+                        <option value="fade">Fade</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <label class="plugin-checkbox">
+                        <input type="checkbox" id="progress-bar" checked>
+                        Progress
+                    </label>
+                </div>
+                
+                <div class="control-group">
+                    <label class="plugin-checkbox">
+                        <input type="checkbox" id="slide-number" checked>
+                        Numbers
+                    </label>
+                </div>
+                
+                <div class="control-group">
+                    <label class="plugin-checkbox">
+                        <input type="checkbox" id="controller" checked>
+                        Controls Button
+                    </label>
+                </div>
+                
+                <div class="control-group">
+                    <label class="plugin-checkbox">
+                        <input type="checkbox" id="overview-mode" checked>
+                        Overview
+                    </label>
+                </div>
             </div>
-        </div>
-        
-        <div class="control-section">
-            <h4>Plugins</h4>
-            <div class="plugin-grid">
-                <label class="plugin-checkbox">
-                    <input type="checkbox" id="progress-bar" checked>
-                    Progress Bar
-                </label>
-                <label class="plugin-checkbox">
-                    <input type="checkbox" id="slide-number" checked>
-                    Slide Number
-                </label>
-                <label class="plugin-checkbox">
-                    <input type="checkbox" id="controller" checked>
-                    Controller
-                </label>
-                <label class="plugin-checkbox">
-                    <input type="checkbox" id="overview-mode" checked>
-                    Overview
-                </label>
-            </div>
-        </div>
-        
-        <div class="control-section">
-            <h4>Transition</h4>
-            <select class="transition-select" id="transition-select">
-                <option value="horizontal">Horizontal</option>
-                <option value="vertical">Vertical</option>
-                <option value="fade">Fade</option>
-            </select>
-        </div>
-        
-        <div class="control-section">
-            <button class="action-btn" onclick="applyChanges()">Apply Changes</button>
-            <button class="action-btn" onclick="toggleOverview()" style="background: #28a745;">Toggle Overview</button>
-        </div>
-        
-        <div class="info-display" id="info-display">
-            Current: light theme, 4 plugins
         </div>
     </div>
     
-    <div id="app"></div>
+    <button class="minimize-btn" id="minimize-btn" onclick="toggleHeader()" title="Hide Control Panel">Demo Panel</button>
+    
+    <div id="app" class="with-header"></div>
     
     <script type="module">
         import Mo from '../src/index.ts';
@@ -198,7 +239,7 @@
         let currentMo = null;
         
         async function initPresentation() {
-            const theme = document.querySelector('.theme-btn.active').dataset.theme;
+            const theme = document.getElementById('theme-select').value;
             const transition = document.getElementById('transition-select').value;
             
             const plugins = [];
@@ -222,44 +263,40 @@
                 });
                 
                 await currentMo.start();
-                
-                // Update info display
-                document.getElementById('info-display').textContent = 
-                    `Current: ${theme} theme, ${plugins.length} plugins, ${transition} transition`;
-                    
                 console.log(`Presentation loaded: ${theme} theme, ${plugins.length} plugins`);
             } catch (error) {
                 console.error('Error initializing presentation:', error);
             }
         }
         
-        // Theme button handling
-        document.querySelectorAll('.theme-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                initPresentation();
-            });
-        });
+        // Theme dropdown handling
+        document.getElementById('theme-select').addEventListener('change', initPresentation);
         
         // Plugin checkbox handling
         document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
             checkbox.addEventListener('change', initPresentation);
         });
         
-        // Global functions for buttons
-        window.applyChanges = initPresentation;
+        // Transition select handling
+        document.getElementById('transition-select').addEventListener('change', initPresentation);
         
-        window.toggleOverview = () => {
-            if (currentMo) {
-                // Simulate 'O' key press for overview mode
-                const event = new KeyboardEvent('keydown', { key: 'o' });
-                document.dispatchEvent(event);
+        // Header minimize functionality
+        window.toggleHeader = () => {
+            const header = document.getElementById('demo-header');
+            const btn = document.getElementById('minimize-btn');
+            const app = document.getElementById('app');
+            
+            header.classList.toggle('minimized');
+            btn.classList.toggle('minimized');
+            
+            if (header.classList.contains('minimized')) {
+                btn.setAttribute('title', 'Show Control Panel');
+                app.classList.remove('with-header');
+            } else {
+                btn.setAttribute('title', 'Hide Control Panel');
+                app.classList.add('with-header');
             }
         };
-        
-        // Auto-apply changes when selects change
-        document.getElementById('transition-select').addEventListener('change', initPresentation);
         
         // Initialize with default settings
         initPresentation();
