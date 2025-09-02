@@ -1,19 +1,24 @@
-/* Mostage Base Styles */
-* {
+/* Mostage Base Styles - Simple & Clean */
+
+/* Reset and Base */
+*, *::before, *::after {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
 }
 
+/* Container */
 .mostage-container {
   width: 100vw;
   height: 100vh;
   position: relative;
   overflow: hidden;
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 .mostage-slides {
@@ -22,212 +27,243 @@ body {
   position: relative;
 }
 
+/* Slide Layout - Natural Flow, Not Centered */
 .mostage-slide {
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem;
+  padding: 2rem 3rem;
   position: absolute;
   top: 0;
   left: 0;
   transition: transform 0.3s ease, opacity 0.3s ease;
+  overflow-y: auto;
+  display: block;
 }
 
-/* Typography */
+/* Typography - Proper Hierarchy */
 .mostage-slide h1 {
-  font-size: 3rem;
+  font-size: 5rem;
   font-weight: 700;
-  margin: 0 0 1rem 0;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  color: #1a202c;
 }
 
 .mostage-slide h2 {
-  font-size: 2.5rem;
+  font-size: 3.5rem;
   font-weight: 600;
-  margin: 0 0 1rem 0;
+  line-height: 1.2;
+  margin-bottom: 1.25rem;
+  color: #2d3748;
 }
 
 .mostage-slide h3 {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 600;
-  margin: 0 0 1rem 0;
+  line-height: 1.3;
+  margin-bottom: 1rem;
+  color: #2d3748;
 }
 
+.mostage-slide h4 {
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1.4;
+  margin-bottom: 0.875rem;
+  color: #4a5568;
+}
+
+.mostage-slide h5 {
+  font-size: 1.75rem;
+  font-weight: 500;
+  line-height: 1.4;
+  margin-bottom: 0.75rem;
+  color: #4a5568;
+}
+
+.mostage-slide h6 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.4;
+  margin-bottom: 0.625rem;
+  color: #718096;
+}
+
+/* Content */
 .mostage-slide p {
-  font-size: 1.2rem;
+  font-size: 1.375rem;
   line-height: 1.6;
-  margin: 0 0 1rem 0;
+  margin: 0 0 1.25rem 0;
 }
 
-.mostage-slide ul, .mostage-slide ol {
-  font-size: 1.1rem;
-  line-height: 1.5;
-  max-width: 600px;
-  text-align: left;
+/* Lists */
+.mostage-slide ul, 
+.mostage-slide ol {
+  font-size: 1.375rem;
+  line-height: 1.6;
+  margin: 0 0 1.25rem 0;
+  padding-left: 1.5rem;
 }
 
 .mostage-slide li {
   margin-bottom: 0.5rem;
 }
 
+.mostage-slide ul ul,
+.mostage-slide ol ol,
+.mostage-slide ul ol,
+.mostage-slide ol ul {
+  margin: 0.5rem 0;
+}
+
+/* Blockquotes */
+.mostage-slide blockquote {
+  font-size: 1.375rem;
+  line-height: 1.6;
+  margin: 1.5rem 0;
+  padding: 1rem 1.5rem;
+  border-left: 4px solid currentColor;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 0 4px 4px 0;
+}
+
+/* Code */
 .mostage-slide code {
-  font-family: 'Monaco', 'Consolas', monospace;
-  font-size: 0.9em;
-  padding: 0.2rem 0.4rem;
-  border-radius: 4px;
+  font-family: 'SF Mono', 'Monaco', 'Consolas', 'Liberation Mono', monospace;
+  font-size: 1rem;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .mostage-slide pre {
-  font-family: 'Monaco', 'Consolas', monospace;
-  font-size: 1rem;
+  font-family: 'SF Mono', 'Monaco', 'Consolas', 'Liberation Mono', monospace;
+  font-size: 1.125rem;
   line-height: 1.5;
-  padding: 1rem;
-  border-radius: 8px;
+  padding: 1.25rem;
+  border-radius: 6px;
   overflow-x: auto;
-  max-width: 90%;
-  text-align: left;
+  margin: 1.5rem 0;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+.mostage-slide pre code {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+}
+
+/* Links */
 .mostage-slide a {
   color: inherit;
   text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  transition: opacity 0.2s ease;
 }
 
 .mostage-slide a:hover {
-  opacity: 0.8;
+  opacity: 0.7;
 }
 
-/* Progress Bar */
-.mostage-progress-bar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  z-index: 1000;
+/* Images */
+.mostage-slide img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin: 1rem 0;
 }
 
-.mostage-progress-fill {
-  height: 100%;
-  transition: width 0.3s ease;
-  width: 0%;
-}
-
-/* Slide Number */
-.mostage-slide-number {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  z-index: 1000;
-}
-
-/* Controller */
-.mostage-controller {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 10px;
-  z-index: 1000;
-}
-
-.mostage-btn {
-  padding: 0.5rem 1rem;
+/* Horizontal Rule */
+.mostage-slide hr {
   border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: all 0.2s ease;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.2);
+  margin: 2rem 0;
 }
 
-.mostage-btn:hover {
-  opacity: 0.8;
-  transform: translateY(-1px);
+/* Strong and Emphasis */
+.mostage-slide strong {
+  font-weight: 600;
 }
 
-/* Overview Mode */
-.mostage-overview-mode .mostage-slides {
-  display: none;
+.mostage-slide em {
+  font-style: italic;
 }
 
-.mostage-overview-grid {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1rem;
-  padding: 1rem;
-  z-index: 999;
-  overflow-y: auto;
-}
-
-.mostage-overview-slide {
-  border-radius: 8px;
-  padding: 1rem;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-  aspect-ratio: 16/9;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.8rem;
-}
-
-.mostage-overview-slide:hover {
-  transform: scale(1.05);
-}
-
-.mostage-overview-slide h1,
-.mostage-overview-slide h2,
-.mostage-overview-slide h3 {
-  font-size: 1rem;
-  margin: 0.2rem 0;
-}
-
-.mostage-overview-slide p {
-  font-size: 0.7rem;
-  margin: 0.1rem 0;
-}
-
-/* Mobile */
-@media (max-width: 768px) {
+/* Responsive Design */
+@media (max-width: 1024px) {
   .mostage-slide {
-    padding: 1rem;
+    padding: 1.5rem 2.5rem;
   }
   
   .mostage-slide h1 {
-    font-size: 2rem;
+    font-size: 3rem;
   }
   
   .mostage-slide h2 {
-    font-size: 1.5rem;
+    font-size: 2.5rem;
   }
   
-  .mostage-controller {
-    bottom: 10px;
-    gap: 5px;
+  .mostage-slide h3 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .mostage-slide {
+    padding: 1.25rem 2rem;
   }
   
-  .mostage-btn {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.9rem;
+  .mostage-slide h1 {
+    font-size: 2.5rem;
   }
   
-  .mostage-slide-number {
-    bottom: 10px;
-    right: 10px;
-    padding: 0.4rem 0.8rem;
-    font-size: 0.8rem;
+  .mostage-slide h2 {
+    font-size: 2rem;
+  }
+  
+  .mostage-slide h3 {
+    font-size: 1.75rem;
+  }
+  
+  .mostage-slide p,
+  .mostage-slide ul,
+  .mostage-slide ol {
+    font-size: 1.25rem;
+  }
+  
+  .mostage-slide pre {
+    font-size: 1rem;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .mostage-slide {
+    padding: 1rem 1.5rem;
+  }
+  
+  .mostage-slide h1 {
+    font-size: 2.75rem;
+  }
+  
+  .mostage-slide h2 {
+    font-size: 2.25rem;
+  }
+  
+  .mostage-slide h3 {
+    font-size: 1.875rem;
+  }
+  
+  .mostage-slide h4 {
+    font-size: 1.625rem;
+  }
+  
+  .mostage-slide p,
+  .mostage-slide ul,
+  .mostage-slide ol {
+    font-size: 1.125rem;
   }
 }

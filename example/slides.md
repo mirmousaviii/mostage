@@ -1,38 +1,29 @@
-# Welcome to Mostage
+# Mostage
 
-A modern TypeScript presentation framework
-
----
-
-## Features
-
-- **4 Beautiful Themes** - Light, Dark, Solarized, Dracula
-- **Plugin System** - Extensible and customizable
-- **Responsive Design** - Works on all devices
-- **High Performance** - Fast and lightweight
-- **TypeScript Support** - Full type safety
+### Modern slides based on Markdown
 
 ---
 
-## Getting Started
+## Key Features
 
-Install Mostage via npm:
+- **Markdown-based** → Create slides easily with plain text  
+- **Web-first** → Presentations run in any browser  
+- **Plugin System** → Extensible and customizable  
+- **Themes** → Multiple built-in and custom themes  
+- **Smooth Transitions** → Professional animations  
 
-```bash
-npm install mostage
-```
+---
 
-Then use it:
-
-Basic usage:
+#### Simple usage:
 
 ```javascript
-import Mo from 'mostage';
+import Mo from "mostage";
 
 const mo = new Mo({
-  element: '#app',
-  theme: 'light',
-  markdown: './slides.md'
+    element: "#app",
+    theme: "dark",
+    plugins: ["ProgressBar", "SlideNumber", "Controller", "OverviewMode"],
+    markdown: "./slides.md"
 });
 
 mo.start();
@@ -40,19 +31,15 @@ mo.start();
 
 ---
 
-## Themes
+## Default Themes
 
-### Light Theme
-Perfect for professional presentations and bright environments.
+- **Light Theme** → Perfect for professional presentations and bright environments  
+- **Dark Theme** → Ideal for code presentations and low-light conditions  
+- **Solarized Theme** → Carefully crafted palette with scientific balance  
+- **Dracula Theme** → Popular dark theme with vibrant accents  
+- **Ocean Theme** → Inspired by the sea — calm, elegant, and refreshing  
 
-### Dark Theme  
-Ideal for code presentations and low-light conditions.
-
-### Solarized Theme
-Carefully crafted colors with scientific precision.
-
-### Dracula Theme
-Popular dark theme with vibrant accents.
+#### And, Create a new theme is easy  
 
 ---
 
@@ -60,19 +47,23 @@ Popular dark theme with vibrant accents.
 
 Built-in plugins:
 
-- **ProgressBar** - Shows presentation progress
-- **SlideNumber** - Displays current slide number
-- **Controller** - Navigation controls
-- **OverviewMode** - Grid view of all slides
+- **ProgressBar** → Shows presentation progress  
+- **SlideNumber** → Displays current slide number  
+- **Controller** → Navigation buttons  
+- **OverviewMode** → Grid view with animations  
 
-Custom plugins:
+Custom plugin example:
 
-```javascript
+```ts
 class CustomPlugin {
   name = 'CustomPlugin';
   
   init(mo) {
     console.log('Plugin initialized!');
+  }
+
+  destroy() {
+    console.log('Plugin destroyed!');
   }
 }
 ```
@@ -81,72 +72,115 @@ class CustomPlugin {
 
 ## Navigation
 
-### Keyboard Controls
-- **Arrow Keys** - Navigate slides
-- **Space** - Next slide
-- **Esc** - Exit overview mode
-- **O** - Toggle overview mode
+#### Keyboard Controls
+- **Space** → Next slide
+- **Left Arrow (←)** → Previous slide  
+- **Right Arrow (→)** → Next slide      
+- **O** or **Esc** → Toggle overview mode    
 
-### Touch Controls
-- **Swipe** - Navigate on mobile
-- **Tap** - Next slide
-- **Pinch** - Zoom content
+#### Touch Controls
+- **Swipe** → Navigate on mobile  
+- **Tap** → Next slide  
 
 ---
 
-## Code Syntax
+## Markdown Parser
 
-Mostage supports syntax highlighting:
+```markdown
+# Header 1
+## Header 2
+### Header 3
+#### Header 4
+##### Header 5
+###### Header 6
 
-```typescript
-interface SlideConfig {
-  theme: 'light' | 'dark' | 'solarized' | 'dracula';
-  plugins: string[];
-  element: string;
-}
+This is a paragraph. It contains text that provides information or context.
 
-class Mo {
-  constructor(config: SlideConfig) {
-    this.config = config;
-  }
-  
-  async start(): Promise<void> {
-    // Initialize presentation
-  }
-}
+- *Italic*  
+- **Bold**  
+- ***Bold and Italic***  
+
+> This is a blockquote. It is used to highlight a section of text.
 ```
 
 ---
 
-## Responsive Design
+## Markdown Parser in advanced
 
-Mostage automatically adapts to:
+```markdown
 
-- **Mobile devices** (< 768px)
-- **Tablets** (768px - 1024px)
-- **Desktops** (> 1024px)
-- **Large screens** (> 1440px)
+- **Unordered List:**
+    - Item 1
+    - Item 2
+- **Ordered List:**
+    1. First item
+    2. Second item
 
-Content scales appropriately for optimal readability.
+- **Inline Code:** `console.log('Hello, World!');`
+- **Code Block:**
+    ```javascript
+    function greet() {
+            console.log('Hello, World!');
+    }
+    ```
+
+- [Mostage](https://mo.js.org)
+
+![Mostage Logo](https://via.placeholder.com/150 "Placeholder Image")
+
 
 ---
 
-## Performance
-
-Optimized for speed:
-
-- **Fast loading** - Minimal bundle size
-- **Smooth animations** - Hardware accelerated
-- **Tree shaking** - Only load what you need
-- **Efficient rendering** - Minimal DOM updates
+# Header 1
+## Header 2
+### Header 3
+#### Header 4
+##### Header 5
+###### Header 6
 
 ---
 
-## Thank You!
+This is a paragraph. It contains text that provides information or context.
 
-**Get started today:**
-- [Documentation](https://github.com)
-- [GitHub Repository](https://github.com)
-- [NPM Package](https://npmjs.com)
+- *Italic*  
+- **Bold**  
+- ***Bold and Italic***  
 
-**Happy presenting with Mostage!**
+> This is a blockquote. It is used to highlight a section of text.
+
+
+**Inline Code:** `console.log('Hello, World!');`
+
+A simple [Link](https://mo.js.org)
+
+![Mostage Logo](https://mo.js.org/icon.png "Placeholder Image")
+
+
+---
+
+- **Unordered List:**
+    - Item 1
+        - Subitem 1.1
+        - Subitem 1.2
+    - Item 2
+        - Subitem 2.1
+        - Subitem 2.2
+    - Item 3
+        - Subitem 3.1
+        - Subitem 3.2
+- **Ordered List:**
+    1. First item
+        1.1. Subitem 1.1
+        1.2. Subitem 1.2
+    2. Second item
+        2.1. Subitem 2.1
+        2.2. Subitem 2.2
+    3. Third item
+        3.1. Subitem 3.1
+        3.2. Subitem 3.2
+
+---
+
+## Happy presenting with Mostage!
+
+#### **Get started today:** [mo.js.org](https://mo.js.org)
