@@ -33,7 +33,8 @@ export class SlideNumberPlugin implements MoPlugin {
 
   private updateSlideNumber(current: number, total: number): void {
     if (this.slideNumberElement) {
-      this.slideNumberElement.textContent = `${current}/${total}`;
+      // Convert 0-based index to 1-based display (current + 1)
+      this.slideNumberElement.textContent = `${current + 1}/${total}`;
     }
   }
 
