@@ -1,0 +1,47 @@
+.mostage-controller {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  display: flex;
+  gap: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 10px;
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.mostage-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-size: 14px;
+}
+
+.mostage-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.mostage-btn:disabled {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.5);
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .mostage-controller {
+    bottom: 10px;
+    gap: 5px;
+  }
+  
+  .mostage-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
