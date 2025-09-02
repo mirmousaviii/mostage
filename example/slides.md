@@ -1,6 +1,6 @@
 # Mostage
 
-### Modern slides based on Markdown
+## Modern slides based on Markdown
 
 ---
 
@@ -14,7 +14,7 @@
 
 ---
 
-#### Simple usage:
+## Simple usage
 
 ```javascript
 import Mo from "mostage";
@@ -99,37 +99,23 @@ This is a paragraph. It contains text that provides information or context.
 - *Italic*  
 - **Bold**  
 - ***Bold and Italic***  
+- [Link](https://mo.js.org)
 
 > This is a blockquote. It is used to highlight a section of text.
-```
-
----
-
-## Markdown Parser in advanced
-
-```markdown
 
 - **Unordered List:**
     - Item 1
     - Item 2
+        - Subitem 2.1
+        - Subitem 2.2
 - **Ordered List:**
     1. First item
     2. Second item
-
-- **Inline Code:** `console.log('Hello, World!');`
-- **Code Block:**
-    ```javascript
-    function greet() {
-            console.log('Hello, World!');
-    }
-    ```
-
-- [Mostage](https://mo.js.org)
-
-![Mostage Logo](https://via.placeholder.com/150 "Placeholder Image")
-
+        1. Subitem 2.1
+```
 
 ---
+## Example
 
 # Header 1
 ## Header 2
@@ -139,6 +125,8 @@ This is a paragraph. It contains text that provides information or context.
 ###### Header 6
 
 ---
+
+## Example
 
 This is a paragraph. It contains text that provides information or context.
 
@@ -158,6 +146,8 @@ A simple [Link](https://mo.js.org)
 
 ---
 
+## Example
+
 - **Unordered List:**
     - Item 1
         - Subitem 1.1
@@ -170,14 +160,26 @@ A simple [Link](https://mo.js.org)
         - Subitem 3.2
 - **Ordered List:**
     1. First item
-        1.1. Subitem 1.1
-        1.2. Subitem 1.2
+        1. Subitem 1.1
+        2. Subitem 1.2
     2. Second item
-        2.1. Subitem 2.1
-        2.2. Subitem 2.2
-    3. Third item
-        3.1. Subitem 3.1
-        3.2. Subitem 3.2
+        1. Subitem 2.1
+        2. Subitem 2.2
+
+---
+
+## Code Examples
+
+Here is example of **code**
+
+```html
+<div class="example">
+    <!-- This should not be parsed -->
+    <p>HTML tags should be escaped</p>
+</div>
+```
+
+**Inline Code:** `console.log('Hello, World!');`
 
 ---
 

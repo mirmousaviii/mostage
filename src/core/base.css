@@ -43,7 +43,7 @@ body {
 /* Typography - Proper Hierarchy */
 .mostage-slide h1 {
   font-size: 5rem;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.1;
   margin-bottom: 1.5rem;
   color: #1a202c;
@@ -109,11 +109,76 @@ body {
   margin-bottom: 0.5rem;
 }
 
+/* Nested Lists */
 .mostage-slide ul ul,
 .mostage-slide ol ol,
 .mostage-slide ul ol,
 .mostage-slide ol ul {
   margin: 0.5rem 0;
+  padding-left: 2rem;
+  font-size: 1.25rem;
+}
+
+/* Third level nesting */
+.mostage-slide ul ul ul,
+.mostage-slide ol ol ol,
+.mostage-slide ul ol ul,
+.mostage-slide ol ul ol,
+.mostage-slide ul ul ol,
+.mostage-slide ol ol ul {
+  padding-left: 2.5rem;
+  font-size: 1.125rem;
+}
+
+/* List item spacing for nested lists */
+.mostage-slide li li {
+  margin-bottom: 0.375rem;
+}
+
+.mostage-slide li li li {
+  margin-bottom: 0.25rem;
+}
+
+/* Ordered list style variations */
+.mostage-slide ol {
+  list-style-type: decimal;
+}
+
+.mostage-slide ol ol {
+  list-style-type: lower-alpha;
+}
+
+.mostage-slide ol ol ol {
+  list-style-type: lower-roman;
+}
+
+/* Better spacing for ordered lists */
+.mostage-slide ol li {
+  margin-bottom: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+.mostage-slide ol ol li {
+  margin-bottom: 0.375rem;
+  padding-left: 0.25rem;
+}
+
+.mostage-slide ol ol ol li {
+  margin-bottom: 0.25rem;
+  padding-left: 0.125rem;
+}
+
+/* Unordered list style variations */
+.mostage-slide ul {
+  list-style-type: disc;
+}
+
+.mostage-slide ul ul {
+  list-style-type: circle;
+}
+
+.mostage-slide ul ul ul {
+  list-style-type: square;
 }
 
 /* Blockquotes */
