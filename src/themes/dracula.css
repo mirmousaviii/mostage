@@ -1,12 +1,12 @@
 /* Dracula Theme - Mostage */
-.mo-container {
+.mostage-container {
   background: linear-gradient(135deg, #282a36 0%, #1e1f29 100%);
   color: #f8f8f2;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
   min-height: 100vh;
 }
 
-.mo-slide {
+.mostage-slide {
   background: rgba(68, 71, 90, 0.9);
   color: #f8f8f2;
   border: 1px solid rgba(189, 147, 249, 0.3);
@@ -16,82 +16,82 @@
   backdrop-filter: blur(10px);
 }
 
-.mo-slide h1, .mo-slide h2, .mo-slide h3, .mo-slide h4, .mo-slide h5, .mo-slide h6 {
+.mostage-slide h1, .mostage-slide h2, .mostage-slide h3, .mostage-slide h4, .mostage-slide h5, .mostage-slide h6 {
   color: #bd93f9;
   text-shadow: 0 2px 4px rgba(189, 147, 249, 0.3);
 }
 
-.mo-slide h1 {
+.mostage-slide h1 {
   background: linear-gradient(135deg, #bd93f9 0%, #ff79c6 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.mo-slide code {
+.mostage-slide code {
   background: rgba(189, 147, 249, 0.2);
   color: #ffb86c;
   border: 1px solid rgba(189, 147, 249, 0.3);
 }
 
-.mo-slide pre {
+.mostage-slide pre {
   background: linear-gradient(135deg, #44475a 0%, #383a59 100%);
   color: #f8f8f2;
   border: 1px solid rgba(189, 147, 249, 0.3);
 }
 
-.mo-slide blockquote {
+.mostage-slide blockquote {
   color: #6272a4;
   background: rgba(189, 147, 249, 0.1);
   border-left-color: #ff79c6;
 }
 
-.mo-slide a {
+.mostage-slide a {
   color: #8be9fd;
 }
 
-.mo-slide a:hover {
+.mostage-slide a:hover {
   color: #50fa7b;
 }
 
-.mo-progress-bar {
+.mostage-progress-bar {
   background: rgba(68, 71, 90, 0.8);
   backdrop-filter: blur(10px);
 }
 
-.mo-progress-fill {
+.mostage-progress-fill {
   background: linear-gradient(90deg, #ff79c6 0%, #bd93f9 100%);
 }
 
-.mo-slide-number {
+.mostage-slide-number {
   background: rgba(68, 71, 90, 0.9);
   color: #f8f8f2;
   border-color: rgba(189, 147, 249, 0.3);
 }
 
-.mo-btn {
+.mostage-btn {
   background: rgba(68, 71, 90, 0.9);
   color: #f8f8f2;
   border-color: rgba(189, 147, 249, 0.3);
 }
 
-.mo-btn:hover {
+.mostage-btn:hover {
   background: rgba(98, 114, 164, 0.9);
   color: #bd93f9;
   border-color: rgba(189, 147, 249, 0.5);
 }
 
-.mo-overview-slide {
+.mostage-overview-slide {
   background: rgba(68, 71, 90, 0.9);
   border: 2px solid rgba(189, 147, 249, 0.3);
   color: #f8f8f2;
 }
 
-.mo-overview-slide:hover {
+.mostage-overview-slide:hover {
   background: rgba(98, 114, 164, 0.9);
   border-color: rgba(189, 147, 249, 0.5);
 }
 
-.mo-overview-slide.active {
+.mostage-overview-slide.active {
   border-color: #ff79c6;
 }

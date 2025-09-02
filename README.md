@@ -33,7 +33,7 @@ Create simple presentations using **Markdown** with smooth transitions and an ex
 - [Events](#events)
 - [CLI Usage](#cli-usage)
 - [API Reference](#api-reference)
-  - [Mo Class Methods](#mo-class-methods)
+  - [Mostage Class Methods](#mostage-class-methods)
   - [Event Types](#event-types)
 - [Development](#development)
   - [Setup](#setup)
@@ -89,16 +89,16 @@ npm install mostage
     <div id="app"></div>
     
     <script type="module">
-        import Mo from "mostage";
+        import Mostage from "mostage";
         
-        const mo = new Mo({ 
+        const mostage = new Mostage({ 
             element: "#app", 
             theme: "light", 
             markdown: "./slides.md",
             plugins: ["ProgressBar", "SlideNumber", "Controller"]
         });
         
-        mo.start();
+        mostage.start();
     </script>
 </body>
 </html>
@@ -107,16 +107,16 @@ npm install mostage
 ### Inline Content
 
 ```javascript
-import Mo from "mostage";
+import Mostage from "mostage";
 
-const mo = new Mo({
+const mostage = new Mostage({
     element: "#app",
     theme: "dark",
     markdown: "./slides.md",
     plugins: ["ProgressBar", "SlideNumber"]
 });
 
-mo.start();
+mostage.start();
 ```
 
 ### CommonJS/Node.js Usage (Legacy Projects)
@@ -124,16 +124,16 @@ mo.start();
 For older projects using CommonJS or Node.js without ES modules:
 
 ```javascript
-const Mo = require("mostage");
+const Mostage = require("mostage");
 
-const mo = new Mo({
+const mostage = new Mostage({
     element: "#app",
     theme: "solarized",
     markdown: "./slides.md",
     plugins: ["ProgressBar", "SlideNumber", "Controller"]
 });
 
-mo.start();
+mostage.start();
 ```
 
 ### Script Tag Usage (No Bundler)
@@ -153,15 +153,15 @@ For projects without any build system, use the UMD build:
     <script src="https://unpkg.com/mostage@latest/dist/mostage.umd.js"></script>
     
     <script>
-        // Mo is available globally
-        const mo = new Mo({
+        // Mostage is available globally
+        const mostage = new Mostage({
             element: "#app",
             theme: "dracula",
             markdown: "./presentation.md",
             plugins: ["ProgressBar", "SlideNumber"]
         });
         
-        mo.start();
+        mostage.start();
     </script>
 </body>
 </html>
@@ -178,15 +178,15 @@ require.config({
     }
 });
 
-require(['mostage'], function(Mo) {
-    const mo = new Mo({
+require(['mostage'], function(Mostage) {
+    const mostage = new Mostage({
         element: "#app", 
         theme: "light",
         markdown: "./presentation.md",
         plugins: ["ProgressBar", "SlideNumber", "Controller", "OverviewMode"]
     });
     
-    mo.start();
+    mostage.start();
 });
 ```
 
@@ -195,15 +195,15 @@ require(['mostage'], function(Mo) {
 For projects using SystemJS:
 
 ```javascript
-System.import('mostage').then(function(Mo) {
-    const mo = new Mo.default({
+System.import('mostage').then(function(Mostage) {
+    const mostage = new Mostage({
         element: "#app",
         theme: "dark", 
         markdown: "./slides.md",
         plugins: ["ProgressBar", "Controller"]
     });
     
-    mo.start();
+    mostage.start();
 });
 ```
 
@@ -277,7 +277,7 @@ interface MoConfig {
 ### Advanced Configuration
 
 ```typescript
-const mo = new Mo({
+const mostage = new Mostage({
     element: "#presentation",
     theme: "dark",
     markdown: "./slides.md",
@@ -309,13 +309,13 @@ const mo = new Mo({
 
 ```typescript
 // Load theme by name
-const mo = new Mo({
+const mostage = new Mostage({
     theme: "dracula",
     markdown: "./slides.md"
 });
 
 // Switch themes dynamically
-await mo.setTheme("solarized");
+await mostage.setTheme("solarized");
 ```
 
 ### Custom Themes
@@ -324,7 +324,7 @@ Create a custom theme by adding a CSS file:
 
 ```css
 /* themes/custom.css */
-.mo-container {
+.mostage-container {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
 }
@@ -372,14 +372,14 @@ plugins: ["OverviewMode"]
 ### Creating Custom Plugins
 
 ```typescript
-import { MoPlugin, Mo } from 'mostage';
+import { MoPlugin, Mostage } from 'mostage';
 
 class TimerPlugin implements MoPlugin {
     name = 'TimerPlugin';
     private startTime: number = 0;
     private timerElement: HTMLElement | null = null;
     
-    init(mo: Mo): void {
+    init(mostage: Mostage): void {
         this.startTime = Date.now();
         this.createTimerDisplay();
         this.updateTimer();
@@ -422,7 +422,7 @@ class TimerPlugin implements MoPlugin {
 }
 
 // Use the custom plugin
-const mo = new Mo({
+const mostage = new Mostage({
     plugins: ["ProgressBar", new TimerPlugin()]
 });
 ```
@@ -448,13 +448,13 @@ const mo = new Mo({
 
 ```typescript
 // Navigate programmatically
-mo.nextSlide();
-mo.previousSlide();
-mo.goToSlide(5);
+mostage.nextSlide();
+mostage.previousSlide();
+mostage.goToSlide(5);
 
 // Get current state
-const currentSlide = mo.getCurrentSlide();
-const totalSlides = mo.getTotalSlides();
+const currentSlide = mostage.getCurrentSlide();
+const totalSlides = mostage.getTotalSlides();
 ```
 
 ## Events
@@ -463,18 +463,18 @@ Listen to presentation events:
 
 ```typescript
 // Slide change event
-mo.on('slidechange', (event) => {
+mostage.on('slidechange', (event) => {
     console.log(`Slide ${event.currentSlide + 1} of ${event.totalSlides}`);
     console.log('Slide content:', event.slide.content);
 });
 
 // Presentation ready
-mo.on('ready', (event) => {
+mostage.on('ready', (event) => {
     console.log('Presentation loaded with', event.totalSlides, 'slides');
 });
 
 // Theme change
-mo.on('themechange', (event) => {
+mostage.on('themechange', (event) => {
     console.log('Theme changed to:', event.theme);
 });
 ```
@@ -508,10 +508,10 @@ npx mostage --help
 
 ## API Reference
 
-### Mo Class Methods
+### Mostage Class Methods
 
 ```typescript
-class Mo {
+class Mostage {
     constructor(config: MoConfig)
     
     // Lifecycle
@@ -526,7 +526,7 @@ class Mo {
     // State
     getCurrentSlide(): number
     getTotalSlides(): number
-    getSlides(): Slide[]
+    getSlides(): MoSlide[]
     
     // Themes
     async setTheme(themeName: string): Promise<void>
@@ -546,7 +546,7 @@ interface SlideChangeEvent {
     type: 'slidechange';
     currentSlide: number;
     totalSlides: number;
-    slide: Slide;
+    slide: MoSlide;
 }
 
 interface ReadyEvent {
@@ -608,9 +608,9 @@ npm run format
 <body>
     <div id="app"></div>
     <script type="module">
-        import Mo from "mostage";
+        import Mostage from "mostage";
         
-        const mo = new Mo({
+        const mostage = new Mostage({
             element: "#app",
             theme: "light",
             content: `
@@ -633,7 +633,7 @@ Welcome to Mostage!
             plugins: ["ProgressBar", "SlideNumber"]
         });
         
-        mo.start();
+        mostage.start();
     </script>
 </body>
 </html>
@@ -653,16 +653,16 @@ For a quick start, check the `example/basic.html` file:
     <div id="app"></div>
     
     <script type="module">
-        import Mo from "../src/index.ts";
+        import Mostage from "../src/index.ts";
         
-        const mo = new Mo({
+        const mostage = new Mostage({
             element: "#app",
             theme: "light",
             markdown: "./slides.md",
             plugins: ["ProgressBar", "SlideNumber", "Controller", "OverviewMode"]
         });
         
-        mo.start();
+        mostage.start();
     </script>
 </body>
 </html>

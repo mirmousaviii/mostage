@@ -18,7 +18,7 @@ export interface MoConfig {
   speed?: number;
 }
 
-export interface Slide {
+export interface MoSlide {
   id: string;
   content: string;
   html: string;
@@ -31,7 +31,7 @@ export interface MoSlideEvent {
   type: string;
   currentSlide: number;
   totalSlides: number;
-  slide?: Slide;
+  slide?: MoSlide;
 }
 
 export interface MoTheme {

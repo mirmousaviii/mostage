@@ -75,12 +75,12 @@ export class ThemeLoader {
     }
 
     // Remove existing theme styles
-    const existingThemeStyles = document.querySelectorAll('style[data-mo-theme]');
+    const existingThemeStyles = document.querySelectorAll('style[data-mostage-theme]');
     existingThemeStyles.forEach(style => style.remove());
 
     // Add new theme styles
     const styleElement = document.createElement('style');
-    styleElement.setAttribute('data-mo-theme', themeName);
+    styleElement.setAttribute('data-mostage-theme', themeName);
     styleElement.textContent = theme.cssContent;
     document.head.appendChild(styleElement);
 
@@ -92,12 +92,12 @@ export class ThemeLoader {
    */
   private static loadBaseStyles(): void {
     // Check if base styles are already loaded
-    if (document.querySelector('style[data-mo-base]')) {
+    if (document.querySelector('style[data-mostage-base]')) {
       return;
     }
 
     const styleElement = document.createElement('style');
-    styleElement.setAttribute('data-mo-base', 'true');
+    styleElement.setAttribute('data-mostage-base', 'true');
     styleElement.textContent = baseStylesCSS;
     document.head.appendChild(styleElement);
 

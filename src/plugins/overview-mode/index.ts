@@ -34,15 +34,15 @@ export class OverviewModePlugin implements MoPlugin {
   private enterOverview(mo: any): void {
     this.isOverviewMode = true;
     const container = mo.getContainer();
-    container.classList.add('mo-overview-mode');
+    container.classList.add('mostage-overview-mode');
     
     this.overviewContainer = document.createElement('div');
-    this.overviewContainer.className = 'mo-overview-grid';
+    this.overviewContainer.className = 'mostage-overview-grid';
     
     const slides = mo.getSlides();
     slides.forEach((slide: any, index: number) => {
       const slideThumb = document.createElement('div');
-      slideThumb.className = 'mo-overview-slide';
+      slideThumb.className = 'mostage-overview-slide';
       slideThumb.innerHTML = slide.html;
       slideThumb.addEventListener('click', () => {
         this.exitOverview(mo);
@@ -57,7 +57,7 @@ export class OverviewModePlugin implements MoPlugin {
   private exitOverview(mo: any): void {
     this.isOverviewMode = false;
     const container = mo.getContainer();
-    container.classList.remove('mo-overview-mode');
+    container.classList.remove('mostage-overview-mode');
     
     if (this.overviewContainer) {
       this.overviewContainer.remove();

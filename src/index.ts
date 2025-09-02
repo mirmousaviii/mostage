@@ -1,5 +1,5 @@
 // Main Framework
-export { Mo } from './core';
+export { Mostage as default } from './core';
 
 // Types - Most commonly needed
-export type { MoConfig, MoPlugin, Slide, MoSlideEvent, MoTheme } from './types';
+export type { MoConfig, MoPlugin, MoSlide, MoSlideEvent, MoTheme } from './types';

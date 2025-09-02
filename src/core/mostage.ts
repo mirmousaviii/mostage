@@ -1,12 +1,12 @@
-import { MoConfig, MoPlugin, Slide, MoSlideEvent } from '../types';
+import { MoConfig, MoPlugin, MoSlide, MoSlideEvent } from '../types';
 import { MarkdownParser } from '../utils/markdown-parser';
 import { plugins } from './plugin-loader';
 import { loadTheme } from './theme-loader';
 
-export class Mo {
+export class Mostage {
   private config: MoConfig;
   private container: HTMLElement;
-  private slides: Slide[] = [];
+  private slides: MoSlide[] = [];
   private currentSlideIndex = 0;
   private plugins: MoPlugin[] = [];
   private eventListeners: Map<string, Function[]> = new Map();
@@ -27,7 +27,7 @@ export class Mo {
 
     this.parser = new MarkdownParser();
     this.container = this.resolveElement(this.config.element || document.body);
-    this.container.classList.add('mo-container');
+    this.container.classList.add('mostage-container');
   }
 
   async start(): Promise<void> {
@@ -187,11 +187,11 @@ export class Mo {
     this.container.innerHTML = '';
     
     const slidesContainer = document.createElement('div');
-    slidesContainer.className = 'mo-slides';
+    slidesContainer.className = 'mostage-slides';
     
     this.slides.forEach((slide, index) => {
       const slideElement = document.createElement('div');
-      slideElement.className = 'mo-slide';
+      slideElement.className = 'mostage-slide';
       slideElement.id = slide.id;
       slideElement.innerHTML = slide.html;
       slideElement.style.display = index === 0 ? 'block' : 'none';
@@ -238,7 +238,7 @@ export class Mo {
   }
 
   private showSlide(index: number): void {
-    const slides = this.container.querySelectorAll('.mo-slide');
+    const slides = this.container.querySelectorAll('.mostage-slide');
     slides.forEach((slide, i) => {
       const slideElement = slide as HTMLElement;
       slideElement.style.display = i === index ? 'block' : 'none';
@@ -248,7 +248,7 @@ export class Mo {
   }
 
   private animateTransition(fromIndex: number, toIndex: number): void {
-    const slides = this.container.querySelectorAll('.mo-slide');
+    const slides = this.container.querySelectorAll('.mostage-slide');
     const fromSlide = slides[fromIndex] as HTMLElement;
     const toSlide = slides[toIndex] as HTMLElement;
 
@@ -347,7 +347,7 @@ export class Mo {
     return this.slides.length;
   }
 
-  getSlides(): Slide[] {
+  getSlides(): MoSlide[] {
     return this.slides;
   }
 

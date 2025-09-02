@@ -7,7 +7,7 @@ import * as path from 'path';
 const program = new Command();
 
 program
-  .name('mo-slide')
+  .name('mostage')
   .description('A modern, plugin-based, themeable slide presentation framework')
   .version('1.0.0');
 
@@ -69,13 +69,13 @@ async function initProject(name: string, options: any) {
   const packageJson = {
     name: name,
     version: '1.0.0',
-    description: 'Mo-slide presentation',
+    description: 'Mostage presentation',
     scripts: {
-      dev: 'mo-slide serve slides.md',
-      build: 'mo-slide build slides.md'
+      dev: 'mostage serve slides.md',
+      build: 'mostage build slides.md'
     },
     dependencies: {
-      'mo-slide': '^1.0.0'
+      'mostage': '^1.0.0'
     }
   };
   
@@ -149,7 +149,7 @@ async function serveProject(slides: string, options: any) {
 }
 
 function getBasicSlides(): string {
-  return `# Welcome to Mo-Slide
+  return `# Welcome to Mostage
 
 Your presentation framework
 
@@ -178,15 +178,15 @@ Happy presenting! 🎉`;
 }
 
 function getExampleSlides(): string {
-  return `# Mo-Slide Example
+  return `# Mostage Example
 
 ## A modern presentation framework
 
 ---
 
-## What is Mo-Slide?
+## What is Mostage?
 
-Mo-Slide is a **modern**, **plugin-based**, and **themeable** slide presentation framework.
+Mostage is a **modern**, **plugin-based**, and **themeable** slide presentation framework.
 
 - Written in TypeScript
 - Custom Markdown parser
@@ -236,13 +236,13 @@ mo.start();
 
 Visit [mo.js.org](https://mo.js.org) for more information.
 
-> "Mo-Slide makes presentations beautiful and simple."
+> "Mostage makes presentations beautiful and simple."
 
 ---
 
 ## Themes
 
-Mo-Slide supports multiple themes:
+Mostage supports multiple themes:
 
 - Light
 - Dark  
@@ -273,11 +273,11 @@ Built-in plugins include:
 
 ## Thank You!
 
-Start building amazing presentations with Mo-Slide! 🚀
+Start building amazing presentations with Mostage! 🚀
 
 ### Get Started
 \`\`\`bash
-npx mo-slide init my-presentation --with-example
+npx mostage init my-presentation --with-example
 cd my-presentation
 npm install
 npm run dev
@@ -290,7 +290,7 @@ function generateHTML(slidesFile: string, theme: string): string {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mo-Slide Presentation</title>
+    <title>Mostage Presentation</title>
     <style>
         body {
             margin: 0;
@@ -299,19 +299,19 @@ function generateHTML(slidesFile: string, theme: string): string {
             overflow: hidden;
         }
         
-        .mo-container {
+        .mostage-container {
             width: 100vw;
             height: 100vh;
             position: relative;
         }
         
-        .mo-slides {
+        .mostages {
             width: 100%;
             height: 100%;
             position: relative;
         }
         
-        .mo-slide {
+        .mostage {
             width: 100%;
             height: 100%;
             display: flex;
@@ -326,21 +326,21 @@ function generateHTML(slidesFile: string, theme: string): string {
             transition: transform 0.3s ease, opacity 0.3s ease;
         }
         
-        .mo-slide h1 { font-size: 3rem; margin-bottom: 1rem; }
-        .mo-slide h2 { font-size: 2.5rem; margin-bottom: 0.8rem; }
-        .mo-slide h3 { font-size: 2rem; margin-bottom: 0.6rem; }
-        .mo-slide h4 { font-size: 1.5rem; margin-bottom: 0.5rem; }
-        .mo-slide h5 { font-size: 1.2rem; margin-bottom: 0.4rem; }
-        .mo-slide h6 { font-size: 1rem; margin-bottom: 0.3rem; }
+        .mostage h1 { font-size: 3rem; margin-bottom: 1rem; }
+        .mostage h2 { font-size: 2.5rem; margin-bottom: 0.8rem; }
+        .mostage h3 { font-size: 2rem; margin-bottom: 0.6rem; }
+        .mostage h4 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .mostage h5 { font-size: 1.2rem; margin-bottom: 0.4rem; }
+        .mostage h6 { font-size: 1rem; margin-bottom: 0.3rem; }
         
-        .mo-slide p { font-size: 1.2rem; line-height: 1.6; margin-bottom: 1rem; }
-        .mo-slide ul, .mo-slide ol { font-size: 1.1rem; line-height: 1.5; }
-        .mo-slide li { margin-bottom: 0.5rem; }
-        .mo-slide code { background: rgba(0,0,0,0.1); padding: 0.2rem 0.4rem; border-radius: 3px; }
-        .mo-slide pre { background: rgba(0,0,0,0.1); padding: 1rem; border-radius: 5px; overflow-x: auto; }
-        .mo-slide blockquote { border-left: 4px solid #ccc; padding-left: 1rem; margin: 1rem 0; font-style: italic; }
+        .mostage p { font-size: 1.2rem; line-height: 1.6; margin-bottom: 1rem; }
+        .mostage ul, .mostage ol { font-size: 1.1rem; line-height: 1.5; }
+        .mostage li { margin-bottom: 0.5rem; }
+        .mostage code { background: rgba(0,0,0,0.1); padding: 0.2rem 0.4rem; border-radius: 3px; }
+        .mostage pre { background: rgba(0,0,0,0.1); padding: 1rem; border-radius: 5px; overflow-x: auto; }
+        .mostage blockquote { border-left: 4px solid #ccc; padding-left: 1rem; margin: 1rem 0; font-style: italic; }
         
-        .mo-progress-bar {
+        .mostage-progress-bar {
             position: fixed;
             bottom: 0;
             left: 0;
@@ -349,7 +349,7 @@ function generateHTML(slidesFile: string, theme: string): string {
             z-index: 1000;
         }
         
-        .mo-slide-number {
+        .mostage-number {
             position: fixed;
             bottom: 20px;
             right: 20px;
@@ -359,7 +359,7 @@ function generateHTML(slidesFile: string, theme: string): string {
             z-index: 1000;
         }
         
-        .mo-controller {
+        .mostage-controller {
             position: fixed;
             bottom: 20px;
             left: 50%;
@@ -369,7 +369,7 @@ function generateHTML(slidesFile: string, theme: string): string {
             z-index: 1000;
         }
         
-        .mo-btn {
+        .mostage-btn {
             padding: 0.5rem 1rem;
             border: none;
             border-radius: 5px;
@@ -378,16 +378,16 @@ function generateHTML(slidesFile: string, theme: string): string {
             transition: opacity 0.2s ease;
         }
         
-        .mo-btn:hover {
+        .mostage-btn:hover {
             opacity: 0.8;
         }
         
-        .mo-overview-mode .mo-slides {
+        .mostage-overview-mode .mostages {
             transform: scale(0.2);
             transform-origin: top left;
         }
         
-        .mo-overview-grid {
+        .mostage-overview-grid {
             position: fixed;
             top: 0;
             left: 0;
@@ -402,7 +402,7 @@ function generateHTML(slidesFile: string, theme: string): string {
             overflow-y: auto;
         }
         
-        .mo-overview-slide {
+        .mostage-overview-slide {
             background: white;
             border-radius: 10px;
             padding: 10px;
@@ -416,7 +416,7 @@ function generateHTML(slidesFile: string, theme: string): string {
             font-size: 0.5rem;
         }
         
-        .mo-overview-slide:hover {
+        .mostage-overview-slide:hover {
             transform: scale(1.05);
         }
     </style>
@@ -425,7 +425,7 @@ function generateHTML(slidesFile: string, theme: string): string {
     <div id="app"></div>
     
     <script type="module">
-        // Mo-Slide lite implementation for static builds
+        // Mostage lite implementation for static builds
         class MoLite {
             constructor(config) {
                 this.config = config;
@@ -449,10 +449,10 @@ function generateHTML(slidesFile: string, theme: string): string {
                 
                 const style = document.createElement('style');
                 style.textContent = \`
-                    .mo-progress-bar { background: rgba(0,0,0,0.1); }
-                    .mo-progress-fill { background: \${theme.accent}; height: 100%; transition: width 0.3s ease; width: 0%; }
-                    .mo-slide-number { background: rgba(0,0,0,0.1); color: \${theme.color}; }
-                    .mo-btn { background: \${theme.accent}; color: white; }
+                    .mostage-progress-bar { background: rgba(0,0,0,0.1); }
+                    .mostage-progress-fill { background: \${theme.accent}; height: 100%; transition: width 0.3s ease; width: 0%; }
+                    .mostage-number { background: rgba(0,0,0,0.1); color: \${theme.color}; }
+                    .mostage-btn { background: \${theme.accent}; color: white; }
                 \`;
                 document.head.appendChild(style);
             }
@@ -495,12 +495,12 @@ function generateHTML(slidesFile: string, theme: string): string {
             }
             
             render() {
-                this.container.innerHTML = '<div class="mo-slides"></div>';
-                const slidesContainer = this.container.querySelector('.mo-slides');
+                this.container.innerHTML = '<div class="mostages"></div>';
+                const slidesContainer = this.container.querySelector('.mostages');
                 
                 this.slides.forEach((slide, i) => {
                     const slideEl = document.createElement('div');
-                    slideEl.className = 'mo-slide';
+                    slideEl.className = 'mostage';
                     slideEl.innerHTML = slide.html;
                     slideEl.style.display = i === 0 ? 'block' : 'none';
                     slidesContainer.appendChild(slideEl);
@@ -522,35 +522,35 @@ function generateHTML(slidesFile: string, theme: string): string {
             setupPlugins() {
                 // Progress bar
                 const progressBar = document.createElement('div');
-                progressBar.className = 'mo-progress-bar';
-                progressBar.innerHTML = '<div class="mo-progress-fill"></div>';
+                progressBar.className = 'mostage-progress-bar';
+                progressBar.innerHTML = '<div class="mostage-progress-fill"></div>';
                 document.body.appendChild(progressBar);
                 
                 // Slide number
                 const slideNumber = document.createElement('div');
-                slideNumber.className = 'mo-slide-number';
+                slideNumber.className = 'mostage-number';
                 slideNumber.textContent = \`1 / \${this.slides.length}\`;
                 document.body.appendChild(slideNumber);
                 
                 // Controller
                 const controller = document.createElement('div');
-                controller.className = 'mo-controller';
+                controller.className = 'mostage-controller';
                 controller.innerHTML = \`
-                    <button class="mo-btn mo-prev">‹</button>
-                    <button class="mo-btn mo-next">›</button>
+                    <button class="mostage-btn mostage-prev">‹</button>
+                    <button class="mostage-btn mostage-next">›</button>
                 \`;
                 document.body.appendChild(controller);
                 
-                controller.querySelector('.mo-prev').onclick = () => this.prev();
-                controller.querySelector('.mo-next').onclick = () => this.next();
+                controller.querySelector('.mostage-prev').onclick = () => this.prev();
+                controller.querySelector('.mostage-next').onclick = () => this.next();
                 
                 this.updatePlugins();
             }
             
             updatePlugins() {
                 const progress = ((this.currentSlide + 1) / this.slides.length) * 100;
-                document.querySelector('.mo-progress-fill').style.width = \`\${progress}%\`;
-                document.querySelector('.mo-slide-number').textContent = \`\${this.currentSlide + 1} / \${this.slides.length}\`;
+                document.querySelector('.mostage-progress-fill').style.width = \`\${progress}%\`;
+                document.querySelector('.mostage-number').textContent = \`\${this.currentSlide + 1} / \${this.slides.length}\`;
             }
             
             next() {
@@ -566,7 +566,7 @@ function generateHTML(slidesFile: string, theme: string): string {
             }
             
             goTo(index) {
-                const slides = this.container.querySelectorAll('.mo-slide');
+                const slides = this.container.querySelectorAll('.mostage');
                 slides[this.currentSlide].style.display = 'none';
                 slides[index].style.display = 'block';
                 this.currentSlide = index;

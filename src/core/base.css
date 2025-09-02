@@ -9,20 +9,20 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
-.mo-container {
+.mostage-container {
   width: 100vw;
   height: 100vh;
   position: relative;
   overflow: hidden;
 }
 
-.mo-slides {
+.mostage-slides {
   width: 100%;
   height: 100%;
   position: relative;
 }
 
-.mo-slide {
+.mostage-slide {
   width: 100%;
   height: 100%;
   display: flex;
@@ -37,49 +37,49 @@ body {
 }
 
 /* Typography */
-.mo-slide h1 {
+.mostage-slide h1 {
   font-size: 3rem;
   font-weight: 700;
   margin: 0 0 1rem 0;
 }
 
-.mo-slide h2 {
+.mostage-slide h2 {
   font-size: 2.5rem;
   font-weight: 600;
   margin: 0 0 1rem 0;
 }
 
-.mo-slide h3 {
+.mostage-slide h3 {
   font-size: 2rem;
   font-weight: 600;
   margin: 0 0 1rem 0;
 }
 
-.mo-slide p {
+.mostage-slide p {
   font-size: 1.2rem;
   line-height: 1.6;
   margin: 0 0 1rem 0;
 }
 
-.mo-slide ul, .mo-slide ol {
+.mostage-slide ul, .mostage-slide ol {
   font-size: 1.1rem;
   line-height: 1.5;
   max-width: 600px;
   text-align: left;
 }
 
-.mo-slide li {
+.mostage-slide li {
   margin-bottom: 0.5rem;
 }
 
-.mo-slide code {
+.mostage-slide code {
   font-family: 'Monaco', 'Consolas', monospace;
   font-size: 0.9em;
   padding: 0.2rem 0.4rem;
   border-radius: 4px;
 }
 
-.mo-slide pre {
+.mostage-slide pre {
   font-family: 'Monaco', 'Consolas', monospace;
   font-size: 1rem;
   line-height: 1.5;
@@ -90,17 +90,17 @@ body {
   text-align: left;
 }
 
-.mo-slide a {
+.mostage-slide a {
   color: inherit;
   text-decoration: underline;
 }
 
-.mo-slide a:hover {
+.mostage-slide a:hover {
   opacity: 0.8;
 }
 
 /* Progress Bar */
-.mo-progress-bar {
+.mostage-progress-bar {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -109,14 +109,14 @@ body {
   z-index: 1000;
 }
 
-.mo-progress-fill {
+.mostage-progress-fill {
   height: 100%;
   transition: width 0.3s ease;
   width: 0%;
 }
 
 /* Slide Number */
-.mo-slide-number {
+.mostage-slide-number {
   position: fixed;
   bottom: 20px;
   right: 20px;
@@ -127,7 +127,7 @@ body {
 }
 
 /* Controller */
-.mo-controller {
+.mostage-controller {
   position: fixed;
   bottom: 20px;
   left: 50%;
@@ -137,7 +137,7 @@ body {
   z-index: 1000;
 }
 
-.mo-btn {
+.mostage-btn {
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 8px;
@@ -146,17 +146,17 @@ body {
   transition: all 0.2s ease;
 }
 
-.mo-btn:hover {
+.mostage-btn:hover {
   opacity: 0.8;
   transform: translateY(-1px);
 }
 
 /* Overview Mode */
-.mo-overview-mode .mo-slides {
+.mostage-overview-mode .mostage-slides {
   display: none;
 }
 
-.mo-overview-grid {
+.mostage-overview-grid {
   position: fixed;
   top: 0;
   left: 0;
@@ -170,7 +170,7 @@ body {
   overflow-y: auto;
 }
 
-.mo-overview-slide {
+.mostage-overview-slide {
   border-radius: 8px;
   padding: 1rem;
   cursor: pointer;
@@ -184,47 +184,47 @@ body {
   font-size: 0.8rem;
 }
 
-.mo-overview-slide:hover {
+.mostage-overview-slide:hover {
   transform: scale(1.05);
 }
 
-.mo-overview-slide h1,
-.mo-overview-slide h2,
-.mo-overview-slide h3 {
+.mostage-overview-slide h1,
+.mostage-overview-slide h2,
+.mostage-overview-slide h3 {
   font-size: 1rem;
   margin: 0.2rem 0;
 }
 
-.mo-overview-slide p {
+.mostage-overview-slide p {
   font-size: 0.7rem;
   margin: 0.1rem 0;
 }
 
 /* Mobile */
 @media (max-width: 768px) {
-  .mo-slide {
+  .mostage-slide {
     padding: 1rem;
   }
   
-  .mo-slide h1 {
+  .mostage-slide h1 {
     font-size: 2rem;
   }
   
-  .mo-slide h2 {
+  .mostage-slide h2 {
     font-size: 1.5rem;
   }
   
-  .mo-controller {
+  .mostage-controller {
     bottom: 10px;
     gap: 5px;
   }
   
-  .mo-btn {
+  .mostage-btn {
     padding: 0.4rem 0.8rem;
     font-size: 0.9rem;
   }
   
-  .mo-slide-number {
+  .mostage-slide-number {
     bottom: 10px;
     right: 10px;
     padding: 0.4rem 0.8rem;

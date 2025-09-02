@@ -8,10 +8,13 @@
  * - Event system
  */
 
-export { Mo } from './mo';
+export { Mostage } from './mostage';
 export { PluginLoader } from './plugin-loader';
 export { ThemeLoader, type Theme } from './theme-loader';
 
 // Re-export commonly used functions for convenience
 export { plugins } from './plugin-loader';
 export { themes, loadTheme, getAvailableThemes } from './theme-loader';
+
+// Backward compatibility (deprecated)
+export { Mostage as Mo } from './mostage';

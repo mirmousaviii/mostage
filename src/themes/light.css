@@ -1,12 +1,12 @@
 /* Light Theme - Mostage */
-.mo-container {
+.mostage-container {
   background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
   color: #2d3748;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
   min-height: 100vh;
 }
 
-.mo-slide {
+.mostage-slide {
   background: rgba(255, 255, 255, 0.9);
   color: #2d3748;
   border: 1px solid rgba(226, 232, 240, 0.8);
@@ -16,82 +16,82 @@
   backdrop-filter: blur(10px);
 }
 
-.mo-slide h1, .mo-slide h2, .mo-slide h3, .mo-slide h4, .mo-slide h5, .mo-slide h6 {
+.mostage-slide h1, .mostage-slide h2, .mostage-slide h3, .mostage-slide h4, .mostage-slide h5, .mostage-slide h6 {
   color: #1a202c;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
-.mo-slide h1 {
+.mostage-slide h1 {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.mo-slide code {
+.mostage-slide code {
   background: rgba(237, 242, 247, 0.8);
   color: #e53e3e;
   border: 1px solid rgba(226, 232, 240, 0.6);
 }
 
-.mo-slide pre {
+.mostage-slide pre {
   background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
   color: #2d3748;
   border: 1px solid rgba(226, 232, 240, 0.6);
 }
 
-.mo-slide blockquote {
+.mostage-slide blockquote {
   color: #4a5568;
   background: rgba(237, 242, 247, 0.3);
   border-left-color: #667eea;
 }
 
-.mo-slide a {
+.mostage-slide a {
   color: #667eea;
 }
 
-.mo-slide a:hover {
+.mostage-slide a:hover {
   color: #5a67d8;
 }
 
-.mo-progress-bar {
+.mostage-progress-bar {
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
 }
 
-.mo-progress-fill {
+.mostage-progress-fill {
   background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
 }
 
-.mo-slide-number {
+.mostage-slide-number {
   background: rgba(255, 255, 255, 0.9);
   color: #4a5568;
   border-color: rgba(226, 232, 240, 0.6);
 }
 
-.mo-btn {
+.mostage-btn {
   background: rgba(255, 255, 255, 0.9);
   color: #4a5568;
   border-color: rgba(226, 232, 240, 0.6);
 }
 
-.mo-btn:hover {
+.mostage-btn:hover {
   background: rgba(255, 255, 255, 0.95);
   color: #2d3748;
   border-color: rgba(203, 213, 224, 0.8);
 }
 
-.mo-overview-slide {
+.mostage-overview-slide {
   background: rgba(255, 255, 255, 0.95);
   border: 2px solid rgba(226, 232, 240, 0.6);
   color: #2d3748;
 }
 
-.mo-overview-slide:hover {
+.mostage-overview-slide:hover {
   background: rgba(255, 255, 255, 0.98);
   border-color: rgba(203, 213, 224, 0.8);
 }
 
-.mo-overview-slide.active {
+.mostage-overview-slide.active {
   border-color: #667eea;
 }

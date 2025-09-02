@@ -8,16 +8,16 @@
     <div id="app"></div>
     
     <script type="module">
-        import Mo from '../src/index.ts';
+        import Mostage from '../src/index.ts';
         
-        const mo = new Mo({
+        const mostage = new Mostage({
             element: '#app',
             theme: 'light',
             markdown: './slides.md',
             plugins: ['ProgressBar', 'SlideNumber', 'Controller', 'OverviewMode']
         });
         
-        mo.start();
+        mostage.start();
     </script>
 </body>
 </html>

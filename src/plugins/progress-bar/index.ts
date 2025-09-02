@@ -15,15 +15,15 @@ export class ProgressBarPlugin implements MoPlugin {
 
   private createProgressBar(): void {
     this.progressBar = document.createElement('div');
-    this.progressBar.className = 'mo-progress-bar';
-    this.progressBar.innerHTML = '<div class="mo-progress-fill"></div>';
+    this.progressBar.className = 'mostage-progress-bar';
+    this.progressBar.innerHTML = '<div class="mostage-progress-fill"></div>';
     document.body.appendChild(this.progressBar);
   }
 
   private updateProgress(current: number, total: number): void {
     if (!this.progressBar) return;
     
-    const fill = this.progressBar.querySelector('.mo-progress-fill') as HTMLElement;
+    const fill = this.progressBar.querySelector('.mostage-progress-fill') as HTMLElement;
     if (fill) {
       const percentage = ((current + 1) / total) * 100;
       fill.style.width = `${percentage}%`;

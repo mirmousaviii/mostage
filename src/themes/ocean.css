@@ -1,91 +1,91 @@
 /* Ocean Theme - A fresh blue theme */
 :root {
-  --mo-bg-color: #0f1419;
-  --mo-text-color: #e6f1ff;
-  --mo-primary-color: #00d4ff;
-  --mo-secondary-color: #36d7b7;
-  --mo-accent-color: #ff6b6b;
-  --mo-border-color: #1e3a8a;
-  --mo-highlight-color: #0ea5e9;
-  --mo-code-bg: #1e293b;
-  --mo-selection-bg: #334155;
+  --mostage-bg-color: #0f1419;
+  --mostage-text-color: #e6f1ff;
+  --mostage-primary-color: #00d4ff;
+  --mostage-secondary-color: #36d7b7;
+  --mostage-accent-color: #ff6b6b;
+  --mostage-border-color: #1e3a8a;
+  --mostage-highlight-color: #0ea5e9;
+  --mostage-code-bg: #1e293b;
+  --mostage-selection-bg: #334155;
 }
 
-.mo-container {
+.mostage-container {
   background: linear-gradient(135deg, #0f1419 0%, #1e3a8a 100%);
-  color: var(--mo-text-color);
+  color: var(--mostage-text-color);
 }
 
-.mo-slide {
+.mostage-slide {
   background: rgba(30, 58, 138, 0.1);
-  border: 1px solid var(--mo-border-color);
+  border: 1px solid var(--mostage-border-color);
   backdrop-filter: blur(10px);
 }
 
-.mo-slide h1,
-.mo-slide h2,
-.mo-slide h3,
-.mo-slide h4,
-.mo-slide h5,
-.mo-slide h6 {
-  color: var(--mo-primary-color);
+.mostage-slide h1,
+.mostage-slide h2,
+.mostage-slide h3,
+.mostage-slide h4,
+.mostage-slide h5,
+.mostage-slide h6 {
+  color: var(--mostage-primary-color);
   text-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
 }
 
-.mo-slide blockquote {
-  border-left: 4px solid var(--mo-secondary-color);
+.mostage-slide blockquote {
+  border-left: 4px solid var(--mostage-secondary-color);
   background: rgba(54, 215, 183, 0.1);
-  color: var(--mo-secondary-color);
+  color: var(--mostage-secondary-color);
 }
 
-.mo-slide code {
-  background: var(--mo-code-bg);
-  color: var(--mo-primary-color);
-  border: 1px solid var(--mo-border-color);
+.mostage-slide code {
+  background: var(--mostage-code-bg);
+  color: var(--mostage-primary-color);
+  border: 1px solid var(--mostage-border-color);
 }
 
-.mo-slide pre {
-  background: var(--mo-code-bg);
-  border: 1px solid var(--mo-border-color);
+.mostage-slide pre {
+  background: var(--mostage-code-bg);
+  border: 1px solid var(--mostage-border-color);
   box-shadow: 0 4px 12px rgba(0, 212, 255, 0.1);
 }
 
-.mo-slide a {
-  color: var(--mo-primary-color);
+.mostage-slide a {
+  color: var(--mostage-primary-color);
   text-decoration: none;
   border-bottom: 1px solid transparent;
   transition: all 0.3s ease;
 }
 
-.mo-slide a:hover {
-  border-bottom-color: var(--mo-primary-color);
+.mostage-slide a:hover {
+  border-bottom-color: var(--mostage-primary-color);
   text-shadow: 0 0 5px rgba(0, 212, 255, 0.5);
 }
 
 /* Progress bar styling */
-.mo-progress-bar {
-  background: var(--mo-primary-color);
+.mostage-progress-bar {
+  background: var(--mostage-primary-color);
   box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
 }
 
 /* Slide number styling */
-.mo-slide-number {
+.mostage-slide-number {
   background: rgba(30, 58, 138, 0.8);
-  color: var(--mo-primary-color);
-  border: 1px solid var(--mo-border-color);
+  color: var(--mostage-primary-color);
+  border: 1px solid var(--mostage-border-color);
   backdrop-filter: blur(5px);
 }
 
 /* Navigation controls */
-.mo-controls button {
+.mostage-controls button {
   background: rgba(30, 58, 138, 0.8);
-  color: var(--mo-primary-color);
-  border: 1px solid var(--mo-border-color);
+  color: var(--mostage-primary-color);
+  border: 1px solid var(--mostage-border-color);
   backdrop-filter: blur(5px);
   transition: all 0.3s ease;
 }
 
-.mo-controls button:hover {
+.mostage-controls button:hover {
   background: rgba(0, 212, 255, 0.2);
   box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
 }

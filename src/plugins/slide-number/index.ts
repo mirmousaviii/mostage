@@ -15,7 +15,7 @@ export class SlideNumberPlugin implements MoPlugin {
 
   private createSlideNumber(): void {
     this.slideNumber = document.createElement('div');
-    this.slideNumber.className = 'mo-slide-number';
+    this.slideNumber.className = 'mostage-slide-number';
     document.body.appendChild(this.slideNumber);
   }
 

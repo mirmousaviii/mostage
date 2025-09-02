@@ -10,14 +10,14 @@ export class ControllerPlugin implements MoPlugin {
 
   private createController(mo: any): void {
     this.controller = document.createElement('div');
-    this.controller.className = 'mo-controller';
+    this.controller.className = 'mostage-controller';
     this.controller.innerHTML = `
-      <button class="mo-btn mo-prev">‹</button>
-      <button class="mo-btn mo-next">›</button>
+      <button class="mostage-btn mostage-prev">‹</button>
+      <button class="mostage-btn mostage-next">›</button>
     `;
     
-    const prevBtn = this.controller.querySelector('.mo-prev') as HTMLElement;
-    const nextBtn = this.controller.querySelector('.mo-next') as HTMLElement;
+    const prevBtn = this.controller.querySelector('.mostage-prev') as HTMLElement;
+    const nextBtn = this.controller.querySelector('.mostage-next') as HTMLElement;
     
     if (prevBtn) {
       prevBtn.addEventListener('click', () => mo.previousSlide());

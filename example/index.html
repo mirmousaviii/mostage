@@ -235,9 +235,9 @@
     <div id="app" class="with-header"></div>
     
     <script type="module">
-        import Mo from '../src/index.ts';
+        import Mostage from '../src/index.ts';
         
-        let currentMo = null;
+        let currentMostage = null;
         
         async function initPresentation() {
             const theme = document.getElementById('theme-select').value;
@@ -250,12 +250,12 @@
             if (document.getElementById('overview-mode').checked) plugins.push('OverviewMode');
             
             // Destroy existing instance
-            if (currentMo) {
-                currentMo.destroy();
+            if (currentMostage) {
+                currentMostage.destroy();
             }
             
             try {
-                currentMo = new Mo({
+                currentMostage = new Mostage({
                     element: '#app',
                     theme: theme,
                     markdown: './slides.md',
@@ -263,7 +263,7 @@
                     plugins: plugins
                 });
                 
-                await currentMo.start();
+                await currentMostage.start();
                 console.log(`Presentation loaded: ${theme} theme, ${plugins.length} plugins`);
             } catch (error) {
                 console.error('Error initializing presentation:', error);

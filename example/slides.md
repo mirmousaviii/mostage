@@ -120,7 +120,7 @@ class Mo {
 
 ## Responsive Design
 
-Mo-Slide automatically adapts to:
+Mostage automatically adapts to:
 
 - **Mobile devices** (< 768px)
 - **Tablets** (768px - 1024px)
@@ -149,4 +149,4 @@ Optimized for speed:
 - [GitHub Repository](https://github.com)
 - [NPM Package](https://npmjs.com)
 
-**Happy presenting with Mo-Slide!**
+**Happy presenting with Mostage!**
