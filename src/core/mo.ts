@@ -1,7 +1,7 @@
-import { MoConfig, MoPlugin, Slide, MoSlideEvent } from './types';
-import { MarkdownParser } from './parser/markdown';
-import { createPluginInstances, initializePlugins, destroyPlugins } from './plugins';
-import { loadTheme } from './themes';
+import { MoConfig, MoPlugin, Slide, MoSlideEvent } from '../types';
+import { MarkdownParser } from '../utils/markdown-parser';
+import { plugins } from './plugin-loader';
+import { loadTheme } from './theme-loader';
 
 export class Mo {
   private config: MoConfig;
@@ -103,26 +103,27 @@ export class Mo {
   private initializePlugins(): void {
     if (!this.config.plugins || this.config.plugins.length === 0) return;
 
-    // Filter out custom plugin instances and get string plugin names
-    const pluginNames: string[] = [];
-    const customInstances: MoPlugin[] = [];
-
     for (const plugin of this.config.plugins) {
-      if (typeof plugin === 'string') {
-        pluginNames.push(plugin);
-      } else {
-        customInstances.push(plugin);
+      try {
+        let pluginInstance: MoPlugin;
+
+        if (typeof plugin === 'string') {
+          const PluginClass = plugins[plugin];
+          if (!PluginClass) {
+            console.warn(`Plugin "${plugin}" not found. Available plugins: ${Object.keys(plugins).join(', ')}`);
+            continue;
+          }
+          pluginInstance = new PluginClass();
+        } else {
+          pluginInstance = plugin;
+        }
+
+        pluginInstance.init(this);
+        this.plugins.push(pluginInstance);
+      } catch (error) {
+        console.error(`Failed to initialize plugin:`, error);
       }
     }
-
-    // Create instances for string plugin names
-    const createdInstances = createPluginInstances(pluginNames);
-    
-    // Combine with custom instances
-    this.plugins = [...createdInstances, ...customInstances];
-    
-    // Initialize all plugins
-    initializePlugins(this.plugins, this);
   }
 
   private setupNavigation(): void {
@@ -356,7 +357,15 @@ export class Mo {
 
   // Cleanup
   destroy(): void {
-    destroyPlugins(this.plugins);
+    this.plugins.forEach(plugin => {
+      try {
+        if (plugin.destroy) {
+          plugin.destroy();
+        }
+      } catch (error) {
+        console.error(`Failed to destroy plugin: ${plugin.name}`, error);
+      }
+    });
     this.plugins = [];
     this.eventListeners.clear();
   }

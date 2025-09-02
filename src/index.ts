@@ -1,9 +1,5 @@
-// Named exports
-export { Mo } from './mo';
-export { MarkdownParser } from './parser/markdown';
-export * from './types';
-export * from './plugins';
-export * from './themes';
+// Main Framework
+export { Mo } from './core';
 
-// Default export
-export { Mo as default } from './mo';
+// Types - Most commonly needed
+export type { MoConfig, MoPlugin, Slide, MoSlideEvent, MoTheme } from './types';

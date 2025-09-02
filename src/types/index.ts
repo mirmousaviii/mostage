@@ -38,8 +38,3 @@ export interface MoTheme {
   name: string;
   css: string;
 }
-
-export { Mo } from '../mo';
-export { MarkdownParser } from '../parser/markdown';
-export * from '../plugins';
-export * from '../themes';
