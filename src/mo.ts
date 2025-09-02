@@ -1,6 +1,6 @@
 import { MoConfig, MoPlugin, Slide, MoSlideEvent } from './types';
 import { MarkdownParser } from './parser/markdown';
-import { builtInPlugins } from './plugins';
+import { createPluginInstances, initializePlugins, destroyPlugins } from './plugins';
 import { loadTheme } from './themes';
 
 export class Mo {
@@ -101,29 +101,28 @@ export class Mo {
   }
 
   private initializePlugins(): void {
-    if (!this.config.plugins) return;
+    if (!this.config.plugins || this.config.plugins.length === 0) return;
+
+    // Filter out custom plugin instances and get string plugin names
+    const pluginNames: string[] = [];
+    const customInstances: MoPlugin[] = [];
 
     for (const plugin of this.config.plugins) {
-      try {
-        let pluginInstance: MoPlugin;
-
-        if (typeof plugin === 'string') {
-          const PluginClass = builtInPlugins[plugin];
-          if (!PluginClass) {
-            console.warn(`Plugin "${plugin}" not found`);
-            continue;
-          }
-          pluginInstance = new PluginClass();
-        } else {
-          pluginInstance = plugin;
-        }
-
-        pluginInstance.init(this);
-        this.plugins.push(pluginInstance);
-      } catch (error) {
-        console.error(`Failed to initialize plugin:`, error);
+      if (typeof plugin === 'string') {
+        pluginNames.push(plugin);
+      } else {
+        customInstances.push(plugin);
       }
     }
+
+    // Create instances for string plugin names
+    const createdInstances = createPluginInstances(pluginNames);
+    
+    // Combine with custom instances
+    this.plugins = [...createdInstances, ...customInstances];
+    
+    // Initialize all plugins
+    initializePlugins(this.plugins, this);
   }
 
   private setupNavigation(): void {
@@ -357,11 +356,7 @@ export class Mo {
 
   // Cleanup
   destroy(): void {
-    this.plugins.forEach(plugin => {
-      if (plugin.destroy) {
-        plugin.destroy();
-      }
-    });
+    destroyPlugins(this.plugins);
     this.plugins = [];
     this.eventListeners.clear();
   }
