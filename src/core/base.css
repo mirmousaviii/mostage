@@ -43,7 +43,7 @@ body {
 /* Typography - Proper Hierarchy */
 .mostage-slide h1 {
   font-size: 5rem;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.1;
   margin-bottom: 1.5rem;
   color: #1a202c;
@@ -68,7 +68,7 @@ body {
 .mostage-slide h4 {
   font-size: 2rem;
   font-weight: 500;
-  line-height: 1.4;
+  line-height: 0.5;
   margin-bottom: 0.875rem;
   color: #4a5568;
 }
@@ -76,7 +76,7 @@ body {
 .mostage-slide h5 {
   font-size: 1.75rem;
   font-weight: 500;
-  line-height: 1.4;
+  line-height: 0.5;
   margin-bottom: 0.75rem;
   color: #4a5568;
 }
@@ -84,7 +84,7 @@ body {
 .mostage-slide h6 {
   font-size: 1.5rem;
   font-weight: 500;
-  line-height: 1.4;
+  line-height: 0.5;
   margin-bottom: 0.625rem;
   color: #718096;
 }
@@ -197,16 +197,17 @@ body {
   font-family: 'SF Mono', 'Monaco', 'Consolas', 'Liberation Mono', monospace;
   font-size: 1rem;
   padding: 0.2em 0.4em;
-  border-radius: 3px;
+  border-radius: 5px;
   background: rgba(0, 0, 0, 0.1);
 }
 
 .mostage-slide pre {
+  width: fit-content;
   font-family: 'SF Mono', 'Monaco', 'Consolas', 'Liberation Mono', monospace;
   font-size: 1.125rem;
   line-height: 1.5;
-  padding: 1.25rem;
-  border-radius: 6px;
+  padding: 1rem;
+  border-radius: 5px;
   overflow-x: auto;
   margin: 1.5rem 0;
   background: rgba(0, 0, 0, 0.05);
@@ -228,9 +229,6 @@ body {
   transition: opacity 0.2s ease;
 }
 
-.mostage-slide a:hover {
-  opacity: 0.7;
-}
 
 /* Images */
 .mostage-slide img {
