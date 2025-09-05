@@ -1,4 +1,4 @@
-import { MoPlugin } from '../../types';
+import { MoPlugin, OverviewModeConfig } from '../../types';
 import styles from './style.css?inline';
 
 export class OverviewModePlugin implements MoPlugin {
@@ -7,8 +7,14 @@ export class OverviewModePlugin implements MoPlugin {
   private overviewContainer: HTMLElement | null = null;
   private styleElement: HTMLElement | null = null;
   private keyboardHandler: ((event: KeyboardEvent) => void) | null = null;
+  private config!: OverviewModeConfig;
 
-  init(mo: any): void {
+  init(mo: any, config: OverviewModeConfig = {}): void {
+    this.config = {
+      scale: 0.2,
+      ...config
+    };
+
     this.injectStyles();
     this.setupKeyboardListeners(mo);
   }
@@ -25,7 +31,6 @@ export class OverviewModePlugin implements MoPlugin {
   private setupKeyboardListeners(mo: any): void {
     this.keyboardHandler = (event: KeyboardEvent) => {
       if (event.key === 'Escape' || event.key === 'o') {
-        // Toggle overview mode with both Escape and 'o' keys
         this.toggleOverview(mo);
       }
     };
@@ -65,8 +70,8 @@ export class OverviewModePlugin implements MoPlugin {
   private createOverviewGrid(mo: any): void {
     this.overviewContainer = document.createElement('div');
     this.overviewContainer.className = 'mostage-overview';
+    this.overviewContainer.style.setProperty('--overview-scale', this.config.scale!.toString());
 
-    // Get actual slide DOM elements instead of slide data
     const slideElements = mo.getContainer().querySelectorAll('.mostage-slide') as NodeListOf<HTMLElement>;
     const currentSlideIndex = mo.getCurrentSlide();
 
@@ -75,7 +80,6 @@ export class OverviewModePlugin implements MoPlugin {
       this.overviewContainer!.appendChild(thumbnail);
     });
 
-    // Add close button
     const closeButton = this.createCloseButton();
     this.overviewContainer.appendChild(closeButton);
     document.body.appendChild(this.overviewContainer);
@@ -90,6 +94,7 @@ export class OverviewModePlugin implements MoPlugin {
     }
 
     thumbnail.innerHTML = slideElement.innerHTML;
+    thumbnail.style.transform = `scale(${this.config.scale})`;
     thumbnail.addEventListener('click', () => {
       mo.goToSlide(index);
       this.exitOverview();
@@ -109,22 +114,20 @@ export class OverviewModePlugin implements MoPlugin {
   }
 
   destroy(): void {
-    // Remove keyboard event listener
     if (this.keyboardHandler) {
       document.removeEventListener('keydown', this.keyboardHandler);
       this.keyboardHandler = null;
     }
     
-    // Clean up overview container
     this.removeOverviewContainer();
     
-    // Clean up styles
     if (this.styleElement) {
       this.styleElement.remove();
       this.styleElement = null;
     }
     
-    // Reset state
     this.isOverviewMode = false;
   }
 }
+
+export default OverviewModePlugin;

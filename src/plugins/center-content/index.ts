@@ -1,11 +1,18 @@
-import { MoPlugin } from '../../types';
+import { MoPlugin, CenterContentConfig } from '../../types';
 import styles from './style.css?inline';
 
 export class CenterContentPlugin implements MoPlugin {
   name = 'CenterContent';
   private styleElement: HTMLElement | null = null;
+  private config!: CenterContentConfig;
 
-  init(mo: any): void {
+  init(mo: any, config: CenterContentConfig = {}): void {
+    this.config = {
+      vertical: true,
+      horizontal: true,
+      ...config
+    };
+
     this.injectStyles();
     this.setupSlideObserver();
     
@@ -50,6 +57,18 @@ export class CenterContentPlugin implements MoPlugin {
       if (isVisible) {
         slideElement.classList.add('mostage-slide-centered');
         slideElement.style.display = 'flex';
+        
+        // Apply centering based on config
+        if (this.config.vertical && this.config.horizontal) {
+          slideElement.style.alignItems = 'center';
+          slideElement.style.justifyContent = 'center';
+        } else if (this.config.vertical) {
+          slideElement.style.alignItems = 'center';
+          slideElement.style.justifyContent = 'flex-start';
+        } else if (this.config.horizontal) {
+          slideElement.style.alignItems = 'flex-start';
+          slideElement.style.justifyContent = 'center';
+        }
       } else {
         slideElement.classList.remove('mostage-slide-centered');
       }
@@ -68,3 +87,5 @@ export class CenterContentPlugin implements MoPlugin {
     });
   }
 }
+
+export default CenterContentPlugin;

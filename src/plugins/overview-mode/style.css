@@ -2,41 +2,43 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.9);
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.9);
   z-index: 2000;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
   padding: 40px;
   overflow-y: auto;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  box-sizing: border-box;
 }
 
 .mostage-overview-slide {
-  background: white;
+  background-color: white;
   border-radius: 8px;
   padding: 20px;
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  aspect-ratio: 16/9;
-  display: flex;
-  flex-direction: column;
-  font-size: 0.8em;
+  transition: all 0.2s ease;
+  transform: scale(var(--overview-scale, 0.2));
+  transform-origin: center;
+  border: 3px solid transparent;
   overflow: hidden;
+  position: relative;
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .mostage-overview-slide:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  transform: scale(calc(var(--overview-scale, 0.2) * 1.1));
+  border-color: #007acc;
 }
 
 .mostage-overview-slide.active {
-  border: 3px solid #007acc;
-  transform: scale(1.05);
+  border-color: #007acc;
+  box-shadow: 0 0 20px rgba(0, 122, 204, 0.5);
 }
 
 .mostage-overview-close {
@@ -47,31 +49,18 @@
   height: 40px;
   border: none;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
-  font-size: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #333;
+  font-size: 24px;
+  font-weight: bold;
   cursor: pointer;
+  transition: all 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.3s ease;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
 }
 
 .mostage-overview-close:hover {
-  background: rgba(255, 255, 255, 0.3);
-}
-
-@media (max-width: 768px) {
-  .mostage-overview {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 15px;
-    padding: 20px;
-  }
-  
-  .mostage-overview-slide {
-    padding: 15px;
-    font-size: 0.7em;
-  }
+  background-color: white;
+  transform: scale(1.1);
 }

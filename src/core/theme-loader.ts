@@ -1,5 +1,5 @@
 // Import base styles
-import baseStylesCSS from './base.css?raw';
+import baseStylesCSS from "./base.css?raw";
 
 export interface Theme {
   name: string;
@@ -21,27 +21,24 @@ export class ThemeLoader {
     if (this.initialized) return this.availableThemes;
 
     // Auto-discover all themes from themes directory
-    const themeContext = import.meta.glob('../themes/*.css', { 
+    const themeContext = import.meta.glob("../themes/*.css", {
       eager: true,
-      query: '?raw',
-      import: 'default'
+      query: "?raw",
+      import: "default",
     });
 
     // Auto-register all discovered themes
     Object.entries(themeContext).forEach(([path, cssContent]) => {
       // Extract theme name from file path (e.g., '../themes/dark.css' -> 'dark')
-      const themeName = path.replace('../themes/', '').replace('.css', '');
-      
+      const themeName = path.replace("../themes/", "").replace(".css", "");
+
       this.availableThemes[themeName] = {
         name: themeName,
-        cssContent: cssContent as string
+        cssContent: cssContent as string,
       };
-
-      console.debug(`🎨 Discovered theme: ${themeName}`);
     });
 
     this.initialized = true;
-    console.debug(`🎨 Theme loader initialized with ${Object.keys(this.availableThemes).length} themes`);
     return this.availableThemes;
   }
 
@@ -57,13 +54,15 @@ export class ThemeLoader {
     const theme = this.availableThemes[themeName];
     if (!theme) {
       const availableThemes = Object.keys(this.availableThemes);
-      console.warn(`Theme "${themeName}" not found. Available themes: ${availableThemes.join(', ')}`);
-      
+      console.warn(
+        `Theme "${themeName}" not found. Available themes: ${availableThemes.join(", ")}`
+      );
+
       // Try to load the first available theme as fallback
       if (availableThemes.length > 0) {
         return this.loadTheme(availableThemes[0]);
       } else {
-        console.error('No themes available!');
+        console.error("No themes available!");
         return;
       }
     }
@@ -75,16 +74,16 @@ export class ThemeLoader {
     }
 
     // Remove existing theme styles
-    const existingThemeStyles = document.querySelectorAll('style[data-mostage-theme]');
-    existingThemeStyles.forEach(style => style.remove());
+    const existingThemeStyles = document.querySelectorAll(
+      "style[data-mostage-theme]"
+    );
+    existingThemeStyles.forEach((style) => style.remove());
 
     // Add new theme styles
-    const styleElement = document.createElement('style');
-    styleElement.setAttribute('data-mostage-theme', themeName);
+    const styleElement = document.createElement("style");
+    styleElement.setAttribute("data-mostage-theme", themeName);
     styleElement.textContent = theme.cssContent;
     document.head.appendChild(styleElement);
-
-    console.debug(`🎨 Loaded theme: ${themeName}`);
   }
 
   /**
@@ -92,16 +91,14 @@ export class ThemeLoader {
    */
   private static loadBaseStyles(): void {
     // Check if base styles are already loaded
-    if (document.querySelector('style[data-mostage-base]')) {
+    if (document.querySelector("style[data-mostage-base]")) {
       return;
     }
 
-    const styleElement = document.createElement('style');
-    styleElement.setAttribute('data-mostage-base', 'true');
+    const styleElement = document.createElement("style");
+    styleElement.setAttribute("data-mostage-base", "true");
     styleElement.textContent = baseStylesCSS;
     document.head.appendChild(styleElement);
-
-    console.debug('📐 Loaded base styles');
   }
 
   /**
@@ -138,9 +135,8 @@ export class ThemeLoader {
     if (!this.initialized) {
       this.initialize();
     }
-    
+
     this.availableThemes[theme.name] = theme;
-    console.debug(`🎨 Registered custom theme: ${theme.name}`);
   }
 
   /**

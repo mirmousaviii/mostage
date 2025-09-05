@@ -1,12 +1,20 @@
-import { MoPlugin } from '../../types';
+import { MoPlugin, ProgressBarConfig } from '../../types';
 import styles from './style.css?inline';
 
 export class ProgressBarPlugin implements MoPlugin {
   name = 'ProgressBar';
   private progressBar: HTMLElement | null = null;
   private styleElement: HTMLElement | null = null;
+  private config!: ProgressBarConfig;
 
-  init(mo: any): void {
+  init(mo: any, config: ProgressBarConfig = {}): void {
+    this.config = {
+      position: 'top',
+      color: '#007acc',
+      height: '4px',
+      ...config
+    };
+
     this.injectStyles();
     this.createProgressBar();
     this.updateProgress(mo.getCurrentSlide(), mo.getTotalSlides());
@@ -27,8 +35,19 @@ export class ProgressBarPlugin implements MoPlugin {
 
   private createProgressBar(): void {
     this.progressBar = document.createElement('div');
-    this.progressBar.className = 'mostage-progress-bar';
+    this.progressBar.className = `mostage-progress-bar mostage-progress-${this.config.position}`;
     this.progressBar.innerHTML = '<div class="mostage-progress-fill"></div>';
+    
+    // Apply custom styles
+    this.progressBar.style.backgroundColor = 'rgba(0,0,0,0.1)';
+    this.progressBar.style.height = this.config.height!;
+    
+    const fill = this.progressBar.querySelector('.mostage-progress-fill') as HTMLElement;
+    if (fill) {
+      fill.style.backgroundColor = this.config.color!;
+      fill.style.height = '100%';
+    }
+    
     document.body.appendChild(this.progressBar);
   }
 
@@ -54,3 +73,5 @@ export class ProgressBarPlugin implements MoPlugin {
     }
   }
 }
+
+export default ProgressBarPlugin;

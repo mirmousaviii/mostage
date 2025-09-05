@@ -1,4 +1,4 @@
-import { MoConfig, MoPlugin, MoSlide, MoSlideEvent } from '../types';
+import { MoConfig, MoPlugin, MoSlide, MoSlideEvent, TransitionConfig } from '../types';
 import { MarkdownParser } from '../utils/markdown-parser';
 import { plugins } from './plugin-loader';
 import { loadTheme } from './theme-loader';
@@ -11,23 +11,40 @@ export class Mostage {
   private plugins: MoPlugin[] = [];
   private eventListeners: Map<string, Function[]> = new Map();
   private parser: MarkdownParser;
-
   constructor(config: MoConfig) {
+
     this.config = {
       theme: 'light',
-      transition: 'horizontal',
-      plugins: [],
-      autoProgress: false,
+      transition: {
+        type: 'horizontal',
+        duration: 600,
+        easing: 'ease-in-out'
+      },
+      scale: 1.0,
+      loop: false,
+      plugins: {},
       keyboard: true,
       touch: true,
-      loop: false,
-      speed: 300,
       ...config
     };
+
+    // Handle legacy transition format
+    if (typeof this.config.transition === 'string') {
+      this.config.transition = {
+        type: this.config.transition as any,
+        duration: 600,
+        easing: 'ease-in-out'
+      };
+    }
 
     this.parser = new MarkdownParser();
     this.container = this.resolveElement(this.config.element || document.body);
     this.container.classList.add('mostage-container');
+    
+    // Apply scale if specified
+    if (this.config.scale !== 1.0) {
+      this.container.style.transform = `scale(${this.config.scale})`;
+    }
   }
 
   async start(): Promise<void> {
@@ -60,7 +77,7 @@ export class Mostage {
         totalSlides: this.slides.length
       });
     } catch (error) {
-      console.error('Failed to start Mo:', error);
+      console.error('Failed to start Mostage:', error);
       throw error;
     }
   }
@@ -101,29 +118,28 @@ export class Mostage {
   }
 
   private initializePlugins(): void {
-    if (!this.config.plugins || this.config.plugins.length === 0) return;
+    if (!this.config.plugins) return;
 
-    for (const plugin of this.config.plugins) {
+    // Handle configuration-based plugin system only
+    Object.entries(this.config.plugins).forEach(([pluginName, pluginConfig]) => {
       try {
-        let pluginInstance: MoPlugin;
-
-        if (typeof plugin === 'string') {
-          const PluginClass = plugins[plugin];
-          if (!PluginClass) {
-            console.warn(`Plugin "${plugin}" not found. Available plugins: ${Object.keys(plugins).join(', ')}`);
-            continue;
-          }
-          pluginInstance = new PluginClass();
-        } else {
-          pluginInstance = plugin;
+        const PluginClass = plugins[pluginName];
+        if (!PluginClass) {
+          console.warn(`Plugin "${pluginName}" not found. Available plugins: ${Object.keys(plugins).join(', ')}`);
+          return;
         }
 
-        pluginInstance.init(this);
+        const pluginInstance = new PluginClass();
+        
+        // Use config directly (no active property needed)
+        const finalConfig = pluginConfig || {};
+        
+        pluginInstance.init(this, finalConfig);
         this.plugins.push(pluginInstance);
       } catch (error) {
-        console.error(`Failed to initialize plugin:`, error);
+        console.error(`Failed to initialize plugin "${pluginName}":`, error);
       }
-    }
+    });
   }
 
   private setupNavigation(): void {
@@ -259,33 +275,46 @@ export class Mostage {
       return;
     }
 
+    const transition = this.config.transition as TransitionConfig;
+    const duration = transition.duration || 600;
+
+    // Set transition properties
+    fromSlide.style.transition = `all ${duration}ms ${transition.easing || 'ease-in-out'}`;
+    toSlide.style.transition = `all ${duration}ms ${transition.easing || 'ease-in-out'}`;
+
     // Apply transition based on config
-    switch (this.config.transition) {
+    switch (transition.type) {
       case 'fade':
-        this.fadeTransition(fromSlide, toSlide);
+        this.fadeTransition(fromSlide, toSlide, duration);
         break;
       case 'vertical':
-        this.verticalTransition(fromSlide, toSlide, toIndex > fromIndex);
+        this.verticalTransition(fromSlide, toSlide, toIndex > fromIndex, duration);
+        break;
+      case 'slide':
+        this.slideTransition(fromSlide, toSlide, toIndex > fromIndex, duration);
         break;
       case 'horizontal':
       default:
-        this.horizontalTransition(fromSlide, toSlide, toIndex > fromIndex);
+        this.horizontalTransition(fromSlide, toSlide, toIndex > fromIndex, duration);
         break;
     }
   }
 
-  private fadeTransition(fromSlide: HTMLElement, toSlide: HTMLElement): void {
+  private fadeTransition(fromSlide: HTMLElement, toSlide: HTMLElement, duration: number): void {
     fromSlide.style.opacity = '0';
     toSlide.style.display = 'block';
     toSlide.style.opacity = '0';
     
     setTimeout(() => {
       toSlide.style.opacity = '1';
-      fromSlide.style.display = 'none';
+      setTimeout(() => {
+        fromSlide.style.display = 'none';
+        fromSlide.style.opacity = '1';
+      }, duration);
     }, 50);
   }
 
-  private horizontalTransition(fromSlide: HTMLElement, toSlide: HTMLElement, isNext: boolean): void {
+  private horizontalTransition(fromSlide: HTMLElement, toSlide: HTMLElement, isNext: boolean, duration: number): void {
     const direction = isNext ? 'translateX(-100%)' : 'translateX(100%)';
     const enterDirection = isNext ? 'translateX(100%)' : 'translateX(-100%)';
     
@@ -300,11 +329,11 @@ export class Mostage {
         fromSlide.style.display = 'none';
         fromSlide.style.transform = '';
         toSlide.style.transform = '';
-      }, this.config.speed || 300);
+      }, duration);
     }, 50);
   }
 
-  private verticalTransition(fromSlide: HTMLElement, toSlide: HTMLElement, isNext: boolean): void {
+  private verticalTransition(fromSlide: HTMLElement, toSlide: HTMLElement, isNext: boolean, duration: number): void {
     const direction = isNext ? 'translateY(-100%)' : 'translateY(100%)';
     const enterDirection = isNext ? 'translateY(100%)' : 'translateY(-100%)';
     
@@ -319,8 +348,13 @@ export class Mostage {
         fromSlide.style.display = 'none';
         fromSlide.style.transform = '';
         toSlide.style.transform = '';
-      }, this.config.speed || 300);
+      }, duration);
     }, 50);
+  }
+
+  private slideTransition(fromSlide: HTMLElement, toSlide: HTMLElement, isNext: boolean, duration: number): void {
+    // Similar to horizontal but with different easing
+    this.horizontalTransition(fromSlide, toSlide, isNext, duration);
   }
 
   // Event system

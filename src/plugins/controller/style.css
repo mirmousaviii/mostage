@@ -1,47 +1,54 @@
 .mostage-controller {
   position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
   z-index: 1000;
   display: flex;
   gap: 10px;
-  background: rgba(0, 0, 0, 0.7);
-  padding: 10px;
-  border-radius: 8px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+}
+
+.mostage-controller-bottom-right {
+  bottom: 20px;
+  right: 20px;
+}
+
+.mostage-controller-bottom-left {
+  bottom: 20px;
+  left: 20px;
+}
+
+.mostage-controller-bottom-center {
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .mostage-btn {
-  padding: 8px 16px;
+  width: 40px;
+  height: 40px;
   border: none;
-  border-radius: 4px;
-  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.7);
   color: white;
+  font-size: 18px;
+  font-weight: bold;
   cursor: pointer;
-  transition: background 0.3s ease;
-  font-size: 14px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .mostage-btn:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background-color: rgba(0, 0, 0, 0.9);
+  transform: scale(1.1);
 }
 
 .mostage-btn:disabled {
-  background: rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.5);
+  opacity: 0.5;
   cursor: not-allowed;
+  transform: none;
 }
 
-@media (max-width: 768px) {
-  .mostage-controller {
-    bottom: 10px;
-    gap: 5px;
-  }
-  
-  .mostage-btn {
-    padding: 6px 12px;
-    font-size: 12px;
-  }
+.mostage-btn:disabled:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+  transform: none;
 }

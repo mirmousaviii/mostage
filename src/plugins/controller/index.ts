@@ -1,4 +1,4 @@
-import { MoPlugin } from '../../types';
+import { MoPlugin, ControllerConfig } from '../../types';
 import styles from './style.css?inline';
 
 export class ControllerPlugin implements MoPlugin {
@@ -7,8 +7,15 @@ export class ControllerPlugin implements MoPlugin {
   private styleElement: HTMLElement | null = null;
   private prevBtn: HTMLButtonElement | null = null;
   private nextBtn: HTMLButtonElement | null = null;
+  private config!: ControllerConfig;
 
-  init(mo: any): void {
+  init(mo: any, config: ControllerConfig = {}): void {
+    this.config = {
+      show: true,
+      position: 'bottom-center',
+      ...config
+    };
+
     this.injectStyles();
     this.createController(mo);
   }
@@ -24,11 +31,16 @@ export class ControllerPlugin implements MoPlugin {
 
   private createController(mo: any): void {
     this.controller = document.createElement('div');
-    this.controller.className = 'mostage-controller';
+    this.controller.className = `mostage-controller mostage-controller-${this.config.position}`;
     this.controller.innerHTML = `
       <button class="mostage-btn mostage-prev">‹</button>
       <button class="mostage-btn mostage-next">›</button>
     `;
+
+    // Show/hide based on config
+    if (!this.config.show) {
+      this.controller.style.display = 'none';
+    }
 
     // Get button references
     this.prevBtn = this.controller.querySelector('.mostage-prev') as HTMLButtonElement;
@@ -69,3 +81,5 @@ export class ControllerPlugin implements MoPlugin {
     this.nextBtn = null;
   }
 }
+
+export default ControllerPlugin;

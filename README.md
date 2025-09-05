@@ -10,8 +10,9 @@ Create simple presentations using **Markdown** with smooth transitions and an ex
 - [Installation](#installation)
 - [Quick Start](#quick-start)
   - [Basic HTML Usage](#basic-html-usage)
+  - [Configuration-based Plugin System](#configuration-based-plugin-system)
   - [Inline Content](#inline-content)
-  - [CommonJS/Node.js Usage (Legacy Projects)](#commonjsnodejs-usage-legacy-projects)
+  - [CommonJS/Node.js Usage](#commonjsnodejs-usage-legacy-projects)
   - [Script Tag Usage (No Bundler)](#script-tag-usage-no-bundler)
   - [AMD/RequireJS Usage](#amdrequirejs-usage)
   - [SystemJS Usage](#systemjs-usage)
@@ -19,12 +20,15 @@ Create simple presentations using **Markdown** with smooth transitions and an ex
 - [Configuration](#configuration)
   - [Basic Options](#basic-options)
   - [Advanced Configuration](#advanced-configuration)
+  - [Plugin Configuration](#plugin-configuration)
+  - [Transition Configuration](#transition-configuration)
 - [Themes](#themes)
   - [Built-in Themes](#built-in-themes)
   - [Using Themes](#using-themes)
   - [Custom Themes](#custom-themes)
 - [Plugins](#plugins)
   - [Built-in Plugins](#built-in-plugins)
+  - [Plugin Configuration Options](#plugin-configuration-options)
   - [Creating Custom Plugins](#creating-custom-plugins)
 - [Navigation](#navigation)
   - [Keyboard Shortcuts](#keyboard-shortcuts)
@@ -50,10 +54,11 @@ Create simple presentations using **Markdown** with smooth transitions and an ex
 ## Features
 
 - **Markdown-Based** - Write presentations in simple, familiar Markdown syntax
+- **Configuration-based Plugin System** - Fine-grained control over plugin behavior
 - **No External Dependencies** - Built-in Markdown parser, no heavy libraries
 - **Multiple Themes** - Light, Dark, Solarized, Dracula themes with easy customization
+- **Advanced Transitions** - Horizontal, vertical, fade, and slide animations with custom timing
 - **Plugin System** - Extensible architecture for adding custom functionality  
-- **Smooth Transitions** - Horizontal, vertical, and fade animations
 - **Touch Support** - Swipe navigation optimized for mobile devices
 - **Keyboard Navigation** - Arrow keys, spacebar, and overview mode shortcuts
 - **Overview Mode** - Grid view of all slides for easy navigation
@@ -95,13 +100,62 @@ npm install mostage
             element: "#app", 
             theme: "light", 
             markdown: "./slides.md",
-            plugins: ["ProgressBar", "SlideNumber", "Controller"]
+            plugins: {
+                ProgressBar: { position: "top" },
+                SlideNumber: { position: "bottom-right" },
+                Controller: { show: true }
+            }
         });
         
         mostage.start();
     </script>
 </body>
 </html>
+```
+
+### Configuration-based Plugin System
+
+Mostage features a powerful configuration-based plugin system. **Just include the plugin in your configuration and it's automatically active!**
+
+```javascript
+import Mostage from "mostage";
+
+const mostage = new Mostage({
+    element: "#app",
+    theme: "dark",
+    markdown: "./slides.md",
+    scale: 1.0,
+    transition: {
+        type: "horizontal",     // horizontal | vertical | fade | slide
+        duration: 600,          // (ms)
+        easing: "ease-in-out"   // easing type
+    },
+    loop: false,
+    plugins: {
+        ProgressBar: {
+            position: "top",      // top | bottom
+            color: "#007acc",     // CSS color value
+            height: "5px"         // CSS size value
+        },
+        SlideNumber: {
+            position: "bottom-right", // bottom-right | bottom-left | bottom-center
+            format: "current/total"   // e.g., "1/10"
+        },
+        Controller: {
+            show: true,                     // Show or hide the controller
+            position: "bottom-center"       // bottom-right | bottom-left | bottom-center
+        },
+        OverviewMode: {
+            scale: 0.2                  // Scale of slides in overview mode
+        },
+        CenterContent: {
+            vertical: true,        // Center vertically
+            horizontal: true       // Center horizontally
+        }       
+    }
+});
+
+mostage.start();
 ```
 
 ### Inline Content
@@ -112,16 +166,33 @@ import Mostage from "mostage";
 const mostage = new Mostage({
     element: "#app",
     theme: "dark",
-    markdown: "./slides.md",
-    plugins: ["ProgressBar", "SlideNumber"]
+    content: `# My Presentation
+
+Welcome to Mostage!
+
+---
+
+## Features
+
+- Easy to use
+- Fast and lightweight
+- TypeScript support
+
+---
+
+## Thank You!`,
+    plugins: {
+        ProgressBar: { position: "top" },
+        SlideNumber: { position: "bottom-right" }
+    }
 });
 
 mostage.start();
 ```
 
-### CommonJS/Node.js Usage (Legacy Projects)
+### CommonJS/Node.js Usage
 
-For older projects using CommonJS or Node.js without ES modules:
+For projects using CommonJS or Node.js without ES modules:
 
 ```javascript
 const Mostage = require("mostage");
@@ -130,7 +201,11 @@ const mostage = new Mostage({
     element: "#app",
     theme: "solarized",
     markdown: "./slides.md",
-    plugins: ["ProgressBar", "SlideNumber", "Controller"]
+    plugins: {
+        ProgressBar: { position: "bottom" },
+        SlideNumber: { position: "bottom-left" },
+        Controller: { show: true }
+    }
 });
 
 mostage.start();
@@ -158,7 +233,10 @@ For projects without any build system, use the UMD build:
             element: "#app",
             theme: "dracula",
             markdown: "./presentation.md",
-            plugins: ["ProgressBar", "SlideNumber"]
+            plugins: {
+                ProgressBar: { color: "#ff6b6b" },
+                SlideNumber: { format: "Slide current of total" }
+            }
         });
         
         mostage.start();
@@ -183,7 +261,12 @@ require(['mostage'], function(Mostage) {
         element: "#app", 
         theme: "light",
         markdown: "./presentation.md",
-        plugins: ["ProgressBar", "SlideNumber", "Controller", "OverviewMode"]
+        plugins: {
+            ProgressBar: { position: "top", height: "6px" },
+            SlideNumber: { position: "bottom-center" },
+            Controller: { position: "bottom-right" },
+            OverviewMode: { scale: 0.3 }
+        }
     });
     
     mostage.start();
@@ -200,7 +283,10 @@ System.import('mostage').then(function(Mostage) {
         element: "#app",
         theme: "dark", 
         markdown: "./slides.md",
-        plugins: ["ProgressBar", "Controller"]
+        plugins: {
+            ProgressBar: { color: "#00ff00" },
+            Controller: { show: false }
+        }
     });
     
     mostage.start();
@@ -250,7 +336,7 @@ interface MoConfig {
     element?: string | HTMLElement;
     
     // Theme name (loads from themes/ directory)
-    theme?: 'light' | 'dark' | 'solarized' | 'dracula';
+    theme?: 'light' | 'dark' | 'solarized' | 'dracula' | 'ocean';
     
     // Markdown file path (relative to current page)
     markdown?: string;
@@ -258,19 +344,21 @@ interface MoConfig {
     // Inline markdown content (alternative to markdown file)
     content?: string;
     
-    // Transition animation type
-    transition?: 'horizontal' | 'vertical' | 'fade';
+    // Global scale factor for the presentation
+    scale?: number;         // Default: 1.0
     
-    // Plugin names or instances
-    plugins?: string[] | MoPlugin[];
+    // Transition configuration
+    transition?: TransitionConfig;
+    
+    // Plugin configuration
+    plugins?: PluginsConfig;
     
     // Navigation options
     keyboard?: boolean;    // Enable keyboard navigation (default: true)
     touch?: boolean;       // Enable touch/swipe navigation (default: true)
     loop?: boolean;        // Loop to first slide after last (default: false)
     
-    // Animation speed in milliseconds
-    speed?: number;        // Default: 300
+    speed?: number;        // Default: 300 (use transition.duration instead)
 }
 ```
 
@@ -281,20 +369,83 @@ const mostage = new Mostage({
     element: "#presentation",
     theme: "dark",
     markdown: "./slides.md",
-    transition: "fade",
-    speed: 500,
+    scale: 1.1,
+    transition: {
+        type: "fade",
+        duration: 800,
+        easing: "cubic-bezier(0.4, 0, 0.2, 1)"
+    },
     keyboard: true,
     touch: true,
     loop: false,
-    plugins: [
-        "ProgressBar",
-        "SlideNumber", 
-        "Controller",
-        "OverviewMode",
-        new CustomPlugin()
-    ]
+    plugins: {
+        ProgressBar: {
+            position: "top",
+            color: "#ff6b6b",
+            height: "6px"
+        },
+        SlideNumber: {
+            position: "bottom-right",
+            format: "Slide current of total"
+        },
+        Controller: {
+            show: true,
+            position: "bottom-center"
+        },
+        OverviewMode: {
+            scale: 0.25
+        },
+        CenterContent: {
+            vertical: true,
+            horizontal: false
+        }
+    }
 });
 ```
+
+### Plugin Configuration
+
+```typescript
+interface PluginsConfig {
+    ProgressBar?: {
+        position?: 'top' | 'bottom';
+        color?: string;
+        height?: string;
+    };
+    SlideNumber?: {
+        position?: 'bottom-right' | 'bottom-left' | 'bottom-center';
+        format?: string;
+    };
+    Controller?: {
+        show?: boolean;
+        position?: 'bottom-right' | 'bottom-left' | 'bottom-center';
+    };
+    OverviewMode?: {
+        scale?: number;
+    };
+    CenterContent?: {
+        vertical?: boolean;
+        horizontal?: boolean;
+    };
+}
+```
+
+### Transition Configuration
+
+```typescript
+interface TransitionConfig {
+    type?: 'horizontal' | 'vertical' | 'fade' | 'slide';
+    duration?: number;     // milliseconds
+    easing?: string;       // CSS easing function
+}
+```
+
+**Available easing functions:**
+- `"ease-in-out"` - Smooth acceleration and deceleration
+- `"ease-in"` - Slow start, fast finish
+- `"ease-out"` - Fast start, slow finish
+- `"linear"` - Constant speed
+- `"cubic-bezier(0.4, 0, 0.2, 1)"` - Custom cubic-bezier curve
 
 ## Themes
 
@@ -304,6 +455,7 @@ const mostage = new Mostage({
 - **dark** - Dark theme with blue accents and high contrast  
 - **solarized** - Solarized color scheme for reduced eye strain
 - **dracula** - Popular dark theme with vibrant syntax highlighting
+- **ocean** - Calm, elegant theme inspired by the sea
 
 ### Using Themes
 
@@ -349,25 +501,79 @@ Create a custom theme by adding a CSS file:
 
 ### Built-in Plugins
 
-**ProgressBar**: Shows presentation progress at the bottom of the screen
+**ProgressBar**: Shows presentation progress
 ```typescript
-plugins: ["ProgressBar"]
+plugins: {
+    ProgressBar: {
+        position: "top",      // or "bottom"
+        color: "#007acc",     // any CSS color
+        height: "4px"         // any CSS size
+    }
+}
 ```
 
 **SlideNumber**: Displays current slide number and total slides
 ```typescript
-plugins: ["SlideNumber"]
+plugins: {
+    SlideNumber: {
+        position: "bottom-right", // or "bottom-left", "bottom-center"
+        format: "current/total"   // custom format with "current" and "total" placeholders
+    }
+}
 ```
 
 **Controller**: Adds previous/next navigation buttons
 ```typescript
-plugins: ["Controller"]
+plugins: {
+    Controller: {
+        show: true,                     // show or hide buttons
+        position: "bottom-center"       // or "bottom-right", "bottom-left"
+    }
+}
 ```
 
 **OverviewMode**: Grid overview of all slides (activated with 'O' key)
 ```typescript
-plugins: ["OverviewMode"]
+plugins: {
+    OverviewMode: {
+        scale: 0.2                  // scale factor for thumbnails (0.1 to 1.0)
+    }
+}
 ```
+
+**CenterContent**: Centers slide content
+```typescript
+plugins: {
+    CenterContent: {
+        vertical: true,        // center vertically
+        horizontal: true       // center horizontally
+    }
+}
+```
+
+### Plugin Configuration Options
+
+Each plugin can be configured with specific options:
+
+#### ProgressBar Options
+- `position: "top" | "bottom"` - Position of the progress bar
+- `color: string` - CSS color value (e.g., "#007acc", "red")
+- `height: string` - CSS size value (e.g., "4px", "0.5rem")
+
+#### SlideNumber Options
+- `position: "bottom-right" | "bottom-left" | "bottom-center"` - Position
+- `format: string` - Format string (use "current" and "total" placeholders)
+
+#### Controller Options
+- `show: boolean` - Show or hide the controller
+- `position: "bottom-right" | "bottom-left" | "bottom-center"` - Position
+
+#### OverviewMode Options
+- `scale: number` - Scale factor for slides in overview mode (0.1 to 1.0)
+
+#### CenterContent Options
+- `vertical: boolean` - Center content vertically
+- `horizontal: boolean` - Center content horizontally
 
 ### Creating Custom Plugins
 
@@ -379,7 +585,7 @@ class TimerPlugin implements MoPlugin {
     private startTime: number = 0;
     private timerElement: HTMLElement | null = null;
     
-    init(mostage: Mostage): void {
+    init(mostage: Mostage, config?: any): void {
         this.startTime = Date.now();
         this.createTimerDisplay();
         this.updateTimer();
@@ -423,7 +629,10 @@ class TimerPlugin implements MoPlugin {
 
 // Use the custom plugin
 const mostage = new Mostage({
-    plugins: ["ProgressBar", new TimerPlugin()]
+    plugins: {
+        ProgressBar: { position: "top" },
+        TimerPlugin: {}  // Custom plugin
+    }
 });
 ```
 
@@ -630,7 +839,10 @@ Welcome to Mostage!
 
 ## Thank You!
             `,
-            plugins: ["ProgressBar", "SlideNumber"]
+            plugins: {
+                ProgressBar: { position: "top" },
+                SlideNumber: { position: "bottom-right" }
+            }
         });
         
         mostage.start();
@@ -641,7 +853,7 @@ Welcome to Mostage!
 
 ### Basic Example
 
-For a quick start, check the `example/basic.html` file:
+For a quick start, check the `example/index.html` file:
 
 ```html
 <!DOCTYPE html>
@@ -659,7 +871,12 @@ For a quick start, check the `example/basic.html` file:
             element: "#app",
             theme: "light",
             markdown: "./slides.md",
-            plugins: ["ProgressBar", "SlideNumber", "Controller", "OverviewMode"]
+            plugins: {
+                ProgressBar: { position: "top", color: "#007acc" },
+                SlideNumber: { position: "bottom-right" },
+                Controller: { show: true, position: "bottom-center" },
+                OverviewMode: { scale: 0.2 }
+            }
         });
         
         mostage.start();
@@ -668,9 +885,9 @@ For a quick start, check the `example/basic.html` file:
 </html>
 ```
 
-This example loads slides from `slides.md` and includes all basic plugins.
+This example loads slides from `slides.md` and includes all basic plugins with custom configuration.
 
-Run `npm run dev` and visit http://localhost:5173/basic.html to see this simple example.
+Run `npm run dev` and visit http://localhost:5173/ to see this example.
 
 ### Advanced Example
 
@@ -679,6 +896,7 @@ Check the `example/index.html` file for a complete interactive demo with:
 - Plugin toggling  
 - Multiple transition types
 - Real-time controls
+- Configuration-based plugin system
 
 Run `npm run dev` and visit http://localhost:5173/ to see the full demo
 

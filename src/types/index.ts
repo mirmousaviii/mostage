@@ -1,7 +1,47 @@
 export interface MoPlugin {
   name: string;
-  init: (mo: any) => void;
+  init: (mo: any, config?: any) => void;
   destroy?: () => void;
+}
+
+// Plugin Configuration Interfaces
+export interface ProgressBarConfig {
+  position?: 'top' | 'bottom';
+  color?: string;
+  height?: string;
+}
+
+export interface SlideNumberConfig {
+  position?: 'bottom-right' | 'bottom-left' | 'bottom-center';
+  format?: string;
+}
+
+export interface ControllerConfig {
+  show?: boolean;
+  position?: 'bottom-right' | 'bottom-left' | 'bottom-center';
+}
+
+export interface OverviewModeConfig {
+  scale?: number;
+}
+
+export interface CenterContentConfig {
+  vertical?: boolean;
+  horizontal?: boolean;
+}
+
+export interface PluginsConfig {
+  ProgressBar?: ProgressBarConfig;
+  SlideNumber?: SlideNumberConfig;
+  Controller?: ControllerConfig;
+  OverviewMode?: OverviewModeConfig;
+  CenterContent?: CenterContentConfig;
+}
+
+export interface TransitionConfig {
+  type?: 'horizontal' | 'vertical' | 'fade' | 'slide';
+  duration?: number;
+  easing?: string;
 }
 
 export interface MoConfig {
@@ -9,13 +49,12 @@ export interface MoConfig {
   theme?: string;
   markdown?: string;
   content?: string;
-  transition?: 'horizontal' | 'vertical' | 'fade' | 'slide-in' | 'slide-out';
-  plugins?: string[] | MoPlugin[];
-  autoProgress?: boolean;
+  scale?: number;
+  transition?: TransitionConfig;
+  loop?: boolean;
+  plugins?: PluginsConfig;
   keyboard?: boolean;
   touch?: boolean;
-  loop?: boolean;
-  speed?: number;
 }
 
 export interface MoSlide {
