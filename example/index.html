@@ -1,23 +1,52 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Mostage Example</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mostage - Configuration Example</title>
+  </head>
+  <body>
     <div id="app"></div>
-    
+
     <script type="module">
-        import Mostage from '../src/index.ts';
-        
-        const mostage = new Mostage({
-            element: '#app',
-            theme: 'ocean',
-            markdown: './slides.md',
-            plugins: ['ProgressBar', 'SlideNumber', 'Controller', 'OverviewMode', 'CenterContent']
-        });
-        
-        mostage.start();
+      import Mostage from "../src/index.ts";
+
+      const mostage = new Mostage({
+        element: "#app",
+        theme: "dark",
+        markdown: "./slides.md",
+        scale: 1.0,
+        transition: {
+          type: "horizontal", // horizontal | vertical | fade | slide
+          duration: 600, // (ms)
+          easing: "ease-in-out", // easing type
+        },
+        loop: false,
+        plugins: {
+          ProgressBar: {
+            position: "bottom", // top | bottom
+            color: "#007acc", // CSS color value
+            height: "5px", // CSS size value
+          },
+          SlideNumber: {
+            position: "bottom-right", // bottom-right | bottom-left | bottom-center
+            format: "current/total", // e.g., "1/10"
+          },
+          Controller: {
+            show: true, // Show or hide the controller
+            position: "bottom-center", // bottom-right | bottom-left | bottom-center
+          },
+          OverviewMode: {
+            scale: 0.2, // Scale of slides in overview mode
+          },
+          CenterContent: {
+            vertical: true, // Center vertically
+            horizontal: true, // Center horizontally
+          },
+        },
+      });
+
+      mostage.start();
     </script>
-</body>
+  </body>
 </html>
