@@ -1,5 +1,6 @@
 import { MoConfig, MoPlugin, MoSlide, MoSlideEvent, TransitionConfig } from '../types';
 import { MarkdownParser } from '../utils/markdown-parser';
+import { SyntaxHighlighter } from '../utils/syntax-highlighter';
 import { plugins } from './plugin-loader';
 import { loadTheme } from './theme-loader';
 
@@ -11,6 +12,8 @@ export class Mostage {
   private plugins: MoPlugin[] = [];
   private eventListeners: Map<string, Function[]> = new Map();
   private parser: MarkdownParser;
+  private syntaxHighlighter: SyntaxHighlighter;
+
   constructor(config: MoConfig) {
 
     this.config = {
@@ -38,6 +41,7 @@ export class Mostage {
     }
 
     this.parser = new MarkdownParser();
+    this.syntaxHighlighter = SyntaxHighlighter.getInstance();
     this.container = this.resolveElement(this.config.element || document.body);
     this.container.classList.add('mostage-container');
     
@@ -215,6 +219,9 @@ export class Mostage {
     });
     
     this.container.appendChild(slidesContainer);
+    
+    // Apply syntax highlighting to all slides after rendering
+    this.syntaxHighlighter.highlightAll(this.container);
   }
 
   nextSlide(): void {

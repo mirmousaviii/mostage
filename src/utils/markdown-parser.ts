@@ -1,3 +1,5 @@
+import { SyntaxHighlighter } from './syntax-highlighter';
+
 export interface MarkdownToken {
   type: string;
   content: string;
@@ -7,7 +9,11 @@ export interface MarkdownToken {
 }
 
 export class MarkdownParser {
-  constructor() {}
+  private syntaxHighlighter: SyntaxHighlighter;
+
+  constructor() {
+    this.syntaxHighlighter = SyntaxHighlighter.getInstance();
+  }
 
   parse(markdown: string): string {
     const slides = this.parseSlides(markdown);
@@ -55,12 +61,11 @@ export class MarkdownParser {
         } else {
           // End of code block
           inCodeBlock = false;
-          // Process collected code content
-          const codeHtml = codeBlockContent
-            .map((codeLine) => this.escapeHtml(codeLine))
-            .join("\n");
+          // Process collected code content with syntax highlighting
+          const codeContent = codeBlockContent.join("\n");
+          const highlightedCode = this.syntaxHighlighter.highlightCode(codeContent, codeBlockLang);
           result.push(
-            `<pre><code class="language-${codeBlockLang}">${codeHtml}</code></pre>`
+            `<pre><code class="language-${codeBlockLang}">${highlightedCode}</code></pre>`
           );
           codeBlockContent = [];
         }

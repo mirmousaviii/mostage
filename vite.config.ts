@@ -25,19 +25,18 @@ export default defineConfig(({ command }) => {
       // Library mode
       lib: {
         entry: {
-          index: resolve(__dirname, isDev ? '../src/index.ts' : 'src/index.ts'),
-          cli: resolve(__dirname, isDev ? '../src/cli/index.ts' : 'src/cli/index.ts')
+          index: resolve(__dirname, isDev ? '../src/index.ts' : 'src/index.ts')
         },
         formats: ['es', 'cjs'],
         fileName: (format, entryName) => {
           const ext = format === 'es' ? 'js' : 'cjs';
-          return entryName === 'cli' ? `cli.${ext}` : `index.${ext}`;
+          return `index.${ext}`;
         }
       },
       
       // External dependencies (not bundled)
       rollupOptions: {
-        external: ['commander', 'fs', 'path', 'url'],
+        external: ['fs', 'path', 'url'],
         output: {
           exports: 'named'
         }

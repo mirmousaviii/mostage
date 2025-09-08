@@ -37,7 +37,7 @@
 
 ###### You can add your own plugins easily:
 
-```ts
+```javascript
 class CustomPlugin {
   name = "CustomPlugin";
 
