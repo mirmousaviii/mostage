@@ -28,12 +28,13 @@
 
 ## Plugin System
 
-###### Built-in plugins:
+##### Built-in plugins
 
 - **ProgressBar** → Shows presentation progress
 - **SlideNumber** → Displays current slide number
 - **Controller** → Navigation buttons
 - **OverviewMode** → Grid view with animations
+- **Confetti** → Celebration animations controlled in markdown
 
 ###### You can add your own plugins easily:
 
@@ -50,6 +51,14 @@ class CustomPlugin {
   }
 }
 ```
+
+---
+
+<!-- confetti -->
+
+## Celebration!
+
+#### **Confetti** as an example of plugin
 
 ---
 
@@ -158,6 +167,8 @@ Here is example of **code**
 **Inline Code:** `console.log('Hello, World!');`
 
 ---
+
+<!-- confetti -->
 
 ## Happy presenting with Mostage!
 

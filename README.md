@@ -542,6 +542,50 @@ plugins: {
 ```
 
 **CenterContent**: Centers slide content
+
+
+
+**Confetti**: Shows colorful confetti animation controlled directly in markdown
+```typescript
+plugins: {
+    Confetti: true  // Enable confetti plugin
+}
+```
+
+**Usage in Markdown:**
+```markdown
+---
+<!-- confetti -->
+# 🎉 Celebration Slide!
+---
+```
+```typescript
+plugins: {
+    Confetti: {
+        colors: ["#ff6b6b", "#4ecdc4", ...],  // array of colors for confetti particles
+        duration: 3000,                       // animation duration in milliseconds
+        particleCount: 50                     // number of confetti particles
+    }
+}
+```
+
+**Usage in Markdown:**
+```markdown
+---
+<!-- confetti: true -->
+# 🎉 Celebration Slide!
+---
+```
+```typescript
+plugins: {
+    Confetti: {
+        slides: [2, 5, 8],                    // slide numbers (0-indexed) where confetti appears
+        colors: ["#ff6b6b", "#4ecdc4", ...],  // array of colors for confetti particles
+        duration: 3000,                       // animation duration in milliseconds
+        particleCount: 50                     // number of confetti particles
+    }
+}
+```
 ```typescript
 plugins: {
     CenterContent: {
@@ -572,6 +616,27 @@ Each plugin can be configured with specific options:
 - `scale: number` - Scale factor for slides in overview mode (0.1 to 1.0)
 
 #### CenterContent Options
+
+
+
+#### Confetti Options
+- `Confetti: boolean` - Enable or disable the confetti plugin
+
+**Markdown Control:**
+Add `<!-- confetti -->` comment to any slide to enable confetti for that slide.
+- `colors: string[]` - Array of CSS color values for confetti particles
+- `duration: number` - Animation duration in milliseconds (default: 3000)
+- `particleCount: number` - Number of confetti particles to create (default: 50)
+
+**Markdown Control:**
+Add one of these comments to any slide to enable confetti:
+- `<!-- confetti: true -->`
+- `<!-- confetti -->`
+- `<!-- confetti:on -->`
+- `slides: number[]` - Array of slide numbers (0-indexed) where confetti should appear
+- `colors: string[]` - Array of CSS color values for confetti particles
+- `duration: number` - Animation duration in milliseconds (default: 3000)
+- `particleCount: number` - Number of confetti particles to create (default: 50)
 - `vertical: boolean` - Center content vertically
 - `horizontal: boolean` - Center content horizontally
 

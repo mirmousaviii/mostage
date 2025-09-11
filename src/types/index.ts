@@ -36,6 +36,7 @@ export interface PluginsConfig {
   Controller?: ControllerConfig;
   OverviewMode?: OverviewModeConfig;
   CenterContent?: CenterContentConfig;
+  Confetti?: boolean;
 }
 
 export interface TransitionConfig {
