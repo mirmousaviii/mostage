@@ -6,19 +6,19 @@ export interface MoPlugin {
 
 // Plugin Configuration Interfaces
 export interface ProgressBarConfig {
-  position?: 'top' | 'bottom';
+  position?: "top" | "bottom";
   color?: string;
   height?: string;
 }
 
 export interface SlideNumberConfig {
-  position?: 'bottom-right' | 'bottom-left' | 'bottom-center';
+  position?: "bottom-right" | "bottom-left" | "bottom-center";
   format?: string;
 }
 
 export interface ControllerConfig {
   show?: boolean;
-  position?: 'bottom-right' | 'bottom-left' | 'bottom-center';
+  position?: "bottom-right" | "bottom-left" | "bottom-center";
 }
 
 export interface OverviewModeConfig {
@@ -40,7 +40,7 @@ export interface PluginsConfig {
 }
 
 export interface TransitionConfig {
-  type?: 'horizontal' | 'vertical' | 'fade' | 'slide';
+  type?: "horizontal" | "vertical" | "fade" | "slide";
   duration?: number;
   easing?: string;
 }
@@ -56,6 +56,7 @@ export interface MoConfig {
   plugins?: PluginsConfig;
   keyboard?: boolean;
   touch?: boolean;
+  urlHash?: boolean; // Enable URL hash navigation
 }
 
 export interface MoSlide {

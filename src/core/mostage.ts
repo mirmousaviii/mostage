@@ -1,8 +1,14 @@
-import { MoConfig, MoPlugin, MoSlide, MoSlideEvent, TransitionConfig } from '../types';
-import { MarkdownParser } from '../utils/markdown-parser';
-import { SyntaxHighlighter } from '../utils/syntax-highlighter';
-import { plugins } from './plugin-loader';
-import { loadTheme } from './theme-loader';
+import {
+  MoConfig,
+  MoPlugin,
+  MoSlide,
+  MoSlideEvent,
+  TransitionConfig,
+} from "../types";
+import { MarkdownParser } from "../utils/markdown-parser";
+import { SyntaxHighlighter } from "../utils/syntax-highlighter";
+import { plugins } from "./plugin-loader";
+import { loadTheme } from "./theme-loader";
 
 export class Mostage {
   private config: MoConfig;
@@ -15,36 +21,36 @@ export class Mostage {
   private syntaxHighlighter: SyntaxHighlighter;
 
   constructor(config: MoConfig) {
-
     this.config = {
-      theme: 'light',
+      theme: "light",
       transition: {
-        type: 'horizontal',
+        type: "horizontal",
         duration: 600,
-        easing: 'ease-in-out'
+        easing: "ease-in-out",
       },
       scale: 1.0,
       loop: false,
       plugins: {},
       keyboard: true,
       touch: true,
-      ...config
+      urlHash: false, // Default to false
+      ...config,
     };
 
     // Handle legacy transition format
-    if (typeof this.config.transition === 'string') {
+    if (typeof this.config.transition === "string") {
       this.config.transition = {
         type: this.config.transition as any,
         duration: 600,
-        easing: 'ease-in-out'
+        easing: "ease-in-out",
       };
     }
 
     this.parser = new MarkdownParser();
     this.syntaxHighlighter = SyntaxHighlighter.getInstance();
     this.container = this.resolveElement(this.config.element || document.body);
-    this.container.classList.add('mostage-container');
-    
+    this.container.classList.add("mostage-container");
+
     // Apply scale if specified
     if (this.config.scale !== 1.0) {
       this.container.style.transform = `scale(${this.config.scale})`;
@@ -71,23 +77,31 @@ export class Mostage {
       // Setup navigation
       this.setupNavigation();
 
+      // Setup URL hash navigation if enabled
+      if (this.config.urlHash) {
+        this.setupUrlHashNavigation();
+      }
+
       // Render initial slide
       this.renderSlides();
-      this.goToSlide(0);
 
-      this.emit('ready', {
-        type: 'ready',
+      // Go to initial slide (from URL hash if available)
+      const initialSlide = this.getInitialSlideFromUrl();
+      this.goToSlide(initialSlide);
+
+      this.emit("ready", {
+        type: "ready",
         currentSlide: this.currentSlideIndex,
-        totalSlides: this.slides.length
+        totalSlides: this.slides.length,
       });
     } catch (error) {
-      console.error('Failed to start Mostage:', error);
+      console.error("Failed to start Mostage:", error);
       throw error;
     }
   }
 
   private resolveElement(element: string | HTMLElement): HTMLElement {
-    if (typeof element === 'string') {
+    if (typeof element === "string") {
       const found = document.querySelector(element) as HTMLElement;
       if (!found) {
         throw new Error(`Element "${element}" not found`);
@@ -106,18 +120,20 @@ export class Mostage {
       const content = await response.text();
       this.parseMarkdown(content);
     } catch (error) {
-      console.error('Error loading markdown:', error);
+      console.error("Error loading markdown:", error);
       throw error;
     }
   }
 
   private parseMarkdown(content: string): void {
-    const slideContents = content.split(/^---\s*$/gm).filter(slide => slide.trim());
-    
+    const slideContents = content
+      .split(/^---\s*$/gm)
+      .filter((slide) => slide.trim());
+
     this.slides = slideContents.map((slideContent, index) => ({
       id: `slide-${index}`,
       content: slideContent.trim(),
-      html: this.parser.parse(slideContent.trim())
+      html: this.parser.parse(slideContent.trim()),
     }));
   }
 
@@ -125,30 +141,34 @@ export class Mostage {
     if (!this.config.plugins) return;
 
     // Handle configuration-based plugin system only
-    Object.entries(this.config.plugins).forEach(([pluginName, pluginConfig]) => {
-      try {
-        const PluginClass = plugins[pluginName];
-        if (!PluginClass) {
-          console.warn(`Plugin "${pluginName}" not found. Available plugins: ${Object.keys(plugins).join(', ')}`);
-          return;
-        }
+    Object.entries(this.config.plugins).forEach(
+      ([pluginName, pluginConfig]) => {
+        try {
+          const PluginClass = plugins[pluginName];
+          if (!PluginClass) {
+            console.warn(
+              `Plugin "${pluginName}" not found. Available plugins: ${Object.keys(plugins).join(", ")}`
+            );
+            return;
+          }
 
-        const pluginInstance = new PluginClass();
-        
-        // Use config directly (no active property needed)
-        const finalConfig = pluginConfig || {};
-        
-        pluginInstance.init(this, finalConfig);
-        this.plugins.push(pluginInstance);
-      } catch (error) {
-        console.error(`Failed to initialize plugin "${pluginName}":`, error);
+          const pluginInstance = new PluginClass();
+
+          // Use config directly (no active property needed)
+          const finalConfig = pluginConfig || {};
+
+          pluginInstance.init(this, finalConfig);
+          this.plugins.push(pluginInstance);
+        } catch (error) {
+          console.error(`Failed to initialize plugin "${pluginName}":`, error);
+        }
       }
-    });
+    );
   }
 
   private setupNavigation(): void {
     if (this.config.keyboard) {
-      document.addEventListener('keydown', this.handleKeyboard.bind(this));
+      document.addEventListener("keydown", this.handleKeyboard.bind(this));
     }
 
     if (this.config.touch) {
@@ -158,20 +178,20 @@ export class Mostage {
 
   private handleKeyboard(event: KeyboardEvent): void {
     switch (event.key) {
-      case 'ArrowRight':
-      case ' ':
+      case "ArrowRight":
+      case " ":
         event.preventDefault();
         this.nextSlide();
         break;
-      case 'ArrowLeft':
+      case "ArrowLeft":
         event.preventDefault();
         this.previousSlide();
         break;
-      case 'Home':
+      case "Home":
         event.preventDefault();
         this.goToSlide(0);
         break;
-      case 'End':
+      case "End":
         event.preventDefault();
         this.goToSlide(this.slides.length - 1);
         break;
@@ -182,12 +202,12 @@ export class Mostage {
     let startX = 0;
     let startY = 0;
 
-    this.container.addEventListener('touchstart', (e) => {
+    this.container.addEventListener("touchstart", (e) => {
       startX = e.touches[0].clientX;
       startY = e.touches[0].clientY;
     });
 
-    this.container.addEventListener('touchend', (e) => {
+    this.container.addEventListener("touchend", (e) => {
       const endX = e.changedTouches[0].clientX;
       const endY = e.changedTouches[0].clientY;
       const diffX = startX - endX;
@@ -204,22 +224,22 @@ export class Mostage {
   }
 
   private renderSlides(): void {
-    this.container.innerHTML = '';
-    
-    const slidesContainer = document.createElement('div');
-    slidesContainer.className = 'mostage-slides';
-    
+    this.container.innerHTML = "";
+
+    const slidesContainer = document.createElement("div");
+    slidesContainer.className = "mostage-slides";
+
     this.slides.forEach((slide, index) => {
-      const slideElement = document.createElement('div');
-      slideElement.className = 'mostage-slide';
+      const slideElement = document.createElement("div");
+      slideElement.className = "mostage-slide";
       slideElement.id = slide.id;
       slideElement.innerHTML = slide.html;
-      slideElement.style.display = index === 0 ? 'block' : 'none';
+      slideElement.style.display = index === 0 ? "block" : "none";
       slidesContainer.appendChild(slideElement);
     });
-    
+
     this.container.appendChild(slidesContainer);
-    
+
     // Apply syntax highlighting to all slides after rendering
     this.syntaxHighlighter.highlightAll(this.container);
   }
@@ -240,11 +260,61 @@ export class Mostage {
     }
   }
 
+  private setupUrlHashNavigation(): void {
+    // Listen for hash changes
+    window.addEventListener("hashchange", () => {
+      const slideIndex = this.getSlideIndexFromHash();
+      if (slideIndex !== -1 && slideIndex !== this.currentSlideIndex) {
+        this.goToSlide(slideIndex);
+      }
+    });
+  }
+
+  private getInitialSlideFromUrl(): number {
+    if (!this.config.urlHash) return 0;
+
+    const slideIndex = this.getSlideIndexFromHash();
+    return slideIndex !== -1 ? slideIndex : 0;
+  }
+
+  private getSlideIndexFromHash(): number {
+    const hash = window.location.hash;
+    if (!hash) return -1;
+
+    // Support both #1 and #slide-1 formats
+    const match = hash.match(/^#(?:slide-)?(\d+)$/);
+    if (match) {
+      const slideNumber = parseInt(match[1], 10);
+      // Convert 1-based to 0-based index
+      const slideIndex = slideNumber - 1;
+      if (slideIndex >= 0 && slideIndex < this.slides.length) {
+        return slideIndex;
+      }
+    }
+
+    return -1;
+  }
+
+  private updateUrlHash(slideIndex: number): void {
+    if (!this.config.urlHash) return;
+
+    const slideNumber = slideIndex + 1; // Convert to 1-based
+    const newHash = `#${slideNumber}`;
+
+    // Update URL without triggering hashchange event
+    if (window.location.hash !== newHash) {
+      history.replaceState(null, "", newHash);
+    }
+  }
+
   goToSlide(index: number): void {
     if (index < 0 || index >= this.slides.length) return;
 
     const previousIndex = this.currentSlideIndex;
     this.currentSlideIndex = index;
+
+    // Update URL hash if enabled
+    this.updateUrlHash(index);
 
     if (previousIndex === index) {
       this.showSlide(index);
@@ -252,26 +322,26 @@ export class Mostage {
       this.animateTransition(previousIndex, index);
     }
 
-    this.emit('slidechange', {
-      type: 'slidechange',
+    this.emit("slidechange", {
+      type: "slidechange",
       currentSlide: index,
       totalSlides: this.slides.length,
-      slide: this.slides[index]
+      slide: this.slides[index],
     });
   }
 
   private showSlide(index: number): void {
-    const slides = this.container.querySelectorAll('.mostage-slide');
+    const slides = this.container.querySelectorAll(".mostage-slide");
     slides.forEach((slide, i) => {
       const slideElement = slide as HTMLElement;
-      slideElement.style.display = i === index ? 'block' : 'none';
-      slideElement.style.opacity = '1';
-      slideElement.style.transform = '';
+      slideElement.style.display = i === index ? "block" : "none";
+      slideElement.style.opacity = "1";
+      slideElement.style.transform = "";
     });
   }
 
   private animateTransition(fromIndex: number, toIndex: number): void {
-    const slides = this.container.querySelectorAll('.mostage-slide');
+    const slides = this.container.querySelectorAll(".mostage-slide");
     const fromSlide = slides[fromIndex] as HTMLElement;
     const toSlide = slides[toIndex] as HTMLElement;
 
@@ -286,80 +356,109 @@ export class Mostage {
     const duration = transition.duration || 600;
 
     // Set transition properties
-    fromSlide.style.transition = `all ${duration}ms ${transition.easing || 'ease-in-out'}`;
-    toSlide.style.transition = `all ${duration}ms ${transition.easing || 'ease-in-out'}`;
+    fromSlide.style.transition = `all ${duration}ms ${transition.easing || "ease-in-out"}`;
+    toSlide.style.transition = `all ${duration}ms ${transition.easing || "ease-in-out"}`;
 
     // Apply transition based on config
     switch (transition.type) {
-      case 'fade':
+      case "fade":
         this.fadeTransition(fromSlide, toSlide, duration);
         break;
-      case 'vertical':
-        this.verticalTransition(fromSlide, toSlide, toIndex > fromIndex, duration);
+      case "vertical":
+        this.verticalTransition(
+          fromSlide,
+          toSlide,
+          toIndex > fromIndex,
+          duration
+        );
         break;
-      case 'slide':
+      case "slide":
         this.slideTransition(fromSlide, toSlide, toIndex > fromIndex, duration);
         break;
-      case 'horizontal':
+      case "horizontal":
       default:
-        this.horizontalTransition(fromSlide, toSlide, toIndex > fromIndex, duration);
+        this.horizontalTransition(
+          fromSlide,
+          toSlide,
+          toIndex > fromIndex,
+          duration
+        );
         break;
     }
   }
 
-  private fadeTransition(fromSlide: HTMLElement, toSlide: HTMLElement, duration: number): void {
-    fromSlide.style.opacity = '0';
-    toSlide.style.display = 'block';
-    toSlide.style.opacity = '0';
-    
+  private fadeTransition(
+    fromSlide: HTMLElement,
+    toSlide: HTMLElement,
+    duration: number
+  ): void {
+    fromSlide.style.opacity = "0";
+    toSlide.style.display = "block";
+    toSlide.style.opacity = "0";
+
     setTimeout(() => {
-      toSlide.style.opacity = '1';
+      toSlide.style.opacity = "1";
       setTimeout(() => {
-        fromSlide.style.display = 'none';
-        fromSlide.style.opacity = '1';
+        fromSlide.style.display = "none";
+        fromSlide.style.opacity = "1";
       }, duration);
     }, 50);
   }
 
-  private horizontalTransition(fromSlide: HTMLElement, toSlide: HTMLElement, isNext: boolean, duration: number): void {
-    const direction = isNext ? 'translateX(-100%)' : 'translateX(100%)';
-    const enterDirection = isNext ? 'translateX(100%)' : 'translateX(-100%)';
-    
-    toSlide.style.display = 'block';
+  private horizontalTransition(
+    fromSlide: HTMLElement,
+    toSlide: HTMLElement,
+    isNext: boolean,
+    duration: number
+  ): void {
+    const direction = isNext ? "translateX(-100%)" : "translateX(100%)";
+    const enterDirection = isNext ? "translateX(100%)" : "translateX(-100%)";
+
+    toSlide.style.display = "block";
     toSlide.style.transform = enterDirection;
-    
+
     setTimeout(() => {
       fromSlide.style.transform = direction;
-      toSlide.style.transform = 'translateX(0)';
-      
+      toSlide.style.transform = "translateX(0)";
+
       setTimeout(() => {
-        fromSlide.style.display = 'none';
-        fromSlide.style.transform = '';
-        toSlide.style.transform = '';
+        fromSlide.style.display = "none";
+        fromSlide.style.transform = "";
+        toSlide.style.transform = "";
       }, duration);
     }, 50);
   }
 
-  private verticalTransition(fromSlide: HTMLElement, toSlide: HTMLElement, isNext: boolean, duration: number): void {
-    const direction = isNext ? 'translateY(-100%)' : 'translateY(100%)';
-    const enterDirection = isNext ? 'translateY(100%)' : 'translateY(-100%)';
-    
-    toSlide.style.display = 'block';
+  private verticalTransition(
+    fromSlide: HTMLElement,
+    toSlide: HTMLElement,
+    isNext: boolean,
+    duration: number
+  ): void {
+    const direction = isNext ? "translateY(-100%)" : "translateY(100%)";
+    const enterDirection = isNext ? "translateY(100%)" : "translateY(-100%)";
+
+    toSlide.style.display = "block";
     toSlide.style.transform = enterDirection;
-    
+
     setTimeout(() => {
       fromSlide.style.transform = direction;
-      toSlide.style.transform = 'translateY(0)';
-      
+      toSlide.style.transform = "translateY(0)";
+
       setTimeout(() => {
-        fromSlide.style.display = 'none';
-        fromSlide.style.transform = '';
-        toSlide.style.transform = '';
+        fromSlide.style.display = "none";
+        fromSlide.style.transform = "";
+        toSlide.style.transform = "";
       }, duration);
     }, 50);
   }
 
-  private slideTransition(fromSlide: HTMLElement, toSlide: HTMLElement, isNext: boolean, duration: number): void {
+  private slideTransition(
+    fromSlide: HTMLElement,
+    toSlide: HTMLElement,
+    isNext: boolean,
+    duration: number
+  ): void {
     // Similar to horizontal but with different easing
     this.horizontalTransition(fromSlide, toSlide, isNext, duration);
   }
@@ -375,7 +474,7 @@ export class Mostage {
   emit(event: string, data: MoSlideEvent): void {
     const listeners = this.eventListeners.get(event);
     if (listeners) {
-      listeners.forEach(callback => callback(data));
+      listeners.forEach((callback) => callback(data));
     }
   }
 
@@ -398,7 +497,7 @@ export class Mostage {
 
   // Cleanup
   destroy(): void {
-    this.plugins.forEach(plugin => {
+    this.plugins.forEach((plugin) => {
       try {
         if (plugin.destroy) {
           plugin.destroy();

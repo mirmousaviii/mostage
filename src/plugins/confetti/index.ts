@@ -68,7 +68,7 @@ export class ConfettiPlugin implements MoPlugin {
     this.confettiContainer.innerHTML = "";
 
     // Create confetti particles
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 50; i++) {
       this.createConfettiParticle();
     }
 
