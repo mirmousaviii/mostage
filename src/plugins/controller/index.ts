@@ -1,19 +1,21 @@
-import { MoPlugin, ControllerConfig } from '../../types';
-import styles from './style.css?inline';
+import { MoPlugin, ControllerConfig } from "../../types";
+import styles from "./style.css?inline";
 
 export class ControllerPlugin implements MoPlugin {
-  name = 'Controller';
+  name = "Controller";
   private controller: HTMLElement | null = null;
   private styleElement: HTMLElement | null = null;
+  private firstBtn: HTMLButtonElement | null = null;
   private prevBtn: HTMLButtonElement | null = null;
   private nextBtn: HTMLButtonElement | null = null;
+  private lastBtn: HTMLButtonElement | null = null;
   private config!: ControllerConfig;
 
   init(mo: any, config: ControllerConfig = {}): void {
     this.config = {
       show: true,
-      position: 'bottom-center',
-      ...config
+      position: "bottom-center",
+      ...config,
     };
 
     this.injectStyles();
@@ -21,37 +23,53 @@ export class ControllerPlugin implements MoPlugin {
   }
 
   private injectStyles(): void {
-    if (document.querySelector('[data-mostage-controller-styles]')) return;
+    if (document.querySelector("[data-mostage-controller-styles]")) return;
 
-    this.styleElement = document.createElement('style');
-    this.styleElement.setAttribute('data-mostage-controller-styles', 'true');
+    this.styleElement = document.createElement("style");
+    this.styleElement.setAttribute("data-mostage-controller-styles", "true");
     this.styleElement.textContent = styles;
     document.head.appendChild(this.styleElement);
   }
 
   private createController(mo: any): void {
-    this.controller = document.createElement('div');
+    this.controller = document.createElement("div");
     this.controller.className = `mostage-controller mostage-controller-${this.config.position}`;
     this.controller.innerHTML = `
+      <button class="mostage-btn mostage-first">|‹</button>
       <button class="mostage-btn mostage-prev">‹</button>
       <button class="mostage-btn mostage-next">›</button>
+      <button class="mostage-btn mostage-last">›|</button>
     `;
 
     // Show/hide based on config
     if (!this.config.show) {
-      this.controller.style.display = 'none';
+      this.controller.style.display = "none";
     }
 
     // Get button references
-    this.prevBtn = this.controller.querySelector('.mostage-prev') as HTMLButtonElement;
-    this.nextBtn = this.controller.querySelector('.mostage-next') as HTMLButtonElement;
+    this.firstBtn = this.controller.querySelector(
+      ".mostage-first"
+    ) as HTMLButtonElement;
+    this.prevBtn = this.controller.querySelector(
+      ".mostage-prev"
+    ) as HTMLButtonElement;
+    this.nextBtn = this.controller.querySelector(
+      ".mostage-next"
+    ) as HTMLButtonElement;
+    this.lastBtn = this.controller.querySelector(
+      ".mostage-last"
+    ) as HTMLButtonElement;
 
     // Add event listeners
-    this.prevBtn.addEventListener('click', () => mo.previousSlide());
-    this.nextBtn.addEventListener('click', () => mo.nextSlide());
+    this.firstBtn.addEventListener("click", () => mo.goToSlide(0));
+    this.prevBtn.addEventListener("click", () => mo.previousSlide());
+    this.nextBtn.addEventListener("click", () => mo.nextSlide());
+    this.lastBtn.addEventListener("click", () =>
+      mo.goToSlide(mo.getTotalSlides() - 1)
+    );
 
     // Listen for slide changes and update button states
-    mo.on('slidechange', (event: any) => {
+    mo.on("slidechange", (event: any) => {
       this.updateButtonStates(event.currentSlide, event.totalSlides);
     });
 
@@ -62,9 +80,11 @@ export class ControllerPlugin implements MoPlugin {
   }
 
   private updateButtonStates(currentSlide: number, totalSlides: number): void {
-    if (this.prevBtn && this.nextBtn) {
+    if (this.firstBtn && this.prevBtn && this.nextBtn && this.lastBtn) {
+      this.firstBtn.disabled = currentSlide === 0;
       this.prevBtn.disabled = currentSlide === 0;
       this.nextBtn.disabled = currentSlide === totalSlides - 1;
+      this.lastBtn.disabled = currentSlide === totalSlides - 1;
     }
   }
 
@@ -77,8 +97,10 @@ export class ControllerPlugin implements MoPlugin {
       this.styleElement.remove();
       this.styleElement = null;
     }
+    this.firstBtn = null;
     this.prevBtn = null;
     this.nextBtn = null;
+    this.lastBtn = null;
   }
 }
 
