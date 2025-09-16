@@ -168,6 +168,16 @@ Here is example of **code**
 
 ---
 
+## Image Support
+
+![Image sample](./image.png)
+
+```markdown
+![alt](src)
+```
+
+---
+
 <!-- confetti -->
 
 ## Happy presenting with Mostage!

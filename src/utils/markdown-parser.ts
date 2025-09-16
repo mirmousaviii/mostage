@@ -258,6 +258,9 @@ export class MarkdownParser {
       return `<code>${this.escapeHtml(code)}</code>`;
     });
 
+    // Images - ![alt](src) (must be processed before links)
+    text = text.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" />');
+
     // Bold - **text** or __text__
     text = text.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
     text = text.replace(/__(.*?)__/g, "<strong>$1</strong>");
