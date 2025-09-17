@@ -14,7 +14,9 @@
       const mostage = new Mostage({
         element: "#app",
         theme: "dark",
-        markdown: "./slides.md",
+        // contentData: "# Internal content",
+        contentSource: "./slides.md",
+        contentType: "markdown",
         scale: 1.0,
         transition: {
           type: "horizontal",

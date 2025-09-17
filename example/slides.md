@@ -1,42 +1,95 @@
 # Mostage
 
-## Modern slides based on Markdown
+## Modern stage is a presentation framework
+
+#### [ HTML | Markdown | Text ] to web-based slide
+
+---
+
+## Why?
+
+- **Web-based** — Provide web-based presentation
+- **Simple & Familiar** — Use the same syntax you know from GitHub, documentation, and blogs
+- **Focus on Content** — Write content without worrying about design
+- **Interactive Environment** — Use HTML features inside slides
+- **Version Control Friendly** — Track changes with Git, collaborate easily
+- **Fast** — No complex editors or heavy applications needed
 
 ---
 
 ## Key Features
 
-- **Markdown-based** → Create slides with plain text
-- **Web-first** → Presentations run in any browser
-- **Configuration-based Plugin System** → Easy to configure and customize
-- **Advanced Themes** → Multiple built-in and custom themes
-- **Smooth Transitions** → Professional animations with custom timing
+- **Simple** → Create slides with HTML, Markdown or plain text
+- **Web-based** → Presentations run in browser
+- **Configuration** → Easy to configure and customize
+- **Theme System** → Built-in and custom themes
+- **Plugin System** → Built-in and custom plugins
 
 ---
 
-## Default Themes
+## Content Types
 
-- **Light Theme** → Perfect for professional presentations and bright environments
+### HTML Parser
+
+HTML to powerful slide with interactive elements and custom styling
+[Demo HTML Parser](../html-demo/)
+
+### Markdown Parser
+
+Convert Markdown to powerful slide
+[Demo Markdown Parser](../markdown-demo/)
+
+### Text Parser
+
+Convert plain text to simple slide
+[Demo Text Parser](../text-demo/)
+
+---
+
+## Built-in Themes
+
+- **Light Theme** → Classic presentations
 - **Dark Theme** → Ideal for code presentations and low-light conditions
-- **Solarized Theme** → Carefully crafted palette with scientific balance
 - **Dracula Theme** → Popular dark theme with vibrant accents
-- **Ocean Theme** → Inspired by the sea — calm, elegant, and refreshing
+- **Ocean Theme** → Inspired by the sea. calm, elegant, and refreshing
 
 #### And, Create a new theme is easy
 
 ---
 
-## Plugin System
+## Theme System
 
-##### Built-in plugins
+You can add your own themes easily
+
+```css
+.mostage-slide {
+  background: #808080;
+  border: 1px solid var(--mostage-border-color);
+}
+
+.mostage-slide h1,
+.mostage-slide h2 {
+  color: var(--mostage-primary-color);
+}
+```
+
+---
+
+## Built-in Plugins
 
 - **ProgressBar** → Shows presentation progress
 - **SlideNumber** → Displays current slide number
 - **Controller** → Navigation buttons
-- **OverviewMode** → Grid view with animations
-- **Confetti** → Celebration animations controlled in markdown
+- **OverviewMode** → Grid view with all slides
+- **Confetti** → Celebration animations controlled
 
-###### You can add your own plugins easily:
+#### And, Create a plugins is easy
+
+---
+
+## Plugin System
+
+You can add your own plugins easily
 
 ```javascript
 class CustomPlugin {
@@ -75,106 +128,19 @@ class CustomPlugin {
 
 ---
 
-## Markdown Parser
+## Feature Comparison
 
-```markdown
-# Header 1
-
-## Header 2
-
-### Header 3
-
-#### Header 4
-
-##### Header 5
-
-###### Header 6
-
-This is an example of text.
-
-**Bold**, _Italic_, **_Bold Italic_**, [Link](https://mo.js.org)
-
-> This is a blockquote. It is used to highlight a section of text.
-
-- **Unordered List:**
-  - Item 1
-  - Item 2
-    - Subitem 2.1
-    - Subitem 2.2
-- **Ordered List:**
-  1. First item
-  2. Second item
-```
-
----
-
-# Header Example 1
-
-## Header Example 2
-
-### Header Example 3
-
-#### Header Example 4
-
-##### Header Example 5
-
-###### Header Example 6
-
----
-
-## Text Formatting Example
-
-This is an example of text.
-
-_Italic_, **Bold**, **_Bold Italic_**, [Link](https://mo.js.org)
-
-> This is a blockquote. It is used to highlight a section of text.
-
-**Inline Code:** `console.log('Hello, World!');`
-
----
-
-## List Example
-
-- **Unordered List:**
-  - Item 1
-    - Subitem 1.1
-    - Subitem 1.2
-  - Item 2
-    - Subitem 2.1
-    - Subitem 2.2
-- **Ordered List:**
-  1. First item
-     1. Subitem 1.1
-     2. Subitem 1.2
-  2. Second item
-     1. Subitem 2.1
-     2. Subitem 2.2
-
----
-
-## Code Examples
-
-Here is example of **code**
-
-```html
-<div class="example">
-  <!-- This should not be parsed -->
-  <p>HTML tags should be escaped</p>
-</div>
-```
-
-**Inline Code:** `console.log('Hello, World!');`
-
----
-
-## Image Support
-
-![Image sample](./image.png)
-
-```markdown
-![alt](src)
-```
+| Feature              | HTML | Markdown | Text |
+| -------------------- | :--: | :------: | :--: |
+| Headings             |  ✅  |    ✅    |  ✅  |
+| Lists                |  ✅  |    ✅    |  ✅  |
+| Code Blocks          |  ✅  |    ✅    |  ❌  |
+| Tables               |  ✅  |    ✅    |  ❌  |
+| Images               |  ✅  |    ✅    |  ❌  |
+| Links                |  ✅  |    ✅    |  ❌  |
+| Styling              |  ✅  |    ➖    |  ❌  |
+| Interactive Elements |  ✅  |    ❌    |  ❌  |
+| Media (Audio/Video)  |  ✅  |    ❌    |  ❌  |
 
 ---
 
@@ -182,4 +148,6 @@ Here is example of **code**
 
 ## Happy presenting with Mostage!
 
-#### **Get started now:** [mo.js.org](https://mo.js.org)
+##### Get started now: [mo.js.org](https://mo.js.org)
+
+##### Or check the demo: [Parser demo #4](#4)

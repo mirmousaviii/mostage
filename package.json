@@ -18,9 +18,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:examples": "npm run build && node scripts/create-prod-examples.js",
     "preview": "vite preview",
-    "preview:prod": "npm run build && vite preview --outDir example --port 3000",
     "test": "vitest",
     "lint": "eslint src --ext ts,tsx",
     "format": "prettier --write src/**/*.{ts,tsx,css}",
@@ -30,6 +28,9 @@
     "slides",
     "presentation",
     "markdown",
+    "html",
+    "web-based",
+    "text-based",
     "typescript",
     "reveal",
     "framework"

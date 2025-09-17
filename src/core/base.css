@@ -189,6 +189,7 @@ body {
 
 /* Blockquotes */
 .mostage-slide blockquote {
+  display: inline-block;
   font-size: 1.375rem;
   line-height: 1.6;
   margin: 1.5rem 0;
@@ -322,5 +323,120 @@ body {
   .mostage-slide ul,
   .mostage-slide ol {
     font-size: 1.125rem;
+  }
+}
+
+/* Text Content Styles */
+.text-content {
+  width: 100%;
+  max-width: 100%;
+}
+
+.text-heading {
+  margin: 1.5rem 0 1rem 0;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.text-heading:first-child {
+  margin-top: 0;
+}
+
+.text-paragraph {
+  margin: 1rem 0;
+  line-height: 1.6;
+}
+
+.text-paragraph:first-child {
+  margin-top: 0;
+}
+
+.text-paragraph:last-child {
+  margin-bottom: 0;
+}
+
+.text-list-item {
+  margin: 0.5rem 0;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.text-list-item:before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--accent-color, #007acc);
+}
+
+.text-emphasis {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: rgba(0, 122, 204, 0.1);
+  border-left: 4px solid var(--accent-color, #007acc);
+  border-radius: 4px;
+  font-weight: 500;
+  font-style: italic;
+}
+
+/* Heading hierarchy for text content */
+.text-content h1 {
+  font-size: 2.5rem;
+  color: var(--primary-color, #333);
+}
+
+.text-content h2 {
+  font-size: 2rem;
+  color: var(--primary-color, #333);
+}
+
+.text-content h3 {
+  font-size: 1.75rem;
+  color: var(--primary-color, #333);
+}
+
+.text-content h4 {
+  font-size: 1.5rem;
+  color: var(--primary-color, #333);
+}
+
+.text-content h5 {
+  font-size: 1.25rem;
+  color: var(--primary-color, #333);
+}
+
+.text-content h6 {
+  font-size: 1.125rem;
+  color: var(--primary-color, #333);
+}
+
+/* Responsive text content */
+@media (max-width: 768px) {
+  .text-content h1 {
+    font-size: 2rem;
+  }
+
+  .text-content h2 {
+    font-size: 1.75rem;
+  }
+
+  .text-content h3 {
+    font-size: 1.5rem;
+  }
+
+  .text-content h4 {
+    font-size: 1.25rem;
+  }
+
+  .text-content h5 {
+    font-size: 1.125rem;
+  }
+
+  .text-content h6 {
+    font-size: 1rem;
+  }
+
+  .text-paragraph,
+  .text-emphasis {
+    font-size: 1rem;
   }
 }
