@@ -5,7 +5,7 @@ import {
   MoSlideEvent,
   TransitionConfig,
 } from "../types";
-import { MarkdownParser } from "../utils/markdown-parser";
+import { MarkdownParser, TextParser, HtmlParser } from "../utils/parsers";
 import { SyntaxHighlighter } from "../utils/syntax-highlighter";
 import { plugins } from "./plugin-loader";
 import { loadTheme } from "./theme-loader";
@@ -17,7 +17,9 @@ export class Mostage {
   private currentSlideIndex = 0;
   private plugins: MoPlugin[] = [];
   private eventListeners: Map<string, Function[]> = new Map();
-  private parser: MarkdownParser;
+  private markdownParser: MarkdownParser;
+  private textParser: TextParser;
+  private htmlParser: HtmlParser;
   private syntaxHighlighter: SyntaxHighlighter;
 
   constructor(config: MoConfig) {
@@ -46,7 +48,9 @@ export class Mostage {
       };
     }
 
-    this.parser = new MarkdownParser();
+    this.markdownParser = new MarkdownParser();
+    this.textParser = new TextParser();
+    this.htmlParser = new HtmlParser();
     this.syntaxHighlighter = SyntaxHighlighter.getInstance();
     this.container = this.resolveElement(this.config.element || document.body);
     this.container.classList.add("mostage-container");
@@ -64,11 +68,15 @@ export class Mostage {
         await loadTheme(this.config.theme);
       }
 
-      // Load content (either from file or inline)
-      if (this.config.content) {
-        this.parseMarkdown(this.config.content);
-      } else if (this.config.markdown) {
-        await this.loadMarkdown(this.config.markdown);
+      // Load content using new key names
+      const contentType = this.config.contentType || "markdown"; // Default to markdown
+      
+      if (this.config.contentData) {
+        // Use contentData key for inline content
+        this.parseContent(this.config.contentData, contentType);
+      } else if (this.config.contentSource) {
+        // Use contentSource key for file/URL content
+        await this.loadContentFromSource(this.config.contentSource, contentType);
       }
 
       // Initialize plugins
@@ -111,20 +119,6 @@ export class Mostage {
     return element;
   }
 
-  private async loadMarkdown(markdownPath: string): Promise<void> {
-    try {
-      const response = await fetch(markdownPath);
-      if (!response.ok) {
-        throw new Error(`Failed to load markdown: ${response.statusText}`);
-      }
-      const content = await response.text();
-      this.parseMarkdown(content);
-    } catch (error) {
-      console.error("Error loading markdown:", error);
-      throw error;
-    }
-  }
-
   private parseMarkdown(content: string): void {
     const slideContents = content
       .split(/^---\s*$/gm)
@@ -133,9 +127,67 @@ export class Mostage {
     this.slides = slideContents.map((slideContent, index) => ({
       id: `slide-${index}`,
       content: slideContent.trim(),
-      html: this.parser.parse(slideContent.trim()),
+      html: this.markdownParser.parse(slideContent.trim()),
     }));
   }
+  private async loadContentFromSource(sourcePath: string, contentType: string = "markdown"): Promise<void> {
+    try {
+      const response = await fetch(sourcePath);
+      if (!response.ok) {
+        throw new Error(`Failed to load content: ${response.statusText}`);
+      }
+      const content = await response.text();
+      this.parseContent(content, contentType);
+    } catch (error) {
+      console.error("Error loading content from source:", error);
+      throw error;
+    }
+  }
+
+  private parseContent(content: string, contentType: string = "markdown"): void {
+    switch (contentType) {
+      case "markdown":
+        this.parseMarkdown(content);
+        break;
+      case "html":
+        this.parseHtml(content);
+        break;
+      case "text":
+        this.parseText(content);
+        break;
+      default:
+        console.warn(`Unknown content type: ${contentType}, defaulting to markdown`);
+        this.parseMarkdown(content);
+    }
+  }
+
+  private parseHtml(content: string): void {
+    const slideContents = this.htmlParser.parseHtmlToSlides(content);
+
+    this.slides = slideContents.map((slideContent, index) => ({
+      id: `slide-${index}`,
+      content: slideContent,
+      html: this.htmlParser.processSlideContent(slideContent),
+    }));
+  }
+
+  private parseText(content: string): void {
+    const slideContents = content
+      .split(/^---\s*$/gm)
+      .filter((slide) => slide.trim());
+
+    this.slides = slideContents.map((slideContent, index) => ({
+      id: `slide-${index}`,
+      content: slideContent.trim(),
+      html: this.textParser.parseTextToHtml(slideContent.trim()),
+    }));
+  }
+
+
+
+
+
+
 
   private initializePlugins(): void {
     if (!this.config.plugins) return;

@@ -36,7 +36,7 @@ export class ConfettiPlugin implements MoPlugin {
   private parseSlidesForConfetti(): void {
     const slides = this.mo.getSlides();
     slides.forEach((slide: any, index: number) => {
-      // Check for confetti comments in markdown
+      // Check for confetti comments
       if (slide.content.includes("<!-- confetti -->")) {
         this.confettiSlides.add(index);
         console.log(

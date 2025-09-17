@@ -1,4 +1,4 @@
-import { SyntaxHighlighter } from './syntax-highlighter';
+import { SyntaxHighlighter } from '../syntax-highlighter';
 
 export interface MarkdownToken {
   type: string;
