@@ -233,6 +233,38 @@ body {
   margin: 1rem 0;
 }
 
+/* Tables */
+.mostage-slide table {
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 1.125rem;
+}
+
+.mostage-slide th,
+.mostage-slide td {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 0.75rem 1rem;
+}
+
+.mostage-slide th {
+  background-color: rgba(0, 0, 0, 0.05);
+  font-weight: 600;
+}
+
+.mostage-slide tbody tr:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.mostage-slide tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Strikethrough */
+.mostage-slide del {
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
 /* Horizontal Rule */
 .mostage-slide hr {
   border: none;
