@@ -1,4 +1,4 @@
-import { SyntaxHighlighter } from '../syntax-highlighter';
+import { SyntaxHighlighter } from "../syntax-highlighter";
 
 export interface MarkdownToken {
   type: string;
@@ -63,7 +63,10 @@ export class MarkdownParser {
           inCodeBlock = false;
           // Process collected code content with syntax highlighting
           const codeContent = codeBlockContent.join("\n");
-          const highlightedCode = this.syntaxHighlighter.highlightCode(codeContent, codeBlockLang);
+          const highlightedCode = this.syntaxHighlighter.highlightCode(
+            codeContent,
+            codeBlockLang
+          );
           result.push(
             `<pre><code class="language-${codeBlockLang}">${highlightedCode}</code></pre>`
           );
@@ -78,7 +81,26 @@ export class MarkdownParser {
         continue;
       }
 
-      // Only process lists if we're not in a code block
+      // Handle tables
+      if (line.match(/^\s*\|.*\|\s*$/)) {
+        // Collect consecutive table lines
+        const tableLines: string[] = [];
+        let j = i;
+
+        while (j < lines.length && lines[j].match(/^\s*\|.*\|\s*$/)) {
+          tableLines.push(lines[j]);
+          j++;
+        }
+
+        if (tableLines.length > 0) {
+          const tableHtml = this.parseTable(tableLines);
+          result.push(tableHtml);
+          i = j - 1; // Skip the lines we just processed
+        }
+        continue;
+      }
+
+      // Handle lists
       if (line.match(/^[\s]*[-*+]\s/) || line.match(/^[\s]*\d+\.\s/)) {
         // Collect consecutive list items
         const listLines: string[] = [];
@@ -114,6 +136,69 @@ export class MarkdownParser {
     return result.join("\n");
   }
 
+  private parseTable(lines: string[]): string {
+    if (lines.length < 2) return "";
+
+    const headerLine = lines[0];
+    const separatorLine = lines[1];
+    const bodyLines = lines.slice(2);
+
+    // Parse header
+    const headerCells = headerLine
+      .split("|")
+      .map((cell) => cell.trim())
+      .filter((cell) => cell !== "");
+
+    // Check if separator line is valid
+    if (!separatorLine.match(/^\s*\|[\s\-:|]+\|\s*$/)) {
+      return "";
+    }
+
+    // Parse alignments from separator
+    const alignments = separatorLine
+      .split("|")
+      .map((cell) => cell.trim())
+      .filter((cell) => cell !== "")
+      .map((cell) => {
+        if (cell.startsWith(":") && cell.endsWith(":")) return "center";
+        if (cell.endsWith(":")) return "right";
+        return "left";
+      });
+
+    // Build table HTML
+    let tableHtml = "<table>\n<thead>\n<tr>\n";
+
+    headerCells.forEach((cell, index) => {
+      const align = alignments[index] || "left";
+      const alignAttr = align !== "left" ? ` style="text-align: ${align}"` : "";
+      tableHtml += `<th${alignAttr}>${this.parseInlineFormatting(cell)}</th>\n`;
+    });
+
+    tableHtml += "</tr>\n</thead>\n<tbody>\n";
+
+    // Parse body rows
+    bodyLines.forEach((line) => {
+      const cells = line
+        .split("|")
+        .map((cell) => cell.trim())
+        .filter((cell) => cell !== "");
+
+      if (cells.length > 0) {
+        tableHtml += "<tr>\n";
+        cells.forEach((cell, index) => {
+          const align = alignments[index] || "left";
+          const alignAttr =
+            align !== "left" ? ` style="text-align: ${align}"` : "";
+          tableHtml += `<td${alignAttr}>${this.parseInlineFormatting(cell)}</td>\n`;
+        });
+        tableHtml += "</tr>\n";
+      }
+    });
+
+    tableHtml += "</tbody>\n</table>";
+    return tableHtml;
+  }
+
   private escapeHtml(text: string): string {
     return text
       .replace(/&/g, "&amp;")
@@ -133,9 +218,6 @@ export class MarkdownParser {
     if (line.match(/^#{1,6}\s/)) {
       return this.parseHeader(line);
     }
-
-    // Lists are now handled in processLists method
-    // Don't process them here individually
 
     // Handle blockquotes
     if (line.match(/^>\s/)) {
@@ -253,24 +335,37 @@ export class MarkdownParser {
   }
 
   private parseInlineFormatting(text: string): string {
-    // Inline code - `code` (must be processed first to avoid other formatting inside)
+    // Process inline code first (highest priority)
     text = text.replace(/`([^`]*)`/g, (_, code) => {
       return `<code>${this.escapeHtml(code)}</code>`;
     });
 
-    // Images - ![alt](src) (must be processed before links)
-    text = text.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" />');
+    // Process images - ![alt](src) (must be processed before links)
+    text = text.replace(
+      /!\[([^\]]*)\]\(([^)]+)\)/g,
+      '<img src="$2" alt="$1" />'
+    );
 
-    // Bold - **text** or __text__
+    // Process links - [text](url)
+    text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+
+    // Process strikethrough - ~~text~~
+    text = text.replace(/~~(.*?)~~/g, "<del>$1</del>");
+
+    // Process bold - **text** or __text__
     text = text.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
     text = text.replace(/__(.*?)__/g, "<strong>$1</strong>");
 
-    // Italic - *text* or _text_
-    text = text.replace(/\*(.*?)\*/g, "<em>$1</em>");
-    text = text.replace(/_(.*?)_/g, "<em>$1</em>");
-
-    // Links - [text](url)
-    text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+    // Process italic - *text* or _text_ (but avoid matching inside URLs)
+    // Use negative lookbehind and lookahead to avoid matching underscores in URLs
+    text = text.replace(
+      /(?<![\w/])\*((?:[^*]|\*(?!\*))+)\*(?![\w/])/g,
+      "<em>$1</em>"
+    );
+    text = text.replace(
+      /(?<![\w/])_((?:[^_]|_(?!_))+)_(?![\w/])/g,
+      "<em>$1</em>"
+    );
 
     return text;
   }

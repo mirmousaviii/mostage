@@ -113,13 +113,17 @@ Here is example of **code**
 
 ## Tables
 
-| Feature  | Markdown | Text | HTML |
-| -------- | -------- | ---- | ---- |
-| Headings | ✅       | ✅   | ✅   |
-| Lists    | ✅       | ✅   | ✅   |
-| Code     | ✅       | ❌   | ✅   |
-| Links    | ✅       | ❌   | ✅   |
-| Images   | ✅       | ❌   | ✅   |
+| Feature              | HTML | Markdown | Text |
+| -------------------- | :--: | :------: | :--: |
+| Headings             |  ✅  |    ✅    |  ✅  |
+| Lists                |  ✅  |    ✅    |  ✅  |
+| Code Blocks          |  ✅  |    ✅    |  ❌  |
+| Tables               |  ✅  |    ✅    |  ❌  |
+| Images               |  ✅  |    ✅    |  ❌  |
+| Links                |  ✅  |    ✅    |  ❌  |
+| Styling              |  ✅  |    ➖    |  ❌  |
+| Interactive Elements |  ✅  |    ❌    |  ❌  |
+| Media (Audio/Video)  |  ✅  |    ❌    |  ❌  |
 
 ---
 
