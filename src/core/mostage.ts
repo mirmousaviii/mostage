@@ -699,9 +699,22 @@ export class Mostage {
       thumbnail.classList.add("active");
     }
 
+    // Create slide number element
+    const slideNumber = document.createElement("div");
+    slideNumber.className = "mostage-overview-slide-number";
+    slideNumber.textContent = (index + 1).toString();
+
+    // Create content wrapper
+    const contentWrapper = document.createElement("div");
+    contentWrapper.className = "mostage-overview-slide-content";
+
     // Create a simplified version of the slide content for the thumbnail
     const content = slideElement.innerHTML;
-    thumbnail.innerHTML = content;
+    contentWrapper.innerHTML = content;
+
+    // Assemble the thumbnail
+    thumbnail.appendChild(slideNumber);
+    thumbnail.appendChild(contentWrapper);
 
     thumbnail.addEventListener("click", () => {
       this.goToSlide(index);
