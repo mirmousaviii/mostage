@@ -17,14 +17,19 @@
         // contentData: "# Internal content",
         contentSource: "./slides.md",
         contentType: "markdown",
-        scale: 1.0,
+        urlHash: true,
+        // scale: 1.0,
+        // centerContent is enabled by default with both vertical and horizontal centering
+        // centerContent: {
+        //   vertical: true,
+        //   horizontal: true,
+        // },
         transition: {
           type: "horizontal",
           duration: 600,
           easing: "ease-in-out",
         },
         loop: false,
-        urlHash: true,
         plugins: {
           ProgressBar: {
             position: "bottom",
@@ -41,10 +46,6 @@
           },
           OverviewMode: {
             scale: 0.2,
-          },
-          CenterContent: {
-            vertical: true,
-            horizontal: true,
           },
           Confetti: true,
         },

@@ -35,7 +35,6 @@ export interface PluginsConfig {
   SlideNumber?: SlideNumberConfig;
   Controller?: ControllerConfig;
   OverviewMode?: OverviewModeConfig;
-  CenterContent?: CenterContentConfig;
   Confetti?: boolean;
 }
 
@@ -53,7 +52,7 @@ export interface MoConfig {
   theme?: string;
   // Content loading configuration
   contentSource?: string; // File path or URL for content
-  contentData?: string;   // Inline content data
+  contentData?: string; // Inline content data
   contentType?: ContentType; // Type of content (default: "markdown")
   scale?: number;
   transition?: TransitionConfig;
@@ -62,6 +61,7 @@ export interface MoConfig {
   keyboard?: boolean;
   touch?: boolean;
   urlHash?: boolean; // Enable URL hash navigation
+  centerContent?: CenterContentConfig; // Built-in content centering
 }
 
 export interface MoSlide {

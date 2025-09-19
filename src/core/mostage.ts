@@ -4,6 +4,7 @@ import {
   MoSlide,
   MoSlideEvent,
   TransitionConfig,
+  CenterContentConfig,
 } from "../types";
 import { MarkdownParser, TextParser, HtmlParser } from "../utils/parsers";
 import { SyntaxHighlighter } from "../utils/syntax-highlighter";
@@ -21,6 +22,7 @@ export class Mostage {
   private textParser: TextParser;
   private htmlParser: HtmlParser;
   private syntaxHighlighter: SyntaxHighlighter;
+  private centerContentConfig: CenterContentConfig | null = null;
 
   constructor(config: MoConfig) {
     this.config = {
@@ -36,6 +38,10 @@ export class Mostage {
       keyboard: true,
       touch: true,
       urlHash: false, // Default to false
+      centerContent: {
+        vertical: true,
+        horizontal: true,
+      }, // Default to enabled
       ...config,
     };
 
@@ -70,14 +76,20 @@ export class Mostage {
 
       // Load content using new key names
       const contentType = this.config.contentType || "markdown"; // Default to markdown
-      
+
       if (this.config.contentData) {
         // Use contentData key for inline content
         this.parseContent(this.config.contentData, contentType);
       } else if (this.config.contentSource) {
         // Use contentSource key for file/URL content
-        await this.loadContentFromSource(this.config.contentSource, contentType);
+        await this.loadContentFromSource(
+          this.config.contentSource,
+          contentType
+        );
       }
+
+      // Initialize center content if configured
+      this.initializeCenterContent();
 
       // Initialize plugins
       this.initializePlugins();
@@ -130,7 +142,10 @@ export class Mostage {
       html: this.markdownParser.parse(slideContent.trim()),
     }));
   }
-  private async loadContentFromSource(sourcePath: string, contentType: string = "markdown"): Promise<void> {
+  private async loadContentFromSource(
+    sourcePath: string,
+    contentType: string = "markdown"
+  ): Promise<void> {
     try {
       const response = await fetch(sourcePath);
       if (!response.ok) {
@@ -144,7 +159,10 @@ export class Mostage {
     }
   }
 
-  private parseContent(content: string, contentType: string = "markdown"): void {
+  private parseContent(
+    content: string,
+    contentType: string = "markdown"
+  ): void {
     switch (contentType) {
       case "markdown":
         this.parseMarkdown(content);
@@ -156,7 +174,9 @@ export class Mostage {
         this.parseText(content);
         break;
       default:
-        console.warn(`Unknown content type: ${contentType}, defaulting to markdown`);
+        console.warn(
+          `Unknown content type: ${contentType}, defaulting to markdown`
+        );
         this.parseMarkdown(content);
     }
   }
@@ -183,11 +203,71 @@ export class Mostage {
     }));
   }
 
+  private initializeCenterContent(): void {
+    if (!this.config.centerContent) return;
 
+    this.centerContentConfig = {
+      vertical: true,
+      horizontal: true,
+      ...this.config.centerContent,
+    };
 
+    this.setupCenterContentObserver();
 
+    setTimeout(() => this.updateCurrentSlideCentering(), 100);
 
+    this.on("slidechange", () => {
+      setTimeout(() => this.updateCurrentSlideCentering(), 50);
+    });
+  }
 
+  private setupCenterContentObserver(): void {
+    const observer = new MutationObserver(() => {
+      this.updateCurrentSlideCentering();
+    });
+
+    const container = document.querySelector(".mostage-container");
+    if (container) {
+      observer.observe(container, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ["style"],
+      });
+    }
+  }
+
+  private updateCurrentSlideCentering(): void {
+    if (!this.centerContentConfig) return;
+
+    const slides = document.querySelectorAll(".mostage-slide");
+    slides.forEach((slide: Element) => {
+      const slideElement = slide as HTMLElement;
+      const isVisible = slideElement.style.display !== "none";
+
+      if (isVisible) {
+        slideElement.classList.add("mostage-slide-centered");
+        slideElement.style.display = "flex";
+
+        // Apply centering based on config
+        if (
+          this.centerContentConfig!.vertical &&
+          this.centerContentConfig!.horizontal
+        ) {
+          slideElement.style.alignItems = "center";
+          slideElement.style.justifyContent = "center";
+        } else if (this.centerContentConfig!.vertical) {
+          slideElement.style.alignItems = "center";
+          slideElement.style.justifyContent = "flex-start";
+        } else if (this.centerContentConfig!.horizontal) {
+          slideElement.style.alignItems = "flex-start";
+          slideElement.style.justifyContent = "center";
+        }
+      } else {
+        slideElement.classList.remove("mostage-slide-centered");
+      }
+    });
+  }
 
   private initializePlugins(): void {
     if (!this.config.plugins) return;
@@ -560,5 +640,12 @@ export class Mostage {
     });
     this.plugins = [];
     this.eventListeners.clear();
+
+    // Clean up center content classes
+
+    const slides = document.querySelectorAll(".mostage-slide");
+    slides.forEach((slide: Element) => {
+      slide.classList.remove("mostage-slide-centered");
+    });
   }
 }

@@ -71,11 +71,14 @@ const mostage = new Mostage({
     OverviewMode: {
       scale: 0.2, // Scale of slides in overview mode
     },
-    CenterContent: {
-      vertical: true, // Center vertically
-      horizontal: true, // Center horizontally
-    },
   },
+  // centerContent is enabled by default with both vertical and horizontal centering
+  // To disable: centerContent: false
+  // To customize: centerContent: { vertical: true, horizontal: false }
+  // centerContent: {
+  //   vertical: true, // Center vertically
+  //   horizontal: true, // Center horizontally
+  // },
 });
 
 mostage.start();
