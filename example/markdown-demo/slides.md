@@ -127,20 +127,6 @@ Here is example of **code**
 
 ---
 
-# Advanced Markdown
-
-## Math (Coming soon)
-
-Inline math: $E = mc^2$
-
-Block math:
-
-$$
-\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}
-$$
-
----
-
 # Conclusion
 
 <!-- confetti -->

@@ -387,19 +387,6 @@ body {
   margin-bottom: 0;
 }
 
-.text-list-item {
-  margin: 0.5rem 0;
-  padding-left: 1rem;
-  position: relative;
-}
-
-.text-list-item:before {
-  content: "•";
-  position: absolute;
-  left: 0;
-  color: var(--accent-color, #007acc);
-}
-
 .text-emphasis {
   margin: 1.5rem 0;
   padding: 1rem;
