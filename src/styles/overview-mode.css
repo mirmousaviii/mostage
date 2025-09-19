@@ -1,44 +1,45 @@
+/* Overview Mode Styles - Simple Scale Only */
+
 .mostage-overview {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.95);
   z-index: 2000;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 20px;
-  padding: 40px;
+  padding: 30px;
   overflow-y: auto;
   box-sizing: border-box;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .mostage-overview-slide {
+  width: 300px;
+  height: 225px;
   background-color: white;
   border-radius: 8px;
-  padding: 20px;
   cursor: pointer;
-  transition: all 0.2s ease;
-  transform: scale(var(--overview-scale, 0.2));
-  transform-origin: center;
-  border: 3px solid transparent;
+  transition: transform 0.2s ease;
+  border: 2px solid transparent;
   overflow: hidden;
   position: relative;
-  min-height: 150px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  transform: scale(0.25);
+  transform-origin: center;
 }
 
 .mostage-overview-slide:hover {
-  transform: scale(calc(var(--overview-scale, 0.2) * 1.1));
+  transform: scale(0.27);
   border-color: #007acc;
 }
 
 .mostage-overview-slide.active {
   border-color: #007acc;
-  box-shadow: 0 0 20px rgba(0, 122, 204, 0.5);
+  box-shadow: 0 0 15px rgba(0, 122, 204, 0.4);
 }
 
 .mostage-overview-close {
@@ -51,10 +52,10 @@
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.9);
   color: #333;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: bold;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -62,5 +63,4 @@
 
 .mostage-overview-close:hover {
   background-color: white;
-  transform: scale(1.1);
 }

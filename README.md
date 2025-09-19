@@ -68,9 +68,6 @@ const mostage = new Mostage({
       show: true, // Show or hide the controller
       position: "bottom-center", // bottom-right | bottom-left | bottom-center
     },
-    OverviewMode: {
-      scale: 0.2, // Scale of slides in overview mode
-    },
   },
   // centerContent is enabled by default with both vertical and horizontal centering
   // To disable: centerContent: false
@@ -83,6 +80,24 @@ const mostage = new Mostage({
 
 mostage.start();
 ```
+
+### Built-in Features
+
+#### Overview Mode
+
+Overview mode is always available and allows you to see all slides in a grid view:
+
+- Press `Escape` or `o` to toggle overview mode
+- Click on any slide thumbnail to jump to that slide
+- Click the × button or press `Escape` to exit overview mode
+
+#### Content Centering
+
+Content centering is enabled by default:
+
+- All slides are centered both vertically and horizontally
+- To disable: `centerContent: false`
+- To customize: `centerContent: { vertical: true, horizontal: false }`
 
 ### Internal Content
 

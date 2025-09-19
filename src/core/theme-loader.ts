@@ -1,5 +1,20 @@
-// Import base styles
-import baseStylesCSS from "./base.css?raw";
+// Import base styles from separate files
+import baseStylesCSS from "../styles/base.css?raw";
+import typographyStylesCSS from "../styles/typography.css?raw";
+import centerContentStylesCSS from "../styles/center-content.css?raw";
+import overviewModeStylesCSS from "../styles/overview-mode.css?raw";
+import responsiveStylesCSS from "../styles/responsive.css?raw";
+import textContentStylesCSS from "../styles/text-content.css?raw";
+
+// Combine all base styles
+const combinedBaseStyles = [
+  baseStylesCSS,
+  typographyStylesCSS,
+  centerContentStylesCSS,
+  overviewModeStylesCSS,
+  responsiveStylesCSS,
+  textContentStylesCSS
+].join('\n');
 
 export interface Theme {
   name: string;
@@ -97,7 +112,7 @@ export class ThemeLoader {
 
     const styleElement = document.createElement("style");
     styleElement.setAttribute("data-mostage-base", "true");
-    styleElement.textContent = baseStylesCSS;
+    styleElement.textContent = combinedBaseStyles;
     document.head.appendChild(styleElement);
   }
 

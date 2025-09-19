@@ -21,10 +21,6 @@ export interface ControllerConfig {
   position?: "bottom-right" | "bottom-left" | "bottom-center";
 }
 
-export interface OverviewModeConfig {
-  scale?: number;
-}
-
 export interface CenterContentConfig {
   vertical?: boolean;
   horizontal?: boolean;
@@ -34,7 +30,6 @@ export interface PluginsConfig {
   ProgressBar?: ProgressBarConfig;
   SlideNumber?: SlideNumberConfig;
   Controller?: ControllerConfig;
-  OverviewMode?: OverviewModeConfig;
   Confetti?: boolean;
 }
 

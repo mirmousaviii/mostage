@@ -1,0 +1,39 @@
+/* Text Content Styles - For text parser specific content */
+
+.text-content {
+  width: 100%;
+  max-width: 100%;
+}
+
+.text-heading {
+  margin: 1.5rem 0 1rem 0;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.text-heading:first-child {
+  margin-top: 0;
+}
+
+.text-paragraph {
+  margin: 1rem 0;
+  line-height: 1.6;
+}
+
+.text-paragraph:first-child {
+  margin-top: 0;
+}
+
+.text-paragraph:last-child {
+  margin-bottom: 0;
+}
+
+.text-emphasis {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: rgba(0, 122, 204, 0.1);
+  border-left: 4px solid var(--accent-color, #007acc);
+  border-radius: 4px;
+  font-weight: 500;
+  font-style: italic;
+}

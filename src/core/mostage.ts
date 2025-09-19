@@ -23,6 +23,8 @@ export class Mostage {
   private htmlParser: HtmlParser;
   private syntaxHighlighter: SyntaxHighlighter;
   private centerContentConfig: CenterContentConfig | null = null;
+  private isOverviewMode = false;
+  private overviewContainer: HTMLElement | null = null;
 
   constructor(config: MoConfig) {
     this.config = {
@@ -327,6 +329,11 @@ export class Mostage {
         event.preventDefault();
         this.goToSlide(this.slides.length - 1);
         break;
+      case "Escape":
+      case "o":
+        event.preventDefault();
+        this.toggleOverview();
+        break;
     }
   }
 
@@ -627,6 +634,93 @@ export class Mostage {
     return this.container;
   }
 
+  // Overview Mode - Always Available
+  private toggleOverview(): void {
+    if (this.isOverviewMode) {
+      this.exitOverview();
+    } else {
+      this.enterOverview();
+    }
+  }
+
+  private enterOverview(): void {
+    if (this.isOverviewMode) return;
+
+    this.isOverviewMode = true;
+    this.createOverviewGrid();
+  }
+
+  private exitOverview(): void {
+    if (!this.isOverviewMode) return;
+
+    this.isOverviewMode = false;
+    this.removeOverviewContainer();
+  }
+
+  private removeOverviewContainer(): void {
+    if (this.overviewContainer) {
+      this.overviewContainer.remove();
+      this.overviewContainer = null;
+    }
+  }
+
+  private createOverviewGrid(): void {
+    this.overviewContainer = document.createElement("div");
+    this.overviewContainer.className = "mostage-overview";
+
+    const slideElements = this.container.querySelectorAll(
+      ".mostage-slide"
+    ) as NodeListOf<HTMLElement>;
+    const currentSlideIndex = this.currentSlideIndex;
+
+    slideElements.forEach((slideElement: HTMLElement, index: number) => {
+      const thumbnail = this.createThumbnail(
+        slideElement,
+        index,
+        currentSlideIndex
+      );
+      this.overviewContainer!.appendChild(thumbnail);
+    });
+
+    const closeButton = this.createCloseButton();
+    this.overviewContainer.appendChild(closeButton);
+    document.body.appendChild(this.overviewContainer);
+  }
+
+  private createThumbnail(
+    slideElement: HTMLElement,
+    index: number,
+    currentIndex: number
+  ): HTMLElement {
+    const thumbnail = document.createElement("div");
+    thumbnail.className = "mostage-overview-slide";
+
+    if (index === currentIndex) {
+      thumbnail.classList.add("active");
+    }
+
+    // Create a simplified version of the slide content for the thumbnail
+    const content = slideElement.innerHTML;
+    thumbnail.innerHTML = content;
+
+    thumbnail.addEventListener("click", () => {
+      this.goToSlide(index);
+      this.exitOverview();
+    });
+
+    return thumbnail;
+  }
+
+  private createCloseButton(): HTMLElement {
+    const closeButton = document.createElement("button");
+    closeButton.className = "mostage-overview-close";
+    closeButton.innerHTML = "×";
+    closeButton.addEventListener("click", () => {
+      this.exitOverview();
+    });
+    return closeButton;
+  }
+
   // Cleanup
   destroy(): void {
     this.plugins.forEach((plugin) => {
@@ -642,10 +736,13 @@ export class Mostage {
     this.eventListeners.clear();
 
     // Clean up center content classes
-
     const slides = document.querySelectorAll(".mostage-slide");
     slides.forEach((slide: Element) => {
       slide.classList.remove("mostage-slide-centered");
     });
+
+    // Clean up overview mode
+    this.removeOverviewContainer();
+    this.isOverviewMode = false;
   }
 }

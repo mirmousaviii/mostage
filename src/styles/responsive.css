@@ -1,0 +1,94 @@
+/* Responsive Design */
+
+@media (max-width: 1024px) {
+  .mostage-slide {
+    padding: 1.5rem 2.5rem;
+  }
+
+  .mostage-slide h1 {
+    font-size: 3rem;
+  }
+
+  .mostage-slide h2 {
+    font-size: 2.5rem;
+  }
+
+  .mostage-slide h3 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .mostage-slide {
+    padding: 1.25rem 2rem;
+  }
+
+  .mostage-slide h1 {
+    font-size: 2.5rem;
+  }
+
+  .mostage-slide h2 {
+    font-size: 2rem;
+  }
+
+  .mostage-slide h3 {
+    font-size: 1.75rem;
+  }
+
+  .mostage-slide p,
+  .mostage-slide ul,
+  .mostage-slide ol {
+    font-size: 1.25rem;
+  }
+
+  .mostage-slide pre {
+    font-size: 1rem;
+    padding: 1rem;
+  }
+
+  /* Center content responsive */
+  .mostage-slide.mostage-slide-centered {
+    padding: 1.5rem;
+  }
+  
+  .mostage-slide.mostage-slide-centered pre {
+    max-width: 95%;
+  }
+}
+
+@media (max-width: 480px) {
+  .mostage-slide {
+    padding: 1rem 1.5rem;
+  }
+
+  .mostage-slide h1 {
+    font-size: 2.75rem;
+  }
+
+  .mostage-slide h2 {
+    font-size: 2.25rem;
+  }
+
+  .mostage-slide h3 {
+    font-size: 1.875rem;
+  }
+
+  .mostage-slide h4 {
+    font-size: 1.625rem;
+  }
+
+  .mostage-slide p,
+  .mostage-slide ul,
+  .mostage-slide ol {
+    font-size: 1.125rem;
+  }
+
+  /* Center content responsive */
+  .mostage-slide.mostage-slide-centered {
+    padding: 1rem;
+  }
+  
+  .mostage-slide.mostage-slide-centered pre {
+    max-width: 100%;
+  }
+}
