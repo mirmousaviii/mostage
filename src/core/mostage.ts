@@ -214,6 +214,15 @@ export class Mostage {
       ...this.config.centerContent,
     };
 
+    // If both vertical and horizontal are false, disable centerContent
+    if (
+      !this.centerContentConfig.vertical &&
+      !this.centerContentConfig.horizontal
+    ) {
+      this.centerContentConfig = null;
+      return;
+    }
+
     this.setupCenterContentObserver();
 
     setTimeout(() => this.updateCurrentSlideCentering(), 100);
@@ -707,6 +716,14 @@ export class Mostage {
     // Create content wrapper
     const contentWrapper = document.createElement("div");
     contentWrapper.className = "mostage-overview-slide-content";
+
+    // Apply centerContent class if centerContent is enabled
+    if (
+      this.centerContentConfig &&
+      (this.centerContentConfig.vertical || this.centerContentConfig.horizontal)
+    ) {
+      contentWrapper.classList.add("mostage-slide-centered");
+    }
 
     // Create a simplified version of the slide content for the thumbnail
     const content = slideElement.innerHTML;
