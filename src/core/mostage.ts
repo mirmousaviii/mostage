@@ -25,6 +25,9 @@ export class Mostage {
   private centerContentConfig: CenterContentConfig | null = null;
   private isOverviewMode = false;
   private overviewContainer: HTMLElement | null = null;
+  private overviewSelectedIndex = 0;
+  private isHelpVisible = false;
+  private helpContainer: HTMLElement | null = null;
 
   constructor(config: MoConfig) {
     this.config = {
@@ -320,28 +323,72 @@ export class Mostage {
   }
 
   private handleKeyboard(event: KeyboardEvent): void {
-    switch (event.key) {
-      case "ArrowRight":
+    if (this.isOverviewMode) {
+      this.handleOverviewKeyboard(event);
+      return;
+    }
+
+    const key = event.key.toLowerCase();
+    switch (key) {
+      case "arrowright":
       case " ":
         event.preventDefault();
         this.nextSlide();
         break;
-      case "ArrowLeft":
+      case "arrowleft":
         event.preventDefault();
         this.previousSlide();
         break;
-      case "Home":
+      case "home":
         event.preventDefault();
         this.goToSlide(0);
         break;
-      case "End":
+      case "end":
         event.preventDefault();
         this.goToSlide(this.slides.length - 1);
         break;
-      case "Escape":
+      case "escape":
       case "o":
         event.preventDefault();
         this.toggleOverview();
+        break;
+      case "h":
+      case "?":
+        event.preventDefault();
+        this.toggleHelp();
+        break;
+    }
+  }
+
+  private handleOverviewKeyboard(event: KeyboardEvent): void {
+    const key = event.key.toLowerCase();
+    switch (key) {
+      case "arrowright":
+        event.preventDefault();
+        this.nextOverviewSlide();
+        break;
+      case "arrowleft":
+        event.preventDefault();
+        this.previousOverviewSlide();
+        break;
+      case "enter":
+        event.preventDefault();
+        this.selectOverviewSlide();
+        break;
+      case "escape":
+      case "o":
+        event.preventDefault();
+        this.exitOverview();
+        break;
+      case "home":
+        event.preventDefault();
+        this.overviewSelectedIndex = 0;
+        this.updateOverviewSelection();
+        break;
+      case "end":
+        event.preventDefault();
+        this.overviewSelectedIndex = this.slides.length - 1;
+        this.updateOverviewSelection();
         break;
     }
   }
@@ -643,7 +690,7 @@ export class Mostage {
     return this.container;
   }
 
-  // Overview Mode - Always Available
+  // ===== OVERVIEW MODE =====
   private toggleOverview(): void {
     if (this.isOverviewMode) {
       this.exitOverview();
@@ -652,10 +699,44 @@ export class Mostage {
     }
   }
 
+  // ===== HELP SYSTEM =====
+  private toggleHelp(): void {
+    if (this.isHelpVisible) {
+      this.hideHelp();
+    } else {
+      this.showHelp();
+    }
+  }
+
+  private showHelp(): void {
+    if (this.isHelpVisible) return;
+
+    this.isHelpVisible = true;
+    this.helpContainer = this.createHelpComponent(false);
+    document.body.appendChild(this.helpContainer);
+  }
+
+  private hideHelp(): void {
+    if (!this.isHelpVisible) return;
+
+    this.isHelpVisible = false;
+    if (this.helpContainer) {
+      this.helpContainer.remove();
+      this.helpContainer = null;
+    }
+  }
+
   private enterOverview(): void {
     if (this.isOverviewMode) return;
 
     this.isOverviewMode = true;
+    this.overviewSelectedIndex = this.currentSlideIndex;
+
+    // Hide normal help when entering overview to avoid conflicts
+    if (this.isHelpVisible) {
+      this.hideHelp();
+    }
+
     this.createOverviewGrid();
   }
 
@@ -671,6 +752,43 @@ export class Mostage {
       this.overviewContainer.remove();
       this.overviewContainer = null;
     }
+  }
+
+  // ===== OVERVIEW NAVIGATION =====
+  private nextOverviewSlide(): void {
+    if (this.overviewSelectedIndex < this.slides.length - 1) {
+      this.overviewSelectedIndex++;
+      this.updateOverviewSelection();
+    }
+  }
+
+  private previousOverviewSlide(): void {
+    if (this.overviewSelectedIndex > 0) {
+      this.overviewSelectedIndex--;
+      this.updateOverviewSelection();
+    }
+  }
+
+  private selectOverviewSlide(): void {
+    this.goToSlide(this.overviewSelectedIndex);
+    this.exitOverview();
+  }
+
+  private updateOverviewSelection(): void {
+    if (!this.overviewContainer) return;
+
+    const thumbnails = this.overviewContainer.querySelectorAll(
+      ".mostage-overview-slide"
+    );
+    thumbnails.forEach((thumbnail: Element, index: number) => {
+      const slideElement = thumbnail as HTMLElement;
+      if (index === this.overviewSelectedIndex) {
+        slideElement.classList.add("selected");
+        slideElement.scrollIntoView({ behavior: "smooth", block: "center" });
+      } else {
+        slideElement.classList.remove("selected");
+      }
+    });
   }
 
   private createOverviewGrid(): void {
@@ -693,7 +811,14 @@ export class Mostage {
 
     const closeButton = this.createCloseButton();
     this.overviewContainer.appendChild(closeButton);
+
+    const helpComponent = this.createHelpComponent(true);
+    this.overviewContainer.appendChild(helpComponent);
+
     document.body.appendChild(this.overviewContainer);
+
+    // Set initial selection
+    this.updateOverviewSelection();
   }
 
   private createThumbnail(
@@ -734,8 +859,9 @@ export class Mostage {
     thumbnail.appendChild(contentWrapper);
 
     thumbnail.addEventListener("click", () => {
-      this.goToSlide(index);
-      this.exitOverview();
+      this.overviewSelectedIndex = index;
+      this.updateOverviewSelection();
+      this.selectOverviewSlide();
     });
 
     return thumbnail;
@@ -749,6 +875,107 @@ export class Mostage {
       this.exitOverview();
     });
     return closeButton;
+  }
+
+  // ===== COMPONENT CREATION =====
+  private createHelpComponent(isOverview: boolean = false): HTMLElement {
+    const helpContainer = document.createElement("div");
+    helpContainer.className = isOverview
+      ? "mostage-overview-help"
+      : "mostage-help";
+
+    if (isOverview) {
+      helpContainer.innerHTML = `
+        <div class="mostage-overview-help-title">Keyboard Shortcuts</div>
+        <div class="mostage-overview-help-item">
+          <span class="mostage-overview-help-description">Navigate</span>
+          <span class="mostage-overview-help-key">← →</span>
+        </div>
+        <div class="mostage-overview-help-item">
+          <span class="mostage-overview-help-description">Select</span>
+          <span class="mostage-overview-help-key">Enter</span>
+        </div>
+        <div class="mostage-overview-help-item">
+          <span class="mostage-overview-help-description">First slide</span>
+          <span class="mostage-overview-help-key">Home</span>
+        </div>
+        <div class="mostage-overview-help-item">
+          <span class="mostage-overview-help-description">Last slide</span>
+          <span class="mostage-overview-help-key">End</span>
+        </div>
+        <div class="mostage-overview-help-item">
+          <span class="mostage-overview-help-description">Exit</span>
+          <div class="mostage-overview-help-keys">
+            <span class="mostage-overview-help-key">Esc</span>
+            <span class="mostage-overview-help-key">O</span>
+          </div>
+        </div>
+      `;
+    } else {
+      helpContainer.innerHTML = `
+        <div class="mostage-help-content">
+          <div class="mostage-help-header">
+            <h3>Keyboard Shortcuts</h3>
+            <button class="mostage-help-close">×</button>
+          </div>
+          <div class="mostage-help-body">
+            <div class="mostage-help-section">
+              <h4>Navigation</h4>
+              <div class="mostage-help-item">
+                <span class="mostage-help-description">Next slide</span>
+                <div class="mostage-help-keys">
+                  <span class="mostage-help-key">→</span>
+                  <span class="mostage-help-key">Space</span>
+                </div>
+              </div>
+              <div class="mostage-help-item">
+                <span class="mostage-help-description">Previous slide</span>
+                <div class="mostage-help-keys">
+                  <span class="mostage-help-key">←</span>
+                </div>
+              </div>
+              <div class="mostage-help-item">
+                <span class="mostage-help-description">First slide</span>
+                <div class="mostage-help-keys">
+                  <span class="mostage-help-key">Home</span>
+                </div>
+              </div>
+              <div class="mostage-help-item">
+                <span class="mostage-help-description">Last slide</span>
+                <div class="mostage-help-keys">
+                  <span class="mostage-help-key">End</span>
+                </div>
+              </div>
+            </div>
+            <div class="mostage-help-section">
+              <h4>Modes</h4>
+              <div class="mostage-help-item">
+                <span class="mostage-help-description">Overview mode</span>
+                <div class="mostage-help-keys">
+                  <span class="mostage-help-key">O</span>
+                  <span class="mostage-help-key">Esc</span>
+                </div>
+              </div>
+              <div class="mostage-help-item">
+                <span class="mostage-help-description">Help</span>
+                <div class="mostage-help-keys">
+                  <span class="mostage-help-key">H</span>
+                  <span class="mostage-help-key">?</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      // Add close button event listener for normal mode
+      const closeButton = helpContainer.querySelector(".mostage-help-close");
+      closeButton?.addEventListener("click", () => {
+        this.hideHelp();
+      });
+    }
+
+    return helpContainer;
   }
 
   // Cleanup
