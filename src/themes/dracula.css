@@ -1,28 +1,53 @@
 /* Dracula Theme - Mostage */
+:root {
+  --mostage-bg-color: #282a36;
+  --mostage-text-color: #f8f8f2;
+  --mostage-primary-color: #ff79c6;
+  --mostage-secondary-color: #bd93f9;
+  --mostage-accent-color: #ffb86c;
+  --mostage-border-color: #bd93f9;
+  --mostage-highlight-color: #50fa7b;
+}
+
 .mostage-container {
-  background: linear-gradient(135deg, #282a36 0%, #1e1f29 100%);
-  color: #f8f8f2;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background: linear-gradient(135deg, var(--mostage-bg-color) 0%, #1e1f29 100%);
+  color: var(--mostage-text-color);
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Roboto",
+    sans-serif;
   min-height: 100vh;
 }
 
 .mostage-slide {
   background: rgba(68, 71, 90, 0.9);
-  color: #f8f8f2;
+  color: var(--mostage-text-color);
   border: 1px solid rgba(189, 147, 249, 0.3);
-  box-shadow: 
+  box-shadow:
     0 20px 40px rgba(189, 147, 249, 0.1),
     0 8px 16px rgba(189, 147, 249, 0.05);
   backdrop-filter: blur(10px);
 }
 
-.mostage-slide h1, .mostage-slide h2, .mostage-slide h3, .mostage-slide h4, .mostage-slide h5, .mostage-slide h6 {
-  color: #bd93f9;
+.mostage-slide h1,
+.mostage-slide h2,
+.mostage-slide h3,
+.mostage-slide h4,
+.mostage-slide h5,
+.mostage-slide h6 {
+  color: var(--mostage-secondary-color);
   text-shadow: 0 2px 4px rgba(189, 147, 249, 0.3);
 }
 
 .mostage-slide h1 {
-  background: linear-gradient(135deg, #bd93f9 0%, #ff79c6 100%);
+  background: linear-gradient(
+    135deg,
+    var(--mostage-primary-color) 0%,
+    var(--mostage-secondary-color) 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -30,20 +55,20 @@
 
 .mostage-slide code {
   background: rgba(189, 147, 249, 0.2);
-  color: #ffb86c;
-  border: 1px solid rgba(189, 147, 249, 0.3);
+  color: var(--mostage-accent-color);
+  border: 1px solid var(--mostage-border-color);
 }
 
 .mostage-slide pre {
   background: linear-gradient(135deg, #44475a 0%, #383a59 100%);
-  color: #f8f8f2;
-  border: 1px solid rgba(189, 147, 249, 0.3);
+  color: var(--mostage-text-color);
+  border: 1px solid var(--mostage-border-color);
 }
 
 .mostage-slide blockquote {
   color: #6272a4;
   background: rgba(189, 147, 249, 0.1);
-  border-left-color: #ff79c6;
+  border-left-color: var(--mostage-primary-color);
 }
 
 .mostage-slide a {
@@ -51,7 +76,7 @@
 }
 
 .mostage-slide a:hover {
-  color: #50fa7b;
+  color: var(--mostage-highlight-color);
 }
 
 .mostage-progress-bar {
@@ -60,31 +85,35 @@
 }
 
 .mostage-progress-fill {
-  background: linear-gradient(90deg, #ff79c6 0%, #bd93f9 100%);
+  background: linear-gradient(
+    90deg,
+    var(--mostage-primary-color) 0%,
+    var(--mostage-secondary-color) 100%
+  );
 }
 
 .mostage-slide-number {
   background: rgba(68, 71, 90, 0.9);
-  color: #f8f8f2;
-  border-color: rgba(189, 147, 249, 0.3);
+  color: var(--mostage-text-color);
+  border-color: var(--mostage-border-color);
 }
 
 .mostage-btn {
   background: rgba(68, 71, 90, 0.9);
-  color: #f8f8f2;
-  border-color: rgba(189, 147, 249, 0.3);
+  color: var(--mostage-text-color);
+  border-color: var(--mostage-border-color);
 }
 
 .mostage-btn:hover {
   background: rgba(98, 114, 164, 0.9);
-  color: #bd93f9;
+  color: var(--mostage-secondary-color);
   border-color: rgba(189, 147, 249, 0.5);
 }
 
 .mostage-overview-slide {
   background: rgba(68, 71, 90, 0.9);
-  border: 2px solid rgba(189, 147, 249, 0.3);
-  color: #f8f8f2;
+  border: 2px solid var(--mostage-border-color);
+  color: var(--mostage-text-color);
 }
 
 .mostage-overview-slide:hover {
@@ -93,5 +122,5 @@
 }
 
 .mostage-overview-slide.active {
-  border-color: #ff79c6;
+  border-color: var(--mostage-primary-color);
 }

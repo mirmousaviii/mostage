@@ -1,4 +1,4 @@
-/* Ocean Theme - A fresh blue theme */
+/* Ocean Theme - Mostage */
 :root {
   --mostage-bg-color: #0f1419;
   --mostage-text-color: #e6f1ff;
@@ -7,17 +7,24 @@
   --mostage-accent-color: #ff6b6b;
   --mostage-border-color: #1e3a8a;
   --mostage-highlight-color: #0ea5e9;
-  --mostage-code-bg: #1e293b;
-  --mostage-selection-bg: #334155;
 }
 
 .mostage-container {
-  background: linear-gradient(135deg, #0f1419 0%, #1e3a8a 100%);
+  background: linear-gradient(135deg, var(--mostage-bg-color) 0%, #1e3a8a 100%);
   color: var(--mostage-text-color);
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Roboto",
+    sans-serif;
+  min-height: 100vh;
 }
 
 .mostage-slide {
   background: rgba(30, 58, 138, 0.1);
+  color: var(--mostage-text-color);
   border: 1px solid var(--mostage-border-color);
   backdrop-filter: blur(10px);
 }
@@ -32,22 +39,34 @@
   text-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
 }
 
-.mostage-slide blockquote {
-  border-left: 4px solid var(--mostage-secondary-color);
-  background: rgba(54, 215, 183, 0.1);
-  color: var(--mostage-secondary-color);
+.mostage-slide h1 {
+  background: linear-gradient(
+    135deg,
+    var(--mostage-primary-color) 0%,
+    var(--mostage-secondary-color) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .mostage-slide code {
-  background: var(--mostage-code-bg);
+  background: #1e293b;
   color: var(--mostage-primary-color);
   border: 1px solid var(--mostage-border-color);
 }
 
 .mostage-slide pre {
-  background: var(--mostage-code-bg);
+  background: #1e293b;
+  color: var(--mostage-text-color);
   border: 1px solid var(--mostage-border-color);
   box-shadow: 0 4px 12px rgba(0, 212, 255, 0.1);
+}
+
+.mostage-slide blockquote {
+  color: var(--mostage-secondary-color);
+  background: rgba(54, 215, 183, 0.1);
+  border-left-color: var(--mostage-secondary-color);
 }
 
 .mostage-slide a {
@@ -62,13 +81,19 @@
   text-shadow: 0 0 5px rgba(0, 212, 255, 0.5);
 }
 
-/* Progress bar styling */
 .mostage-progress-bar {
   background: var(--mostage-primary-color);
   box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
 }
 
-/* Slide number styling */
+.mostage-progress-fill {
+  background: linear-gradient(
+    90deg,
+    var(--mostage-primary-color) 0%,
+    var(--mostage-secondary-color) 100%
+  );
+}
+
 .mostage-slide-number {
   background: rgba(30, 58, 138, 0.8);
   color: var(--mostage-primary-color);
@@ -76,8 +101,7 @@
   backdrop-filter: blur(5px);
 }
 
-/* Navigation controls */
-.mostage-controls button {
+.mostage-btn {
   background: rgba(30, 58, 138, 0.8);
   color: var(--mostage-primary-color);
   border: 1px solid var(--mostage-border-color);
@@ -85,7 +109,22 @@
   transition: all 0.3s ease;
 }
 
-.mostage-controls button:hover {
+.mostage-btn:hover {
   background: rgba(0, 212, 255, 0.2);
   box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+}
+
+.mostage-overview-slide {
+  background: rgba(15, 20, 25, 0.9);
+  border: 2px solid var(--mostage-border-color);
+  color: var(--mostage-text-color);
+}
+
+.mostage-overview-slide:hover {
+  background: rgba(0, 212, 255, 0.1);
+  border-color: var(--mostage-primary-color);
+}
+
+.mostage-overview-slide.active {
+  border-color: var(--mostage-primary-color);
 }
