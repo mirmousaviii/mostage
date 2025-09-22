@@ -1,10 +1,10 @@
 // Import base styles from separate files
-import baseStylesCSS from "../styles/base.css?raw";
-import typographyStylesCSS from "../styles/typography.css?raw";
-import centerContentStylesCSS from "../styles/center-content.css?raw";
-import overviewModeStylesCSS from "../styles/overview-mode.css?raw";
-import responsiveStylesCSS from "../styles/responsive.css?raw";
-import textContentStylesCSS from "../styles/text-content.css?raw";
+import baseStylesCSS from "./foundation-styles/base.css?raw";
+import typographyStylesCSS from "./foundation-styles/typography.css?raw";
+import centerContentStylesCSS from "./ui/center/center.css?raw";
+import overviewModeStylesCSS from "./ui/overview/overview.css?raw";
+import responsiveStylesCSS from "./foundation-styles/responsive.css?raw";
+import textContentStylesCSS from "./foundation-styles/text-content.css?raw";
 
 // Combine all base styles
 const combinedBaseStyles = [
@@ -13,8 +13,8 @@ const combinedBaseStyles = [
   centerContentStylesCSS,
   overviewModeStylesCSS,
   responsiveStylesCSS,
-  textContentStylesCSS
-].join('\n');
+  textContentStylesCSS,
+].join("\n");
 
 export interface Theme {
   name: string;

@@ -1,0 +1,153 @@
+/* Help System Styles */
+
+/* Normal Mode Help - Top Right */
+.mostage-help {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #ffffff;
+  padding: 15px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.5;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 3000;
+  width: 300px;
+  opacity: 0;
+  animation: helpFadeIn 0.3s ease-out forwards;
+}
+
+.mostage-help-overlay {
+  display: none; /* Remove overlay for simple style */
+}
+
+.mostage-help-content {
+  position: relative;
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+  max-width: none;
+  width: auto;
+  max-height: none;
+  overflow: visible;
+  z-index: auto;
+}
+
+.mostage-help-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  margin-bottom: 8px;
+}
+
+.mostage-help-header h3 {
+  margin: 0;
+  color: #007acc;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.mostage-help-close {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 2px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.mostage-help-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.mostage-help-body {
+  padding: 0;
+}
+
+.mostage-help-section {
+  margin-bottom: 12px;
+}
+
+.mostage-help-section:last-child {
+  margin-bottom: 0;
+}
+
+.mostage-help-section h4 {
+  margin: 0 0 6px 0;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.mostage-help-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 0;
+  border-bottom: none;
+}
+
+.mostage-help-item:last-child {
+  border-bottom: none;
+}
+
+.mostage-help-description {
+  color: #e2e8f0;
+  font-size: 13px;
+}
+
+.mostage-help-keys {
+  display: flex;
+  gap: 4px;
+}
+
+.mostage-help-key {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 12px;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+/* Help fade in animation */
+@keyframes helpFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .mostage-help {
+    top: 20px;
+    right: 20px;
+    padding: 12px 16px;
+    font-size: 13px;
+    max-width: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mostage-help {
+    top: 15px;
+    right: 15px;
+    padding: 10px 12px;
+    font-size: 12px;
+    max-width: 200px;
+  }
+}
