@@ -208,68 +208,6 @@
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Keyboard Help */
-.mostage-overview-help {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  background: rgba(0, 0, 0, 0.8);
-  color: #ffffff;
-  padding: 15px 20px;
-  border-radius: 8px;
-  font-size: 14px;
-  line-height: 1.5;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  z-index: 2002;
-  width: 300px;
-  opacity: 0;
-  animation: helpFadeIn 0.3s ease-out 0.5s forwards;
-}
-
-@keyframes helpFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.mostage-overview-help-title {
-  font-weight: 600;
-  margin-bottom: 8px;
-  color: #007acc;
-}
-
-.mostage-overview-help-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 4px;
-}
-
-.mostage-overview-help-key {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-family: monospace;
-  font-size: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.mostage-overview-help-description {
-  color: #e2e8f0;
-  font-size: 13px;
-}
-
-.mostage-overview-help-keys {
-  display: flex;
-  gap: 4px;
-}
-
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .mostage-overview {

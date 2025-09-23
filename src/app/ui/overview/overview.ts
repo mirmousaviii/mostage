@@ -1,3 +1,5 @@
+import { HelpComponent } from "../help/help";
+
 export class OverviewManager {
   private container: HTMLElement;
   private currentSlideIndex = 0;
@@ -7,6 +9,7 @@ export class OverviewManager {
   private onSlideChange: (index: number) => void;
   private onExitOverview: () => void;
   private onEnterOverview: () => void;
+  private helpComponent: HelpComponent;
 
   constructor(
     container: HTMLElement,
@@ -18,6 +21,7 @@ export class OverviewManager {
     this.onSlideChange = onSlideChange;
     this.onExitOverview = onExitOverview;
     this.onEnterOverview = onEnterOverview || (() => {});
+    this.helpComponent = new HelpComponent("overview");
   }
 
   setCurrentSlideIndex(index: number): void {
@@ -195,7 +199,16 @@ export class OverviewManager {
     this.overviewContainer.appendChild(closeButton);
 
     const helpComponent = this.createHelpComponent();
+    this.helpComponent.addCloseButtonListener(helpComponent, () => {
+      // Hide help with animation
+      this.hideOverviewHelp(helpComponent);
+    });
     this.overviewContainer.appendChild(helpComponent);
+
+    // Trigger fade-in animation for overview help
+    requestAnimationFrame(() => {
+      helpComponent.classList.add("fade-in");
+    });
 
     document.body.appendChild(this.overviewContainer);
 
@@ -263,36 +276,18 @@ export class OverviewManager {
   }
 
   private createHelpComponent(): HTMLElement {
-    const helpContainer = document.createElement("div");
-    helpContainer.className = "mostage-overview-help";
+    return this.helpComponent.createHelpElement();
+  }
 
-    helpContainer.innerHTML = `
-      <div class="mostage-overview-help-title">Keyboard Shortcuts</div>
-      <div class="mostage-overview-help-item">
-        <span class="mostage-overview-help-description">Navigate</span>
-        <span class="mostage-overview-help-key">← →</span>
-      </div>
-      <div class="mostage-overview-help-item">
-        <span class="mostage-overview-help-description">Select</span>
-        <span class="mostage-overview-help-key">Enter</span>
-      </div>
-      <div class="mostage-overview-help-item">
-        <span class="mostage-overview-help-description">First slide</span>
-        <span class="mostage-overview-help-key">Home</span>
-      </div>
-      <div class="mostage-overview-help-item">
-        <span class="mostage-overview-help-description">Last slide</span>
-        <span class="mostage-overview-help-key">End</span>
-      </div>
-      <div class="mostage-overview-help-item">
-        <span class="mostage-overview-help-description">Exit</span>
-        <div class="mostage-overview-help-keys">
-          <span class="mostage-overview-help-key">Esc</span>
-          <span class="mostage-overview-help-key">O</span>
-        </div>
-      </div>
-    `;
+  // Hide overview help with fade-out animation
+  private hideOverviewHelp(helpComponent: HTMLElement): void {
+    // Add fade-out class for animation
+    helpComponent.classList.add("fade-out");
+    helpComponent.classList.remove("fade-in");
 
-    return helpContainer;
+    // Wait for animation to complete, then hide element
+    setTimeout(() => {
+      helpComponent.style.display = "none";
+    }, 300); // Match CSS transition duration
   }
 }

@@ -16,7 +16,32 @@
   z-index: 3000;
   width: 300px;
   opacity: 0;
-  animation: helpFadeIn 0.3s ease-out forwards;
+  transform: translateY(-10px) scale(0.95);
+  transition:
+    opacity 0.3s ease-out,
+    transform 0.3s ease-out;
+}
+
+/* Animation classes */
+.mostage-help.fade-in {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.mostage-help.fade-out {
+  opacity: 0;
+  transform: translateY(-10px) scale(0.95);
+}
+
+/* Overview help animation classes */
+.mostage-overview-help.fade-in {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.mostage-overview-help.fade-out {
+  opacity: 0;
+  transform: translateY(10px) scale(0.95);
 }
 
 .mostage-help-overlay {
@@ -117,6 +142,7 @@
   font-size: 12px;
   color: #ffffff;
   font-weight: 500;
+  cursor: default;
 }
 
 /* Help fade in animation */
@@ -129,6 +155,116 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Overview Mode Help - Bottom Right */
+.mostage-overview-help {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #ffffff;
+  padding: 15px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.5;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 2002;
+  width: 300px;
+  opacity: 0;
+  transform: translateY(10px) scale(0.95);
+  transition:
+    opacity 0.3s ease-out,
+    transform 0.3s ease-out;
+}
+
+/* Content wrapper for overview help */
+.mostage-overview-help-content {
+  position: relative;
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+  max-width: none;
+  width: auto;
+  max-height: none;
+  overflow: visible;
+  z-index: auto;
+}
+
+/* Unified help styles - both normal and overview use the same structure */
+
+/* Header styles for both modes */
+.mostage-help-header,
+.mostage-overview-help-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  margin-bottom: 8px;
+}
+
+.mostage-help-header h3,
+.mostage-overview-help-header h3 {
+  margin: 0;
+  color: #007acc;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.mostage-help-close,
+.mostage-overview-help-close {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 2px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.mostage-help-close:hover,
+.mostage-overview-help-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+/* Body styles for both modes */
+.mostage-help-body,
+.mostage-overview-help-body {
+  padding: 0;
+}
+
+.mostage-help-item,
+.mostage-overview-help-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.mostage-help-key,
+.mostage-overview-help-key {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.mostage-help-description,
+.mostage-overview-help-description {
+  color: #e2e8f0;
+  font-size: 13px;
+}
+
+.mostage-help-keys,
+.mostage-overview-help-keys {
+  display: flex;
+  gap: 4px;
 }
 
 /* Responsive adjustments */

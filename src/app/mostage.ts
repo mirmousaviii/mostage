@@ -155,6 +155,9 @@ export class Mostage {
         currentSlide: this.currentSlideIndex,
         totalSlides: this.slides.length,
       });
+
+      // Show initial help with auto-hide after 5 seconds
+      this.helpManager.showInitialHelp();
     } catch (error) {
       console.error("Failed to start Mostage:", error);
       throw error;
