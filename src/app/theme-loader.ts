@@ -6,7 +6,7 @@ import overviewModeStylesCSS from "./ui/overview/overview.css?raw";
 import responsiveStylesCSS from "./foundation-styles/responsive.css?raw";
 import textContentStylesCSS from "./foundation-styles/text-content.css?raw";
 
-// Combine all base styles
+// Combine all base styles into a single string
 const combinedBaseStyles = [
   baseStylesCSS,
   typographyStylesCSS,
@@ -28,6 +28,15 @@ export class ThemeLoader {
   private static availableThemes: Record<string, Theme> = {};
   private static baseStylesLoaded = false;
   private static initialized = false;
+
+  /**
+   * Ensure themes are initialized
+   */
+  private static ensureInitialized(): void {
+    if (!this.initialized) {
+      this.initialize();
+    }
+  }
 
   /**
    * Initialize theme auto-discovery system
@@ -62,22 +71,16 @@ export class ThemeLoader {
    */
   static async loadTheme(themeName: string): Promise<void> {
     // Initialize themes if not already done
-    if (!this.initialized) {
-      this.initialize();
-    }
+    this.ensureInitialized();
 
     const theme = this.availableThemes[themeName];
     if (!theme) {
       const availableThemes = Object.keys(this.availableThemes);
-      console.warn(
-        `Theme "${themeName}" not found. Available themes: ${availableThemes.join(", ")}`
-      );
 
       // Try to load the first available theme as fallback
       if (availableThemes.length > 0) {
         return this.loadTheme(availableThemes[0]);
       } else {
-        console.error("No themes available!");
         return;
       }
     }
@@ -120,9 +123,7 @@ export class ThemeLoader {
    * Get all available themes
    */
   static getAvailableThemes(): Record<string, Theme> {
-    if (!this.initialized) {
-      this.initialize();
-    }
+    this.ensureInitialized();
     return this.availableThemes;
   }
 
@@ -137,9 +138,7 @@ export class ThemeLoader {
    * Get theme by name
    */
   static getTheme(name: string): Theme | undefined {
-    if (!this.initialized) {
-      this.initialize();
-    }
+    this.ensureInitialized();
     return this.availableThemes[name];
   }
 
@@ -147,10 +146,7 @@ export class ThemeLoader {
    * Register a new theme dynamically
    */
   static registerTheme(theme: Theme): void {
-    if (!this.initialized) {
-      this.initialize();
-    }
-
+    this.ensureInitialized();
     this.availableThemes[theme.name] = theme;
   }
 
@@ -158,9 +154,7 @@ export class ThemeLoader {
    * Check if a theme exists
    */
   static hasTheme(name: string): boolean {
-    if (!this.initialized) {
-      this.initialize();
-    }
+    this.ensureInitialized();
     return name in this.availableThemes;
   }
 }
