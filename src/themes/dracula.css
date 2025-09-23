@@ -1,16 +1,17 @@
-/* Dracula Theme - Mostage */
+/* Dracula Theme - Mostage (Official Colors) */
 :root {
-  --mostage-bg-color: #282a36;
-  --mostage-text-color: #f8f8f2;
-  --mostage-primary-color: #ff79c6;
-  --mostage-secondary-color: #bd93f9;
-  --mostage-accent-color: #ffb86c;
-  --mostage-border-color: #bd93f9;
-  --mostage-highlight-color: #50fa7b;
+  --mostage-bg-color: #282a36; /* Background */
+  --mostage-text-color: #f8f8f2; /* Foreground */
+  --mostage-primary-color: #bd93f9; /* Purple */
+  --mostage-secondary-color: #ff79c6; /* Pink */
+  --mostage-accent-color: #ffb86c; /* Orange */
+  --mostage-border-color: #6272a4; /* Comment */
+  --mostage-highlight-color: #50fa7b; /* Green */
+  --mostage-cyan-color: #8be9fd; /* Cyan */
 }
 
 .mostage-container {
-  background: linear-gradient(135deg, var(--mostage-bg-color) 0%, #1e1f29 100%);
+  background: var(--mostage-bg-color);
   color: var(--mostage-text-color);
   font-family:
     "Inter",
@@ -23,13 +24,10 @@
 }
 
 .mostage-slide {
-  background: rgba(68, 71, 90, 0.9);
+  background: var(--mostage-bg-color);
   color: var(--mostage-text-color);
-  border: 1px solid rgba(189, 147, 249, 0.3);
-  box-shadow:
-    0 20px 40px rgba(189, 147, 249, 0.1),
-    0 8px 16px rgba(189, 147, 249, 0.05);
-  backdrop-filter: blur(10px);
+  border: 1px solid var(--mostage-border-color);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .mostage-slide h1,
@@ -38,41 +36,33 @@
 .mostage-slide h4,
 .mostage-slide h5,
 .mostage-slide h6 {
-  color: var(--mostage-secondary-color);
-  text-shadow: 0 2px 4px rgba(189, 147, 249, 0.3);
+  color: var(--mostage-primary-color);
 }
 
 .mostage-slide h1 {
-  background: linear-gradient(
-    135deg,
-    var(--mostage-primary-color) 0%,
-    var(--mostage-secondary-color) 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--mostage-secondary-color);
 }
 
 .mostage-slide code {
-  background: rgba(189, 147, 249, 0.2);
+  background: var(--mostage-bg-color);
   color: var(--mostage-accent-color);
   border: 1px solid var(--mostage-border-color);
 }
 
 .mostage-slide pre {
-  background: linear-gradient(135deg, #44475a 0%, #383a59 100%);
+  background: var(--mostage-bg-color);
   color: var(--mostage-text-color);
   border: 1px solid var(--mostage-border-color);
 }
 
 .mostage-slide blockquote {
-  color: #6272a4;
-  background: rgba(189, 147, 249, 0.1);
+  color: var(--mostage-border-color);
+  background: var(--mostage-bg-color);
   border-left-color: var(--mostage-primary-color);
 }
 
 .mostage-slide a {
-  color: #8be9fd;
+  color: var(--mostage-cyan-color);
 }
 
 .mostage-slide a:hover {
@@ -80,45 +70,40 @@
 }
 
 .mostage-progress-bar {
-  background: rgba(68, 71, 90, 0.8);
-  backdrop-filter: blur(10px);
+  background: var(--mostage-bg-color);
 }
 
 .mostage-progress-fill {
-  background: linear-gradient(
-    90deg,
-    var(--mostage-primary-color) 0%,
-    var(--mostage-secondary-color) 100%
-  );
+  background: var(--mostage-primary-color);
 }
 
 .mostage-slide-number {
-  background: rgba(68, 71, 90, 0.9);
+  background: var(--mostage-bg-color);
   color: var(--mostage-text-color);
   border-color: var(--mostage-border-color);
 }
 
 .mostage-btn {
-  background: rgba(68, 71, 90, 0.9);
+  background: var(--mostage-bg-color);
   color: var(--mostage-text-color);
   border-color: var(--mostage-border-color);
 }
 
 .mostage-btn:hover {
-  background: rgba(98, 114, 164, 0.9);
+  background: var(--mostage-border-color);
   color: var(--mostage-secondary-color);
-  border-color: rgba(189, 147, 249, 0.5);
+  border-color: var(--mostage-primary-color);
 }
 
 .mostage-overview-slide {
-  background: rgba(68, 71, 90, 0.9);
+  background: var(--mostage-bg-color);
   border: 2px solid var(--mostage-border-color);
   color: var(--mostage-text-color);
 }
 
 .mostage-overview-slide:hover {
-  background: rgba(98, 114, 164, 0.9);
-  border-color: rgba(189, 147, 249, 0.5);
+  background: var(--mostage-border-color);
+  border-color: var(--mostage-primary-color);
 }
 
 .mostage-overview-slide.active {
