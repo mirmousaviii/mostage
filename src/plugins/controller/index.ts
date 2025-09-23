@@ -7,6 +7,7 @@ export class ControllerPlugin implements MoPlugin {
   private styleElement: HTMLElement | null = null;
   private firstBtn: HTMLButtonElement | null = null;
   private prevBtn: HTMLButtonElement | null = null;
+  private overviewBtn: HTMLButtonElement | null = null;
   private nextBtn: HTMLButtonElement | null = null;
   private lastBtn: HTMLButtonElement | null = null;
   private config!: ControllerConfig;
@@ -35,10 +36,11 @@ export class ControllerPlugin implements MoPlugin {
     this.controller = document.createElement("div");
     this.controller.className = `mostage-controller mostage-controller-${this.config.position}`;
     this.controller.innerHTML = `
-      <button class="mostage-btn mostage-first">|‹</button>
-      <button class="mostage-btn mostage-prev">‹</button>
-      <button class="mostage-btn mostage-next">›</button>
-      <button class="mostage-btn mostage-last">›|</button>
+      <button class="mostage-btn controller-first">|‹</button>
+      <button class="mostage-btn controller-prev">‹</button>
+      <button class="mostage-btn controller-overview">⊞</button>
+      <button class="mostage-btn controller-next">›</button>
+      <button class="mostage-btn controller-last">›|</button>
     `;
 
     // Show/hide based on config
@@ -48,21 +50,25 @@ export class ControllerPlugin implements MoPlugin {
 
     // Get button references
     this.firstBtn = this.controller.querySelector(
-      ".mostage-first"
+      ".controller-first"
     ) as HTMLButtonElement;
     this.prevBtn = this.controller.querySelector(
-      ".mostage-prev"
+      ".controller-prev"
+    ) as HTMLButtonElement;
+    this.overviewBtn = this.controller.querySelector(
+      ".controller-overview"
     ) as HTMLButtonElement;
     this.nextBtn = this.controller.querySelector(
-      ".mostage-next"
+      ".controller-next"
     ) as HTMLButtonElement;
     this.lastBtn = this.controller.querySelector(
-      ".mostage-last"
+      ".controller-last"
     ) as HTMLButtonElement;
 
     // Add event listeners
     this.firstBtn.addEventListener("click", () => mo.goToSlide(0));
     this.prevBtn.addEventListener("click", () => mo.previousSlide());
+    this.overviewBtn.addEventListener("click", () => mo.toggleOverview());
     this.nextBtn.addEventListener("click", () => mo.nextSlide());
     this.lastBtn.addEventListener("click", () =>
       mo.goToSlide(mo.getTotalSlides() - 1)
@@ -80,9 +86,16 @@ export class ControllerPlugin implements MoPlugin {
   }
 
   private updateButtonStates(currentSlide: number, totalSlides: number): void {
-    if (this.firstBtn && this.prevBtn && this.nextBtn && this.lastBtn) {
+    if (
+      this.firstBtn &&
+      this.prevBtn &&
+      this.overviewBtn &&
+      this.nextBtn &&
+      this.lastBtn
+    ) {
       this.firstBtn.disabled = currentSlide === 0;
       this.prevBtn.disabled = currentSlide === 0;
+      // Overview button is never disabled
       this.nextBtn.disabled = currentSlide === totalSlides - 1;
       this.lastBtn.disabled = currentSlide === totalSlides - 1;
     }
@@ -99,6 +112,7 @@ export class ControllerPlugin implements MoPlugin {
     }
     this.firstBtn = null;
     this.prevBtn = null;
+    this.overviewBtn = null;
     this.nextBtn = null;
     this.lastBtn = null;
   }

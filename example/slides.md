@@ -123,7 +123,7 @@ class CustomPlugin {
 - `Arrow Left`: Previous slide
 - `Home`: First slide
 - `End`: Last slide
-- `o` / `Escape`: Toggle overview mode (OverviewMode plugin)
+- `o` / `Escape`: Toggle overview mode
 - `Swipe`: Navigate on mobile
 
 ---

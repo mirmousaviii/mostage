@@ -389,6 +389,11 @@ export class Mostage {
     return this.container;
   }
 
+  // Overview control
+  toggleOverview(): void {
+    this.overviewManager.toggleOverview();
+  }
+
   // Cleanup
   destroy(): void {
     this.plugins.forEach((plugin) => {
