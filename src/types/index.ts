@@ -21,6 +21,18 @@ export interface ControllerConfig {
   position?: "bottom-right" | "bottom-left" | "bottom-center";
 }
 
+export interface ConfettiConfig {
+  enabled?: boolean;
+  particleCount?: number;
+  colors?: string[];
+  size?: {
+    min?: number;
+    max?: number;
+  };
+  duration?: number;
+  delay?: number;
+}
+
 export interface CenterContentConfig {
   vertical?: boolean;
   horizontal?: boolean;
@@ -30,7 +42,7 @@ export interface PluginsConfig {
   ProgressBar?: ProgressBarConfig;
   SlideNumber?: SlideNumberConfig;
   Controller?: ControllerConfig;
-  Confetti?: boolean;
+  Confetti?: ConfettiConfig;
 }
 
 export interface TransitionConfig {

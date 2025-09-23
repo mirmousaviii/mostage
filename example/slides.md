@@ -108,11 +108,11 @@ class CustomPlugin {
 
 ---
 
-<!-- confetti -->
-
 ## Celebration!
 
 #### **Confetti** as an example of plugin
+
+<!-- confetti -->
 
 ---
 
@@ -145,10 +145,10 @@ class CustomPlugin {
 
 ---
 
-<!-- confetti -->
-
 ## Happy presenting with Mostage!
 
 ##### Get started now: [mo.js.org](https://mo.js.org)
 
 ##### Or check the demo: [Parser demo #4](#4)
+
+<!-- confetti -->

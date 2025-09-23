@@ -1,4 +1,5 @@
 import { PluginBase } from "../../app/plugin-base";
+import { ConfettiConfig } from "../../types";
 import styles from "./style.css?inline";
 
 export class ConfettiPlugin extends PluginBase {
@@ -6,9 +7,30 @@ export class ConfettiPlugin extends PluginBase {
   private confettiContainer: HTMLElement | null = null;
   private mo: any;
   private confettiSlides: Set<number> = new Set();
+  private config!: ConfettiConfig;
 
-  init(mo: any): void {
+  init(mo: any, config: ConfettiConfig = {}): void {
     this.mo = mo;
+    this.config = {
+      enabled: true,
+      particleCount: 50,
+      colors: [
+        "#ff6b6b",
+        "#4ecdc4",
+        "#45b7d1",
+        "#96ceb4",
+        "#feca57",
+        "#ff9ff3",
+        "#54a0ff",
+      ],
+      size: {
+        min: 5,
+        max: 15,
+      },
+      duration: 4000,
+      delay: 50,
+      ...config,
+    };
 
     this.injectStyles(styles, "confetti-styles");
     this.createConfettiContainer();
@@ -39,7 +61,7 @@ export class ConfettiPlugin extends PluginBase {
       if (this.confettiSlides.has(currentSlide)) {
         // Wait for slide transition to complete, then add a small delay
         const transitionDuration = this.mo.config.transition?.duration || 600;
-        const delay = transitionDuration + 100; // 0.1 second after transition completes
+        const delay = transitionDuration + (this.config.delay || 100);
 
         setTimeout(() => {
           this.triggerConfetti();
@@ -49,13 +71,13 @@ export class ConfettiPlugin extends PluginBase {
   }
 
   private triggerConfetti(): void {
-    if (!this.confettiContainer) return;
+    if (!this.confettiContainer || !this.config.enabled) return;
 
     // Clear any existing confetti
     this.confettiContainer.innerHTML = "";
 
     // Create confetti particles
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < (this.config.particleCount || 50); i++) {
       this.createConfettiParticle();
     }
 
@@ -64,7 +86,7 @@ export class ConfettiPlugin extends PluginBase {
       if (this.confettiContainer) {
         this.confettiContainer.innerHTML = "";
       }
-    }, 3000);
+    }, this.config.duration || 3000);
   }
 
   private createConfettiParticle(): void {
@@ -74,7 +96,7 @@ export class ConfettiPlugin extends PluginBase {
     particle.className = "mostage-confetti-particle";
 
     // Random properties
-    const colors = [
+    const colors = this.config.colors || [
       "#ff6b6b",
       "#4ecdc4",
       "#45b7d1",
@@ -84,7 +106,9 @@ export class ConfettiPlugin extends PluginBase {
       "#54a0ff",
     ];
     const color = colors[Math.floor(Math.random() * colors.length)];
-    const size = Math.random() * 10 + 5; // 5-15px
+    const minSize = this.config.size?.min || 5;
+    const maxSize = this.config.size?.max || 15;
+    const size = Math.random() * (maxSize - minSize) + minSize;
     const startX = Math.random() * window.innerWidth;
     const endX = startX + (Math.random() - 0.5) * 200; // -100 to +100 from start
     const rotation = Math.random() * 360;

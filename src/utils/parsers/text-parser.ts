@@ -15,6 +15,12 @@ export class TextParser {
     while (i < lines.length) {
       const line = lines[i].trim();
 
+      // Skip HTML comments
+      if (this.isHtmlComment(line)) {
+        i++;
+        continue;
+      }
+
       // if (!line) {
       //   // Empty line - add a paragraph break
       //   htmlLines.push("<br>");
@@ -160,6 +166,13 @@ export class TextParser {
         /[!?]$/.test(line) ||
         /^(Important|Note|Warning|Tip|Remember)/i.test(line))
     );
+  }
+
+  /**
+   * Check if a line is an HTML comment
+   */
+  private isHtmlComment(line: string): boolean {
+    return /^<!--.*-->$/.test(line);
   }
 
   /**

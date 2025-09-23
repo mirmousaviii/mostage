@@ -25,7 +25,8 @@ List
 - Item 3
 - Item 4
 ---
-<!-- confetti -->
 Conclusion
 focus on content
+
+<!-- confetti -->
 

@@ -129,6 +129,6 @@ Here is example of **code**
 
 # Conclusion
 
-<!-- confetti -->
-
 Focus on content with advance features
+
+<!-- confetti -->

@@ -81,6 +81,11 @@ export class MarkdownParser {
         continue;
       }
 
+      // Skip HTML comments
+      if (this.isHtmlComment(line.trim())) {
+        continue;
+      }
+
       // Handle tables
       if (line.match(/^\s*\|.*\|\s*$/)) {
         // Collect consecutive table lines
@@ -197,6 +202,13 @@ export class MarkdownParser {
 
     tableHtml += "</tbody>\n</table>";
     return tableHtml;
+  }
+
+  /**
+   * Check if a line is an HTML comment
+   */
+  private isHtmlComment(line: string): boolean {
+    return /^<!--.*-->$/.test(line);
   }
 
   private escapeHtml(text: string): string {
