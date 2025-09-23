@@ -1,29 +1,19 @@
-import { MoPlugin } from "../../types";
+import { PluginBase } from "../../app/plugin-base";
 import styles from "./style.css?inline";
 
-export class ConfettiPlugin implements MoPlugin {
+export class ConfettiPlugin extends PluginBase {
   name = "Confetti";
   private confettiContainer: HTMLElement | null = null;
-  private styleElement: HTMLElement | null = null;
   private mo: any;
   private confettiSlides: Set<number> = new Set();
 
   init(mo: any): void {
     this.mo = mo;
 
-    this.injectStyles();
+    this.injectStyles(styles, "confetti-styles");
     this.createConfettiContainer();
     this.parseSlidesForConfetti();
     this.setupSlideListener();
-  }
-
-  private injectStyles(): void {
-    if (document.querySelector("[data-mostage-confetti-styles]")) return;
-
-    this.styleElement = document.createElement("style");
-    this.styleElement.setAttribute("data-mostage-confetti-styles", "true");
-    this.styleElement.textContent = styles;
-    document.head.appendChild(this.styleElement);
   }
 
   private createConfettiContainer(): void {
@@ -39,9 +29,6 @@ export class ConfettiPlugin implements MoPlugin {
       // Check for confetti comments
       if (slide.content.includes("<!-- confetti -->")) {
         this.confettiSlides.add(index);
-        console.log(
-          `Confetti enabled for slide ${index}: ${slide.content.substring(0, 50)}...`
-        );
       }
     });
   }
@@ -123,14 +110,9 @@ export class ConfettiPlugin implements MoPlugin {
   }
 
   destroy(): void {
-    if (this.confettiContainer) {
-      this.confettiContainer.remove();
-      this.confettiContainer = null;
-    }
-    if (this.styleElement) {
-      this.styleElement.remove();
-      this.styleElement = null;
-    }
+    this.cleanupElements(this.confettiContainer);
+    this.cleanupStyles();
+    this.confettiContainer = null;
   }
 }
 

@@ -1,10 +1,10 @@
-import { MoPlugin, ProgressBarConfig } from "../../types";
+import { PluginBase } from "../../app/plugin-base";
+import { ProgressBarConfig } from "../../types";
 import styles from "./style.css?inline";
 
-export class ProgressBarPlugin implements MoPlugin {
+export class ProgressBarPlugin extends PluginBase {
   name = "ProgressBar";
   private progressBar: HTMLElement | null = null;
-  private styleElement: HTMLElement | null = null;
   private config!: ProgressBarConfig;
 
   init(mo: any, config: ProgressBarConfig = {}): void {
@@ -15,22 +15,13 @@ export class ProgressBarPlugin implements MoPlugin {
       ...config,
     };
 
-    this.injectStyles();
+    this.injectStyles(styles, "progress-styles");
     this.createProgressBar();
     this.updateProgress(mo.getCurrentSlide(), mo.getTotalSlides());
 
     mo.on("slidechange", (event: any) => {
       this.updateProgress(event.currentSlide, event.totalSlides);
     });
-  }
-
-  private injectStyles(): void {
-    if (document.querySelector("[data-mostage-progress-styles]")) return;
-
-    this.styleElement = document.createElement("style");
-    this.styleElement.setAttribute("data-mostage-progress-styles", "true");
-    this.styleElement.textContent = styles;
-    document.head.appendChild(this.styleElement);
   }
 
   private createProgressBar(): void {
@@ -66,15 +57,9 @@ export class ProgressBarPlugin implements MoPlugin {
   }
 
   destroy(): void {
-    if (this.progressBar) {
-      this.progressBar.remove();
-      this.progressBar = null;
-    }
-
-    if (this.styleElement) {
-      this.styleElement.remove();
-      this.styleElement = null;
-    }
+    this.cleanupElements(this.progressBar);
+    this.cleanupStyles();
+    this.progressBar = null;
   }
 }
 

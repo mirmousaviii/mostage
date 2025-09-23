@@ -12,7 +12,6 @@
 import "./foundation-styles/index.css";
 
 export { Mostage } from "./mostage";
-export { PluginLoader } from "./plugin-loader";
 export { ThemeLoader, type Theme } from "./theme-loader";
 
 // Export managers
@@ -21,7 +20,6 @@ export { NavigationManager } from "./navigation/navigation";
 export { TransitionManager } from "./navigation/transition";
 export { OverviewManager } from "./ui/overview/overview";
 export { HelpManager } from "./ui/help/help";
-export { CenterContentManager } from "./ui/center/center";
 export { UrlHashManager } from "./navigation/url-hash";
 
 // Re-export commonly used functions for convenience

@@ -1,10 +1,10 @@
-import { MoPlugin, ControllerConfig } from "../../types";
+import { PluginBase } from "../../app/plugin-base";
+import { ControllerConfig } from "../../types";
 import styles from "./style.css?inline";
 
-export class ControllerPlugin implements MoPlugin {
+export class ControllerPlugin extends PluginBase {
   name = "Controller";
   private controller: HTMLElement | null = null;
-  private styleElement: HTMLElement | null = null;
   private firstBtn: HTMLButtonElement | null = null;
   private prevBtn: HTMLButtonElement | null = null;
   private overviewBtn: HTMLButtonElement | null = null;
@@ -19,17 +19,8 @@ export class ControllerPlugin implements MoPlugin {
       ...config,
     };
 
-    this.injectStyles();
+    this.injectStyles(styles, "controller-styles");
     this.createController(mo);
-  }
-
-  private injectStyles(): void {
-    if (document.querySelector("[data-mostage-controller-styles]")) return;
-
-    this.styleElement = document.createElement("style");
-    this.styleElement.setAttribute("data-mostage-controller-styles", "true");
-    this.styleElement.textContent = styles;
-    document.head.appendChild(this.styleElement);
   }
 
   private createController(mo: any): void {
@@ -102,14 +93,9 @@ export class ControllerPlugin implements MoPlugin {
   }
 
   destroy(): void {
-    if (this.controller) {
-      this.controller.remove();
-      this.controller = null;
-    }
-    if (this.styleElement) {
-      this.styleElement.remove();
-      this.styleElement = null;
-    }
+    this.cleanupElements(this.controller);
+    this.cleanupStyles();
+    this.controller = null;
     this.firstBtn = null;
     this.prevBtn = null;
     this.overviewBtn = null;
