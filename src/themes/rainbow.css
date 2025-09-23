@@ -1,0 +1,166 @@
+/* Rainbow Theme - Mostage (Colorful & Bright) */
+:root {
+  --mostage-bg-color: #e2e8f0; /* Background */
+  --mostage-text-color: #1e293b; /* Dark text */
+  --mostage-primary-color: #3b82f6; /* Blue */
+  --mostage-secondary-color: #8b5cf6; /* Purple */
+  --mostage-accent-color: #f59e0b; /* Orange */
+  --mostage-border-color: #e2e8f0; /* Light border */
+  --mostage-highlight-color: #10b981; /* Green */
+  --mostage-pink-color: #ec4899; /* Pink */
+  --mostage-red-color: #ef4444; /* Red */
+  --mostage-yellow-color: #eab308; /* Yellow */
+}
+
+.mostage-container {
+  background: var(--mostage-bg-color);
+  color: var(--mostage-text-color);
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Roboto",
+    sans-serif;
+  min-height: 100vh;
+}
+
+.mostage-slide {
+  background: #ffffff;
+  color: var(--mostage-text-color);
+  border: 2px solid var(--mostage-border-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.mostage-slide h1,
+.mostage-slide h2,
+.mostage-slide h3,
+.mostage-slide h4,
+.mostage-slide h5,
+.mostage-slide h6 {
+  color: var(--mostage-primary-color);
+}
+
+.mostage-slide h1 {
+  color: var(--mostage-secondary-color);
+  background: linear-gradient(
+    135deg,
+    var(--mostage-primary-color) 0%,
+    var(--mostage-secondary-color) 50%,
+    var(--mostage-pink-color) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.mostage-slide h2 {
+  color: var(--mostage-pink-color);
+}
+
+.mostage-slide h3 {
+  color: var(--mostage-accent-color);
+}
+
+.mostage-slide h4 {
+  color: var(--mostage-highlight-color);
+}
+
+.mostage-slide h5 {
+  color: var(--mostage-red-color);
+}
+
+.mostage-slide h6 {
+  color: var(--mostage-yellow-color);
+}
+
+.mostage-slide code {
+  background: #f1f5f9;
+  color: var(--mostage-red-color);
+  border: 1px solid var(--mostage-border-color);
+  border-radius: 4px;
+}
+
+.mostage-slide pre {
+  background: #1e293b;
+  color: #f8fafc;
+  border: 1px solid var(--mostage-border-color);
+  border-radius: 8px;
+}
+
+.mostage-slide blockquote {
+  color: var(--mostage-accent-color);
+  background: #fef3c7;
+  border-left: 4px solid var(--mostage-yellow-color);
+  border-radius: 0 8px 8px 0;
+}
+
+.mostage-slide a {
+  color: var(--mostage-primary-color);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.mostage-slide a:hover {
+  color: var(--mostage-pink-color);
+  border-bottom-color: var(--mostage-pink-color);
+}
+
+.mostage-progress-bar {
+  background: #e2e8f0;
+  border-radius: 10px;
+}
+
+.mostage-progress-fill {
+  background: linear-gradient(
+    90deg,
+    var(--mostage-primary-color) 0%,
+    var(--mostage-secondary-color) 25%,
+    var(--mostage-pink-color) 50%,
+    var(--mostage-accent-color) 75%,
+    var(--mostage-highlight-color) 100%
+  );
+  border-radius: 10px;
+}
+
+.mostage-slide-number {
+  background: var(--mostage-primary-color);
+  color: #ffffff;
+  border: 2px solid var(--mostage-secondary-color);
+  border-radius: 50%;
+}
+
+.mostage-btn {
+  background: var(--mostage-primary-color);
+  color: #ffffff;
+  border: 2px solid var(--mostage-primary-color);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.mostage-btn:hover {
+  background: var(--mostage-secondary-color);
+  border-color: var(--mostage-secondary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+}
+
+.mostage-overview-slide {
+  background: #ffffff;
+  border: 3px solid var(--mostage-border-color);
+  color: var(--mostage-text-color);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.mostage-overview-slide:hover {
+  border-color: var(--mostage-primary-color);
+  transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.2);
+}
+
+.mostage-overview-slide.active {
+  border-color: var(--mostage-secondary-color);
+  background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+}

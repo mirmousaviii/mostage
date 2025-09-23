@@ -52,6 +52,7 @@ Convert plain text to simple slide
 - **Dark Theme** → Ideal for code presentations and low-light conditions
 - **Dracula Theme** → Popular dark theme with vibrant accents
 - **Ocean Theme** → Inspired by the sea. calm, elegant, and refreshing
+- **Rainbow Theme** → Colorful and bright theme with vibrant colors
 
 #### And, Create a new theme is easy
 
