@@ -63,14 +63,18 @@ Convert plain text to simple slide
 You can add your own themes easily
 
 ```css
+:root {
+  --mostage-bg-color: #0f0f23;
+  --mostage-text-color: #e2e8f0;
+  --mostage-primary-color: #667eea;
+  --mostage-secondary-color: #764ba2;
+  --mostage-accent-color: #fbb6ce;
+  --mostage-border-color: #4a5568;
+  --mostage-highlight-color: #63b3ed;
+}
 .mostage-slide {
   background: #808080;
   border: 1px solid var(--mostage-border-color);
-}
-
-.mostage-slide h1,
-.mostage-slide h2 {
-  color: var(--mostage-primary-color);
 }
 ```
 

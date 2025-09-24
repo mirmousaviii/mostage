@@ -8,7 +8,7 @@
   background: rgba(0, 0, 0, 0.8);
   color: #ffffff;
   padding: 15px 20px;
-  border-radius: 8px;
+  border-radius: 3px;
   font-size: 14px;
   line-height: 1.5;
   backdrop-filter: blur(10px);
@@ -159,19 +159,19 @@
 
 /* Overview Mode Help - Bottom Right */
 .mostage-overview-help {
-  position: fixed;
+  position: static;
   bottom: 30px;
   right: 30px;
   background: rgba(0, 0, 0, 0.8);
   color: #ffffff;
   padding: 15px 20px;
-  border-radius: 8px;
+  border-radius: 3px;
   font-size: 14px;
   line-height: 1.5;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   z-index: 2002;
-  width: 300px;
+  width: 280px;
   opacity: 0;
   transform: translateY(10px) scale(0.95);
   transition:
