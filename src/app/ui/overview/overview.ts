@@ -249,7 +249,13 @@ export class OverviewManager {
     contentWrapper.className = "mostage-overview-slide-content";
 
     // Create a simplified version of the slide content for the thumbnail
-    const content = slideElement.innerHTML;
+    // Extract content from the slide content wrapper if it exists
+    const slideContentWrapper = slideElement.querySelector(
+      ".mostage-slide-content"
+    );
+    const content = slideContentWrapper
+      ? slideContentWrapper.innerHTML
+      : slideElement.innerHTML;
     contentWrapper.innerHTML = content;
 
     // Apply theme styles to the content wrapper to ensure proper theming

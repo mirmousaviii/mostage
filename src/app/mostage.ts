@@ -68,10 +68,7 @@ export class Mostage {
     this.container = this.resolveElement(this.config.element || document.body);
     this.container.classList.add("mostage-container");
 
-    // Apply scale if specified
-    if (this.config.scale !== 1.0) {
-      this.container.style.transform = `scale(${this.config.scale})`;
-    }
+    // Scale will be applied to slide content in renderSlides method
 
     // Initialize managers
     this.contentManager = new ContentManager();
@@ -301,7 +298,27 @@ export class Mostage {
       const slideElement = document.createElement("div");
       slideElement.className = "mostage-slide";
       slideElement.id = slide.id;
-      slideElement.innerHTML = slide.html;
+
+      // Create content wrapper for scaling
+      const contentWrapper = document.createElement("div");
+      contentWrapper.className = "mostage-slide-content";
+      contentWrapper.innerHTML = slide.html;
+
+      // Apply scale to content if specified
+      if (this.config.scale !== 1.0) {
+        contentWrapper.style.transform = `scale(${this.config.scale})`;
+        contentWrapper.style.transformOrigin = "center center";
+
+        // If scaling up, ensure content fits within slide boundaries
+        if (this.config.scale && this.config.scale > 1.0) {
+          // Calculate the inverse scale to fit the content
+          const inverseScale = 1 / this.config.scale;
+          contentWrapper.style.width = `${100 * inverseScale}%`;
+          contentWrapper.style.height = `${100 * inverseScale}%`;
+        }
+      }
+
+      slideElement.appendChild(contentWrapper);
       slideElement.style.display = index === 0 ? "block" : "none";
       slidesContainer.appendChild(slideElement);
     });

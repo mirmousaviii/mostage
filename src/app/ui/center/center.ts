@@ -53,10 +53,15 @@ export class CenterContentManager {
     slides.forEach((slide: Element) => {
       const slideElement = slide as HTMLElement;
       const isVisible = slideElement.style.display !== "none";
+      const contentWrapper = slideElement.querySelector(
+        ".mostage-slide-content"
+      ) as HTMLElement;
 
-      if (isVisible) {
+      if (isVisible && contentWrapper) {
         slideElement.classList.add("mostage-slide-centered");
         slideElement.style.display = "flex";
+        contentWrapper.style.display = "flex";
+        contentWrapper.style.flexDirection = "column";
 
         // Apply centering based on config
         if (
@@ -65,15 +70,27 @@ export class CenterContentManager {
         ) {
           slideElement.style.alignItems = "center";
           slideElement.style.justifyContent = "center";
+          contentWrapper.style.alignItems = "center";
+          contentWrapper.style.justifyContent = "center";
         } else if (this.centerContentConfig!.vertical) {
           slideElement.style.alignItems = "center";
           slideElement.style.justifyContent = "flex-start";
+          contentWrapper.style.alignItems = "center";
+          contentWrapper.style.justifyContent = "flex-start";
         } else if (this.centerContentConfig!.horizontal) {
           slideElement.style.alignItems = "flex-start";
           slideElement.style.justifyContent = "center";
+          contentWrapper.style.alignItems = "flex-start";
+          contentWrapper.style.justifyContent = "center";
         }
       } else {
         slideElement.classList.remove("mostage-slide-centered");
+        if (contentWrapper) {
+          contentWrapper.style.display = "block";
+          contentWrapper.style.flexDirection = "unset";
+          contentWrapper.style.alignItems = "unset";
+          contentWrapper.style.justifyContent = "unset";
+        }
       }
     });
   }
