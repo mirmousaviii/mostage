@@ -6,7 +6,9 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
+  /* Use theme-aware background */
+  background: var(--mostage-bg-color);
+  color: var(--mostage-text-color);
   z-index: 2000;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -34,11 +36,13 @@
 .mostage-overview-slide {
   width: 280px;
   height: 210px;
-  background-color: transparent;
+  /* Use theme-aware background */
+  background-color: var(--mostage-bg-color);
+  color: var(--mostage-text-color);
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 3px solid transparent;
+  border: 3px solid var(--mostage-border-color);
   overflow: hidden;
   position: relative;
   transform-origin: center;
@@ -48,7 +52,7 @@
 
 /* Theme-aware background fallbacks */
 .mostage-overview-slide:not([style*="background-color"]) {
-  background-color: var(--slide-bg, rgba(255, 255, 255, 0.9));
+  background-color: var(--mostage-bg-color);
 }
 
 .mostage-overview-slide::before {
@@ -69,21 +73,21 @@
 
 .mostage-overview-slide:hover {
   scale: 1.05;
-  border-color: #007acc;
+  border-color: var(--mostage-primary-color);
 }
 
 .mostage-overview-slide.active {
-  border-color: #007acc;
+  border-color: var(--mostage-primary-color);
   box-shadow:
-    0 0 0 3px rgba(0, 122, 204, 0.3),
-    0 0px 24px rgba(0, 122, 204, 0.4);
+    0 0 0 3px var(--mostage-primary-color),
+    0 0px 24px var(--mostage-primary-color);
 }
 
 .mostage-overview-slide.selected {
-  border-color: #007acc;
+  border-color: var(--mostage-primary-color);
   box-shadow:
-    0 0 0 3px rgba(0, 122, 204, 0.3),
-    0 0px 24px rgba(0, 122, 204, 0.4);
+    0 0 0 3px var(--mostage-primary-color),
+    0 0px 24px var(--mostage-primary-color);
   scale: 1.05;
 }
 
@@ -91,8 +95,9 @@
   position: absolute;
   bottom: 8px;
   right: 8px;
-  background: rgba(0, 0, 0, 0.7);
-  color: white;
+  background: var(--mostage-bg-color);
+  color: var(--mostage-text-color);
+  border: 1px solid var(--mostage-border-color);
   padding: 4px 8px;
   border-radius: 3px;
   font-size: 18px;
@@ -119,6 +124,17 @@
   overflow: hidden;
   padding: 2rem; /* Add padding to match normal slides */
   box-sizing: border-box;
+  /* Ensure theme styles are inherited */
+  background-color: inherit;
+  color: inherit;
+}
+
+/* Ensure all content inside overview slides inherits theme styles */
+.mostage-overview-slide-content * {
+  /* Reset any conflicting styles and ensure theme inheritance */
+  font-family: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
 }
 
 /* Apply centerContent styles to overview mode */

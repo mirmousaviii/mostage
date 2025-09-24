@@ -252,6 +252,9 @@ export class OverviewManager {
     const content = slideElement.innerHTML;
     contentWrapper.innerHTML = content;
 
+    // Apply theme styles to the content wrapper to ensure proper theming
+    this.applyThemeToOverviewContent(contentWrapper, slideElement);
+
     // Assemble the thumbnail
     thumbnail.appendChild(slideNumber);
     thumbnail.appendChild(contentWrapper);
@@ -263,6 +266,73 @@ export class OverviewManager {
     });
 
     return thumbnail;
+  }
+
+  /**
+   * Apply theme styles to overview content to ensure it matches the main slides
+   */
+  private applyThemeToOverviewContent(
+    contentWrapper: HTMLElement,
+    originalSlide: HTMLElement
+  ): void {
+    // Copy computed styles from the original slide to maintain theme consistency
+    const originalStyles = window.getComputedStyle(originalSlide);
+
+    // Apply the same background and color styles
+    contentWrapper.style.backgroundColor = originalStyles.backgroundColor;
+    contentWrapper.style.color = originalStyles.color;
+
+    // Apply theme styles to all child elements
+    const allElements = contentWrapper.querySelectorAll("*");
+    allElements.forEach((element: Element) => {
+      const htmlElement = element as HTMLElement;
+
+      // Find the corresponding element in the original slide
+      const tagName = element.tagName.toLowerCase();
+      const originalElement = originalSlide.querySelector(tagName);
+
+      if (originalElement) {
+        const originalElementStyles = window.getComputedStyle(originalElement);
+
+        // Apply color, background, and other theme-related styles
+        htmlElement.style.color = originalElementStyles.color;
+        htmlElement.style.backgroundColor =
+          originalElementStyles.backgroundColor;
+        htmlElement.style.borderColor = originalElementStyles.borderColor;
+
+        // For headings, apply the same gradient and text effects
+        if (["h1", "h2", "h3", "h4", "h5", "h6"].includes(tagName)) {
+          htmlElement.style.background = originalElementStyles.background;
+          htmlElement.style.webkitBackgroundClip =
+            originalElementStyles.webkitBackgroundClip;
+          htmlElement.style.webkitTextFillColor =
+            originalElementStyles.webkitTextFillColor;
+          htmlElement.style.backgroundClip =
+            originalElementStyles.backgroundClip;
+          htmlElement.style.textShadow = originalElementStyles.textShadow;
+        }
+
+        // For code elements
+        if (["code", "pre"].includes(tagName)) {
+          htmlElement.style.background = originalElementStyles.background;
+          htmlElement.style.border = originalElementStyles.border;
+        }
+
+        // For links
+        if (tagName === "a") {
+          htmlElement.style.color = originalElementStyles.color;
+        }
+
+        // For blockquotes
+        if (tagName === "blockquote") {
+          htmlElement.style.color = originalElementStyles.color;
+          htmlElement.style.backgroundColor =
+            originalElementStyles.backgroundColor;
+          htmlElement.style.borderLeftColor =
+            originalElementStyles.borderLeftColor;
+        }
+      }
+    });
   }
 
   private createCloseButton(): HTMLElement {
