@@ -14,10 +14,15 @@ export class ControllerPlugin extends PluginBase {
 
   init(mo: any, config: ControllerConfig = {}): void {
     this.config = {
-      show: true,
+      enabled: true,
       position: "bottom-center",
       ...config,
     };
+
+    // Check if plugin is enabled
+    if (!this.checkEnabled()) {
+      return;
+    }
 
     this.injectStyles(styles, "controller-styles");
     this.createController(mo);
@@ -33,11 +38,6 @@ export class ControllerPlugin extends PluginBase {
       <button class="mostage-btn controller-next">›</button>
       <button class="mostage-btn controller-last">›|</button>
     `;
-
-    // Show/hide based on config
-    if (!this.config.show) {
-      this.controller.style.display = "none";
-    }
 
     // Get button references
     this.firstBtn = this.controller.querySelector(

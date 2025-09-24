@@ -1,4 +1,4 @@
-import { MoPlugin } from '../types';
+import { MoPlugin } from "../types";
 
 /**
  * Plugin Loader - Auto-discovers and registers all plugins
@@ -15,25 +15,26 @@ export class PluginLoader {
     if (this.initialized) return this.plugins;
 
     // Dynamic plugin discovery - automatically loads all plugins from subdirectories
-    const pluginContext = import.meta.glob('../plugins/*/index.ts', { eager: true });
+    const pluginContext = import.meta.glob("../plugins/*/index.ts", {
+      eager: true,
+    });
 
     // Auto-register all discovered plugins
     Object.entries(pluginContext).forEach(([path, module]) => {
       const exports = module as any;
-      
+
       // Find the plugin class (default export or named export ending with 'Plugin')
-      const PluginClass = exports.default || 
-        Object.values(exports).find((exp: any) => 
-          typeof exp === 'function' && 
-          exp.name && 
-          exp.name.endsWith('Plugin')
+      const PluginClass =
+        exports.default ||
+        Object.values(exports).find(
+          (exp: any) =>
+            typeof exp === "function" && exp.name && exp.name.endsWith("Plugin")
         );
-      
-      if (PluginClass && typeof PluginClass === 'function') {
+
+      if (PluginClass && typeof PluginClass === "function") {
         try {
           const instance = new (PluginClass as new () => MoPlugin)();
           this.plugins[instance.name] = PluginClass as new () => MoPlugin;
-          console.debug(`🔌 Registered plugin: ${instance.name} from ${path}`);
         } catch (error) {
           console.warn(`Failed to register plugin from ${path}:`, error);
         }
@@ -41,7 +42,6 @@ export class PluginLoader {
     });
 
     this.initialized = true;
-    console.debug(`🚀 Plugin loader initialized with ${Object.keys(this.plugins).length} plugins`);
     return this.plugins;
   }
 

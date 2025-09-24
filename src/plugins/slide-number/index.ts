@@ -9,10 +9,16 @@ export class SlideNumberPlugin extends PluginBase {
 
   init(mo: any, config: SlideNumberConfig = {}): void {
     this.config = {
+      enabled: true,
       position: "bottom-right",
       format: "current/total",
       ...config,
     };
+
+    // Check if plugin is enabled
+    if (!this.checkEnabled()) {
+      return;
+    }
 
     this.injectStyles(styles, "slide-number-styles");
     this.createSlideNumber();

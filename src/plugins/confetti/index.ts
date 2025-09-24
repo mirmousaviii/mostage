@@ -32,6 +32,11 @@ export class ConfettiPlugin extends PluginBase {
       ...config,
     };
 
+    // Check if plugin is enabled
+    if (!this.checkEnabled()) {
+      return;
+    }
+
     this.injectStyles(styles, "confetti-styles");
     this.createConfettiContainer();
     this.parseSlidesForConfetti();

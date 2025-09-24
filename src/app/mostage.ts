@@ -192,6 +192,17 @@ export class Mostage {
           const pluginInstance = new PluginClass();
           const finalConfig = pluginConfig || {};
 
+          // Check if plugin is enabled (must be explicitly true)
+          const isEnabled = finalConfig.enabled === true;
+
+          if (!isEnabled) {
+            return;
+          }
+
+          // Set enabled state and initialize
+          if (pluginInstance.setEnabled) {
+            pluginInstance.setEnabled(true);
+          }
           pluginInstance.init(this, finalConfig);
           this.plugins.push(pluginInstance);
         } catch (error) {

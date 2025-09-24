@@ -7,9 +7,35 @@ import { MoPlugin } from "../types";
 export abstract class PluginBase implements MoPlugin {
   abstract name: string;
   protected styleElement: HTMLElement | null = null;
+  protected enabled: boolean = true;
 
   abstract init(mo: any, config?: any): void;
   abstract destroy(): void;
+
+  /**
+   * Check if plugin is enabled
+   */
+  isEnabled(): boolean {
+    return this.enabled;
+  }
+
+  /**
+   * Set plugin enabled state
+   */
+  setEnabled(enabled: boolean): void {
+    this.enabled = enabled;
+  }
+
+  /**
+   * Check if plugin is enabled and return early if not
+   * This should be called at the beginning of init() method
+   */
+  protected checkEnabled(): boolean {
+    if (!this.enabled) {
+      return false;
+    }
+    return true;
+  }
 
   /**
    * Inject CSS styles into the document

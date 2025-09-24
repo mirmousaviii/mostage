@@ -2,22 +2,25 @@ export interface MoPlugin {
   name: string;
   init: (mo: any, config?: any) => void;
   destroy?: () => void;
+  setEnabled?: (enabled: boolean) => void;
 }
 
 // Plugin Configuration Interfaces
 export interface ProgressBarConfig {
+  enabled?: boolean;
   position?: "top" | "bottom";
   color?: string;
   height?: string;
 }
 
 export interface SlideNumberConfig {
+  enabled?: boolean;
   position?: "bottom-right" | "bottom-left" | "bottom-center";
   format?: string;
 }
 
 export interface ControllerConfig {
-  show?: boolean;
+  enabled?: boolean;
   position?: "bottom-right" | "bottom-left" | "bottom-center";
 }
 

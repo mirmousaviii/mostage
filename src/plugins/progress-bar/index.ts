@@ -9,11 +9,17 @@ export class ProgressBarPlugin extends PluginBase {
 
   init(mo: any, config: ProgressBarConfig = {}): void {
     this.config = {
+      enabled: true,
       position: "bottom",
       color: "#007acc",
       height: "12px",
       ...config,
     };
+
+    // Check if plugin is enabled
+    if (!this.checkEnabled()) {
+      return;
+    }
 
     this.injectStyles(styles, "progress-styles");
     this.createProgressBar();
