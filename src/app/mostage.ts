@@ -104,15 +104,13 @@ export class Mostage {
       }
 
       // Load content
-      const contentType = this.config.contentType || "markdown";
       let content: string;
 
       if (this.config.contentData) {
         content = this.config.contentData;
       } else if (this.config.contentSource) {
         content = await this.contentManager.loadContentFromSource(
-          this.config.contentSource,
-          contentType
+          this.config.contentSource
         );
       } else {
         throw new Error(
@@ -120,7 +118,7 @@ export class Mostage {
         );
       }
 
-      this.slides = this.contentManager.parseContent(content, contentType);
+      this.slides = this.contentManager.parseContent(content);
 
       // Initialize center content if configured
       this.centerContentManager.initialize(this.config.centerContent || null);

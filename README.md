@@ -1,7 +1,7 @@
 # Mostage
 
 A modern slide presentation framework.
-Create simple presentations using **HTML**, **Markdown** or **Plain text** to web-based slide.
+Create simple presentations using **Markdown** (with HTML support) to web-based slide.
 
 ## Quick Start
 
@@ -22,7 +22,7 @@ Create simple presentations using **HTML**, **Markdown** or **Plain text** to we
       const mostage = new Mostage({
         element: "#app",
         theme: "light",
-        markdown: "./slides.md",
+        contentSource: "./slides.md",
         plugins: {
           ProgressBar: { position: "top" },
           SlideNumber: { position: "bottom-right" },
@@ -46,7 +46,7 @@ import Mostage from "mostage";
 const mostage = new Mostage({
   element: "#app",
   theme: "dark",
-  markdown: "./slides.md",
+  contentSource: "./slides.md",
   scale: 1.0,
   transition: {
     type: "horizontal", // horizontal | vertical | fade | slide
@@ -107,7 +107,7 @@ import Mostage from "mostage";
 const mostage = new Mostage({
   element: "#app",
   theme: "dark",
-  content: `# My Presentation
+  contentData: `# My Presentation
 
 Welcome to Mostage!
 
@@ -141,7 +141,7 @@ const Mostage = require("mostage");
 const mostage = new Mostage({
   element: "#app",
   theme: "solarized",
-  markdown: "./slides.md",
+  contentSource: "./slides.md",
   plugins: {
     ProgressBar: { position: "bottom" },
     SlideNumber: { position: "bottom-left" },
@@ -173,7 +173,7 @@ For projects without any build system, use the UMD build:
       const mostage = new Mostage({
         element: "#app",
         theme: "dracula",
-        markdown: "./presentation.md",
+        contentSource: "./presentation.md",
         plugins: {
           ProgressBar: { color: "#ff6b6b" },
           SlideNumber: { format: "Slide current of total" },
@@ -201,7 +201,7 @@ require(["mostage"], function (Mostage) {
   const mostage = new Mostage({
     element: "#app",
     theme: "light",
-    markdown: "./presentation.md",
+    contentSource: "./presentation.md",
     plugins: {
       ProgressBar: { position: "top", height: "6px" },
       SlideNumber: { position: "bottom-center" },
@@ -223,7 +223,7 @@ System.import("mostage").then(function (Mostage) {
   const mostage = new Mostage({
     element: "#app",
     theme: "dark",
-    markdown: "./slides.md",
+    contentSource: "./slides.md",
     plugins: {
       ProgressBar: { color: "#00ff00" },
       Controller: { show: false },

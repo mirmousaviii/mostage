@@ -54,16 +54,12 @@ export interface TransitionConfig {
   easing?: string;
 }
 
-// Content type specification
-export type ContentType = "markdown" | "html" | "text";
-
 export interface MoConfig {
   element?: string | HTMLElement;
   theme?: string;
   // Content loading configuration
   contentSource?: string; // File path or URL for content
   contentData?: string; // Inline content data
-  contentType?: ContentType; // Type of content (default: "markdown")
   scale?: number;
   transition?: TransitionConfig;
   loop?: boolean;
