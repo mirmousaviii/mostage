@@ -41,6 +41,20 @@ export interface CenterContentConfig {
   horizontal?: boolean;
 }
 
+export interface HeaderConfig {
+  content?: string;
+  contentPath?: string;
+  position?: "top-left" | "top-center" | "top-right";
+  showOnFirstSlide?: boolean;
+}
+
+export interface FooterConfig {
+  content?: string;
+  contentPath?: string;
+  position?: "bottom-left" | "bottom-center" | "bottom-right";
+  showOnFirstSlide?: boolean;
+}
+
 export interface PluginsConfig {
   ProgressBar?: ProgressBarConfig;
   SlideNumber?: SlideNumberConfig;
@@ -68,6 +82,8 @@ export interface MoConfig {
   touch?: boolean;
   urlHash?: boolean; // Enable URL hash navigation
   centerContent?: CenterContentConfig; // Built-in content centering
+  header?: HeaderConfig; // Header configuration
+  footer?: FooterConfig; // Footer configuration
 }
 
 export interface MoSlide {

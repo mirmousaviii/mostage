@@ -35,7 +35,7 @@ body {
 .mostage-slide {
   width: 100%;
   height: 100%;
-  padding: 2rem 3rem;
+  padding: 3rem 3rem;
   position: absolute;
   top: 0;
   left: 0;
@@ -44,4 +44,64 @@ body {
     opacity 0.3s ease;
   overflow: auto;
   display: block;
+}
+
+/* Header and Footer Styles */
+.mostage-header {
+  position: fixed;
+  z-index: 1000;
+  padding: 1rem 3rem;
+  opacity: 0;
+  animation: mostage-fade-in 0.7s ease forwards;
+}
+
+.mostage-footer {
+  position: fixed;
+  z-index: 1000;
+  padding: 1rem 3rem;
+  opacity: 0;
+  animation: mostage-fade-in 0.7s ease forwards;
+}
+
+@keyframes mostage-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Header Position Classes */
+.mostage-header-top-left {
+  top: 0;
+  left: 0;
+}
+
+.mostage-header-top-center {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.mostage-header-top-right {
+  top: 0;
+  right: 0;
+}
+
+/* Footer Position Classes */
+.mostage-footer-bottom-left {
+  bottom: 0;
+  left: 0;
+}
+
+.mostage-footer-bottom-center {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.mostage-footer-bottom-right {
+  bottom: 0;
+  right: 0;
 }

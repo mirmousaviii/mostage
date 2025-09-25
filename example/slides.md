@@ -217,19 +217,19 @@ Here is example of **code**
 
 ## Tables
 
-| TODO                | Status |                         Notes                          |
-| ------------------- | :----: | :----------------------------------------------------: |
-| Markdown Parser     |   ✅   |   Core feature: Parses and renders Markdown content    |
-| Theme System        |   ✅   |         Supports light/dark and custom themes          |
-| Plugin System       |   ✅   |           Extend functionality with plugins            |
-| Keyboard Navigation |   ✅   |        Navigate slides with keyboard shortcuts         |
-| Overview            |   ✅   |      Slide overview/mini-map for quick navigation      |
-| Page Number         |   ✅   |      Shows current/total slide number via plugin       |
-| Header & Footer     |   ⬜   |   Planned: Customizable header and footer for slides   |
-| Print Friendly      |   ⬜   |   Planned: Styles and layout optimized for printing    |
-| Speaker Note        |   ⬜   |       Planned: Add private notes for presenters        |
-| Presenter Mode      |   ⬜   |  Planned: Dual-screen mode for presenter and audience  |
-| HTML Support        |   ✅   |       Allows raw HTML for advanced customization       |
+| TODO                | Status | Notes                                                  |
+| ------------------- | :----: | ------------------------------------------------------ |
+| Markdown Parser     |   ✅   | Core feature: Parses and renders Markdown content      |
+| Theme System        |   ✅   | Supports light/dark and custom themes                  |
+| Plugin System       |   ✅   | Extend functionality with plugins                      |
+| Keyboard Navigation |   ✅   | Navigate slides with keyboard shortcuts                |
+| Overview            |   ✅   | Slide overview/mini-map for quick navigation           |
+| Page Number         |   ✅   | Shows current/total slide number via plugin            |
+| Header & Footer     |   ⬜   | Planned: Customizable header and footer for slides     |
+| Print Friendly      |   ⬜   | Planned: Styles and layout optimized for printing      |
+| Speaker Note        |   ⬜   | Planned: Add private notes for presenters              |
+| Presenter Mode      |   ⬜   | Planned: Dual-screen mode for presenter and audience   |
+| HTML Support        |   ✅   | Allows raw HTML for advanced customization             |
 | Documentation       |   ⬜   | In progress: Comprehensive usage and API documentation |
 
 ---
@@ -302,6 +302,95 @@ Meter
 <div style="background-color: #45b7d1; padding: 1rem; border-radius: 8px">
   <p>This is a styled div with background color and padding.</p>
 </div>
+
+---
+
+## Base Configuration
+
+```javascript
+  // Basic Settings
+  element: "#app", // DOM element (default: document.body)
+  theme: "light", // light, dark, dracula, ocean, rainbow
+  scale: 1.0, // Slide scale factor
+  loop: false, // Loop after last slide
+  keyboard: true, // Enable keyboard navigation
+  touch: true, // Enable touch navigation
+  urlHash: false, // Enable URL hash navigation
+
+  // Transition Settings
+  transition: {
+    type: "horizontal", // horizontal, vertical, fade, slide
+    duration: 600, // Transition duration (ms)
+    easing: "ease-in-out", // Animation easing
+  },
+
+  // Content Centering
+  centerContent: {
+    vertical: true, // Vertical centering
+    horizontal: true, // Horizontal centering
+  },
+```
+
+---
+
+## Content Configuration
+
+```javascript
+  // Content Settings
+  content: undefined, // Direct content (string)
+  contentPath: undefined, // Content file path
+
+  // Header Configuration
+  header: {
+    content: undefined, // Header content
+    contentPath: undefined, // Header content file
+    position: "top-left", // top-left, top-center, top-right
+    showOnFirstSlide: true, // Show on first slide
+  },
+
+  // Footer Configuration
+  footer: {
+    content: undefined, // Footer content
+    contentPath: undefined, // Footer content file
+    position: "bottom-left", // bottom-left, bottom-center, bottom-right
+    showOnFirstSlide: true, // Show on first slide
+  },
+```
+
+---
+
+## Plugin Configuration
+
+```javascript
+  plugins: {
+    ProgressBar: {
+      enabled: true, // Enable/disable
+      position: "bottom", // top, bottom
+      color: "#007acc", // Progress bar color
+      height: "12px", // Progress bar height
+    },
+    SlideNumber: {
+      enabled: true, // Enable/disable
+      position: "bottom-right", // bottom-right, bottom-left, bottom-center
+      format: "current/total", // Display format
+    },
+    Controller: {
+      enabled: true, // Enable/disable
+      position: "bottom-center", // bottom-right, bottom-left, bottom-center
+    },
+    Confetti: {
+      enabled: true, // Enable/disable
+      particleCount: 50, // Number of particles
+      colors: [],
+      size: {
+        min: 5, // Minimum particle size
+        max: 15, // Maximum particle size
+      },
+      duration: 4000, // Animation duration (ms)
+      delay: 50, // Delay between particles (ms)
+    },
+  },
+```
 
 ---
 

@@ -20,15 +20,27 @@
         // scale: 1.2,
         // scale: 0.7,
         // centerContent: {
-        //   vertical: true,
-        //   horizontal: true,
+        //   vertical: false,
+        //   horizontal: false,
         // },
-        // transition: {
-        //   type: "horizontal",
-        //   duration: 600,
-        //   easing: "ease-in-out",
-        // },
+        transition: {
+          type: "horizontal",
+          duration: 600,
+          easing: "ease-in-out",
+        },
         // loop: false,
+        header: {
+          content: "# Mostage",
+          // contentPath: "./header.md",
+          position: "top-left",
+          // showOnFirstSlide: false,
+        },
+        footer: {
+          content: "#### Presentation Framework",
+          // contentPath: "./footer.md",
+          position: "bottom-left",
+          // showOnFirstSlide: true,
+        },
         plugins: {
           ProgressBar: {
             enabled: true,

@@ -25,6 +25,10 @@ export class ContentManager {
     return this.parseMarkdown(content);
   }
 
+  parseMarkdownToHtml(content: string): string {
+    return this.markdownParser.parse(content);
+  }
+
   private parseMarkdown(content: string): MoSlide[] {
     const slideContents = content
       .split(/^---\s*$/gm)

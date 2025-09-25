@@ -124,3 +124,18 @@
 .mostage-overview-slide.active {
   border-color: var(--mostage-primary-color);
 }
+
+/* Dark Theme Header and Footer */
+.mostage-container .mostage-header {
+  background: linear-gradient(
+    135deg,
+    var(--mostage-primary-color) 0%,
+    var(--mostage-secondary-color) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.mostage-container .mostage-footer {
+}

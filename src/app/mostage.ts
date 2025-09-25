@@ -139,7 +139,7 @@ export class Mostage {
       this.urlHashManager.setupUrlHashNavigation();
 
       // Render initial slide
-      this.renderSlides();
+      await this.renderSlides();
 
       // Go to initial slide (from URL hash if available)
       const initialSlide = this.urlHashManager.getInitialSlideFromUrl();
@@ -286,8 +286,18 @@ export class Mostage {
     }
   }
 
-  private renderSlides(): void {
+  private async renderSlides(): Promise<void> {
     this.container.innerHTML = "";
+
+    // Create header if configured
+    if (this.config.header) {
+      await this.renderHeader();
+    }
+
+    // Create footer if configured
+    if (this.config.footer) {
+      await this.renderFooter();
+    }
 
     const slidesContainer = document.createElement("div");
     slidesContainer.className = "mostage-slides";
@@ -327,6 +337,140 @@ export class Mostage {
     this.syntaxHighlighter.highlightAll(this.container);
   }
 
+  private async renderHeader(): Promise<void> {
+    if (!this.config.header) return;
+
+    const headerElement = document.createElement("div");
+    headerElement.className = "mostage-header";
+
+    // Add position class
+    const position = this.config.header.position || "top-center";
+    headerElement.classList.add(`mostage-header-${position.replace("-", "-")}`);
+
+    let content = "";
+    if (this.config.header.content) {
+      content = this.config.header.content;
+    } else if (this.config.header.contentPath) {
+      try {
+        content = await this.contentManager.loadContentFromSource(
+          this.config.header.contentPath
+        );
+      } catch (error) {
+        console.error("Failed to load header content:", error);
+        return;
+      }
+    }
+
+    if (content) {
+      // Parse markdown content if it's markdown
+      if (
+        content.includes("#") ||
+        content.includes("*") ||
+        content.includes("`")
+      ) {
+        const parsedContent = this.contentManager.parseMarkdownToHtml(content);
+        headerElement.innerHTML = parsedContent;
+      } else {
+        headerElement.innerHTML = content;
+      }
+    }
+
+    this.container.appendChild(headerElement);
+
+    // Hide header on first slide if showOnFirstSlide is false (default behavior)
+    if (
+      this.currentSlideIndex === 0 &&
+      this.config.header.showOnFirstSlide !== true
+    ) {
+      headerElement.style.display = "none";
+    }
+  }
+
+  private async renderFooter(): Promise<void> {
+    if (!this.config.footer) return;
+
+    const footerElement = document.createElement("div");
+    footerElement.className = "mostage-footer";
+
+    // Add position class
+    const position = this.config.footer.position || "bottom-left";
+    footerElement.classList.add(`mostage-footer-${position.replace("-", "-")}`);
+
+    let content = "";
+    if (this.config.footer.content) {
+      content = this.config.footer.content;
+    } else if (this.config.footer.contentPath) {
+      try {
+        content = await this.contentManager.loadContentFromSource(
+          this.config.footer.contentPath
+        );
+      } catch (error) {
+        console.error("Failed to load footer content:", error);
+        return;
+      }
+    }
+
+    if (content) {
+      // Parse markdown content if it's markdown
+      if (
+        content.includes("#") ||
+        content.includes("*") ||
+        content.includes("`")
+      ) {
+        const parsedContent = this.contentManager.parseMarkdownToHtml(content);
+        footerElement.innerHTML = parsedContent;
+      } else {
+        footerElement.innerHTML = content;
+      }
+    }
+
+    this.container.appendChild(footerElement);
+
+    // Hide footer on first slide if showOnFirstSlide is false (default behavior)
+    if (
+      this.currentSlideIndex === 0 &&
+      this.config.footer.showOnFirstSlide !== true
+    ) {
+      footerElement.style.display = "none";
+    }
+  }
+
+  private updateHeaderFooterVisibility(): void {
+    // Update header visibility
+    if (this.config.header) {
+      const headerElement = this.container.querySelector(
+        ".mostage-header"
+      ) as HTMLElement;
+      if (headerElement) {
+        if (
+          this.currentSlideIndex === 0 &&
+          this.config.header.showOnFirstSlide !== true
+        ) {
+          headerElement.style.display = "none";
+        } else {
+          headerElement.style.display = "block";
+        }
+      }
+    }
+
+    // Update footer visibility
+    if (this.config.footer) {
+      const footerElement = this.container.querySelector(
+        ".mostage-footer"
+      ) as HTMLElement;
+      if (footerElement) {
+        if (
+          this.currentSlideIndex === 0 &&
+          this.config.footer.showOnFirstSlide !== true
+        ) {
+          footerElement.style.display = "none";
+        } else {
+          footerElement.style.display = "block";
+        }
+      }
+    }
+  }
+
   nextSlide(): void {
     if (this.currentSlideIndex < this.slides.length - 1) {
       this.goToSlide(this.currentSlideIndex + 1);
@@ -360,6 +504,9 @@ export class Mostage {
 
     // Update center content
     this.centerContentManager.onSlideChange();
+
+    // Update header and footer visibility
+    this.updateHeaderFooterVisibility();
 
     // Update navigation manager
     this.navigationManager.setCurrentSlideIndex(index);
