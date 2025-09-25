@@ -58,8 +58,8 @@ export interface MoConfig {
   element?: string | HTMLElement;
   theme?: string;
   // Content loading configuration
-  contentSource?: string; // File path or URL for content
-  contentData?: string; // Inline content data
+  contentPath?: string; // File path or URL for content
+  content?: string; // Inline content data
   scale?: number;
   transition?: TransitionConfig;
   loop?: boolean;

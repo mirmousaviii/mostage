@@ -106,15 +106,15 @@ export class Mostage {
       // Load content
       let content: string;
 
-      if (this.config.contentData) {
-        content = this.config.contentData;
-      } else if (this.config.contentSource) {
+      if (this.config.content) {
+        content = this.config.content;
+      } else if (this.config.contentPath) {
         content = await this.contentManager.loadContentFromSource(
-          this.config.contentSource
+          this.config.contentPath
         );
       } else {
         throw new Error(
-          "No content provided. Please specify contentData or contentSource."
+          "No content provided. Please specify content or contentPath."
         );
       }
 

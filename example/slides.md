@@ -1,13 +1,13 @@
 # Mostage
 
-<h3>
+## Generate web slides by Markdown
+
+<h4>
   <span style="color: var(--mostage-primary-color)">Mo</span
   ><span style="color: var(--mostage-border-color)">dern</span
   ><span style="color: var(--mostage-primary-color)">stage</span>
-  is a presentation framework
-</h3>
-
-#### Generate web slides by Markdown
+  as a Presentation Framework
+</h4>
 
 ---
 
