@@ -114,8 +114,9 @@ class CustomPlugin {
 - `Arrow Left`: Previous slide
 - `Home`: First slide
 - `End`: Last slide
-- `o` / `Escape`: Toggle overview mode
+- `O` / `Escape`: Toggle overview mode
 - `Swipe`: Navigate on mobile
+- `H` / `?`: Toggle help window
 
 ---
 
