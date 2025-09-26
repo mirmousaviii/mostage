@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mostage - Configuration Example</title>
+    <title>Mostage - Presentation framework based on markdown</title>
   </head>
   <body>
     <div id="app"></div>
@@ -11,116 +11,8 @@
     <script type="module">
       import Mostage from "../src/index.ts";
 
-      const mostage = new Mostage({
-        element: "#app",
-        theme: "dark",
-        // content: "# Internal content",
-        contentPath: "./slides.md",
-        urlHash: true,
-        // scale: 1.2,
-        // scale: 0.7,
-        // centerContent: {
-        //   vertical: false,
-        //   horizontal: false,
-        // },
-        transition: {
-          type: "horizontal",
-          duration: 600,
-          easing: "ease-in-out",
-        },
-        // loop: false,
-        header: {
-          content: "# Mostage",
-          // contentPath: "./header.md",
-          position: "top-left",
-          // showOnFirstSlide: false,
-        },
-        footer: {
-          content: "#### Presentation Framework",
-          // contentPath: "./footer.md",
-          position: "bottom-left",
-          // showOnFirstSlide: true,
-        },
-        // background: {
-        //   imagePath: "./background.jpg",
-        //   size: "cover",
-        //   position: "center",
-        //   repeat: "no-repeat",
-        //   bgColor: "#000000",
-        //   // global: true,
-        //   // allSlides: [1, 23],
-        //   allSlidesExcept: [1, 23],
-        // },
-        background: [
-          {
-            imagePath: "./background/background-left.jpg",
-            size: "cover",
-            position: "left",
-            repeat: "no-repeat",
-            bgColor: "#000000",
-            // global: true,
-            allSlides: [1],
-            // allSlidesExcept: [1, 23],
-          },
-          {
-            imagePath: "./background/background-line.svg",
-            size: "contain",
-            position: "bottom",
-            repeat: "no-repeat",
-            bgColor: "#000000",
-            // global: true,
-            // allSlides: [22,23],
-            allSlidesExcept: [1, 23],
-          },
-          {
-            imagePath: "./background/background-animation.svg",
-            size: "cover",
-            position: "center",
-            repeat: "no-repeat",
-            bgColor: "#000000",
-            // global: true,
-            allSlides: [23],
-            // allSlidesExcept: [1, 23],
-          },
-        ],
-        plugins: {
-          ProgressBar: {
-            enabled: true,
-            // position: "bottom",
-            // color: "#007acc",
-            // height: "12px",
-          },
-          SlideNumber: {
-            enabled: true,
-            // position: "bottom-right",
-            // format: "current/total",
-          },
-          Controller: {
-            enabled: true,
-            // position: "bottom-center",
-          },
-          Confetti: {
-            enabled: true,
-            // particleCount: 50,
-            // colors: [
-            //   "#ff6b6b",
-            //   "#4ecdc4",
-            //   "#45b7d1",
-            //   "#96ceb4",
-            //   "#feca57",
-            //   "#ff9ff3",
-            //   "#54a0ff",
-            // ],
-            // size: {
-            //   min: 5,
-            //   max: 15,
-            // },
-            // duration: 4000,
-            // delay: 50,
-          },
-        },
-      });
-
+      // Load configuration from JSON file
+      const mostage = new Mostage("./config.json");
       mostage.start();
     </script>
   </body>

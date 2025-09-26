@@ -1,7 +1,7 @@
 {
   "name": "mostage",
   "version": "1.0.2",
-  "description": "Presentation framework based on markdown",
+  "description": "Presentation framework based on markdown (with HTML support)",
   "keywords": [
     "slides",
     "presentation",

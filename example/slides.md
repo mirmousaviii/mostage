@@ -372,6 +372,27 @@ HTML Form
 
 ---
 
+## JSON Configuration
+
+You can also load your configuration from a separate JSON file:
+
+```javascript
+// Method 1: Load configuration from JSON file
+const mostage = new Mostage("./config.json");
+
+// Method 2: Inline configuration
+const mostage = new Mostage({
+  element: "#app",
+  theme: "dark",
+  contentPath: "./slides.md",
+  plugins: {
+    ProgressBar: { enabled: true },
+  },
+});
+```
+
+---
+
 ## Happy presenting with Mostage!
 
 ##### Focus on content with advance features

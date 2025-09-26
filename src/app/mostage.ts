@@ -34,26 +34,50 @@ export class Mostage {
   private urlHashManager: UrlHashManager;
   private eventListeners: Map<string, Function[]> = new Map();
 
-  constructor(config: MoConfig) {
-    this.config = {
-      theme: "light",
-      transition: {
-        type: "horizontal",
-        duration: 600,
-        easing: "ease-in-out",
-      },
-      scale: 1.0,
-      loop: false,
-      plugins: {},
-      keyboard: true,
-      touch: true,
-      urlHash: false,
-      centerContent: {
-        vertical: true,
-        horizontal: true,
-      },
-      ...config,
-    };
+  constructor(config: MoConfig | string) {
+    // Handle string input (JSON file path)
+    if (typeof config === "string") {
+      this.config = {
+        theme: "light",
+        transition: {
+          type: "horizontal",
+          duration: 600,
+          easing: "ease-in-out",
+        },
+        scale: 1.0,
+        loop: false,
+        plugins: {},
+        keyboard: true,
+        touch: true,
+        urlHash: false,
+        centerContent: {
+          vertical: true,
+          horizontal: true,
+        },
+        configPath: config,
+      };
+    } else {
+      // Handle object input (inline config)
+      this.config = {
+        theme: "light",
+        transition: {
+          type: "horizontal",
+          duration: 600,
+          easing: "ease-in-out",
+        },
+        scale: 1.0,
+        loop: false,
+        plugins: {},
+        keyboard: true,
+        touch: true,
+        urlHash: false,
+        centerContent: {
+          vertical: true,
+          horizontal: true,
+        },
+        ...config,
+      };
+    }
 
     // Handle legacy transition format
     if (typeof this.config.transition === "string") {
@@ -96,8 +120,47 @@ export class Mostage {
     );
   }
 
+  /**
+   * Load configuration from a JSON file and merge it with existing config
+   * @param configPath Path to the JSON configuration file
+   */
+  private async loadConfigFromFile(configPath: string): Promise<void> {
+    try {
+      const response = await fetch(configPath);
+      if (!response.ok) {
+        throw new Error(
+          `Failed to load config file: ${response.status} ${response.statusText}`
+        );
+      }
+      const jsonConfig: MoConfig = await response.json();
+
+      // Merge the loaded config with existing config
+      this.config = {
+        ...this.config,
+        ...jsonConfig,
+      };
+
+      // Handle legacy transition format
+      if (typeof this.config.transition === "string") {
+        this.config.transition = {
+          type: this.config.transition as any,
+          duration: 600,
+          easing: "ease-in-out",
+        };
+      }
+    } catch (error) {
+      console.error("Failed to load configuration from file:", error);
+      throw error;
+    }
+  }
+
   async start(): Promise<void> {
     try {
+      // Load configuration from JSON file if configPath is provided
+      if (this.config.configPath) {
+        await this.loadConfigFromFile(this.config.configPath);
+      }
+
       // Load theme
       if (this.config.theme) {
         await loadTheme(this.config.theme);

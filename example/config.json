@@ -1,0 +1,59 @@
+{
+  "element": "#app",
+  "theme": "dark",
+  "contentPath": "./slides.md",
+  "urlHash": true,
+  "transition": {
+    "type": "horizontal",
+    "duration": 600,
+    "easing": "ease-in-out"
+  },
+  "header": {
+    "content": "# Mostage",
+    "position": "top-left"
+  },
+  "footer": {
+    "content": "#### Presentation Framework",
+    "position": "bottom-left"
+  },
+  "background": [
+    {
+      "imagePath": "./background/background-left.jpg",
+      "size": "cover",
+      "position": "left",
+      "repeat": "no-repeat",
+      "bgColor": "#000000",
+      "allSlides": [1]
+    },
+    {
+      "imagePath": "./background/background-line.svg",
+      "size": "contain",
+      "position": "bottom",
+      "repeat": "no-repeat",
+      "bgColor": "#000000",
+      "allSlidesExcept": [1, 23]
+    },
+    {
+      "imagePath": "./background/background-animation.svg",
+      "size": "cover",
+      "position": "center",
+      "repeat": "no-repeat",
+      "bgColor": "#000000",
+      "allSlides": [23]
+    }
+  ],
+  "plugins": {
+    "ProgressBar": {
+      "enabled": true
+    },
+    "SlideNumber": {
+      "enabled": true
+    },
+    "Controller": {
+      "enabled": true
+    },
+    "Confetti": {
+      "enabled": true
+    }
+  }
+}
