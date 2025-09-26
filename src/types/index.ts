@@ -55,6 +55,28 @@ export interface FooterConfig {
   showOnFirstSlide?: boolean;
 }
 
+export interface BackgroundConfig {
+  imagePath?: string;
+  size?: "cover" | "contain" | "auto" | string;
+  position?: "center" | "top" | "bottom" | "left" | "right" | string;
+  repeat?: "no-repeat" | "repeat" | "repeat-x" | "repeat-y";
+  bgColor?: string;
+  global?: boolean;
+  allSlides?: number[];
+  allSlidesExcept?: number[];
+}
+
+export interface BackgroundItem {
+  imagePath?: string;
+  size?: "cover" | "contain" | "auto" | string;
+  position?: "center" | "top" | "bottom" | "left" | "right" | string;
+  repeat?: "no-repeat" | "repeat" | "repeat-x" | "repeat-y";
+  bgColor?: string;
+  global?: boolean;
+  allSlides?: number[];
+  allSlidesExcept?: number[];
+}
+
 export interface PluginsConfig {
   ProgressBar?: ProgressBarConfig;
   SlideNumber?: SlideNumberConfig;
@@ -84,6 +106,7 @@ export interface MoConfig {
   centerContent?: CenterContentConfig; // Built-in content centering
   header?: HeaderConfig; // Header configuration
   footer?: FooterConfig; // Footer configuration
+  background?: BackgroundConfig | BackgroundItem[]; // Background configuration (single or array)
 }
 
 export interface MoSlide {

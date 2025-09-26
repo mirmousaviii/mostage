@@ -46,6 +46,17 @@ body {
   display: block;
 }
 
+/* Background Image Support */
+.mostage-slide[style*="background-image"] {
+  background-attachment: fixed;
+}
+
+/* Ensure content is visible over background images */
+.mostage-slide-content {
+  position: relative;
+  z-index: 1;
+}
+
 /* Header and Footer Styles */
 .mostage-header {
   position: fixed;

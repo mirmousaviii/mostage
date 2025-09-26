@@ -1,4 +1,5 @@
 /* Dark Theme - Mostage */
+
 :root {
   --mostage-bg-color: #0f0f23;
   --mostage-text-color: #e2e8f0;
@@ -123,6 +124,16 @@
 
 .mostage-overview-slide.active {
   border-color: var(--mostage-primary-color);
+}
+
+/* Table background for dark theme */
+.mostage-slide table {
+  color: var(--mostage-text-color);
+}
+
+.mostage-slide th,
+.mostage-slide td {
+  border: 1px solid var(--mostage-border-color);
 }
 
 /* Dark Theme Header and Footer */

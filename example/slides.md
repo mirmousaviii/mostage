@@ -236,43 +236,20 @@ Here is example of **code**
 
 <h2>HTML Features</h2>
 
-<form>
-  Form Fields
+HTML Form
 
-<input
-      type="text"
-      id="name"
-      name="name"
-      placeholder="Enter your name"
-    />
-
-<input
-      type="email"
-      id="email"
-      name="email"
-      placeholder="Enter your email"
-    />
-
-<textarea
-  id="message"
-  name="message"
-  rows="4"
-  cols="40"
-  placeholder="Enter your message"></textarea>
-
+<div style="display: flex; align-items: center; gap: 0.3em;">
+  <input id="myInput" style="padding: 0.2em 0.5em; border: 1px solid #bbb; border-radius: 3px; font-size: 0.95em; height: 2em;">
+  <button 
+    style="padding: 0.2em 0.8em; background: #4ecdc4; color: #fff; border: none; border-radius: 3px; font-size: 0.95em; height: 2em; cursor: pointer;"
+    onclick="document.getElementById('message').innerText = 'You entered: ' + document.getElementById('myInput').value;"
+  >
+    Test
+  </button>
+</div>
 <br/>
-  <input type="submit" value="Submit" />
-
-<br/>
-<br/>
-
-Progress Bar
-<progress value="75" max="100">75%</progress>
-
-Meter
-<meter value="6" min="0" max="10">6 out of 10</meter>
-
-</form>
+<div id="message">
+</div>
 
 ---
 

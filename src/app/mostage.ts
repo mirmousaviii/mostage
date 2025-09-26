@@ -307,6 +307,9 @@ export class Mostage {
       slideElement.className = "mostage-slide";
       slideElement.id = slide.id;
 
+      // Apply background if configured
+      this.applyBackgroundToSlide(slideElement, index);
+
       // Create content wrapper for scaling
       const contentWrapper = document.createElement("div");
       contentWrapper.className = "mostage-slide-content";
@@ -335,6 +338,65 @@ export class Mostage {
 
     // Apply syntax highlighting to all slides after rendering
     this.syntaxHighlighter.highlightAll(this.container);
+  }
+
+  private applyBackgroundToSlide(
+    slideElement: HTMLElement,
+    slideIndex: number
+  ): void {
+    if (!this.config.background) return;
+
+    const slideNumber = slideIndex + 1; // Convert 0-based index to 1-based slide number
+
+    // Handle both single background and array of backgrounds
+    const backgrounds = Array.isArray(this.config.background)
+      ? this.config.background
+      : [this.config.background];
+
+    // Apply all matching backgrounds
+    backgrounds.forEach((bg) => {
+      if (this.shouldApplyBackground(bg, slideNumber)) {
+        this.applyBackgroundStyles(slideElement, bg);
+      }
+    });
+  }
+
+  private shouldApplyBackground(bg: any, slideNumber: number): boolean {
+    // Check global
+    if (bg.global === true) {
+      return true;
+    }
+
+    // Check allSlides (specific slides)
+    if (bg.allSlides && bg.allSlides.length > 0) {
+      if (bg.allSlides.includes(slideNumber)) {
+        return true;
+      }
+    }
+
+    // Check allSlidesExcept (works independently of global)
+    if (bg.allSlidesExcept && bg.allSlidesExcept.length > 0) {
+      if (!bg.allSlidesExcept.includes(slideNumber)) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  private applyBackgroundStyles(slideElement: HTMLElement, bg: any): void {
+    // Apply background color if specified
+    if (bg.bgColor) {
+      slideElement.style.backgroundColor = bg.bgColor;
+    }
+
+    // Apply background image if specified
+    if (bg.imagePath) {
+      slideElement.style.backgroundImage = `url("${bg.imagePath}")`;
+      slideElement.style.backgroundSize = bg.size || "cover";
+      slideElement.style.backgroundPosition = bg.position || "center";
+      slideElement.style.backgroundRepeat = bg.repeat || "no-repeat";
+    }
   }
 
   private async renderHeader(): Promise<void> {
