@@ -1,7 +1,25 @@
 {
   "name": "mostage",
-  "version": "1.0.0",
-  "description": "A modern, plugin-based, themeable markdown slide presentation framework",
+  "version": "1.0.1",
+  "description": "Presentation framework based on markdown",
+  "keywords": [
+    "slides",
+    "presentation",
+    "markdown",
+    "web-based",
+    "typescript",
+    "framework"
+  ],
+  "author": "mo.js.org",
+  "license": "MIT",
+  "homepage": "https://mo.js.org",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mirmousaviii/mostage.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mirmousaviii/mostage/issues"
+  },
   "main": "dist/index.cjs",
   "module": "dist/index.js",
   "types": "dist/types/index.d.ts",
@@ -23,25 +41,6 @@
     "lint": "eslint src --ext ts,tsx",
     "format": "prettier --write src/**/*.{ts,tsx,css}",
     "clean": "rm -rf dist"
-  },
-  "keywords": [
-    "slides",
-    "presentation",
-    "markdown",
-    "web-based",
-    "typescript",
-    "reveal",
-    "framework"
-  ],
-  "author": "mo.js.org",
-  "license": "MIT",
-  "homepage": "https://mo.js.org",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/mirmousaviii/mostage.git"
-  },
-  "bugs": {
-    "url": "https://github.com/mirmousaviii/mostage/issues"
   },
   "devDependencies": {
     "@types/node": "^24.3.0",
