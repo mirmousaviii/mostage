@@ -19,7 +19,7 @@ program
 program
   .command("init")
   .description("Create a new Mostage project")
-  .option("-t, --template <template>", "Template to use (basic, demo)", "basic")
+  .option("-t, --template <template>", "Template to use (basic, demo)")
   .option("-c, --content-path <path>", "Path to content file")
   .option("--config-path <path>", "Path to config file")
   .action(initCommand);

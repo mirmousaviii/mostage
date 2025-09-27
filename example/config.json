@@ -44,16 +44,28 @@
   ],
   "plugins": {
     "ProgressBar": {
-      "enabled": true
+      "enabled": true,
+      "position": "bottom",
+      "height": "12px"
     },
     "SlideNumber": {
-      "enabled": true
+      "enabled": true,
+      "position": "bottom-right",
+      "format": "current/total"
     },
     "Controller": {
-      "enabled": true
+      "enabled": true,
+      "position": "bottom-center"
     },
     "Confetti": {
-      "enabled": true
+      "enabled": true,
+      "particleCount": 50,
+      "size": {
+        "min": 5,
+        "max": 15
+      },
+      "duration": 4000,
+      "delay": 50
     }
   }
 }
