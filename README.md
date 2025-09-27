@@ -4,7 +4,7 @@
 
 Presentation framework based on **Markdown** (with HTML support) to web-based slide.
 
-## [Demo](https://mo.js.org) | [Documentation](./docs/README.md) | [Configuration Example](./config-complete.json)
+## [Demo](https://mo.js.org)
 
 ## Key Features
 
@@ -45,16 +45,16 @@ mostage dev
 
 You can use these commands with `npx mostage <command>`:
 
-| Command          | Description              |
-| ---------------- | ------------------------ |
-| `mostage init`   | Create a new project     |
-| `mostage dev`    | Start development server |
-| `mostage build`  | Build for production     |
-| `mostage theme`  | Manage themes            |
-| `mostage plugin` | Manage plugins           |
-| `mostage help`   | Show help                |
+| Command          | Description                               | Options                       |
+| ---------------- | ----------------------------------------- | ----------------------------- |
+| `mostage init`   | Create a new presentation project         | `--template`, `--content`     |
+| `mostage dev`    | Start development server with live reload | `--port`, `--host`            |
+| `mostage build`  | Build presentation for production         | `--output`, `--minify`        |
+| `mostage theme`  | Manage themes (list, add, remove)         | `--list`, `--add`, `--remove` |
+| `mostage plugin` | Manage plugins (list, add, remove)        | `--list`, `--add`, `--remove` |
+| `mostage help`   | Show help and command information         |                               |
 
-For detailed CLI documentation, see [CLI Reference](./docs/README.md#cli-usage).
+For detailed CLI documentation, see the CLI Commands section above.
 
 ### Option 2: NPM Package Installation
 
@@ -255,8 +255,7 @@ Mostage is highly configurable through the `config.json` file. Here are the main
     },
     "Confetti": {
       "enabled": true,
-      "particleCount": 50,
-      "colors": ["#ff6b6b", "#4ecdc4", "#45b7d1"]
+      "particleCount": 50
     }
   }
 }
@@ -277,12 +276,583 @@ Mostage is highly configurable through the `config.json` file. Here are the main
 - **Controller** - Navigation controls
 - **Confetti** - Celebration animations
 
-## Documentation
+### Complete Configuration Example
 
-- **[Complete Documentation](./docs/README.md)** - Full documentation
-- **[Configuration Reference](./docs/configuration.md)** - All configuration options
-- **[API Reference](./docs/api.md)** - Complete API documentation
-- **[Examples](./docs/examples.md)** - Various usage examples
+Here's a complete configuration example with all available options:
+
+```json
+{
+  "element": "#app",
+  "theme": "dark",
+  "contentPath": "./slides.md",
+  "content": "# Alternative inline content",
+  "scale": 1.2,
+  "transition": {
+    "type": "horizontal",
+    "duration": 600,
+    "easing": "ease-in-out"
+  },
+  "loop": true,
+  "keyboard": true,
+  "touch": true,
+  "urlHash": true,
+  "centerContent": {
+    "vertical": true,
+    "horizontal": true
+  },
+  "header": {
+    "content": "# Mostage Presentation",
+    "contentPath": "./header.md",
+    "position": "top-left",
+    "showOnFirstSlide": false
+  },
+  "footer": {
+    "content": "#### Presentation Framework",
+    "contentPath": "./footer.md",
+    "position": "bottom-left",
+    "showOnFirstSlide": true
+  },
+  "background": [
+    {
+      "imagePath": "./background/background-left.jpg",
+      "size": "cover",
+      "position": "left",
+      "repeat": "no-repeat",
+      "bgColor": "#000000",
+      "global": false,
+      "allSlides": [1],
+      "allSlidesExcept": []
+    },
+    {
+      "imagePath": "./background/background-line.svg",
+      "size": "contain",
+      "position": "bottom",
+      "repeat": "no-repeat",
+      "bgColor": "#000000",
+      "global": false,
+      "allSlides": [],
+      "allSlidesExcept": [1, 23]
+    },
+    {
+      "imagePath": "./background/background-animation.svg",
+      "size": "cover",
+      "position": "center",
+      "repeat": "no-repeat",
+      "bgColor": "#000000",
+      "global": false,
+      "allSlides": [23],
+      "allSlidesExcept": []
+    }
+  ],
+  "plugins": {
+    "ProgressBar": {
+      "enabled": true,
+      "position": "top",
+      "color": "#007acc",
+      "height": "12px"
+    },
+    "SlideNumber": {
+      "enabled": true,
+      "position": "bottom-right",
+      "format": "current/total"
+    },
+    "Controller": {
+      "enabled": true,
+      "position": "bottom-center"
+    },
+    "Confetti": {
+      "enabled": true,
+      "particleCount": 50,
+      "colors": [
+        "#ff6b6b",
+        "#4ecdc4",
+        "#45b7d1",
+        "#96ceb4",
+        "#feca57",
+        "#ff9ff3",
+        "#54a0ff"
+      ],
+      "size": {
+        "min": 5,
+        "max": 15
+      },
+      "duration": 4000,
+      "delay": 50
+    }
+  }
+}
+```
+
+## API Reference
+
+### Constructor
+
+#### `new Mostage(config)`
+
+Creates a new Mostage instance.
+
+**Parameters:**
+
+- `config` (string | object): Configuration object or path to JSON config file
+
+**Examples:**
+
+```javascript
+// JSON file configuration
+const mostage = new Mostage("./config.json");
+
+// Inline configuration
+const mostage = new Mostage({
+  element: "#app",
+  theme: "dark",
+  contentPath: "./slides.md",
+});
+```
+
+### Methods
+
+#### `start()`
+
+Initializes and starts the presentation.
+
+**Returns:** `Promise<void>`
+
+**Example:**
+
+```javascript
+const mostage = new Mostage("./config.json");
+await mostage.start();
+```
+
+#### `nextSlide()`
+
+Goes to the next slide.
+
+**Example:**
+
+```javascript
+mostage.nextSlide();
+```
+
+#### `previousSlide()`
+
+Goes to the previous slide.
+
+**Example:**
+
+```javascript
+mostage.previousSlide();
+```
+
+#### `goToSlide(index)`
+
+Goes to a specific slide.
+
+**Parameters:**
+
+- `index` (number): Slide index (0-based)
+
+**Example:**
+
+```javascript
+mostage.goToSlide(5); // Go to slide 6
+```
+
+#### `toggleOverview()`
+
+Toggles overview mode.
+
+**Example:**
+
+```javascript
+mostage.toggleOverview();
+```
+
+#### `destroy()`
+
+Destroys the presentation and cleans up resources.
+
+**Example:**
+
+```javascript
+mostage.destroy();
+```
+
+### Getters
+
+#### `getCurrentSlide()`
+
+Gets the current slide index.
+
+**Returns:** `number`
+
+**Example:**
+
+```javascript
+const currentSlide = mostage.getCurrentSlide();
+console.log(`Current slide: ${currentSlide + 1}`);
+```
+
+#### `getTotalSlides()`
+
+Gets the total number of slides.
+
+**Returns:** `number`
+
+**Example:**
+
+```javascript
+const totalSlides = mostage.getTotalSlides();
+console.log(`Total slides: ${totalSlides}`);
+```
+
+#### `getSlides()`
+
+Gets all slides data.
+
+**Returns:** `MoSlide[]`
+
+**Example:**
+
+```javascript
+const slides = mostage.getSlides();
+console.log(`First slide content: ${slides[0].content}`);
+```
+
+#### `getContainer()`
+
+Gets the container element.
+
+**Returns:** `HTMLElement`
+
+**Example:**
+
+```javascript
+const container = mostage.getContainer();
+container.style.border = "1px solid red";
+```
+
+### Events
+
+#### `on(event, callback)`
+
+Registers an event listener.
+
+**Parameters:**
+
+- `event` (string): Event name
+- `callback` (function): Event callback function
+
+**Available Events:**
+
+- `ready`: Fired when presentation is ready
+- `slidechange`: Fired when slide changes
+
+**Example:**
+
+```javascript
+mostage.on("ready", (data) => {
+  console.log("Presentation ready!");
+  console.log(`Total slides: ${data.totalSlides}`);
+});
+
+mostage.on("slidechange", (data) => {
+  console.log(`Slide changed to: ${data.currentSlide + 1}`);
+  console.log(`Current slide: ${data.slide.title}`);
+});
+```
+
+### Keyboard Shortcuts
+
+| Key            | Action             |
+| -------------- | ------------------ |
+| `→` or `Space` | Next slide         |
+| `←`            | Previous slide     |
+| `Home`         | First slide        |
+| `End`          | Last slide         |
+| `O`            | Toggle overview    |
+| `H` or `?`     | Toggle help        |
+| `Esc`          | Exit overview/help |
+
+### Touch Gestures
+
+| Gesture     | Action          |
+| ----------- | --------------- |
+| Swipe left  | Next slide      |
+| Swipe right | Previous slide  |
+| Pinch       | Toggle overview |
+
+### URL Hash Navigation
+
+When `urlHash: true` is enabled:
+
+- `#1` - Go to slide 1
+- `#5` - Go to slide 5
+- URL updates automatically when navigating
+
+## Examples
+
+### Basic Examples
+
+#### Simple Presentation
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Presentation</title>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script type="module">
+      import Mostage from "mostage";
+
+      const mostage = new Mostage({
+        element: "#app",
+        theme: "light",
+        contentPath: "./slides.md",
+      });
+
+      mostage.start();
+    </script>
+  </body>
+</html>
+```
+
+#### JSON Configuration
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Presentation</title>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script type="module">
+      import Mostage from "mostage";
+
+      const mostage = new Mostage("./config.json");
+      mostage.start();
+    </script>
+  </body>
+</html>
+```
+
+### Advanced Examples
+
+#### Custom Theme and Transitions
+
+```javascript
+const mostage = new Mostage({
+  element: "#app",
+  theme: "dark",
+  contentPath: "./slides.md",
+  scale: 0.8,
+  transition: {
+    type: "fade",
+    duration: 800,
+    easing: "ease-in-out",
+  },
+  loop: true,
+});
+```
+
+#### Header and Footer
+
+```javascript
+const mostage = new Mostage({
+  element: "#app",
+  theme: "light",
+  contentPath: "./slides.md",
+  header: {
+    content: "# My Company",
+    position: "top-left",
+    showOnFirstSlide: false,
+  },
+  footer: {
+    content: "#### 2025 Conference",
+    position: "bottom-left",
+    showOnFirstSlide: true,
+  },
+});
+```
+
+#### Background Images
+
+```javascript
+const mostage = new Mostage({
+  element: "#app",
+  theme: "dark",
+  contentPath: "./slides.md",
+  background: [
+    {
+      imagePath: "./background/hero.jpg",
+      size: "cover",
+      position: "center",
+      repeat: "no-repeat",
+      bgColor: "#000000",
+      allSlides: [1], // Only first slide
+    },
+    {
+      imagePath: "./background/pattern.svg",
+      size: "contain",
+      position: "bottom",
+      repeat: "no-repeat",
+      bgColor: "#f0f0f0",
+      allSlidesExcept: [1], // All except first slide
+    },
+  ],
+});
+```
+
+#### All Plugins Enabled
+
+```javascript
+const mostage = new Mostage({
+  element: "#app",
+  theme: "dark",
+  contentPath: "./slides.md",
+  plugins: {
+    ProgressBar: {
+      enabled: true,
+      position: "top",
+      color: "#ff6b6b",
+      height: "8px",
+    },
+    SlideNumber: {
+      enabled: true,
+      position: "bottom-right",
+      format: "Slide {current} of {total}",
+    },
+    Controller: {
+      enabled: true,
+      position: "bottom-center",
+    },
+    Confetti: {
+      enabled: true,
+      particleCount: 100,
+      colors: ["#ff6b6b", "#4ecdc4", "#45b7d1"],
+      size: { min: 3, max: 12 },
+      duration: 3000,
+      delay: 30,
+    },
+  },
+});
+```
+
+### Event Handling Examples
+
+#### Basic Event Handling
+
+```javascript
+const mostage = new Mostage("./config.json");
+
+// Listen for ready event
+mostage.on("ready", (data) => {
+  console.log(`Presentation ready with ${data.totalSlides} slides`);
+});
+
+// Listen for slide changes
+mostage.on("slidechange", (data) => {
+  console.log(`Now on slide ${data.currentSlide + 1}`);
+
+  // Update external elements
+  document.getElementById("slide-title").textContent = data.slide.title;
+});
+
+mostage.start();
+```
+
+#### Custom Navigation Controls
+
+```html
+<div id="app"></div>
+<div id="controls">
+  <button id="prev">Previous</button>
+  <button id="next">Next</button>
+  <button id="overview">Overview</button>
+</div>
+
+<script type="module">
+  import Mostage from "mostage";
+
+  const mostage = new Mostage("./config.json");
+
+  // Custom controls
+  document.getElementById("prev").addEventListener("click", () => {
+    mostage.previousSlide();
+  });
+
+  document.getElementById("next").addEventListener("click", () => {
+    mostage.nextSlide();
+  });
+
+  document.getElementById("overview").addEventListener("click", () => {
+    mostage.toggleOverview();
+  });
+
+  mostage.start();
+</script>
+```
+
+### Plugin Development
+
+#### Plugin Interface
+
+```javascript
+class MyPlugin {
+  name = "MyPlugin";
+
+  init(mostage, config) {
+    // Initialize plugin
+  }
+
+  destroy() {
+    // Cleanup plugin
+  }
+
+  setEnabled(enabled) {
+    // Enable/disable plugin
+  }
+}
+```
+
+### Integration Examples
+
+#### React Integration
+
+```jsx
+import React, { useEffect, useRef } from "react";
+import Mostage from "mostage";
+
+function Presentation() {
+  const containerRef = useRef(null);
+  const mostageRef = useRef(null);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      mostageRef.current = new Mostage({
+        element: containerRef.current,
+        theme: "dark",
+        contentPath: "./slides.md",
+      });
+
+      mostageRef.current.start();
+    }
+
+    return () => {
+      if (mostageRef.current) {
+        mostageRef.current.destroy();
+      }
+    };
+  }, []);
+
+  return <div ref={containerRef} />;
+}
+```
 
 ## License
 
