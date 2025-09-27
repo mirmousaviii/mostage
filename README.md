@@ -4,7 +4,7 @@
 
 Presentation framework based on **Markdown** (with HTML support) to web-based slide.
 
-## [Demo](https://mo.js.org)
+### [Demo](https://mo.js.org) | [Quick Start](#quick-start) | [Configuration](#configuration) | [API Reference](#api-reference) | [Usage Examples](#usage-example)
 
 ## Key Features
 
@@ -147,11 +147,11 @@ This is the second slide.
 }
 ```
 
-## Framework Integration
+### Option 4: Framework Integration
 
 Mostage works with popular frameworks and build tools:
 
-### React
+#### React
 
 ```jsx
 import React, { useEffect, useRef } from "react";
@@ -172,6 +172,38 @@ function Presentation() {
   }, []);
 
   return <div ref={containerRef} />;
+}
+```
+
+#### Angular
+
+```typescript
+import { Component, ElementRef, OnInit, OnDestroy } from "@angular/core";
+import Mostage from "mostage";
+
+@Component({
+  selector: "app-presentation",
+  template: "<div></div>",
+})
+export class PresentationComponent implements OnInit, OnDestroy {
+  private mostage: any;
+
+  constructor(private elementRef: ElementRef) {}
+
+  ngOnInit() {
+    this.mostage = new Mostage({
+      element: this.elementRef.nativeElement,
+      theme: "dark",
+      contentPath: "./slides.md",
+    });
+    this.mostage.start();
+  }
+
+  ngOnDestroy() {
+    if (this.mostage) {
+      this.mostage.destroy();
+    }
+  }
 }
 ```
 
@@ -590,7 +622,7 @@ When `urlHash: true` is enabled:
 - `#5` - Go to slide 5
 - URL updates automatically when navigating
 
-## Examples
+## Usage Example
 
 ### Basic Examples
 
@@ -817,40 +849,6 @@ class MyPlugin {
   setEnabled(enabled) {
     // Enable/disable plugin
   }
-}
-```
-
-### Integration Examples
-
-#### React Integration
-
-```jsx
-import React, { useEffect, useRef } from "react";
-import Mostage from "mostage";
-
-function Presentation() {
-  const containerRef = useRef(null);
-  const mostageRef = useRef(null);
-
-  useEffect(() => {
-    if (containerRef.current) {
-      mostageRef.current = new Mostage({
-        element: containerRef.current,
-        theme: "dark",
-        contentPath: "./slides.md",
-      });
-
-      mostageRef.current.start();
-    }
-
-    return () => {
-      if (mostageRef.current) {
-        mostageRef.current.destroy();
-      }
-    };
-  }, []);
-
-  return <div ref={containerRef} />;
 }
 ```
 
