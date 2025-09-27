@@ -4,6 +4,7 @@ Complete documentation for Mostage presentation framework.
 
 ## Table of Contents
 
+- [CLI Usage](#cli-usage)
 - [Configuration Reference](./configuration.md)
 - [Complete Configuration Example](./config-complete.json)
 - [API Reference](./api.md)
@@ -30,6 +31,140 @@ const mostage = new Mostage({
   },
 });
 mostage.start();
+```
+
+## CLI Usage
+
+Mostage provides a powerful CLI for creating, developing, and building presentations.
+
+### Installation
+
+```bash
+# Install globally
+npm install -g mostage
+
+# Or use with npx (recommended)
+npx mostage <command>
+```
+
+### Available Commands
+
+| Command          | Description                               | Options                       |
+| ---------------- | ----------------------------------------- | ----------------------------- |
+| `mostage init`   | Create a new presentation project         | `--template`, `--content`     |
+| `mostage dev`    | Start development server with live reload | `--port`, `--host`            |
+| `mostage build`  | Build presentation for production         | `--output`, `--minify`        |
+| `mostage theme`  | Manage themes (list, add, remove)         | `--list`, `--add`, `--remove` |
+| `mostage plugin` | Manage plugins (list, add, remove)        | `--list`, `--add`, `--remove` |
+| `mostage help`   | Show help and command information         |                               |
+
+### Command Examples
+
+#### Initialize a new project
+
+```bash
+# Basic project
+npx mostage init
+
+# With specific template
+npx mostage init --template demo
+
+# With custom content path
+npx mostage init --content ./my-slides.md
+```
+
+#### Development
+
+```bash
+# Start dev server on default port (3000)
+npx mostage dev
+
+# Start on custom port
+npx mostage dev --port 8080
+
+# Start on specific host
+npx mostage dev --host 0.0.0.0
+```
+
+#### Building for production
+
+```bash
+# Build to dist folder
+npx mostage build
+
+# Build to custom output directory
+npx mostage build --output ./build
+
+# Build with minification
+npx mostage build --minify
+```
+
+#### Theme management
+
+```bash
+# List available themes
+npx mostage theme --list
+
+# Add a custom theme
+npx mostage theme --add ./my-theme.css
+
+# Remove a theme
+npx mostage theme --remove my-theme
+```
+
+#### Plugin management
+
+```bash
+# List available plugins
+npx mostage plugin --list
+
+# Add a plugin
+npx mostage plugin --add progress-bar
+
+# Remove a plugin
+npx mostage plugin --remove confetti
+```
+
+### Project Structure
+
+When you run `mostage init`, it creates the following structure:
+
+```
+my-presentation/
+├── index.html          # Main HTML file
+├── slides.md          # Presentation content
+├── config.json        # Configuration file
+└── assets/            # CSS and JS files (if using local assets)
+    ├── mostage.css
+    └── index.js
+```
+
+### Configuration File
+
+The `config.json` file contains all presentation settings:
+
+```json
+{
+  "element": "#app",
+  "theme": "dark",
+  "contentPath": "./slides.md",
+  "scale": 1.0,
+  "transition": {
+    "type": "horizontal",
+    "duration": 600,
+    "easing": "ease-in-out"
+  },
+  "plugins": {
+    "ProgressBar": {
+      "enabled": true,
+      "position": "top"
+    },
+    "SlideNumber": {
+      "enabled": true,
+      "position": "bottom-right"
+    }
+  }
+}
 ```
 
 ## Configuration Options
