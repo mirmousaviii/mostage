@@ -26,17 +26,30 @@ export default defineConfig(({ command }) => {
       lib: {
         entry: {
           index: resolve(__dirname, isDev ? "../src/index.ts" : "src/index.ts"),
+          "cli/index": resolve(
+            __dirname,
+            isDev ? "../src/cli/index.ts" : "src/cli/index.ts"
+          ),
         },
         formats: ["es", "cjs"],
         fileName: (format, entryName) => {
           const ext = format === "es" ? "js" : "cjs";
-          return `index.${ext}`;
+          return `${entryName}.${ext}`;
         },
       },
 
       // External dependencies (not bundled)
       rollupOptions: {
-        external: ["fs", "path", "url"],
+        external: [
+          "fs",
+          "path",
+          "url",
+          "commander",
+          "chalk",
+          "inquirer",
+          "fs-extra",
+          "child_process",
+        ],
         output: {
           exports: "named",
         },

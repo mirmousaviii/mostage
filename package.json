@@ -23,6 +23,9 @@
   "main": "dist/index.cjs",
   "module": "dist/index.js",
   "types": "dist/types/index.d.ts",
+  "bin": {
+    "mostage": "./dist/cli/index.js"
+  },
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
@@ -45,6 +48,7 @@
   "devDependencies": {
     "@types/node": "^24.3.0",
     "@types/prismjs": "^1.26.5",
+    "@types/fs-extra": "^11.0.4",
     "@typescript-eslint/eslint-plugin": "^8.41.0",
     "@typescript-eslint/parser": "^8.41.0",
     "eslint": "^9.34.0",
@@ -56,6 +60,10 @@
   },
   "dependencies": {
     "marked": "^16.3.0",
-    "prismjs": "^1.30.0"
+    "prismjs": "^1.30.0",
+    "commander": "^12.0.0",
+    "chalk": "^5.3.0",
+    "inquirer": "^9.2.12",
+    "fs-extra": "^11.2.0"
   }
 }

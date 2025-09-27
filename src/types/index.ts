@@ -96,6 +96,7 @@ export interface MoConfig {
   // Content loading configuration
   contentPath?: string; // File path or URL for content
   content?: string; // Inline content data
+  configPath?: string; // Path to configuration file
   scale?: number;
   transition?: TransitionConfig;
   loop?: boolean;

@@ -4,93 +4,122 @@
 
 Presentation framework based on **Markdown** (with HTML support) to web-based slide.
 
-## [Demo](https://mo.js.org) | [Documentation](./doc/README.md)
+## [Demo](https://mo.js.org) | [Documentation](./docs/README.md)
 
 ## Quick Start
 
-### Basic HTML Usage
+### Option 1: Using CLI (recommended)
 
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>My Presentation</title>
-  </head>
-  <body>
-    <div id="app"></div>
+#### Using npx (no installation required)
 
-    <script type="module">
-      import Mostage from "mostage";
+```bash
+# Create a new project
+npx mostage init
 
-      const mostage = new Mostage({
-        element: "#app",
-        theme: "dark",
-        // contentPath: "./slides.md",
-        content: `
-# Slide 1: Welcome
-Welcome to Mostage presentation framework!
-
----
-
-# Slide 2: Features
-- Markdown based
-- HTML support
-- Theme system
-- Plugin system
-
----
-
-# Slide 3: Getting Started
-Start creating your presentations!
-        `,
-      });
-
-      mostage.start();
-    </script>
-  </body>
-</html>
+# Start development server
+npx mostage dev
 ```
 
-### JSON Configuration
+#### Install globally
 
-You can also load your configuration from a separate JSON file:
+```bash
+# Install CLI
+npm install -g mostage
 
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>My Presentation</title>
-  </head>
-  <body>
-    <div id="app"></div>
+# Create a new project
+mostage init
 
-    <script type="module">
-      import Mostage from "mostage";
-
-      // Load configuration from JSON file
-      const mostage = new Mostage("./config.json");
-      mostage.start();
-    </script>
-  </body>
-</html>
+# Start development server
+mostage dev
 ```
+
+### Option 2: Manual Setup (without CLI)
+
+If you prefer not to use the CLI, you can set up Mostage manually:
+
+1. **Create your project structure:**
+
+   ```
+   my-presentation/
+   ├── index.html
+   ├── slides.md
+   └── config.json
+   ```
+
+2. **Create `index.html`:**
+
+   ```html
+   <!DOCTYPE html>
+   <html>
+     <head>
+       <meta charset="utf-8" />
+       <title>My Presentation</title>
+       <link
+         rel="stylesheet"
+         href="https://unpkg.com/mostage/dist/mostage.css"
+       />
+     </head>
+     <body>
+       <script src="https://unpkg.com/mostage/dist/index.js"></script>
+       <script>
+         new Mostage({
+           container: document.body,
+           markdown: "./slides.md",
+           config: "./config.json",
+         });
+       </script>
+     </body>
+   </html>
+   ```
+
+3. **Create `slides.md` with your content:**
+
+   ```markdown
+   # Slide 1
+
+   Welcome to my presentation!
+
+   ---
+
+   # Slide 2
+
+   This is the second slide.
+   ```
+
+4. **Create `config.json` (optional):**
+
+   ```json
+   {
+     "theme": "light",
+     "scale": 1.2
+   }
+   ```
+
+5. **Serve your files** using any local server (e.g., `python -m http.server` or `npx serve`)
+
+That's it! Open your browser and start creating your presentation.
+
+## CLI Commands
+
+You can use these commands with `npx mostage <command>` or install globally with `npm install -g mostage`:
+
+| Command          | Description              |
+| ---------------- | ------------------------ |
+| `mostage init`   | Create a new project     |
+| `mostage dev`    | Start development server |
+| `mostage build`  | Build for production     |
+| `mostage theme`  | Manage themes            |
+| `mostage plugin` | Manage plugins           |
+| `mostage help`   | Show help                |
+
+For detailed CLI documentation, see [CLI Reference](./docs/README.md#cli-usage).
 
 ## Documentation
 
-**[Complete Documentation](./doc/README.md)** - Full documentation with all configuration options, API reference, and examples.
-
-### Quick Links
-
-- [Configuration Reference](./doc/configuration.md) - All configuration options
-- [API Reference](./doc/api.md) - Complete API documentation
-- [Examples](./doc/examples.md) - Various usage examples
-- [Complete Config Example](./doc/config-complete.json) - Full configuration example
-
-## Installation
-
-```bash
-npm install mostage
-```
+- **[Complete Documentation](./docs/README.md)** - Full documentation
+- **[Configuration Reference](./docs/configuration.md)** - All configuration options
+- **[API Reference](./docs/api.md)** - Complete API documentation
+- **[Examples](./docs/examples.md)** - Various usage examples
 
 ## License
 
