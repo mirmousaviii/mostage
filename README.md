@@ -311,120 +311,17 @@ Mostage is highly configurable through the `config.json` file. Here are the main
 - **Controller** - Navigation controls
 - **Confetti** - Celebration animations
 
-### Complete Configuration Example
+## Configuration Example
 
-Here's a complete configuration example with all available options:
-
-```json
-{
-  "element": "#app",
-  "theme": "dark",
-  "contentPath": "./slides.md",
-  "content": "# Alternative inline content",
-  "scale": 1.2,
-  "transition": {
-    "type": "horizontal",
-    "duration": 600,
-    "easing": "ease-in-out"
-  },
-  "loop": true,
-  "keyboard": true,
-  "touch": true,
-  "urlHash": true,
-  "centerContent": {
-    "vertical": true,
-    "horizontal": true
-  },
-  "header": {
-    "content": "# Mostage Presentation",
-    "contentPath": "./header.md",
-    "position": "top-left",
-    "showOnFirstSlide": false
-  },
-  "footer": {
-    "content": "#### Presentation Framework",
-    "contentPath": "./footer.md",
-    "position": "bottom-left",
-    "showOnFirstSlide": true
-  },
-  "background": [
-    {
-      "imagePath": "./background/background-left.jpg",
-      "size": "cover",
-      "position": "left",
-      "repeat": "no-repeat",
-      "bgColor": "#000000",
-      "global": false,
-      "allSlides": [1],
-      "allSlidesExcept": []
-    },
-    {
-      "imagePath": "./background/background-line.svg",
-      "size": "contain",
-      "position": "bottom",
-      "repeat": "no-repeat",
-      "bgColor": "#000000",
-      "global": false,
-      "allSlides": [],
-      "allSlidesExcept": [1, 23]
-    },
-    {
-      "imagePath": "./background/background-animation.svg",
-      "size": "cover",
-      "position": "center",
-      "repeat": "no-repeat",
-      "bgColor": "#000000",
-      "global": false,
-      "allSlides": [23],
-      "allSlidesExcept": []
-    }
-  ],
-  "plugins": {
-    "ProgressBar": {
-      "enabled": true,
-      "position": "top",
-      "color": "#007acc",
-      "height": "12px"
-    },
-    "SlideNumber": {
-      "enabled": true,
-      "position": "bottom-right",
-      "format": "current/total"
-    },
-    "Controller": {
-      "enabled": true,
-      "position": "bottom-center"
-    },
-    "Confetti": {
-      "enabled": true,
-      "particleCount": 50,
-      "colors": [
-        "#ff6b6b",
-        "#4ecdc4",
-        "#45b7d1",
-        "#96ceb4",
-        "#feca57",
-        "#ff9ff3",
-        "#54a0ff"
-      ],
-      "size": {
-        "min": 5,
-        "max": 15
-      },
-      "duration": 4000,
-      "delay": 50
-    }
-  }
-}
-```
-
-## API Reference
-
-For complete API documentation, see [API Reference](docs/api-reference.md).
+For a complete configuration example, see [Usage Examples](docs/usage-examples.md#complete-configuration-example).
 
 ## Usage Examples
 
 For detailed usage examples and advanced configurations, see [Usage Examples](docs/usage-examples.md).
+
+## API Reference
+
+For complete API documentation, see [API Reference](docs/api-reference.md).
 
 ## Development
 
