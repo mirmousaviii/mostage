@@ -6,7 +6,7 @@ on:
       - "v*"
 
 permissions:
-  contents: read
+  contents: write
   packages: write
 
 jobs:
@@ -15,6 +15,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Extract version from tag
         id: version
@@ -26,6 +28,14 @@ jobs:
       - name: Update package.json version
         run: |
           npm pkg set version=${{ steps.version.outputs.version }}
+
+      - name: Commit and push version update
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add package.json
+          git commit -m "Bump version to ${{ steps.version.outputs.version }}" || exit 0
+          git push
 
       - name: Setup Node.js for NPM
         uses: actions/setup-node@v5
