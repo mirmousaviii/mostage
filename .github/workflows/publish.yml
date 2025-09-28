@@ -32,8 +32,8 @@ jobs:
 
       - name: Commit and push version update
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config --local user.email "mirmousavi.m@gmail.com"
+          git config --local user.name "Mostafa Mirmousavi"
           git checkout -B main
           git add package.json
           git commit -m "Bump version to ${{ steps.version.outputs.version }}"
