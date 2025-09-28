@@ -26,6 +26,9 @@ npx mostage init
 
 # Start development server
 npx mostage dev
+
+# Display help
+npx mostage help
 ```
 
 #### Install globally
@@ -36,10 +39,9 @@ npm install -g mostage
 
 # Create a new project
 mostage init
-
-# Start development server
-mostage dev
 ```
+
+> **Note:** You can use the interactive command (just run `mostage init` and follow the prompts), or provide options directly (e.g., `mostage init --template dracula --content slides.md`) to create presentations.
 
 ### CLI Commands
 
@@ -594,26 +596,6 @@ mostage.on("slidechange", (data) => {
 });
 ```
 
-### Keyboard Shortcuts
-
-| Key            | Action             |
-| -------------- | ------------------ |
-| `→` or `Space` | Next slide         |
-| `←`            | Previous slide     |
-| `Home`         | First slide        |
-| `End`          | Last slide         |
-| `O`            | Toggle overview    |
-| `H` or `?`     | Toggle help        |
-| `Esc`          | Exit overview/help |
-
-### Touch Gestures
-
-| Gesture     | Action          |
-| ----------- | --------------- |
-| Swipe left  | Next slide      |
-| Swipe right | Previous slide  |
-| Pinch       | Toggle overview |
-
 ### URL Hash Navigation
 
 When `urlHash: true` is enabled:
@@ -851,6 +833,51 @@ class MyPlugin {
   }
 }
 ```
+
+## CI/CD Pipeline
+
+###### Just for myself to remember ;-)
+
+This project includes an automated CI/CD pipeline using GitHub Actions that handles package publishing when version tags are created.
+
+### How it works
+
+When you create and push a version tag (e.g., `v1.2.0`), the workflow automatically:
+
+1. **Extracts version from tag** - Automatically updates `package.json` with the version from the tag
+2. **Builds the project** - Runs `npm run build` to compile TypeScript and generate distribution files
+3. **Publishes to NPM** - Publishes to the public NPM registry for global installation
+4. **Publishes to GitHub Packages** - Also publishes to GitHub's package registry
+
+### Publishing a new version
+
+To release a new version:
+
+```bash
+# Create and push a version tag
+git tag v1.2.0
+git push origin v1.2.0
+```
+
+The workflow will automatically:
+
+- ✅ Extract version from tag (`v1.2.0` → `1.2.0`)
+- ✅ Update `package.json` version
+- ✅ Build the project
+- ✅ Publish to NPM (`npm install mostage`)
+- ✅ Publish to GitHub Packages (`npm install @mirmousaviii/mostage`)
+
+### Required Setup
+
+Before the first release, you need to configure:
+
+1. **NPM Token**:
+   - Go to [npmjs.com](https://www.npmjs.com) → Access Tokens
+   - Create an **Automation** token
+   - Add it to GitHub repository secrets as `NPM_TOKEN`
+
+2. **GitHub Token**:
+   - Automatically provided by GitHub Actions (no setup needed)
 
 ## License
 

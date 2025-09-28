@@ -16,6 +16,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Extract version from tag
+        id: version
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/v}
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Extracted version: $VERSION"
+
+      - name: Update package.json version
+        run: |
+          npm pkg set version=${{ steps.version.outputs.version }}
+
       - name: Setup Node.js for NPM
         uses: actions/setup-node@v4
         with:
