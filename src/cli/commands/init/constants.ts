@@ -70,7 +70,7 @@ export const DEFAULT_VALUES = {
   template: "custom",
   theme: "dark",
   transition: "horizontal",
-  contentPath: "./slides.md",
+  contentPath: "./content.md",
   configPath: "./config.json",
   urlHash: true,
   centerContent: true,

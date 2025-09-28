@@ -42,7 +42,7 @@ npm install -g mostage
 mostage init
 ```
 
-> **Note:** You can use the interactive command (just run `mostage init` and follow the prompts), or provide options directly (e.g., `mostage init --template dracula --content slides.md`) to create presentations.
+> **Note:** You can use the interactive command (just run `mostage init` and follow the prompts), or provide options directly (e.g., `mostage init --template dracula --content content.md`) to create presentations.
 
 ### CLI Commands
 
@@ -97,7 +97,7 @@ If you prefer not to use the CLI or npm package, you can set up Mostage manually
 ```
 my-presentation/
 ├── index.html (With an internal configuration or an external configuration link)
-├── slides.md (Content)
+├── content.md (slides)
 └── config.json (Optional)
 ```
 
@@ -121,7 +121,7 @@ my-presentation/
       //Use internal config or path of external config
       const presentation = new Mostage({
         element: "#app",
-        contentPath: "./slides.md",
+        contentPath: "./content.md",
         theme: "dark",
       });
       presentation.start();
@@ -130,7 +130,7 @@ my-presentation/
 </html>
 ```
 
-3. **Create `slides.md` with your content:**
+3. **Create `content.md` with your content:**
 
 ```markdown
 # Slide 1
@@ -170,7 +170,7 @@ function Presentation() {
     if (containerRef.current) {
       const presentation = new Mostage({
         element: containerRef.current,
-        contentPath: "./slides.md",
+        contentPath: "./content.md",
         theme: "dark",
       });
       presentation.start();
@@ -200,7 +200,7 @@ export class PresentationComponent implements OnInit, OnDestroy {
     this.mostage = new Mostage({
       element: this.elementRef.nativeElement,
       theme: "dark",
-      contentPath: "./slides.md",
+      contentPath: "./content.md",
     });
     this.mostage.start();
   }
@@ -231,7 +231,7 @@ Mostage is highly configurable through the `config.json` file. Here are the main
 
 ```json
 {
-  "contentPath": "./slides.md",
+  "contentPath": "./content.md",
   "centerContent": {
     "vertical": true,
     "horizontal": true

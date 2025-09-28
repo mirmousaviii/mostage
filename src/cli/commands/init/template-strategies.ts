@@ -17,9 +17,9 @@ export class BasicTemplateStrategy implements TemplateStrategy {
     // Ensure project directory exists
     await fs.ensureDir(projectPath);
 
-    // Create slides.md only if createContentFile is true
+    // Create content.md only if createContentFile is true
     if (options.createContentFile) {
-      await this.createSlidesFile(projectPath, options);
+      await this.createContentFile(projectPath, options);
     }
 
     // Create config.json only if createConfigFile is true
@@ -36,7 +36,7 @@ export class BasicTemplateStrategy implements TemplateStrategy {
     this.logSuccess(options);
   }
 
-  private async createSlidesFile(
+  private async createContentFile(
     projectPath: string,
     options: ProjectOptions
   ): Promise<void> {
@@ -72,7 +72,7 @@ Edit this file to create your presentation!
 <!-- confetti -->
 `;
 
-    const contentPath = options.contentPath || "./slides.md";
+    const contentPath = options.contentPath || "./content.md";
     await fs.writeFile(path.join(projectPath, contentPath), slidesContent);
   }
 
@@ -118,7 +118,7 @@ Edit this file to create your presentation!
   private logSuccess(options: ProjectOptions): void {
     console.log(chalk.green("✅ Basic template created"));
     if (options.createContentFile) {
-      const contentPath = options.contentPath || "./slides.md";
+      const contentPath = options.contentPath || "./content.md";
       console.log(
         chalk.gray(`   - ${contentPath} (your presentation content)`)
       );
@@ -139,9 +139,9 @@ export class DemoTemplateStrategy implements TemplateStrategy {
 
     const examplePath = path.resolve(__dirname, "../../example");
 
-    // Copy slides.md only if createContentFile is true
+    // Copy content.md only if createContentFile is true
     if (options.createContentFile) {
-      await this.copySlidesFile(projectPath, examplePath, options);
+      await this.copyContentFile(projectPath, examplePath, options);
     }
 
     // Copy config.json only if createConfigFile is true
@@ -161,16 +161,16 @@ export class DemoTemplateStrategy implements TemplateStrategy {
     this.logSuccess(options);
   }
 
-  private async copySlidesFile(
+  private async copyContentFile(
     projectPath: string,
     examplePath: string,
     options: ProjectOptions
   ): Promise<void> {
     const slidesContent = await fs.readFile(
-      path.join(examplePath, "slides.md"),
+      path.join(examplePath, "content.md"),
       "utf-8"
     );
-    const contentPath = options.contentPath || "./slides.md";
+    const contentPath = options.contentPath || "./content.md";
     await fs.writeFile(path.join(projectPath, contentPath), slidesContent);
   }
 
@@ -266,7 +266,7 @@ export class DemoTemplateStrategy implements TemplateStrategy {
   private logSuccess(options: ProjectOptions): void {
     console.log(chalk.green("✅ Demo template created"));
     if (options.createContentFile) {
-      const contentPath = options.contentPath || "./slides.md";
+      const contentPath = options.contentPath || "./content.md";
       console.log(chalk.gray(`   - ${contentPath} (demo presentation)`));
     }
     if (options.createConfigFile) {

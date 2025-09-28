@@ -1,7 +1,7 @@
 {
   "element": "#app",
   "theme": "dark",
-  "contentPath": "./slides.md",
+  "contentPath": "./content.md",
   "urlHash": true,
   "transition": {
     "type": "horizontal",

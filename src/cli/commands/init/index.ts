@@ -208,7 +208,7 @@ function buildNonInteractiveAnswers(options: InitOptions): ProjectAnswers {
     parsedPlugins = options.plugins.split(",").map((p) => p.trim());
   } else {
     // Default plugins for non-interactive mode
-    parsedPlugins = ["ProgressBar", "SlideNumber", "Controller"];
+    parsedPlugins = ["ProgressBar", "SlideNumber", "Controller", "Confetti"];
   }
 
   return {
@@ -234,7 +234,7 @@ function mergeOptions(
     contentPath:
       options.contentPath ||
       answers.contentPath ||
-      (answers.createContentFile ? "./slides.md" : undefined),
+      (answers.createContentFile ? "./content.md" : undefined),
     configPath:
       options.configPath ||
       answers.configPath ||

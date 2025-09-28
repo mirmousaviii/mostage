@@ -19,7 +19,7 @@
       const mostage = new Mostage({
         element: "#app",
         theme: "light",
-        contentPath: "./slides.md",
+        contentPath: "./content.md",
       });
 
       mostage.start();
@@ -57,7 +57,7 @@
 const mostage = new Mostage({
   element: "#app",
   theme: "dark",
-  contentPath: "./slides.md",
+  contentPath: "./content.md",
   scale: 0.8,
   transition: {
     type: "fade",
@@ -74,7 +74,7 @@ const mostage = new Mostage({
 const mostage = new Mostage({
   element: "#app",
   theme: "light",
-  contentPath: "./slides.md",
+  contentPath: "./content.md",
   header: {
     content: "# My Company",
     position: "top-left",
@@ -94,7 +94,7 @@ const mostage = new Mostage({
 const mostage = new Mostage({
   element: "#app",
   theme: "dark",
-  contentPath: "./slides.md",
+  contentPath: "./content.md",
   background: [
     {
       imagePath: "./background/hero.jpg",
@@ -122,7 +122,7 @@ const mostage = new Mostage({
 const mostage = new Mostage({
   element: "#app",
   theme: "dark",
-  contentPath: "./slides.md",
+  contentPath: "./content.md",
   plugins: {
     ProgressBar: {
       enabled: true,
@@ -221,7 +221,7 @@ function Presentation() {
     if (containerRef.current) {
       const presentation = new Mostage({
         element: containerRef.current,
-        contentPath: "./slides.md",
+        contentPath: "./content.md",
         theme: "dark",
       });
       presentation.start();
@@ -251,7 +251,7 @@ export class PresentationComponent implements OnInit, OnDestroy {
     this.mostage = new Mostage({
       element: this.elementRef.nativeElement,
       theme: "dark",
-      contentPath: "./slides.md",
+      contentPath: "./content.md",
     });
     this.mostage.start();
   }
@@ -272,7 +272,7 @@ Here's a complete configuration example with all available options:
 {
   "element": "#app",
   "theme": "dark",
-  "contentPath": "./slides.md",
+  "contentPath": "./content.md",
   "content": "# Alternative inline content",
   "scale": 1.2,
   "transition": {

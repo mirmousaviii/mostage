@@ -36,7 +36,7 @@ export class InteractivePrompts {
         urlHash: true,
         centerContent: true,
         createContentFile: true,
-        contentPath: "./slides.md",
+        contentPath: "./content.md",
       };
     }
 
@@ -92,7 +92,7 @@ export class InteractivePrompts {
           ? answers.centerContent
           : DEFAULT_VALUES.centerContent,
       createContentFile: true, // Always create content file
-      contentPath: "./slides.md", // Always use default content path
+      contentPath: "./content.md", // Always use default content path
     };
   }
 }

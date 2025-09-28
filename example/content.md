@@ -386,7 +386,7 @@ const mostage = new Mostage("./config.json");
 const mostage = new Mostage({
   element: "#app",
   theme: "dark",
-  contentPath: "./slides.md",
+  contentPath: "./content.md",
   plugins: {
     ProgressBar: { enabled: true },
   },
