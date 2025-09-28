@@ -28,7 +28,7 @@ jobs:
           npm pkg set version=${{ steps.version.outputs.version }}
 
       - name: Setup Node.js for NPM
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: "21.7.3"
           registry-url: "https://registry.npmjs.org/"
@@ -45,7 +45,7 @@ jobs:
         run: npm publish --registry=https://registry.npmjs.org/
 
       - name: Setup Node.js for GitHub Packages
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: "21.7.3"
           registry-url: "https://npm.pkg.github.com/"
