@@ -49,7 +49,7 @@ The workflow will automatically:
 - ✅ Extract version from tag (`v1.2.0` → `1.2.0`)
 - ✅ Update `package.json` version
 - ✅ Build the project
-- ✅ Publish to NPM (`npm install mostage`)
+- ✅ Publish to NPM (`npm install mostage@latest`)
 - ✅ Publish to GitHub Packages (`npm install @mirmousaviii/mostage`)
 
 ### Required Setup

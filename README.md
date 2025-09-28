@@ -23,13 +23,13 @@ Presentation framework based on **Markdown** (with HTML support) to web-based sl
 
 ```bash
 # Create a new project
-npx mostage init
+npx mostage@latest init
 
 # Start development server
-npx mostage dev
+npx mostage@latest dev
 
 # Display help
-npx mostage help
+npx mostage@latest help
 ```
 
 #### Install globally
@@ -46,7 +46,7 @@ mostage init
 
 ### CLI Commands
 
-You can use these commands with `npx mostage <command>`:
+You can use these commands with `npx mostage@latest <command>`:
 
 | Command          | Description                               | Options                       |
 | ---------------- | ----------------------------------------- | ----------------------------- |
@@ -64,7 +64,7 @@ For detailed CLI documentation, see the CLI Commands section above.
 Install Mostage as a dependency in your project:
 
 ```bash
-npm install mostage
+npm install mostage@latest
 ```
 
 Then import and use it in your project:
@@ -109,11 +109,14 @@ my-presentation/
   <head>
     <meta charset="utf-8" />
     <title>My Presentation</title>
-    <link rel="stylesheet" href="https://unpkg.com/mostage/dist/mostage.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/mostage@latest/dist/mostage.css"
+    />
   </head>
   <body>
     <div id="app"></div>
-    <script src="https://unpkg.com/mostage/dist/index.js"></script>
+    <script src="https://unpkg.com/mostage@latest/dist/index.js"></script>
     <script>
       //Use internal config or path of external config
       const presentation = new Mostage({
