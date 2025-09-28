@@ -1,6 +1,7 @@
 # Mostage
 
 [![npm version](https://img.shields.io/npm/v/mostage.svg)](https://www.npmjs.com/package/mostage)
+[![Publish Package](https://github.com/mirmousaviii/mostage/actions/workflows/publish.yml/badge.svg)](https://github.com/mirmousaviii/mostage/actions/workflows/publish.yml)
 
 Presentation framework based on **Markdown** (with HTML support) to web-based slide.
 
