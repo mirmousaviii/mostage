@@ -31,7 +31,7 @@
       "position": "bottom",
       "repeat": "no-repeat",
       "bgColor": "#000000",
-      "allSlidesExcept": [1, 23]
+      "allSlidesExcept": [1, 24]
     },
     {
       "imagePath": "./background/background-animation.svg",
@@ -39,7 +39,7 @@
       "position": "center",
       "repeat": "no-repeat",
       "bgColor": "#000000",
-      "allSlides": [23]
+      "allSlides": [24]
     }
   ],
   "plugins": {

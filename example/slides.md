@@ -218,20 +218,22 @@ Here is example of **code**
 
 ## Tables
 
-| TODO                | Status | Notes                                                  |
-| ------------------- | :----: | ------------------------------------------------------ |
-| Markdown Parser     |   ✅   | Core feature: Parses and renders Markdown content      |
-| Theme System        |   ✅   | Supports light/dark and custom themes                  |
-| Plugin System       |   ✅   | Extend functionality with plugins                      |
-| Keyboard Navigation |   ✅   | Navigate slides with keyboard shortcuts                |
-| Overview            |   ✅   | Slide overview/mini-map for quick navigation           |
-| Page Number         |   ✅   | Shows current/total slide number via plugin            |
-| Header & Footer     |   ⬜   | Planned: Customizable header and footer for slides     |
-| Print Friendly      |   ⬜   | Planned: Styles and layout optimized for printing      |
-| Speaker Note        |   ⬜   | Planned: Add private notes for presenters              |
-| Presenter Mode      |   ⬜   | Planned: Dual-screen mode for presenter and audience   |
-| HTML Support        |   ✅   | Allows raw HTML for advanced customization             |
-| Documentation       |   ⬜   | In progress: Comprehensive usage and API documentation |
+| TODO                | Status | Notes                                                |
+| ------------------- | :----: | ---------------------------------------------------- |
+| Markdown Parser     |   ✅   | Core feature: Parses and renders Markdown content    |
+| HTML Support        |   ✅   | Allows raw HTML for advanced customization           |
+| Theme System        |   ✅   | Supports light/dark and custom themes                |
+| Plugin System       |   ✅   | Extend functionality with plugins                    |
+| Keyboard Navigation |   ✅   | Navigate slides with keyboard shortcuts              |
+| Overview            |   ✅   | Slide overview/mini-map for quick navigation         |
+| Page Number         |   ✅   | Shows current/total slide number via plugin          |
+| Header & Footer     |   ✅   | Customizable header and footer for slides            |
+| Print Friendly      |   ⬜   | Planned: Styles and layout optimized for printing    |
+| Speaker Note        |   ⬜   | Planned: Add private notes for presenters            |
+| Presenter Mode      |   ⬜   | Planned: Dual-screen mode for presenter and audience |
+| Export              |   ⬜   | Export slides as PDF or images, etc.                 |
+| CLI                 |   ⬜   | Command-line interface for slide management          |
+| Live Editor         |   ⬜   | In-browser live Markdown editor for slides           |
 
 ---
 

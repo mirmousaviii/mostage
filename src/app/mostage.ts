@@ -118,12 +118,12 @@ export class Mostage {
 
   // Managers
   private contentManager: ContentManager;
-  private navigationManager: NavigationManager;
-  private transitionManager: TransitionManager;
+  private navigationManager!: NavigationManager;
+  private transitionManager!: TransitionManager;
   private overviewManager: OverviewManager;
   private helpManager: HelpManager;
   private centerContentManager: CenterContentManager;
-  private urlHashManager: UrlHashManager;
+  private urlHashManager!: UrlHashManager;
   private eventListeners: Map<string, Function[]> = new Map();
 
   constructor(config: MoConfig | string) {
@@ -188,6 +188,23 @@ export class Mostage {
 
     // Initialize managers
     this.contentManager = new ContentManager();
+    this.overviewManager = new OverviewManager(
+      this.container,
+      (index: number) => this.goToSlide(index),
+      () => this.onExitOverview(),
+      () => this.onEnterOverview()
+    );
+    this.helpManager = new HelpManager();
+    this.centerContentManager = new CenterContentManager(this.container);
+
+    // Initialize config-dependent managers
+    this.initializeConfigDependentManagers();
+  }
+
+  /**
+   * Initialize managers that depend on configuration values
+   */
+  private initializeConfigDependentManagers(): void {
     this.navigationManager = new NavigationManager(
       this.container,
       this.config.keyboard || false,
@@ -198,14 +215,6 @@ export class Mostage {
       this.container,
       this.config.transition as TransitionConfig
     );
-    this.overviewManager = new OverviewManager(
-      this.container,
-      (index: number) => this.goToSlide(index),
-      () => this.onExitOverview(),
-      () => this.onEnterOverview()
-    );
-    this.helpManager = new HelpManager();
-    this.centerContentManager = new CenterContentManager(this.container);
     this.urlHashManager = new UrlHashManager(
       this.config.urlHash || false,
       (index: number) => this.goToSlide(index)
@@ -240,6 +249,9 @@ export class Mostage {
           easing: "ease-in-out",
         };
       }
+
+      // Re-initialize managers that depend on config values
+      this.initializeConfigDependentManagers();
     } catch (error) {
       console.error("Failed to load configuration from file:", error);
       throw error;
