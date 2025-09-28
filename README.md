@@ -5,7 +5,7 @@
 
 Presentation framework based on **Markdown** (with HTML support) to web-based slide.
 
-### [Demo](https://mo.js.org) | [Quick Start](#quick-start) | [Configuration](#configuration) | [API Reference](docs/api-reference.md) | [Usage Examples](docs/usage-examples.md) | [Development](docs/development.md)
+#### [Demo](https://mo.js.org) | [Quick Start](#quick-start) | [Configuration](#configuration) | [API Reference](docs/api-reference.md) | [Usage Examples](docs/usage-examples.md) | [Development](docs/development.md)
 
 ## Key Features
 
