@@ -33,9 +33,10 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
+          git checkout main
           git add package.json
-          git commit -m "Bump version to ${{ steps.version.outputs.version }}" || exit 0
-          git push
+          git commit -m "Bump version to ${{ steps.version.outputs.version }}"
+          git push origin main
 
       - name: Setup Node.js for NPM
         uses: actions/setup-node@v5
