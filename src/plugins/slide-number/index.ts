@@ -1,6 +1,11 @@
 import { PluginBase } from "../../app/plugin-base";
-import { SlideNumberConfig } from "../../types";
 import styles from "./style.css?inline";
+
+export interface SlideNumberConfig {
+  enabled?: boolean;
+  position?: "bottom-right" | "bottom-left" | "bottom-center";
+  format?: string;
+}
 
 export class SlideNumberPlugin extends PluginBase {
   name = "SlideNumber";

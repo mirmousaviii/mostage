@@ -1,9 +1,7 @@
 import chalk from "chalk";
 import fs from "fs-extra";
 import path from "path";
-import { fileURLToPath } from "url";
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+import { ThemeLoader } from "../../../app/theme-loader";
 
 export async function themeCommand(options: {
   list?: boolean;
@@ -18,7 +16,7 @@ export async function themeCommand(options: {
     } else if (options.remove) {
       await removeTheme(options.remove);
     } else {
-      console.log(chalk.blue.bold("\n🎨 Mostage Theme Manager\n"));
+      console.log(chalk.blue.bold("\nMostage CLI - theme\n"));
       console.log(chalk.yellow("Usage:"));
       console.log("  mostage theme --list          List available themes");
       console.log("  mostage theme --add <name>    Add a new theme");
@@ -31,14 +29,13 @@ export async function themeCommand(options: {
 }
 
 async function listThemes() {
-  console.log(chalk.blue.bold("\n🎨 Available Themes\n"));
+  console.log(chalk.blue.bold("\nMostage CLI - Available Themes\n"));
 
-  const themesPath = path.join(__dirname, "../../../src/themes");
-  const builtInThemes = await fs.readdir(themesPath);
+  // Get built-in themes using ThemeLoader
+  const builtInThemes = ThemeLoader.getThemeNames();
 
   console.log(chalk.yellow("Built-in Themes:"));
-  builtInThemes.forEach((theme: string) => {
-    const themeName = path.basename(theme, ".css");
+  builtInThemes.forEach((themeName: string) => {
     console.log(`  • ${chalk.green(themeName)}`);
   });
 
@@ -60,7 +57,9 @@ async function listThemes() {
 }
 
 async function addTheme(themeName: string) {
-  console.log(chalk.blue.bold(`\n🎨 Creating theme: ${themeName}\n`));
+  console.log(
+    chalk.blue.bold(`\nMostage CLI - Creating theme: ${themeName}\n`)
+  );
 
   const themesDir = path.join(process.cwd(), "themes");
   await fs.ensureDir(themesDir);
@@ -132,7 +131,7 @@ async function addTheme(themeName: string) {
 }
 
 async function removeTheme(themeName: string) {
-  console.log(chalk.blue.bold(`\n🗑️  Removing theme: ${themeName}\n`));
+  console.log(chalk.blue.bold(`\nMostage CLI - Removing theme: ${themeName}\n`));
 
   const themePath = path.join(process.cwd(), "themes", `${themeName}.css`);
 

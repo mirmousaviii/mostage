@@ -1,11 +1,9 @@
 import chalk from "chalk";
 import { spawn } from "child_process";
 
-export async function devCommand(options: { port: string; host: string }) {
+export async function devCommand(options: any) {
   try {
-    console.log(
-      chalk.blue.bold("\n🚀 Starting Mostage development server...\n")
-    );
+    console.log(chalk.blue.bold("\nMostage CLI - dev\n"));
 
     const port = parseInt(options.port);
     const host = options.host;

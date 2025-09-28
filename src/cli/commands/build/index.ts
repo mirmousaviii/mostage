@@ -2,9 +2,9 @@ import chalk from "chalk";
 import { spawn } from "child_process";
 import path from "path";
 
-export async function buildCommand(options: { output: string }) {
+export async function buildCommand(options: any) {
   try {
-    console.log(chalk.blue.bold("\n🔨 Building Mostage project...\n"));
+    console.log(chalk.blue.bold("\nMostage CLI - build\n"));
 
     const outputDir = options.output;
 

@@ -8,4 +8,11 @@ export type {
   MoSlide,
   MoSlideEvent,
   MoTheme,
-} from "./types";
+  TransitionConfig,
+  CenterContentConfig,
+  HeaderConfig,
+  FooterConfig,
+  BackgroundConfig,
+  BackgroundItem,
+  PluginsConfig,
+} from "./app/mostage";

@@ -1,4 +1,4 @@
-import { MoPlugin } from "../types";
+import { MoPlugin } from "./mostage";
 
 /**
  * Plugin Loader - Auto-discovers and registers all plugins

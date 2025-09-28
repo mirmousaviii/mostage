@@ -1,4 +1,8 @@
-import { TransitionConfig } from "../../types";
+export interface TransitionConfig {
+  type?: "horizontal" | "vertical" | "fade" | "slide";
+  duration?: number;
+  easing?: string;
+}
 
 export class TransitionManager {
   private container: HTMLElement;

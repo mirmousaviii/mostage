@@ -1,4 +1,4 @@
-import { MoSlide } from "../types";
+import { MoSlide } from "./mostage";
 import { MarkdownParser } from "../utils/markdown-parser";
 
 export class ContentManager {

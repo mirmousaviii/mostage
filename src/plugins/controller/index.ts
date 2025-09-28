@@ -1,6 +1,10 @@
 import { PluginBase } from "../../app/plugin-base";
-import { ControllerConfig } from "../../types";
 import styles from "./style.css?inline";
+
+export interface ControllerConfig {
+  enabled?: boolean;
+  position?: "bottom-right" | "bottom-left" | "bottom-center";
+}
 
 export class ControllerPlugin extends PluginBase {
   name = "Controller";

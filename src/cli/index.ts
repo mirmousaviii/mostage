@@ -1,30 +1,44 @@
 #!/usr/bin/env node
 
 import { Command } from "commander";
-import chalk from "chalk";
-import { initCommand } from "./commands/init";
-import { devCommand } from "./commands/dev";
-import { buildCommand } from "./commands/build";
-import { themeCommand } from "./commands/theme";
-import { pluginCommand } from "./commands/plugin";
+import pkg from "../../package.json";
+import { initCommand } from "./commands/init/index";
+import { devCommand } from "./commands/dev/index";
+import { buildCommand } from "./commands/build/index";
+import { themeCommand } from "./commands/theme/index";
+import { pluginCommand } from "./commands/plugin/index";
 
+// Initialize CLI
 const program = new Command();
 
-program
-  .name("mostage")
-  .description("Mostage CLI - Presentation framework based on markdown")
-  .version("1.0.2");
+// Set CLI name, description, and version
+program.name("Mostage CLI").description(pkg.description).version(pkg.version);
 
-// Init command
+// Initialize commands
+
+// Initialize init command
 program
   .command("init")
   .description("Create a new Mostage project")
-  .option("-t, --template <template>", "Template to use (basic, demo)")
-  .option("-c, --content-path <path>", "Path to content file")
+  .option("--template <template>", "Template to use (basic, demo)")
+  .option("--content-path <path>", "Path to content file")
   .option("--config-path <path>", "Path to config file")
+  .option(
+    "--theme <theme>",
+    "Theme to use (dark, light, dracula, ocean, rainbow)"
+  )
+  .option("--plugins <plugins>", "Comma-separated list of plugins to enable")
+  .option(
+    "--transition <transition>",
+    "Slide transition type (horizontal, vertical, fade)"
+  )
+  .option("--no-url-hash", "Disable URL hash navigation")
+  .option("--no-center", "Disable content centering")
+  .option("--no-config", "Skip creating config file")
+  .option("--no-content", "Skip creating content file")
   .action(initCommand);
 
-// Dev command
+// Initialize dev command
 program
   .command("dev")
   .description("Start development server")
@@ -32,14 +46,14 @@ program
   .option("-h, --host <host>", "Host to bind the server to", "localhost")
   .action(devCommand);
 
-// Build command
+// Initialize build command
 program
   .command("build")
   .description("Build the project for production")
   .option("-o, --output <dir>", "Output directory", "dist")
   .action(buildCommand);
 
-// Theme command
+// Initialize theme command
 program
   .command("theme")
   .description("Manage themes")
@@ -48,7 +62,7 @@ program
   .option("-r, --remove <name>", "Remove a theme")
   .action(themeCommand);
 
-// Plugin command
+// Initialize plugin command
 program
   .command("plugin")
   .description("Manage plugins")
@@ -57,39 +71,7 @@ program
   .option("-r, --remove <name>", "Remove a plugin")
   .action(pluginCommand);
 
-// Help command (default)
-program
-  .command("help")
-  .description("Show help information")
-  .action(() => {
-    console.log(chalk.blue.bold("\n🚀 Mostage CLI - Presentation Framework\n"));
-    console.log(
-      chalk.gray("Create beautiful presentations with Markdown and HTML\n")
-    );
-    console.log(chalk.yellow("Commands:"));
-    console.log("  init     Create a new project");
-    console.log("  dev      Start development server");
-    console.log("  build    Build for production");
-    console.log("  theme    Manage themes");
-    console.log("  plugin   Manage plugins");
-    console.log("  help     Show this help");
-    console.log("  version  Show version information\n");
-    console.log(chalk.gray("For more information, visit: https://mo.js.org\n"));
-  });
-
-// Version command
-program
-  .command("version")
-  .description("Show version information")
-  .action(() => {
-    console.log(chalk.blue.bold("Mostage CLI v1.0.2"));
-    console.log(chalk.gray("Presentation framework based on markdown"));
-  });
+// TODO: Add commands for export, import
 
 // Parse command line arguments
 program.parse();
-
-// If no command provided, show help
-if (!process.argv.slice(2).length) {
-  program.outputHelp();
-}

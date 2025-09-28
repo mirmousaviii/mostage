@@ -1,6 +1,12 @@
 import { PluginBase } from "../../app/plugin-base";
-import { ProgressBarConfig } from "../../types";
 import styles from "./style.css?inline";
+
+export interface ProgressBarConfig {
+  enabled?: boolean;
+  position?: "top" | "bottom";
+  color?: string;
+  height?: string;
+}
 
 export class ProgressBarPlugin extends PluginBase {
   name = "ProgressBar";

@@ -1,9 +1,7 @@
 import chalk from "chalk";
 import fs from "fs-extra";
 import path from "path";
-import { fileURLToPath } from "url";
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+import { PluginLoader } from "../../../app/plugin-loader";
 
 export async function pluginCommand(options: {
   list?: boolean;
@@ -18,7 +16,7 @@ export async function pluginCommand(options: {
     } else if (options.remove) {
       await removePlugin(options.remove);
     } else {
-      console.log(chalk.blue.bold("\n🔌 Mostage Plugin Manager\n"));
+      console.log(chalk.blue.bold("\nMostage CLI - plugin\n"));
       console.log(chalk.yellow("Usage:"));
       console.log("  mostage plugin --list          List available plugins");
       console.log("  mostage plugin --add <name>    Add a new plugin");
@@ -31,14 +29,14 @@ export async function pluginCommand(options: {
 }
 
 async function listPlugins() {
-  console.log(chalk.blue.bold("\n🔌 Available Plugins\n"));
+  console.log(chalk.blue.bold("\nMostage CLI - Available Plugins\n"));
 
-  const pluginsPath = path.join(__dirname, "../../../src/plugins");
-  const builtInPlugins = await fs.readdir(pluginsPath);
+  // Get built-in plugins using PluginLoader
+  const builtInPlugins = PluginLoader.getAvailablePlugins();
 
   console.log(chalk.yellow("Built-in Plugins:"));
-  builtInPlugins.forEach((plugin: string) => {
-    console.log(`  • ${chalk.green(plugin)}`);
+  builtInPlugins.forEach((pluginName: string) => {
+    console.log(`  • ${chalk.green(pluginName)}`);
   });
 
   // Check for custom plugins in current project
@@ -55,12 +53,16 @@ async function listPlugins() {
 
   console.log(chalk.gray("\nTo use a plugin, add it to your config.json:"));
   console.log(
-    chalk.gray('  "plugins": { "PluginName": { "enabled": true } }\n')
+    chalk.gray(
+      '  "plugins": { "PluginName": { "enabled": true, [options] } }\n'
+    )
   );
 }
 
 async function addPlugin(pluginName: string) {
-  console.log(chalk.blue.bold(`\n🔌 Creating plugin: ${pluginName}\n`));
+  console.log(
+    chalk.blue.bold(`\nMostage CLI - Creating plugin: ${pluginName}\n`)
+  );
 
   const pluginsDir = path.join(process.cwd(), "plugins", pluginName);
   await fs.ensureDir(pluginsDir);
@@ -126,7 +128,9 @@ export default ${pluginName};
 }
 
 async function removePlugin(pluginName: string) {
-  console.log(chalk.blue.bold(`\n🗑️  Removing plugin: ${pluginName}\n`));
+  console.log(
+    chalk.blue.bold(`\nMostage CLI - Removing plugin: ${pluginName}\n`)
+  );
 
   const pluginPath = path.join(process.cwd(), "plugins", pluginName);
 

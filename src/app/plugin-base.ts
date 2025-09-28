@@ -1,4 +1,4 @@
-import { MoPlugin } from "../types";
+import { MoPlugin } from "./mostage";
 
 /**
  * Plugin base class that provides common functionality for all plugins

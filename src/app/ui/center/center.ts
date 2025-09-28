@@ -1,4 +1,7 @@
-import { CenterContentConfig } from "../../../types";
+export interface CenterContentConfig {
+  vertical?: boolean;
+  horizontal?: boolean;
+}
 
 export class CenterContentManager {
   private centerContentConfig: CenterContentConfig | null = null;

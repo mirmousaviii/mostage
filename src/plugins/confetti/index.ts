@@ -1,6 +1,17 @@
 import { PluginBase } from "../../app/plugin-base";
-import { ConfettiConfig } from "../../types";
 import styles from "./style.css?inline";
+
+export interface ConfettiConfig {
+  enabled?: boolean;
+  particleCount?: number;
+  colors?: string[];
+  size?: {
+    min?: number;
+    max?: number;
+  };
+  duration?: number;
+  delay?: number;
+}
 
 export class ConfettiPlugin extends PluginBase {
   name = "Confetti";
