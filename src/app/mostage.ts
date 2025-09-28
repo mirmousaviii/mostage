@@ -278,9 +278,6 @@ export class Mostage {
       // Initialize center content if configured
       this.centerContentManager.initialize(this.config.centerContent || null);
 
-      // Initialize plugins
-      this.initializePlugins();
-
       // Setup navigation
       this.navigationManager.setSlides(this.slides);
       this.navigationManager.setupNavigation();
@@ -299,6 +296,9 @@ export class Mostage {
       // Go to initial slide (from URL hash if available)
       const initialSlide = this.urlHashManager.getInitialSlideFromUrl();
       this.goToSlide(initialSlide);
+
+      // Initialize plugins AFTER DOM is ready
+      this.initializePlugins();
 
       this.emit("ready", {
         type: "ready",
