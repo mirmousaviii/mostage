@@ -19,6 +19,9 @@ export default defineConfig({
     },
   },
 
-  // Copy assets
+  // Copy all files from example directory
   publicDir: "example",
+
+  // Include all file types
+  assetsInclude: ["**/*.*"],
 });
