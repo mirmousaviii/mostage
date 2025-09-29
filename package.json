@@ -37,9 +37,12 @@
     "dist"
   ],
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
+    "dev": "vite --config vite.dev.config.ts",
+    "build": "npm run build:lib && npm run build:cli && npm run build:example",
+    "build:lib": "vite build --config vite.build.lib.config.ts",
+    "build:cli": "vite build --config vite.build.cli.config.ts",
+    "build:example": "vite build --config vite.build.example.config.ts",
+    "preview": "vite preview --config vite.build.example.config.ts",
     "test": "vitest",
     "lint": "eslint src --ext ts,tsx",
     "format": "prettier --write src/**/*.{ts,tsx,css}",
