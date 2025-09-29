@@ -23,11 +23,11 @@
 
 ## CI/CD Pipeline
 
-This project includes automated CI/CD pipelines using GitHub Actions that handle both package publishing and GitHub Pages deployment when version tags are created.
+This project includes automated CI/CD pipelines using GitHub Actions that handle both package publishing and GitHub Pages deployment when changes are pushed to the main branch.
 
 ### How it works
 
-When you create and push a version tag (e.g., `v1.2.0`), two workflows run automatically:
+When you push changes to the main branch, two workflows run automatically:
 
 #### 1. **Package Publishing** (`publish.yml`)
 
@@ -49,11 +49,10 @@ To release a new version:
 npm version patch  # or minor, major
 
 # 2. Build and commit changes
-npm run release
+npm run build && git add . && git commit -m 'Build for release' && git push
 
-# 3. Create and push a version tag
-git tag v1.2.0
-git push origin v1.2.0
+# 3. Push to main branch (triggers automatic deployment)
+git push origin main
 ```
 
 ### Required Setup
