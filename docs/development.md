@@ -23,36 +23,42 @@
 
 ## CI/CD Pipeline
 
-This project includes an automated CI/CD pipeline using GitHub Actions that handles package publishing when version tags are created.
+This project includes automated CI/CD pipelines using GitHub Actions that handle both package publishing and GitHub Pages deployment when version tags are created.
 
 ### How it works
 
-When you create and push a version tag (e.g., `v1.2.0`), the workflow automatically:
+When you create and push a version tag (e.g., `v1.2.0`), two workflows run automatically:
 
-1. **Extracts version from tag** - Automatically updates `package.json` with the version from the tag
-2. **Builds the project** - Runs `npm run build` to compile TypeScript and generate distribution files
-3. **Publishes to NPM** - Publishes to the public NPM registry for global installation
-4. **Publishes to GitHub Packages** - Also publishes to GitHub's package registry
+#### 1. **Package Publishing** (`publish.yml`)
+
+- **Builds the project** - Runs `npm run build` to compile TypeScript and generate distribution files
+- **Publishes to NPM** - Publishes to the public NPM registry for global installation
+- **Publishes to GitHub Packages** - Also publishes to GitHub's package registry
+
+#### 2. **GitHub Pages Deployment** (`deploy-pages.yml`)
+
+- **Builds example** - Runs `npm run build:example` to build the demo
+- **Deploys to GitHub Pages** - Makes the example available at `https://mirmousaviii.github.io/mostage/`
 
 ### Publishing a new version
 
 To release a new version:
 
 ```bash
-# Create and push a version tag
+# 1. Update version in package.json manually
+npm version patch  # or minor, major
+
+# 2. Build and commit changes
+npm run release
+
+# 3. Create and push a version tag
 git tag v1.2.0
 git push origin v1.2.0
 ```
 
-The workflow will automatically:
-
-- ✅ Extract version from tag (`v1.2.0` → `1.2.0`)
-- ✅ Update `package.json` version
-- ✅ Build the project
-- ✅ Publish to NPM (`npm install mostage@latest`)
-- ✅ Publish to GitHub Packages (`npm install @mirmousaviii/mostage`)
-
 ### Required Setup
+
+###### Just for remember
 
 Before the first release, you need to configure:
 
@@ -61,25 +67,76 @@ Before the first release, you need to configure:
    - Create an **Automation** token
    - Add it to GitHub repository secrets as `NPM_TOKEN`
 
-2. **GitHub Token**:
+2. **GitHub Pages**:
+   - Go to Repository Settings → Pages
+   - Set Source to "GitHub Actions"
+   - No additional setup needed
+
+3. **GitHub Token**:
    - Automatically provided by GitHub Actions (no setup needed)
-
-### Workflow Features
-
-- **Automatic version management** - No need to manually update `package.json`
-- **Dual publishing** - Packages are available on both NPM and GitHub Packages
-- **Node.js 21.7.3** - Uses the specified Node.js version
-- **Build verification** - Ensures the project builds successfully before publishing
 
 ## Building
 
-### Development Build
+### Development
 
 ```bash
 npm run dev
 ```
 
-This starts the Vite development server with hot reload.
+This starts the Vite development server with hot reload using the example directory.
+
+### Production Builds
+
+The project uses separate Vite configurations for different build targets:
+
+#### Library Build
+
+```bash
+npm run build:lib
+```
+
+Builds the main library (`dist/index.js`, `dist/index.cjs`, `dist/mostage.css`)
+
+#### CLI Build
+
+```bash
+npm run build:cli
+```
+
+Builds the CLI tool (`dist/cli/index.js`, `dist/cli/index.cjs`)
+
+#### Example Build
+
+```bash
+npm run build:example
+```
+
+Builds the example for GitHub Pages (`dist/example/`)
+
+#### Full Build
+
+```bash
+npm run build
+```
+
+Builds everything: library + CLI + example
+
+### Build Configuration
+
+The project uses separate Vite config files for better organization:
+
+- `vite.dev.config.ts` - Development server
+- `vite.build.lib.config.ts` - Library build
+- `vite.build.cli.config.ts` - CLI build
+- `vite.build.example.config.ts` - Example build
+
+### Preview
+
+```bash
+npm run preview
+```
+
+Preview the built example locally.
 
 ## Plugin Development
 

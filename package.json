@@ -46,7 +46,8 @@
     "test": "vitest",
     "lint": "eslint src --ext ts,tsx",
     "format": "prettier --write src/**/*.{ts,tsx,css}",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "release": "npm run build && git add . && git commit -m 'Build for release' && git push"
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",

@@ -26,18 +26,7 @@ jobs:
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "Extracted version: $VERSION"
 
-      - name: Update package.json version
-        run: |
-          npm pkg set version=${{ steps.version.outputs.version }}
-
-      - name: Commit and push version update
-        run: |
-          git config --local user.email "mirmousavi.m@gmail.com"
-          git config --local user.name "Mostafa Mirmousavi"
-          git checkout -B main
-          git add package.json
-          git commit -m "Bump version to ${{ steps.version.outputs.version }}"
-          git push origin main
+      # Version should be manually updated in package.json before creating tag
 
       - name: Setup Node.js for NPM
         uses: actions/setup-node@v5
