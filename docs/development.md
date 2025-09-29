@@ -49,7 +49,8 @@ To release a new version:
 npm version patch  # or minor, major
 
 # 2. Build and commit changes
-npm run build && git add . && git commit -m 'Build for release' && git push
+git push
+git push --tags
 
 # 3. Push to main branch (triggers automatic deployment)
 git push origin main
