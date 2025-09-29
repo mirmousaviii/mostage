@@ -31,7 +31,7 @@ export class InteractivePrompts {
         createConfigFile: true,
         configPath: "./config.json",
         theme: "dark",
-        plugins: ["ProgressBar", "SlideNumber", "Controller"],
+        plugins: ["ProgressBar", "SlideNumber", "Controller", "Confetti"],
         transition: "horizontal",
         urlHash: true,
         centerContent: true,
