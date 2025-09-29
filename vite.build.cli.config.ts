@@ -33,8 +33,6 @@ export default defineConfig({
         "inquirer",
         "fs-extra",
         "child_process",
-        "marked",
-        "prismjs",
       ],
       output: {
         exports: "named",

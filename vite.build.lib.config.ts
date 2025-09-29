@@ -24,18 +24,7 @@ export default defineConfig({
       },
     },
     rollupOptions: {
-      external: [
-        "fs",
-        "path",
-        "url",
-        "commander",
-        "chalk",
-        "inquirer",
-        "fs-extra",
-        "child_process",
-        "marked",
-        "prismjs",
-      ],
+      external: ["fs", "path", "url"],
       output: {
         exports: "named",
       },
