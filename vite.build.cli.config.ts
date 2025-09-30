@@ -1,19 +1,12 @@
 import { defineConfig } from "vite";
-import dts from "vite-plugin-dts";
 import { resolve } from "path";
 
 export default defineConfig({
-  plugins: [
-    // Disable dts for CLI build to avoid TypeScript errors from app files
-    // dts({
-    //   outDir: "dist/types",
-    //   tsconfigPath: "./tsconfig.cli.json",
-    // }),
-  ],
-
   build: {
     outDir: "dist",
     emptyOutDir: false, // Don't empty since library might be built first
+    sourcemap: false, // CLI doesn't need sourcemaps
+    minify: "terser",
     lib: {
       entry: resolve(__dirname, "src/cli/index.ts"),
       name: "MostageCLI",
@@ -33,9 +26,29 @@ export default defineConfig({
         "inquirer",
         "fs-extra",
         "child_process",
+        "os",
+        "util",
       ],
       output: {
         exports: "named",
+        globals: {
+          fs: "fs",
+          path: "path",
+          url: "url",
+          commander: "commander",
+          chalk: "chalk",
+          inquirer: "inquirer",
+          "fs-extra": "fs-extra",
+          child_process: "child_process",
+          os: "os",
+          util: "util",
+        },
+      },
+    },
+    terserOptions: {
+      compress: {
+        drop_console: false, // Keep console for CLI
+        drop_debugger: true,
       },
     },
   },
@@ -44,5 +57,9 @@ export default defineConfig({
     alias: {
       "@": resolve(__dirname, "src"),
     },
+  },
+
+  optimizeDeps: {
+    include: ["commander", "chalk", "inquirer", "fs-extra"],
   },
 });

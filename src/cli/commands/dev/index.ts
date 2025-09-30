@@ -1,5 +1,7 @@
 import chalk from "chalk";
 import { spawn } from "child_process";
+import path from "path";
+import fs from "fs-extra";
 
 export async function devCommand(options: any) {
   try {
@@ -7,6 +9,26 @@ export async function devCommand(options: any) {
 
     const port = parseInt(options.port);
     const host = options.host;
+    const projectDir = path.resolve(options.dir || ".");
+
+    // Validate project directory
+    if (!(await fs.pathExists(projectDir))) {
+      console.error(chalk.red(`❌ Project directory not found: ${projectDir}`));
+      process.exit(1);
+    }
+
+    // Check if it's a valid Mostage project
+    const indexHtmlPath = path.join(projectDir, "index.html");
+    if (!(await fs.pathExists(indexHtmlPath))) {
+      console.error(
+        chalk.red(
+          `❌ Not a valid Mostage project. index.html not found in: ${projectDir}`
+        )
+      );
+      process.exit(1);
+    }
+
+    console.log(chalk.gray(`📁 Serving project from: ${projectDir}`));
 
     // Check if vite is available
     try {
@@ -24,7 +46,7 @@ export async function devCommand(options: any) {
 
       installProcess.on("close", (code) => {
         if (code === 0) {
-          startDevServer(port, host);
+          startDevServer(port, host, projectDir);
         } else {
           console.error(chalk.red("❌ Failed to install dependencies"));
           process.exit(1);
@@ -34,16 +56,17 @@ export async function devCommand(options: any) {
       return;
     }
 
-    startDevServer(port, host);
+    startDevServer(port, host, projectDir);
   } catch (error) {
     console.error(chalk.red("❌ Error starting development server:"), error);
     process.exit(1);
   }
 }
 
-function startDevServer(port: number, host: string) {
+function startDevServer(port: number, host: string, projectDir: string) {
   console.log(chalk.green(`✅ Development server starting...`));
   console.log(chalk.gray(`   Server: http://${host}:${port}`));
+  console.log(chalk.gray(`   Project: ${projectDir}`));
   console.log(chalk.gray(`   Press Ctrl+C to stop\n`));
 
   const viteProcess = spawn(
@@ -52,6 +75,7 @@ function startDevServer(port: number, host: string) {
     {
       stdio: "inherit",
       shell: true,
+      cwd: projectDir,
     }
   );
 

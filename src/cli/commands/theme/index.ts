@@ -1,7 +1,7 @@
 import chalk from "chalk";
 import fs from "fs-extra";
 import path from "path";
-import { ThemeLoader } from "../../../app/theme-loader";
+import { ThemeService } from "../../../core/services/theme-service";
 
 export async function themeCommand(options: {
   list?: boolean;
@@ -32,7 +32,7 @@ async function listThemes() {
   console.log(chalk.blue.bold("\nMostage CLI - Available Themes\n"));
 
   // Get built-in themes using ThemeLoader
-  const builtInThemes = ThemeLoader.getThemeNames();
+  const builtInThemes = ThemeService.getThemeNames();
 
   console.log(chalk.yellow("Built-in Themes:"));
   builtInThemes.forEach((themeName: string) => {
@@ -131,7 +131,9 @@ async function addTheme(themeName: string) {
 }
 
 async function removeTheme(themeName: string) {
-  console.log(chalk.blue.bold(`\nMostage CLI - Removing theme: ${themeName}\n`));
+  console.log(
+    chalk.blue.bold(`\nMostage CLI - Removing theme: ${themeName}\n`)
+  );
 
   const themePath = path.join(process.cwd(), "themes", `${themeName}.css`);
 

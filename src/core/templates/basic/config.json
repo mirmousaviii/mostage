@@ -1,0 +1,37 @@
+{
+  "element": "#app",
+  "theme": "dark",
+  "contentPath": "./content.md",
+  "urlHash": true,
+  "transition": {
+    "type": "horizontal",
+    "duration": 600,
+    "easing": "ease-in-out"
+  },
+  "centerContent": {
+    "vertical": true,
+    "horizontal": true
+  },
+  "plugins": {
+    "ProgressBar": {
+      "enabled": true,
+      "position": "bottom",
+      "height": "12px"
+    },
+    "SlideNumber": {
+      "enabled": true,
+      "position": "bottom-right",
+      "format": "current/total"
+    },
+    "Controller": {
+      "enabled": true,
+      "position": "bottom-center"
+    },
+    "Confetti": {
+      "enabled": true,
+      "particleCount": 50,
+      "duration": 4000,
+      "delay": 50
+    }
+  }
+}

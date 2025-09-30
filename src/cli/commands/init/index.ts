@@ -3,6 +3,7 @@ import fs from "fs-extra";
 import path from "path";
 // CLI Init Command Types
 export interface InitOptions {
+  name?: string;
   template?: string;
   contentPath?: string;
   configPath?: string;
@@ -10,12 +11,12 @@ export interface InitOptions {
   plugins?: string;
   transition?: string;
   urlHash?: boolean;
-  center?: boolean;
-  config?: boolean;
-  content?: boolean;
+  centerHorizontal?: boolean;
+  centerVertical?: boolean;
 }
 
 export interface ProjectAnswers {
+  projectName?: string;
   template: string;
   createConfigFile: boolean;
   configPath?: string;
@@ -23,7 +24,8 @@ export interface ProjectAnswers {
   plugins: string[];
   transition: string;
   urlHash: boolean;
-  centerContent: boolean;
+  centerHorizontal: boolean;
+  centerVertical: boolean;
   createContentFile: boolean;
   contentPath?: string;
 }
@@ -91,9 +93,9 @@ export class InitError extends Error {
     this.name = "InitError";
   }
 }
-import { ProjectValidator } from "./validators";
-import { InteractivePrompts } from "./prompts";
-import { TemplateFactory } from "./template-strategies";
+import { ProjectValidator } from "../../utils/validators";
+import { InteractivePrompts } from "../../utils/prompts";
+import { TemplateFactory } from "../../generators/template-strategies";
 
 export async function initCommand(options: InitOptions): Promise<void> {
   try {
@@ -103,18 +105,18 @@ export async function initCommand(options: InitOptions): Promise<void> {
     // Show welcome message
     showWelcomeMessage();
 
-    // Check directory safety and get final project path
-    const initialPath = process.cwd();
-    const projectPath = await checkDirectorySafety(initialPath);
-
     // Get project answers (interactive or non-interactive)
     const answers = await getProjectAnswers(options);
 
-    // Merge options with answers
+    // Merge options with answers and set template to custom
     const finalOptions = mergeOptions(options, answers);
+    finalOptions.template = "custom";
 
-    // Create template based on selection
-    const templateStrategy = TemplateFactory.create(finalOptions.template);
+    // Determine project path based on name option and directory state
+    const projectPath = await determineProjectPath(options, answers);
+
+    // Create custom template
+    const templateStrategy = TemplateFactory.create("custom");
     await templateStrategy.create(projectPath, finalOptions);
 
     // Show success message
@@ -129,55 +131,7 @@ function showWelcomeMessage(): void {
   console.log(chalk.gray("Create presentation project step by step.\n"));
 }
 
-async function checkDirectorySafety(projectPath: string): Promise<string> {
-  const files = await fs.readdir(projectPath);
-  if (files.length > 0) {
-    console.log(
-      chalk.yellow(
-        "⚠️  Directory is not empty. Creating project in a new folder.\n"
-      )
-    );
-
-    const inquirer = await import("inquirer");
-    let folderName = "mostage-project";
-    let counter = 1;
-
-    while (true) {
-      const answer = await inquirer.default.prompt([
-        {
-          type: "input",
-          name: "folderName",
-          message: "Enter folder name for the new project:",
-          default: folderName,
-          validate: (input: string) => {
-            if (!input.trim()) {
-              return "Folder name is required";
-            }
-            return true;
-          },
-        },
-      ]);
-
-      const fullPath = path.join(projectPath, answer.folderName);
-
-      // Check if folder already exists
-      if (await fs.pathExists(fullPath)) {
-        console.log(
-          chalk.red(
-            `❌ Folder "${answer.folderName}" already exists. Please choose a different name.\n`
-          )
-        );
-        folderName = `mostage-project-${counter}`;
-        counter++;
-        continue;
-      }
-
-      return fullPath;
-    }
-  }
-
-  return projectPath;
-}
+// checkDirectorySafety function removed - replaced with determineProjectPath
 
 async function getProjectAnswers(
   options: InitOptions
@@ -198,7 +152,14 @@ async function getProjectAnswers(
 }
 
 function isNonInteractiveMode(options: InitOptions): boolean {
-  return !!options.template;
+  // Check if ALL required options are provided (complete non-interactive mode)
+  // urlHash and center are optional, so we don't check them
+  return !!(
+    options.name &&
+    options.theme &&
+    options.plugins &&
+    options.transition
+  );
 }
 
 function buildNonInteractiveAnswers(options: InitOptions): ProjectAnswers {
@@ -212,15 +173,18 @@ function buildNonInteractiveAnswers(options: InitOptions): ProjectAnswers {
   }
 
   return {
-    template: options.template!,
-    createConfigFile: options.config !== false,
+    template: options.template || "custom",
+    createConfigFile: true,
     configPath: options.configPath,
     theme: options.theme || "dark",
     plugins: parsedPlugins,
     transition: options.transition || "horizontal",
-    urlHash: options.urlHash !== false,
-    centerContent: options.center !== false,
-    createContentFile: options.content !== false,
+    urlHash: options.urlHash !== undefined ? options.urlHash : true,
+    centerHorizontal:
+      options.centerHorizontal !== undefined ? options.centerHorizontal : true,
+    centerVertical:
+      options.centerVertical !== undefined ? options.centerVertical : true,
+    createContentFile: true,
     contentPath: options.contentPath,
   };
 }
@@ -243,10 +207,12 @@ function mergeOptions(
     plugins: answers.plugins || [],
     transition: answers.transition || "horizontal",
     urlHash: answers.urlHash !== undefined ? answers.urlHash : true,
-    centerContent:
-      answers.centerContent !== undefined ? answers.centerContent : true,
-    createContentFile: answers.createContentFile,
-    createConfigFile: answers.createConfigFile,
+    centerHorizontal:
+      answers.centerHorizontal !== undefined ? answers.centerHorizontal : true,
+    centerVertical:
+      answers.centerVertical !== undefined ? answers.centerVertical : true,
+    createContentFile: true,
+    createConfigFile: true,
   };
 }
 
@@ -256,6 +222,59 @@ function showSuccessMessage(): void {
   console.log("  1. Run `mostage dev` to start the development server");
   console.log("  2. Open your browser and start editing your slides");
   console.log("  3. Run `mostage build` when ready to build\n");
+}
+
+async function determineProjectPath(
+  options: InitOptions,
+  answers: ProjectAnswers
+): Promise<string> {
+  const currentDir = process.cwd();
+
+  // Check if current directory is empty
+  const files = await fs.readdir(currentDir);
+  const isEmpty = files.length === 0;
+
+  // If name is provided via --name option, create a folder with that name
+  if (options.name) {
+    return await createProjectFolder(currentDir, options.name);
+  }
+
+  // If projectName is provided via interactive prompt, create a folder with that name
+  if (answers.projectName) {
+    return await createProjectFolder(currentDir, answers.projectName);
+  }
+
+  // If directory is empty, use current directory
+  if (isEmpty) {
+    return currentDir;
+  }
+
+  // Directory is not empty, need to create a subfolder
+  const defaultName = "mostage-project";
+  return await createProjectFolder(currentDir, defaultName);
+}
+
+async function createProjectFolder(
+  currentDir: string,
+  folderName: string
+): Promise<string> {
+  let finalFolderName = folderName;
+  let counter = 1;
+
+  while (true) {
+    const projectPath = path.join(currentDir, finalFolderName);
+
+    // Check if folder already exists
+    if (!(await fs.pathExists(projectPath))) {
+      // Create the folder
+      await fs.ensureDir(projectPath);
+      return projectPath;
+    }
+
+    // Folder exists, try with number suffix
+    finalFolderName = `${folderName}-${counter}`;
+    counter++;
+  }
 }
 
 function handleError(error: unknown): void {

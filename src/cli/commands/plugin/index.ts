@@ -1,7 +1,7 @@
 import chalk from "chalk";
 import fs from "fs-extra";
 import path from "path";
-import { PluginLoader } from "../../../app/plugin-loader";
+import { PluginService } from "../../../core/services/plugin-service";
 
 export async function pluginCommand(options: {
   list?: boolean;
@@ -32,7 +32,7 @@ async function listPlugins() {
   console.log(chalk.blue.bold("\nMostage CLI - Available Plugins\n"));
 
   // Get built-in plugins using PluginLoader
-  const builtInPlugins = PluginLoader.getAvailablePlugins();
+  const builtInPlugins = PluginService.getAvailablePlugins();
 
   console.log(chalk.yellow("Built-in Plugins:"));
   builtInPlugins.forEach((pluginName: string) => {

@@ -1,5 +1,8 @@
 // Main Framework
-export { Mostage as default } from "./app";
+export { Mostage as default } from "./core/engine/mostage-engine";
+
+// Import CSS
+import "./core/styles/foundation/index.css";
 
 // Types - Most commonly needed
 export type {
@@ -15,4 +18,4 @@ export type {
   BackgroundConfig,
   BackgroundItem,
   PluginsConfig,
-} from "./app/mostage";
+} from "./core/types";
