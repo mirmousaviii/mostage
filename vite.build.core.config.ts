@@ -17,7 +17,6 @@ export default defineConfig({
     outDir: "dist",
     emptyOutDir: true,
     sourcemap: true,
-    minify: "terser",
     lib: {
       entry: resolve(__dirname, "src/index.ts"),
       name: "Mostage",
@@ -42,12 +41,6 @@ export default defineConfig({
           }
           return assetInfo.name;
         },
-      },
-    },
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true,
       },
     },
   },

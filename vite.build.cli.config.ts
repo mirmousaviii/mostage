@@ -6,7 +6,6 @@ export default defineConfig({
     outDir: "dist",
     emptyOutDir: false, // Don't empty since library might be built first
     sourcemap: false, // CLI doesn't need sourcemaps
-    minify: "terser",
     lib: {
       entry: resolve(__dirname, "src/cli/index.ts"),
       name: "MostageCLI",
@@ -43,12 +42,6 @@ export default defineConfig({
           os: "os",
           util: "util",
         },
-      },
-    },
-    terserOptions: {
-      compress: {
-        drop_console: false, // Keep console for CLI
-        drop_debugger: true,
       },
     },
   },
