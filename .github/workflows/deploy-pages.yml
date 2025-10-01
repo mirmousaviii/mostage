@@ -30,8 +30,17 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Build core
+        run: npm run build:core
+
+      - name: Build CLI
+        run: npm run build:cli
+
+      - name: Copy templates
+        run: npm run copy:templates
+
       - name: Build demo for GitHub Pages
-        run: npm run build
+        run: npm run build:demo
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
