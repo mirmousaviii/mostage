@@ -28,6 +28,9 @@ npx mostage@latest init
 # Start development server
 npx mostage@latest dev
 
+# Start development server for specific project
+npx mostage@latest dev --dir /path/to/project
+
 # Display help
 npx mostage@latest help
 ```
@@ -48,16 +51,29 @@ mostage init
 
 You can use these commands with `npx mostage@latest <command>`:
 
-| Command          | Description                               | Options                       |
-| ---------------- | ----------------------------------------- | ----------------------------- |
-| `mostage init`   | Create a new presentation project         | `--template`, `--content`     |
-| `mostage dev`    | Start development server with live reload | `--port`, `--host`            |
-| `mostage build`  | Build presentation for production         | `--output`, `--minify`        |
-| `mostage theme`  | Manage themes (list, add, remove)         | `--list`, `--add`, `--remove` |
-| `mostage plugin` | Manage plugins (list, add, remove)        | `--list`, `--add`, `--remove` |
-| `mostage help`   | Show help and command information         |                               |
+| Command           | Description                                     | Options                                                                                                                                       |
+| ----------------- | ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| `mostage init`    | Create a new presentation project               | `--name`, `--content-path`, `--config-path`, `--theme`, `--plugins`, `--transition`, `--url-hash`, `--center-horizontal`, `--center-vertical` |
+| `mostage example` | Create a new presentation project from examples | `--template`                                                                                                                                  |
+| `mostage dev`     | Start development server with live reload       | `--port`, `--host`, `--dir`                                                                                                                   |
+| `mostage build`   | Build presentation for production               | `--output`, `--minify`                                                                                                                        |
+| `mostage theme`   | Manage themes (list, add, remove)               | `--list`, `--add`, `--remove`                                                                                                                 |
+| `mostage plugin`  | Manage plugins (list, add, remove)              | `--list`, `--add`, `--remove`                                                                                                                 |
+| `mostage help`    | Show help and command information               |                                                                                                                                               |
 
-For detailed CLI documentation, see the CLI Commands section above.
+#### Project Creation
+
+The `mostage init` command creates a new custom project:
+
+```bash
+# Interactive mode
+mostage init
+
+# Non-interactive mode with basic options
+mostage init --name my-presentation --theme dark --transition horizontal
+```
+
+For detailed CLI documentation, see the [CLI Commands](#cli-commands) section above.
 
 ### Option 2: NPM Package Installation
 
@@ -94,7 +110,7 @@ If you prefer not to use the CLI or npm package, you can set up Mostage manually
 
 1. **Create your project structure:**
 
-```
+```text
 my-presentation/
 ├── index.html (With an internal configuration or an external configuration link)
 ├── content.md (slides)
