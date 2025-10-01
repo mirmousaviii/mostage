@@ -7,7 +7,7 @@ export default defineConfig({
     dts({
       outDir: "dist/types",
       include: ["src/**/*"],
-      exclude: ["src/cli/**/*", "src/core/templates/**/*"],
+      exclude: ["src/cli/**/*"],
       rollupTypes: true,
       copyDtsFiles: true,
     }),
