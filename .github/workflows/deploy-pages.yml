@@ -30,8 +30,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build example for GitHub Pages
-        run: npm run build:example
+      - name: Build demo for GitHub Pages
+        run: npm run build:demo
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -39,7 +39,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: ./dist/example
+          path: ./dist/demo
 
   deploy:
     runs-on: ubuntu-latest
