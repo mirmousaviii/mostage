@@ -7,6 +7,7 @@ import { EXAMPLE_TEMPLATE_CHOICES } from "../../utils/constants";
 
 export interface ExampleOptions {
   template?: string;
+  output?: string;
 }
 
 export async function exampleCommand(options: ExampleOptions): Promise<void> {
@@ -45,7 +46,7 @@ export async function exampleCommand(options: ExampleOptions): Promise<void> {
     }
 
     // Create project
-    await createProject(template);
+    await createProject(template, options.output);
 
     console.log(chalk.green("\n✅ Project created successfully!"));
     console.log(chalk.gray("\nNext steps:"));
@@ -62,35 +63,47 @@ export async function exampleCommand(options: ExampleOptions): Promise<void> {
   }
 }
 
-async function createProject(template: string): Promise<void> {
+async function createProject(
+  template: string,
+  outputPath?: string
+): Promise<void> {
   const currentDir = process.cwd();
 
-  // Create project folder with template name
-  let folderName = `mostage-${template}`;
-  let counter = 1;
+  let projectPath: string;
 
-  while (true) {
-    const projectPath = path.join(currentDir, folderName);
-    if (!(await fs.pathExists(projectPath))) {
-      await fs.ensureDir(projectPath);
+  if (outputPath) {
+    // Use specified output path
+    projectPath = path.resolve(outputPath);
+    await fs.ensureDir(projectPath);
+  } else {
+    // Create project folder with template name
+    let folderName = `mostage-${template}`;
+    let counter = 1;
 
-      // Get template strategy and create project
-      const strategy = TemplateFactory.create(template);
-      const projectOptions = {
-        template,
-        createConfigFile: true,
-        createContentFile: true,
-      };
-      await strategy.create(projectPath, projectOptions as any);
-
-      console.log(
-        chalk.gray(
-          `\n📁 Project created in: ${path.relative(process.cwd(), projectPath)}`
-        )
-      );
-      return;
+    while (true) {
+      const tempPath = path.join(currentDir, folderName);
+      if (!(await fs.pathExists(tempPath))) {
+        projectPath = tempPath;
+        await fs.ensureDir(projectPath);
+        break;
+      }
+      folderName = `mostage-${template}-${counter}`;
+      counter++;
     }
-    folderName = `mostage-${template}-${counter}`;
-    counter++;
   }
+
+  // Get template strategy and create project
+  const strategy = TemplateFactory.create(template);
+  const projectOptions = {
+    template,
+    createConfigFile: true,
+    createContentFile: true,
+  };
+  await strategy.create(projectPath, projectOptions as any);
+
+  console.log(
+    chalk.gray(
+      `\n📁 Project created in: ${path.relative(process.cwd(), projectPath)}`
+    )
+  );
 }

@@ -17,10 +17,7 @@ export class BasicTemplateStrategy implements TemplateStrategy {
     // Ensure project directory exists
     await fs.ensureDir(projectPath);
 
-    const templatePath = path.resolve(
-      __dirname,
-      "../../src/core/templates/basic"
-    );
+    const templatePath = path.resolve(__dirname, "../templates/basic");
 
     // Copy content.md only if createContentFile is true
     if (options.createContentFile) {
@@ -107,40 +104,37 @@ export class DemoTemplateStrategy implements TemplateStrategy {
     // Ensure project directory exists
     await fs.ensureDir(projectPath);
 
-    const examplePath = path.resolve(
-      __dirname,
-      "../../src/core/templates/demo"
-    );
+    const templatePath = path.resolve(__dirname, "../templates/demo");
 
     // Copy content.md only if createContentFile is true
     if (options.createContentFile) {
-      await this.copyContentFile(projectPath, examplePath, options);
+      await this.copyContentFile(projectPath, templatePath, options);
     }
 
     // Copy config.json only if createConfigFile is true
     if (options.createConfigFile) {
-      await this.createConfigFile(projectPath, examplePath, options);
+      await this.createConfigFile(projectPath, templatePath, options);
     }
 
     // Copy index.html and update config path if needed
-    await this.createIndexHtml(projectPath, examplePath, options);
+    await this.createIndexHtml(projectPath, templatePath, options);
 
     // Copy CSS and JS files locally
     await AssetCopier.copyLocalAssets(projectPath);
 
     // Copy background folder if it exists
-    await this.copyBackgroundAssets(projectPath, examplePath);
+    await this.copyBackgroundAssets(projectPath, templatePath);
 
     this.logSuccess(options);
   }
 
   private async copyContentFile(
     projectPath: string,
-    examplePath: string,
+    templatePath: string,
     options: ProjectOptions
   ): Promise<void> {
     const slidesContent = await fs.readFile(
-      path.join(examplePath, "content.md"),
+      path.join(templatePath, "content.md"),
       "utf-8"
     );
     const contentPath = options.contentPath || "./content.md";
@@ -149,11 +143,11 @@ export class DemoTemplateStrategy implements TemplateStrategy {
 
   private async createConfigFile(
     projectPath: string,
-    examplePath: string,
+    templatePath: string,
     options: ProjectOptions
   ): Promise<void> {
     const configContent = await fs.readFile(
-      path.join(examplePath, "config.json"),
+      path.join(templatePath, "config.json"),
       "utf-8"
     );
     const config = JSON.parse(configContent);
@@ -204,11 +198,11 @@ export class DemoTemplateStrategy implements TemplateStrategy {
 
   private async createIndexHtml(
     projectPath: string,
-    examplePath: string,
+    templatePath: string,
     options: ProjectOptions
   ): Promise<void> {
     let htmlContent = await fs.readFile(
-      path.join(examplePath, "index.html"),
+      path.join(templatePath, "index.html"),
       "utf-8"
     );
 
@@ -231,9 +225,9 @@ export class DemoTemplateStrategy implements TemplateStrategy {
 
   private async copyBackgroundAssets(
     projectPath: string,
-    examplePath: string
+    templatePath: string
   ): Promise<void> {
-    const backgroundPath = path.join(examplePath, "background");
+    const backgroundPath = path.join(templatePath, "background");
     if (await fs.pathExists(backgroundPath)) {
       await fs.copy(backgroundPath, path.join(projectPath, "background"));
     }
@@ -260,10 +254,7 @@ export class CustomTemplateStrategy implements TemplateStrategy {
     // Ensure project directory exists
     await fs.ensureDir(projectPath);
 
-    const templatePath = path.resolve(
-      __dirname,
-      "../../src/core/templates/custom"
-    );
+    const templatePath = path.resolve(__dirname, "../templates/custom");
 
     // Copy content.md only if createContentFile is true
     if (options.createContentFile) {

@@ -37,15 +37,18 @@
     "dist"
   ],
   "scripts": {
-    "dev": "vite --config vite.dev.config.ts",
-    "build": "npm run build:core && npm run build:cli",
+    "dev": "npm run dev:server && npm run dev:demo",
+    "dev:server": "vite --config vite.dev.config.ts",
+    "dev:demo": "npm run build:demo && node dist/cli/index.js dev --dir dist/demo",
+    "build": "npm run clean && npm run build:core && npm run build:cli && npm run copy:templates",
     "build:core": "vite build --config vite.build.core.config.ts",
     "build:cli": "vite build --config vite.build.cli.config.ts",
-    "build:demo": "node dist/cli/index.js build --template demo --output dist/demo",
+    "build:demo": "node dist/cli/index.js example --template demo --output dist/demo",
     "test": "vitest",
     "lint": "eslint src --ext ts,tsx",
     "format": "prettier --write src/**/*.{ts,tsx,css}",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "copy:templates": "cp -r src/cli/templates dist/"
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",

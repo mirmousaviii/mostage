@@ -49,6 +49,7 @@ program
   .command("example")
   .description("Create a new Mostage project from examples")
   .option("--template <template>", "Example template to use (basic, demo)")
+  .option("--output <path>", "Output directory for the project")
   .action(exampleCommand);
 
 // Initialize dev command

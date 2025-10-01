@@ -31,6 +31,10 @@ npx mostage@latest dev
 # Start development server for specific project
 npx mostage@latest dev --dir /path/to/project
 
+# Try demo presentation
+npx mostage@latest example --template demo
+npx mostage@latest dev --dir mostage-demo
+
 # Display help
 npx mostage@latest help
 ```
