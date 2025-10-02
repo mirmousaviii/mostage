@@ -17,7 +17,10 @@ export class BasicTemplateStrategy implements TemplateStrategy {
     // Ensure project directory exists
     await fs.ensureDir(projectPath);
 
-    const templatePath = path.resolve(__dirname, "../templates/basic");
+    const templatePath = path.resolve(
+      __dirname,
+      "../../src/core/templates/basic"
+    );
 
     // Copy content.md only if createContentFile is true
     if (options.createContentFile) {
@@ -83,7 +86,7 @@ export class BasicTemplateStrategy implements TemplateStrategy {
   }
 
   private logSuccess(options: ProjectOptions): void {
-    console.log(chalk.green("✅ Basic template created"));
+    console.log(chalk.green("✅ Basic example created"));
     if (options.createContentFile) {
       const contentPath = options.contentPath || "./content.md";
       console.log(
@@ -104,7 +107,10 @@ export class DemoTemplateStrategy implements TemplateStrategy {
     // Ensure project directory exists
     await fs.ensureDir(projectPath);
 
-    const templatePath = path.resolve(__dirname, "../templates/demo");
+    const templatePath = path.resolve(
+      __dirname,
+      "../../src/core/templates/demo"
+    );
 
     // Copy content.md only if createContentFile is true
     if (options.createContentFile) {
@@ -234,7 +240,7 @@ export class DemoTemplateStrategy implements TemplateStrategy {
   }
 
   private logSuccess(options: ProjectOptions): void {
-    console.log(chalk.green("✅ Demo template created"));
+    console.log(chalk.green("✅ Demo example created"));
     if (options.createContentFile) {
       const contentPath = options.contentPath || "./content.md";
       console.log(chalk.gray(`   - ${contentPath} (demo presentation)`));
@@ -254,7 +260,10 @@ export class CustomTemplateStrategy implements TemplateStrategy {
     // Ensure project directory exists
     await fs.ensureDir(projectPath);
 
-    const templatePath = path.resolve(__dirname, "../templates/custom");
+    const templatePath = path.resolve(
+      __dirname,
+      "../../src/core/templates/custom"
+    );
 
     // Copy content.md only if createContentFile is true
     if (options.createContentFile) {

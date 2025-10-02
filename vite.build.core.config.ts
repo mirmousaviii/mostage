@@ -18,7 +18,7 @@ export default defineConfig({
     emptyOutDir: true,
     sourcemap: true,
     lib: {
-      entry: resolve(__dirname, "src/index.ts"),
+      entry: resolve(__dirname, "src/core/index.ts"),
       name: "Mostage",
       formats: ["es", "cjs"],
       fileName: (format) => {

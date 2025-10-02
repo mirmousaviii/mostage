@@ -35,5 +35,5 @@ export {
   getAvailableThemes,
 } from "./services/theme-service";
 
-// Alias for convenience
-export { Mostage as Mo } from "./engine/mostage-engine";
+// Default export for easier importing
+export { Mostage as default } from "./engine/mostage-engine";
