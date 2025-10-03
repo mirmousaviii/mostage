@@ -5,7 +5,7 @@ import { resolve } from "path";
 export default defineConfig({
   plugins: [
     dts({
-      outDir: "dist/types",
+      outDir: "dist/core/types",
       include: ["src/**/*"],
       exclude: ["src/cli/**/*"],
       rollupTypes: true,
@@ -14,7 +14,7 @@ export default defineConfig({
   ],
 
   build: {
-    outDir: "dist",
+    outDir: "dist/core",
     emptyOutDir: true,
     sourcemap: true,
     lib: {

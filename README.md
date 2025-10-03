@@ -131,12 +131,12 @@ my-presentation/
     <title>My Presentation</title>
     <link
       rel="stylesheet"
-      href="https://unpkg.com/mostage@latest/dist/mostage.css"
+      href="https://unpkg.com/mostage@latest/dist/core/mostage.css"
     />
   </head>
   <body>
     <div id="app"></div>
-    <script src="https://unpkg.com/mostage@latest/dist/index.js"></script>
+    <script src="https://unpkg.com/mostage@latest/dist/core/index.js"></script>
     <script>
       //Use internal config or path of external config
       const presentation = new Mostage({

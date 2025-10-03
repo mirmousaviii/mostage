@@ -95,7 +95,7 @@ The project uses separate Vite configurations for different build targets:
 npm run build:lib
 ```
 
-Builds the main library (`dist/index.js`, `dist/index.cjs`, `dist/mostage.css`)
+Builds the main library (`dist/core/index.js`, `dist/core/index.cjs`, `dist/core/mostage.css`)
 
 #### CLI Build
 

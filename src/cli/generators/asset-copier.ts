@@ -16,7 +16,7 @@ export class AssetCopier {
       const mostageProjectRoot = path.resolve(__dirname, "../../../mostage");
 
       // Copy CSS file from Mostage project dist directory
-      const cssSource = path.join(mostageProjectRoot, "dist/mostage.css");
+      const cssSource = path.join(mostageProjectRoot, "dist/core/mostage.css");
       const cssDest = path.join(assetsDir, "mostage.css");
       if (await fs.pathExists(cssSource)) {
         await fs.copy(cssSource, cssDest);
@@ -25,7 +25,7 @@ export class AssetCopier {
       }
 
       // Copy JS file from Mostage project dist directory
-      const jsSource = path.join(mostageProjectRoot, "dist/index.js");
+      const jsSource = path.join(mostageProjectRoot, "dist/core/index.js");
       const jsDest = path.join(assetsDir, "index.js");
       if (await fs.pathExists(jsSource)) {
         await fs.copy(jsSource, jsDest);
@@ -34,7 +34,10 @@ export class AssetCopier {
       }
 
       // Copy JS source map file
-      const jsMapSource = path.join(mostageProjectRoot, "dist/index.js.map");
+      const jsMapSource = path.join(
+        mostageProjectRoot,
+        "dist/core/index.js.map"
+      );
       const jsMapDest = path.join(assetsDir, "index.js.map");
       if (await fs.pathExists(jsMapSource)) {
         await fs.copy(jsMapSource, jsMapDest);
