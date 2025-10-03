@@ -37,8 +37,8 @@ When you push changes to the main branch, two workflows run automatically:
 
 #### 2. **GitHub Pages Deployment** (`deploy-pages.yml`)
 
-- **Builds example** - Runs `npm run build:example` to build the demo
-- **Deploys to GitHub Pages** - Makes the example available at `https://mirmousaviii.github.io/mostage/`
+- **Builds demo** - Runs `npm run build:demo` to build the demo
+- **Deploys to GitHub Pages** - Makes the demo available at `https://mirmousaviii.github.io/mostage/`
 
 ### Publishing a new version
 
@@ -89,10 +89,10 @@ This starts the Vite development server with hot reload using the example direct
 
 The project uses separate Vite configurations for different build targets:
 
-#### Library Build
+#### Core Library Build
 
 ```bash
-npm run build:lib
+npm run build:core
 ```
 
 Builds the main library (`dist/core/index.js`, `dist/core/index.cjs`, `dist/core/mostage.css`)
@@ -105,13 +105,13 @@ npm run build:cli
 
 Builds the CLI tool (`dist/cli/index.js`, `dist/cli/index.cjs`)
 
-#### Example Build
+#### Demo Build
 
 ```bash
-npm run build:example
+npm run build:demo
 ```
 
-Builds the example for GitHub Pages (`dist/example/`)
+Builds the demo for GitHub Pages (`dist/demo/`)
 
 #### Full Build
 
@@ -119,16 +119,38 @@ Builds the example for GitHub Pages (`dist/example/`)
 npm run build
 ```
 
-Builds everything: library + CLI + example
+Builds everything: core library + CLI + demo
 
 ### Build Configuration
 
 The project uses separate Vite config files for better organization:
 
 - `vite.dev.config.ts` - Development server
-- `vite.build.lib.config.ts` - Library build
+- `vite.build.core.config.ts` - Core library build
 - `vite.build.cli.config.ts` - CLI build
-- `vite.build.example.config.ts` - Example build
+
+### Build Output Structure
+
+After building, the `dist/` directory is organized as follows:
+
+```
+dist/
+├── cli/                    # CLI executable files
+│   ├── index.js            # ES module CLI
+│   └── index.cjs           # CommonJS CLI
+├── core/                   # Core library files
+│   ├── index.js            # ES module library
+│   ├── index.cjs           # CommonJS library
+│   ├── mostage.css         # Core styles
+│   ├── templates/          # Built-in templates
+│   └── types/              # TypeScript definitions
+│       └── index.d.ts
+└── demo/                   # Demo output (when built)
+    ├── index.html
+    ├── content.md
+    ├── config.json
+    └── assets/
+```
 
 ### Preview
 
@@ -136,7 +158,45 @@ The project uses separate Vite config files for better organization:
 npm run preview
 ```
 
-Preview the built example locally.
+Preview the built demo locally.
+
+## Project Structure
+
+### Source Code Organization
+
+```
+src/
+├── cli/                    # CLI source code
+│   ├── commands/           # CLI commands
+│   ├── generators/          # Code generators
+│   └── utils/              # CLI utilities
+├── core/                   # Core library source
+│   ├── components/         # UI components
+│   ├── engine/             # Core engine
+│   ├── plugins/             # Built-in plugins
+│   ├── services/            # Core services
+│   ├── styles/              # Core styles
+│   ├── templates/           # Built-in templates
+│   ├── themes/              # Built-in themes
+│   └── utils/               # Core utilities
+└── types/                   # TypeScript type definitions
+```
+
+### Build Process
+
+1. **Core Library** (`npm run build:core`):
+   - Compiles TypeScript to JavaScript
+   - Generates CSS bundle
+   - Copies templates to `dist/core/templates/`
+   - Generates TypeScript definitions
+
+2. **CLI Tool** (`npm run build:cli`):
+   - Compiles CLI TypeScript to JavaScript
+   - Creates executable files in `dist/cli/`
+
+3. **Demo** (`npm run build:demo`):
+   - Uses CLI to generate demo project
+   - Outputs to `dist/demo/`
 
 ## Plugin Development
 
