@@ -1,6 +1,8 @@
 /* Center Content Styles - Applied when centerContent is enabled */
 
-.mostage-container .mostage-slides .mostage-slide.mostage-slide-centered {
+.mostage-slide.mostage-slide-centered .mostage-slide-content {
+  transform: translateY(-5vh);
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -40,5 +42,5 @@
 
 .mostage-slide.mostage-slide-centered img {
   display: block;
-  margin: 1rem auto;
+  margin: clamp(1.5rem, 2vw, 1.5rem) auto;
 }

@@ -15,13 +15,13 @@ body {
     sans-serif;
 }
 
-/* Container */
+/* Container - Clamp-based responsive sizing with larger minimums and preferred sizes */
 .mostage-container {
   width: 100vw;
   height: 100vh;
   position: relative;
   overflow: hidden;
-  font-size: 16px;
+  font-size: clamp(18px, 2vw, 18px);
   line-height: 1.6;
 }
 
@@ -31,11 +31,11 @@ body {
   position: relative;
 }
 
-/* Slide Layout - Natural Flow, Not Centered */
+/* Slide Layout - Clamp-based responsive sizing with larger minimums and preferred sizes */
 .mostage-slide {
   width: 100%;
   height: 100%;
-  padding: 3rem 3rem;
+  padding: clamp(2.5rem, 3.5vw, 3rem);
   position: absolute;
   top: 0;
   left: 0;
@@ -57,11 +57,11 @@ body {
   z-index: 1;
 }
 
-/* Header and Footer Styles */
+/* Header and Footer Styles - Clamp-based responsive sizing with larger minimums and preferred sizes */
 .mostage-header {
   position: fixed;
   z-index: 1000;
-  padding: 1rem 3rem;
+  padding: clamp(1.5rem, 2vw, 1.5rem) clamp(2.5rem, 3vw, 3rem);
   opacity: 0;
   animation: mostage-fade-in 0.7s ease forwards;
 }
@@ -69,7 +69,7 @@ body {
 .mostage-footer {
   position: fixed;
   z-index: 1000;
-  padding: 1rem 3rem;
+  padding: clamp(1.5rem, 2vw, 1.5rem) clamp(2.5rem, 3vw, 3rem);
   opacity: 0;
   animation: mostage-fade-in 0.7s ease forwards;
 }
