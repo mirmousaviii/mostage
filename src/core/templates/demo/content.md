@@ -1,11 +1,24 @@
-# Mostage
+<h1>
+  <img src="images/logo.svg" alt="#" style="
+  display: inline;
+  vertical-align: middle;
+  width: 4.25rem;
+  margin-top: 0.625rem;
+  ">
+Mostage
+</h1>
+
+<!-- # Mostage -->
 
 ## Generate web slides by Markdown
 
 <h4>
-  <span style="color: var(--mostage-primary-color)">Mo</span
-  ><span style="color: var(--mostage-border-color)">dern</span
-  ><span style="color: var(--mostage-primary-color)">stage</span>
+  <span style="color: var(--mostage-primary-color)">
+    <span style="border-bottom: 1px solid var(--mostage-primary-color); padding-bottom: 5px;">Mo</span>dern
+  </span>
+  <span style="color: var(--mostage-primary-color)">
+    <span style="border-bottom: 1px solid var(--mostage-primary-color); padding-bottom: 5px;">stage</span>
+  </span>
   as a Presentation Framework
 </h4>
 
@@ -139,7 +152,9 @@ class CustomPlugin {
 
 This is an example of text.
 
-**Bold**, _Italic_, **_Bold Italic_**, ~~strikethrough~~, [Link](https://mo.js.org)
+**Bold**, _Italic_, **_Bold Italic_**, ~~strikethrough~~
+
+[Link](https://mo.js.org)
 
 > This is a blockquote. It is used to highlight a section of text.
 ```
@@ -228,12 +243,9 @@ Here is example of **code**
 | Overview            |   ✅   | Slide overview/mini-map for quick navigation         |
 | Page Number         |   ✅   | Shows current/total slide number via plugin          |
 | Header & Footer     |   ✅   | Customizable header and footer for slides            |
-| Print Friendly      |   ⬜   | Planned: Styles and layout optimized for printing    |
 | Speaker Note        |   ⬜   | Planned: Add private notes for presenters            |
 | Presenter Mode      |   ⬜   | Planned: Dual-screen mode for presenter and audience |
 | Export              |   ⬜   | Export slides as PDF or images, etc.                 |
-| CLI                 |   ⬜   | Command-line interface for slide management          |
-| Live Editor         |   ⬜   | In-browser live Markdown editor for slides           |
 
 ---
 
@@ -244,7 +256,7 @@ HTML Form
 <div style="display: flex; align-items: center; gap: 0.3em;">
   <input id="myInput" style="padding: 0.2em 0.5em; border: 1px solid #bbb; border-radius: 3px; font-size: 0.95em; height: 2em;">
   <button 
-    style="padding: 0.2em 0.8em; background: #4ecdc4; color: #fff; border: none; border-radius: 3px; font-size: 0.95em; height: 2em; cursor: pointer;"
+    style="padding: 0.2em 0.8em; background:rgb(94, 33, 224); color: #fff; border: none; border-radius: 3px; font-size: 0.95em; height: 2em; cursor: pointer;"
     onclick="document.getElementById('message').innerText = 'You entered: ' + document.getElementById('myInput').value;"
   >
     Test
