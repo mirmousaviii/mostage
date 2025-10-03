@@ -2,7 +2,7 @@
   position: fixed;
   z-index: 1000;
   display: flex;
-  gap: 5px;
+  gap: 10px;
 }
 
 .mostage-controller-bottom-right {
@@ -22,13 +22,13 @@
 }
 
 .mostage-btn {
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   border: none;
   border-radius: 3px;
   background-color: rgba(0, 0, 0, 0.7);
   color: white;
-  font-size: 18px;
+  font-size: 32px;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.2s ease;
