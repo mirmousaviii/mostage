@@ -233,9 +233,28 @@ export class DemoTemplateStrategy implements TemplateStrategy {
     projectPath: string,
     templatePath: string
   ): Promise<void> {
-    const backgroundPath = path.join(templatePath, "background");
-    if (await fs.pathExists(backgroundPath)) {
-      await fs.copy(backgroundPath, path.join(projectPath, "background"));
+    // Copy all directories and files from template except the ones we handle separately
+    const templateFiles = await fs.readdir(templatePath);
+
+    for (const item of templateFiles) {
+      const itemPath = path.join(templatePath, item);
+      const stat = await fs.stat(itemPath);
+
+      // Skip files that are handled separately (content.md, config.json, index.html)
+      if (
+        item === "content.md" ||
+        item === "config.json" ||
+        item === "index.html"
+      ) {
+        continue;
+      }
+
+      // Copy directories and other files
+      if (stat.isDirectory()) {
+        await fs.copy(itemPath, path.join(projectPath, item));
+      } else {
+        await fs.copy(itemPath, path.join(projectPath, item));
+      }
     }
   }
 
@@ -251,7 +270,7 @@ export class DemoTemplateStrategy implements TemplateStrategy {
     }
     console.log(chalk.gray("   - index.html (main HTML file)"));
     console.log(chalk.gray("   - assets/ (CSS and JS files)"));
-    console.log(chalk.gray("   - background/ (background assets)"));
+    console.log(chalk.gray("   - template assets (images, backgrounds, etc.)"));
   }
 }
 
