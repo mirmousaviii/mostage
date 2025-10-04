@@ -27,3 +27,61 @@
   left: 50%;
   transform: translateX(-50%);
 }
+
+/* ==========================================================================
+   RESPONSIVE STYLES FOR SLIDE NUMBER
+   ========================================================================== */
+
+/* Mobile devices */
+@media screen and (max-width: 768px) {
+  .mostage-slide-number {
+    bottom: 1rem !important;
+    width: 60px !important;
+    height: 50px !important;
+    font-size: 12px !important;
+  }
+
+  .mostage-slide-number-bottom-right {
+    right: 1rem !important;
+  }
+
+  .mostage-slide-number-bottom-left {
+    left: 1rem !important;
+  }
+}
+
+/* Small mobile devices */
+@media screen and (max-width: 480px) {
+  .mostage-slide-number {
+    bottom: 0.8rem !important;
+    width: 55px !important;
+    height: 44px !important;
+    font-size: 11px !important;
+  }
+
+  .mostage-slide-number-bottom-right {
+    right: 0.8rem !important;
+  }
+
+  .mostage-slide-number-bottom-left {
+    left: 0.8rem !important;
+  }
+}
+
+/* Desktop devices */
+@media screen and (min-width: 1024px) {
+  .mostage-slide-number {
+    bottom: 2rem !important;
+    width: 80px !important;
+    height: 65px !important;
+    font-size: 16px !important;
+  }
+
+  .mostage-slide-number-bottom-right {
+    right: 2rem !important;
+  }
+
+  .mostage-slide-number-bottom-left {
+    left: 2rem !important;
+  }
+}

@@ -12,10 +12,10 @@ Mostage
 
 <h4>
   <span style="color: var(--mostage-primary-color)">
-    <span style="border-bottom: 1px solid var(--mostage-primary-color); padding-bottom: 5px;">Mo</span>dern
+    <span style="border-bottom: 1px solid var(--mostage-primary-color); padding-bottom: 3px;">Mo</span>dern
   </span>
   <span style="color: var(--mostage-primary-color)">
-    <span style="border-bottom: 1px solid var(--mostage-primary-color); padding-bottom: 5px;">stage</span>
+    <span style="border-bottom: 1px solid var(--mostage-primary-color); padding-bottom: 3px;">stage</span>
   </span>
   as a Presentation Framework
 </h4>
@@ -154,7 +154,7 @@ This is an example of text.
 
 [Link](https://mo.js.org)
 
-> This is a blockquote. It is used to highlight a section of text.
+> This is an example of blockquote.
 ```
 
 ---
@@ -179,7 +179,7 @@ This is an example of text.
 
 _Italic_, **Bold**, **_Bold Italic_**, ~~strikethrough~~, [Link](https://mo.js.org)
 
-> This is a blockquote. It is used to highlight a section of text.
+> This is an example of blockquote.
 
 **Inline Code:** `console.log('Hello, World!');`
 
@@ -268,7 +268,7 @@ HTML Form
 
 <h2>Media Elements</h2>
 
-<audio controls>
+<audio controls style="max-width: 100%;">
   <source
     src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
     type="audio/wav"
@@ -276,7 +276,10 @@ HTML Form
   Your browser does not support the audio element.
 </audio>
 
-<video width="400" height="300" controls>
+<br/>
+
+<video controls style="max-width: 100%; height: auto;" width="400" height="300">
+
   <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
   Your browser does not support the video element.
 </video>
@@ -295,98 +298,9 @@ HTML Form
 
 ---
 
-## Base Configuration
-
-```javascript
-  // Basic Settings
-  element: "#app", // DOM element (default: document.body)
-  theme: "light", // light, dark, dracula, ocean, rainbow
-  scale: 1.0, // Slide scale factor
-  loop: false, // Loop after last slide
-  keyboard: true, // Enable keyboard navigation
-  touch: true, // Enable touch navigation
-  urlHash: false, // Enable URL hash navigation
-
-  // Transition Settings
-  transition: {
-    type: "horizontal", // horizontal, vertical, fade, slide
-    duration: 600, // Transition duration (ms)
-    easing: "ease-in-out", // Animation easing
-  },
-
-  // Content Centering
-  centerContent: {
-    vertical: true, // Vertical centering
-    horizontal: true, // Horizontal centering
-  },
-```
-
----
-
-## Content Configuration
-
-```javascript
-  // Content Settings
-  content: undefined, // Direct content (string)
-  contentPath: undefined, // Content file path
-
-  // Header Configuration
-  header: {
-    content: undefined, // Header content
-    contentPath: undefined, // Header content file
-    position: "top-left", // top-left, top-center, top-right
-    showOnFirstSlide: true, // Show on first slide
-  },
-
-  // Footer Configuration
-  footer: {
-    content: undefined, // Footer content
-    contentPath: undefined, // Footer content file
-    position: "bottom-left", // bottom-left, bottom-center, bottom-right
-    showOnFirstSlide: true, // Show on first slide
-  },
-```
-
----
-
-## Plugin Configuration
-
-```javascript
-  plugins: {
-    ProgressBar: {
-      enabled: true, // Enable/disable
-      position: "bottom", // top, bottom
-      color: "#007acc", // Progress bar color
-      height: "12px", // Progress bar height
-    },
-    SlideNumber: {
-      enabled: true, // Enable/disable
-      position: "bottom-right", // bottom-right, bottom-left, bottom-center
-      format: "current/total", // Display format
-    },
-    Controller: {
-      enabled: true, // Enable/disable
-      position: "bottom-center", // bottom-right, bottom-left, bottom-center
-    },
-    Confetti: {
-      enabled: true, // Enable/disable
-      particleCount: 50, // Number of particles
-      colors: [],
-      size: {
-        min: 5, // Minimum particle size
-        max: 15, // Maximum particle size
-      },
-      duration: 4000, // Animation duration (ms)
-      delay: 50, // Delay between particles (ms)
-    },
-  },
-```
-
----
-
 ## JSON Configuration
 
-You can also load your configuration from a separate JSON file:
+You can load your configuration from a separate JSON file:
 
 ```javascript
 // Method 1: Load configuration from JSON file
@@ -397,8 +311,19 @@ const mostage = new Mostage({
   element: "#app",
   theme: "dark",
   contentPath: "./content.md",
+  header: {
+    content: "### Header",
+  },
+  footer: {
+    contentPath: "./footer.md",
+    showOnFirstSlide: true,
+  },
   plugins: {
-    ProgressBar: { enabled: true },
+    SlideNumber: {
+      enabled: true,
+      position: "bottom-right",
+      format: "current/total",
+    },
   },
 });
 ```

@@ -35,15 +35,15 @@
       "position": "center",
       "repeat": "no-repeat",
       "bgColor": "#000000",
-      "allSlidesExcept": [1, 24]
+      "allSlidesExcept": [1, 21]
     },
     {
       "imagePath": "./images/background-end.svg",
       "size": "cover",
-      "position": "bottom-right",
+      "position": "right",
       "repeat": "no-repeat",
       "bgColor": "#000000",
-      "allSlides": [24]
+      "allSlides": [21]
     }
   ],
   "plugins": {

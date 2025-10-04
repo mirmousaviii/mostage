@@ -1,2 +1,309 @@
-/* Responsive Design - Simplified */
-/* All screen sizes will display the same way */
+/* Mostage Responsive Styles - Mobile-First Design */
+
+/* ==========================================================================
+   MOBILE DEVICES (320px - 768px)
+   ========================================================================== */
+
+/* Base mobile styles */
+@media screen and (max-width: 768px) {
+  /* Container adjustments */
+  .mostage-container {
+    font-size: 16px !important;
+    line-height: 1.5 !important;
+    overflow-x: hidden !important;
+  }
+
+  /* Slide layout for mobile */
+  .mostage-slide {
+    padding: 1rem !important;
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    /* Extend content to above controller */
+    padding-bottom: 5rem !important;
+  }
+
+  /* Typography scaling for mobile */
+  .mostage-slide h1 {
+    font-size: 1.8rem !important;
+    line-height: 1.8 !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .mostage-slide h2 {
+    font-size: 1.5rem !important;
+    line-height: 1.8 !important;
+    margin-bottom: 0.4rem !important;
+  }
+
+  .mostage-slide h3 {
+    font-size: 1.3rem !important;
+    line-height: 1.8 !important;
+    margin-bottom: 0.2rem !important;
+  }
+
+  .mostage-slide h4 {
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+    margin-bottom: 0.2rem !important;
+  }
+
+  .mostage-slide h5 {
+    font-size: 0.8rem !important;
+    line-height: 1.8 !important;
+    margin-bottom: 0.2rem !important;
+  }
+
+  .mostage-slide h6 {
+    font-size: 0.7rem !important;
+    line-height: 1.8 !important;
+    margin-bottom: 0.1rem !important;
+  }
+
+  .mostage-slide p {
+    font-size: 14px !important;
+    line-height: 1.8 !important;
+    margin-bottom: 0.3rem !important;
+  }
+
+  /* Lists optimization for mobile */
+  .mostage-slide ul,
+  .mostage-slide ol {
+    padding-left: 1.2rem !important;
+    margin: 0.5rem 0 !important;
+  }
+
+  .mostage-slide li {
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+    margin-bottom: 0.2rem !important;
+  }
+
+  /* Code blocks for mobile */
+  .mostage-slide pre {
+    font-size: 12px !important;
+    padding: 0.8rem !important;
+    margin: 0.5rem 0 !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .mostage-slide code {
+    font-size: 12px !important;
+    padding: 0.2rem 0.4rem !important;
+  }
+
+  /* Tables for mobile */
+  .mostage-slide table {
+    font-size: 12px !important;
+    width: 100% !important;
+    display: block !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .mostage-slide th,
+  .mostage-slide td {
+    padding: 0.3rem 0.5rem !important;
+    white-space: nowrap !important;
+  }
+
+  /* Images for mobile */
+  .mostage-slide img {
+    max-width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    margin: 0.5rem auto !important;
+  }
+
+  /* Blockquotes for mobile */
+  .mostage-slide blockquote {
+    font-size: 13px !important;
+    padding: 0.5rem 0.8rem !important;
+    margin: 0.5rem 0 !important;
+    border-left-width: 3px !important;
+  }
+
+  /* Header and Footer adjustments */
+  .mostage-header,
+  .mostage-footer {
+    padding: 0.5rem !important;
+    font-size: 12px !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+
+  /* Navigation adjustments */
+  .mostage-navigation {
+    font-size: 12px !important;
+  }
+
+  /* Footer positioning above controller and page number */
+  .mostage-footer {
+    bottom: 4rem !important;
+    position: fixed !important;
+    z-index: 1000 !important;
+  }
+
+  /* Touch-friendly interactions */
+  .mostage-controller button,
+  .mostage-navigation button,
+  .mostage-help button,
+  .mostage-overview button {
+    min-width: 44px !important;
+    min-height: 44px !important;
+    touch-action: manipulation !important;
+  }
+}
+
+/* ==========================================================================
+   SMALL MOBILE DEVICES (320px - 480px)
+   ========================================================================== */
+
+@media screen and (max-width: 480px) {
+  .mostage-container {
+    font-size: 14px !important;
+  }
+
+  .mostage-slide {
+    padding: 0.8rem !important;
+    font-size: 13px !important;
+  }
+
+  .mostage-slide h1 {
+    font-size: 1.5rem !important;
+  }
+
+  .mostage-slide h2 {
+    font-size: 1.3rem !important;
+  }
+
+  .mostage-slide h3 {
+    font-size: 1.1rem !important;
+  }
+
+  .mostage-slide h4 {
+    font-size: 1rem !important;
+  }
+
+  .mostage-slide p {
+    font-size: 13px !important;
+  }
+
+  .mostage-slide pre {
+    font-size: 11px !important;
+    padding: 0.6rem !important;
+  }
+
+  .mostage-slide code {
+    font-size: 11px !important;
+  }
+
+  .mostage-slide table {
+    font-size: 11px !important;
+  }
+
+  .mostage-slide th,
+  .mostage-slide td {
+    padding: 0.2rem 0.3rem !important;
+  }
+
+  .mostage-slide blockquote {
+    font-size: 12px !important;
+    padding: 0.4rem 0.6rem !important;
+  }
+
+  .mostage-header,
+  .mostage-footer {
+    font-size: 11px !important;
+    padding: 0.3rem 1.2rem !important;
+  }
+
+  .mostage-controller button {
+    padding: 0.4rem !important;
+    font-size: 11px !important;
+  }
+}
+
+/* ==========================================================================
+   HIGH DPI DISPLAYS
+   ========================================================================== */
+
+@media screen and (-webkit-min-device-pixel-ratio: 2),
+  screen and (min-resolution: 192dpi) {
+  .mostage-slide img {
+    image-rendering: -webkit-optimize-contrast !important;
+    image-rendering: crisp-edges !important;
+  }
+}
+
+/* ==========================================================================
+   ACCESSIBILITY IMPROVEMENTS
+   ========================================================================== */
+
+/* Focus indicators for keyboard navigation */
+.mostage-controller button:focus,
+.mostage-navigation button:focus,
+.mostage-help button:focus,
+.mostage-overview button:focus {
+  outline: 2px solid var(--mostage-primary-color, #667eea) !important;
+  outline-offset: 2px !important;
+}
+
+/* Reduced motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .mostage-slide {
+    transition: none !important;
+  }
+
+  .mostage-container * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .mostage-slide {
+    border: 2px solid currentColor !important;
+  }
+
+  .mostage-slide h1,
+  .mostage-slide h2,
+  .mostage-slide h3,
+  .mostage-slide h4,
+  .mostage-slide h5,
+  .mostage-slide h6 {
+    text-decoration: underline !important;
+  }
+}
+
+/* ==========================================================================
+   UTILITY CLASSES FOR RESPONSIVE DESIGN
+   ========================================================================== */
+
+.mobile-only {
+  display: none !important;
+}
+
+@media screen and (max-width: 768px) {
+  .mobile-only {
+    display: block !important;
+  }
+}
+
+/* Hide elements on very small screens */
+@media screen and (max-width: 320px) {
+  .mostage-header,
+  .mostage-footer {
+    display: none !important;
+  }
+
+  .mostage-slide-number {
+    display: none !important;
+  }
+}

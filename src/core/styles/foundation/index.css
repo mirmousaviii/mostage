@@ -5,6 +5,7 @@
 @import "./typography.css";
 @import "./responsive.css";
 @import "./text-content.css";
+@import "./print.css";
 @import "../../components/ui/center/center.css";
 @import "../../components/ui/overview/overview.css";
 @import "../../components/ui/help/help.css";

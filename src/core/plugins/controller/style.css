@@ -52,3 +52,57 @@
   background-color: rgba(0, 0, 0, 0.7);
   transform: none;
 }
+
+/* ==========================================================================
+   RESPONSIVE STYLES FOR CONTROLLER
+   ========================================================================== */
+
+/* Mobile devices */
+@media screen and (max-width: 768px) {
+  .mostage-controller {
+    bottom: 1rem !important;
+    gap: 0.5rem !important;
+  }
+
+  .mostage-btn {
+    width: 50px !important;
+    height: 50px !important;
+    font-size: 16px !important;
+  }
+}
+
+/* Small mobile devices */
+@media screen and (max-width: 480px) {
+  .mostage-controller {
+    bottom: 0.8rem !important;
+    gap: 0.3rem !important;
+  }
+
+  .mostage-btn {
+    width: 44px !important;
+    height: 44px !important;
+    font-size: 14px !important;
+  }
+}
+
+/* Desktop devices */
+@media screen and (min-width: 1024px) {
+  .mostage-controller {
+    bottom: 2rem !important;
+    gap: 1rem !important;
+  }
+
+  .mostage-btn {
+    width: 65px !important;
+    height: 65px !important;
+    font-size: 20px !important;
+  }
+}
+
+/* Touch-friendly interactions */
+@media (hover: none) and (pointer: coarse) {
+  .mostage-btn {
+    min-width: 44px !important;
+    min-height: 44px !important;
+  }
+}

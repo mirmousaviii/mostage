@@ -33,6 +33,70 @@
   }
 }
 
+/* ==========================================================================
+   RESPONSIVE STYLES FOR OVERVIEW
+   ========================================================================== */
+
+/* Mobile devices */
+@media screen and (max-width: 768px) {
+  .mostage-overview {
+    padding: 40px 20px !important;
+    gap: 20px 15px !important;
+  }
+
+  .mostage-overview-slide {
+    width: 240px !important;
+    height: 180px !important;
+  }
+
+  .mostage-overview-slide-content {
+    padding: 15px !important;
+    font-size: 12px !important;
+  }
+
+  .mostage-overview-slide h1 {
+    font-size: 16px !important;
+  }
+
+  .mostage-overview-slide h2 {
+    font-size: 14px !important;
+  }
+
+  .mostage-overview-slide h3 {
+    font-size: 13px !important;
+  }
+}
+
+/* Small mobile devices */
+@media screen and (max-width: 480px) {
+  .mostage-overview {
+    padding: 30px 15px !important;
+    gap: 15px 10px !important;
+  }
+
+  .mostage-overview-slide {
+    width: 180px !important;
+    height: 150px !important;
+  }
+
+  .mostage-overview-slide-content {
+    padding: 12px !important;
+    font-size: 11px !important;
+  }
+
+  .mostage-overview-slide h1 {
+    font-size: 14px !important;
+  }
+
+  .mostage-overview-slide h2 {
+    font-size: 12px !important;
+  }
+
+  .mostage-overview-slide h3 {
+    font-size: 11px !important;
+  }
+}
+
 .mostage-overview-slide {
   width: 280px;
   height: 210px;
@@ -72,23 +136,16 @@
 }
 
 .mostage-overview-slide:hover {
-  scale: 1.05;
+  /* scale: 1.05; */
   border-color: var(--mostage-primary-color);
 }
 
 .mostage-overview-slide.active {
   border-color: var(--mostage-primary-color);
-  box-shadow:
-    0 0 0 3px var(--mostage-primary-color),
-    0 0px 24px var(--mostage-primary-color);
 }
 
 .mostage-overview-slide.selected {
   border-color: var(--mostage-primary-color);
-  box-shadow:
-    0 0 0 3px var(--mostage-primary-color),
-    0 0px 24px var(--mostage-primary-color);
-  scale: 1.05;
 }
 
 .mostage-overview-slide-number {
@@ -271,6 +328,6 @@
     right: 15px;
     padding: 10px 12px;
     font-size: 12px;
-    max-width: 200px;
+    max-width: 180px;
   }
 }

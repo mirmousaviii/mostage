@@ -21,3 +21,21 @@
   background-color: var(--progress-color, #007acc);
   transition: width 0.3s ease;
 }
+
+/* ==========================================================================
+   RESPONSIVE STYLES FOR PROGRESS BAR
+   ========================================================================== */
+
+/* Mobile devices */
+@media screen and (max-width: 768px) {
+  .mostage-progress-bar {
+    height: 8px !important;
+  }
+}
+
+/* Desktop devices */
+@media screen and (min-width: 1024px) {
+  .mostage-progress-bar {
+    height: 10px !important;
+  }
+}
