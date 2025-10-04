@@ -358,6 +358,8 @@ export class Mostage implements MostageInstance {
     return (
       key === "ArrowRight" ||
       key === "ArrowLeft" ||
+      key === "ArrowUp" ||
+      key === "ArrowDown" ||
       key === "Home" ||
       key === "End" ||
       keyLower === " "
@@ -376,9 +378,11 @@ export class Mostage implements MostageInstance {
   private handleNavigationKey(key: string, keyLower: string): void {
     switch (key) {
       case "ArrowRight":
+      case "ArrowDown":
         this.nextSlide();
         break;
       case "ArrowLeft":
+      case "ArrowUp":
         this.previousSlide();
         break;
       case "Home":

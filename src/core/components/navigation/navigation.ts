@@ -47,11 +47,22 @@ export class NavigationManager {
       const diffX = startX - endX;
       const diffY = startY - endY;
 
+      // Check horizontal swipe
       if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
         if (diffX > 0) {
           this.nextSlide();
         } else {
           this.previousSlide();
+        }
+      }
+      // Check vertical swipe
+      else if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 50) {
+        if (diffY > 0) {
+          // Swipe down - go to previous slide
+          this.previousSlide();
+        } else {
+          // Swipe up - go to next slide
+          this.nextSlide();
         }
       }
     });

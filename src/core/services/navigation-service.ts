@@ -126,11 +126,13 @@ export class NavigationService {
 
     switch (key) {
       case "ArrowRight":
+      case "ArrowDown":
       case " ":
         event.preventDefault();
         this.nextSlide();
         break;
       case "ArrowLeft":
+      case "ArrowUp":
         event.preventDefault();
         this.previousSlide();
         break;
@@ -166,6 +168,19 @@ export class NavigationService {
       if (deltaX > 0) {
         this.previousSlide();
       } else {
+        this.nextSlide();
+      }
+    }
+    // Check if it's a vertical swipe
+    else if (
+      Math.abs(deltaY) > Math.abs(deltaX) &&
+      Math.abs(deltaY) > minSwipeDistance
+    ) {
+      if (deltaY > 0) {
+        // Swipe down - go to previous slide
+        this.previousSlide();
+      } else {
+        // Swipe up - go to next slide
         this.nextSlide();
       }
     }

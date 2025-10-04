@@ -4,7 +4,7 @@
   "contentPath": "./content.md",
   "urlHash": true,
   "transition": {
-    "type": "horizontal",
+    "type": "vertical",
     "duration": 600,
     "easing": "ease-in-out"
   },
@@ -17,7 +17,7 @@
     "position": "top-left"
   },
   "footer": {
-    "content": "### Presentation Framework",
+    "content": "### Demo",
     "position": "bottom-left"
   },
   "background": [
