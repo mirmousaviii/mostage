@@ -1,0 +1,380 @@
+/* Mostage Print Styles - Professional Print Optimization */
+
+/* ==========================================================================
+   PRINT MEDIA QUERIES & BASE SETUP
+   ========================================================================== */
+
+@media print {
+  /* Reset and base print styles */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Page setup */
+  @page {
+    size: A4 landscape;
+    margin: 0.5in;
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* Hide interactive elements that don't make sense in print */
+  .mostage-header,
+  .mostage-footer,
+  .mostage-progress-bar,
+  .mostage-controller,
+  .mostage-slide-number,
+  .mostage-confetti,
+  .mostage-help,
+  .mostage-overview,
+  .mostage-navigation {
+    display: none !important;
+  }
+
+  /* ==========================================================================
+     CONTAINER & SLIDE LAYOUT
+     ========================================================================== */
+
+  .mostage-container {
+    width: 100% !important;
+    height: auto !important;
+    min-height: auto !important;
+    background: white !important;
+    color: black !important;
+    font-size: 12pt !important;
+    line-height: 1.4 !important;
+    overflow: visible !important;
+    position: static !important;
+  }
+
+  .mostage-slides {
+    width: 100% !important;
+    height: auto !important;
+    position: static !important;
+    overflow: visible !important;
+    display: block !important;
+  }
+
+  .mostage-slide {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 7in !important;
+    max-height: 9.5in !important;
+    padding: 0.5in !important;
+    margin: 0 0 0.3in 0 !important;
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    overflow: visible !important;
+    page-break-inside: avoid;
+    page-break-after: always;
+    background: white !important;
+    color: black !important;
+    border: 1px solid #ddd !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+  }
+
+  /* Last slide should not have page break */
+  .mostage-slide:last-child {
+    page-break-after: auto;
+  }
+
+  /* ==========================================================================
+     TYPOGRAPHY & TEXT OPTIMIZATION
+     ========================================================================== */
+
+  .mostage-slide h1,
+  .mostage-slide h2,
+  .mostage-slide h3,
+  .mostage-slide h4,
+  .mostage-slide h5,
+  .mostage-slide h6 {
+    color: #000 !important;
+    font-weight: bold !important;
+    page-break-after: avoid;
+    page-break-inside: avoid;
+    margin-top: 0.5em !important;
+    margin-bottom: 0.3em !important;
+  }
+
+  .mostage-slide h1 {
+    font-size: 24pt !important;
+    line-height: 1.2 !important;
+  }
+
+  .mostage-slide h2 {
+    font-size: 20pt !important;
+    line-height: 1.3 !important;
+  }
+
+  .mostage-slide h3 {
+    font-size: 16pt !important;
+    line-height: 1.3 !important;
+  }
+
+  .mostage-slide h4 {
+    font-size: 14pt !important;
+    line-height: 1.4 !important;
+  }
+
+  .mostage-slide p {
+    color: #000 !important;
+    margin: 0.3em 0 !important;
+    page-break-inside: avoid;
+    orphans: 2;
+    widows: 2;
+  }
+
+  .mostage-slide ul,
+  .mostage-slide ol {
+    color: #000 !important;
+    margin: 0.3em 0 !important;
+    padding-left: 1.5em !important;
+    page-break-inside: avoid;
+  }
+
+  .mostage-slide li {
+    color: #000 !important;
+    margin: 0.1em 0 !important;
+    page-break-inside: avoid;
+  }
+
+  .mostage-slide blockquote {
+    color: #000 !important;
+    border-left: 3px solid #666 !important;
+    padding-left: 1em !important;
+    margin: 0.5em 0 !important;
+    page-break-inside: avoid;
+  }
+
+  .mostage-slide code {
+    color: #000 !important;
+    background: #f5f5f5 !important;
+    border: 1px solid #ddd !important;
+    padding: 0.1em 0.3em !important;
+    font-family: "Courier New", monospace !important;
+    font-size: 10pt !important;
+  }
+
+  .mostage-slide pre {
+    color: #000 !important;
+    background: #f5f5f5 !important;
+    border: 1px solid #ddd !important;
+    padding: 0.5em !important;
+    margin: 0.5em 0 !important;
+    page-break-inside: avoid;
+    font-family: "Courier New", monospace !important;
+    font-size: 10pt !important;
+    overflow: visible !important;
+    white-space: pre-wrap !important;
+  }
+
+  .mostage-slide pre code {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    font-size: inherit !important;
+  }
+
+  /* ==========================================================================
+     TABLES & LISTS OPTIMIZATION
+     ========================================================================== */
+
+  .mostage-slide table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin: 0.5em 0 !important;
+    page-break-inside: avoid;
+    color: #000 !important;
+  }
+
+  .mostage-slide th,
+  .mostage-slide td {
+    border: 1px solid #000 !important;
+    padding: 0.3em 0.5em !important;
+    text-align: left !important;
+    color: #000 !important;
+  }
+
+  .mostage-slide th {
+    background: #f0f0f0 !important;
+    font-weight: bold !important;
+  }
+
+  .mostage-slide tr {
+    page-break-inside: avoid;
+  }
+
+  /* ==========================================================================
+     IMAGES & MEDIA OPTIMIZATION
+     ========================================================================== */
+
+  .mostage-slide img {
+    max-width: 100% !important;
+    height: auto !important;
+    page-break-inside: avoid;
+    display: block !important;
+    margin: 0.5em auto !important;
+  }
+
+  .mostage-slide svg {
+    max-width: 100% !important;
+    height: auto !important;
+    page-break-inside: avoid;
+  }
+
+  /* Hide background images in print */
+  .mostage-slide[style*="background-image"] {
+    background-image: none !important;
+    background-color: white !important;
+  }
+
+  /* ==========================================================================
+     LINKS & INTERACTIVE ELEMENTS
+     ========================================================================== */
+
+  .mostage-slide a {
+    color: #000 !important;
+    text-decoration: underline !important;
+  }
+
+  .mostage-slide a:after {
+    content: " (" attr(href) ")" !important;
+    font-size: 9pt !important;
+    color: #666 !important;
+  }
+
+  .mostage-slide a[href^="#"]:after {
+    content: "" !important;
+  }
+
+  .mostage-slide a[href^="mailto:"]:after {
+    content: "" !important;
+  }
+
+  /* ==========================================================================
+     SPECIAL SLIDE TYPES
+     ========================================================================== */
+
+  /* Title slide optimization */
+  .mostage-slide:first-child {
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .mostage-slide:first-child h1 {
+    font-size: 32pt !important;
+    margin-bottom: 0.5em !important;
+  }
+
+  .mostage-slide:first-child h2 {
+    font-size: 24pt !important;
+    margin-bottom: 0.3em !important;
+  }
+
+  /* Code slides optimization */
+  .mostage-slide pre {
+    max-height: 6in !important;
+    overflow: visible !important;
+  }
+
+  /* ==========================================================================
+     UTILITY CLASSES FOR PRINT
+     ========================================================================== */
+
+  .print-only {
+    display: block !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-page-break {
+    page-break-before: always !important;
+  }
+
+  .print-avoid-break {
+    page-break-inside: avoid !important;
+  }
+
+  /* ==========================================================================
+     RESPONSIVE PRINT ADJUSTMENTS
+     ========================================================================== */
+
+  /* Adjust for smaller print areas */
+  @media print and (max-width: 8.5in) {
+    .mostage-slide {
+      padding: 0.3in !important;
+      min-height: 6in !important;
+      max-height: 8in !important;
+    }
+
+    .mostage-slide h1 {
+      font-size: 20pt !important;
+    }
+
+    .mostage-slide h2 {
+      font-size: 16pt !important;
+    }
+  }
+
+  /* ==========================================================================
+     ACCESSIBILITY & READABILITY
+     ========================================================================== */
+
+  /* Ensure sufficient contrast */
+  .mostage-slide {
+    background: white !important;
+    color: black !important;
+  }
+
+  /* Improve readability of small text */
+  .mostage-slide small,
+  .mostage-slide .small {
+    font-size: 10pt !important;
+  }
+
+  /* Ensure important content is visible */
+  .mostage-slide .important,
+  .mostage-slide .highlight {
+    background: #ffffcc !important;
+    padding: 0.1em 0.2em !important;
+    border: 1px solid #ffcc00 !important;
+  }
+
+  /* ==========================================================================
+     CLEANUP & FINAL OPTIMIZATIONS
+     ========================================================================== */
+
+  /* Remove any remaining animations/transitions */
+  * {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+
+  /* Ensure consistent spacing */
+  .mostage-slide * {
+    box-sizing: border-box !important;
+  }
+
+  /* Remove any remaining shadows or effects */
+  .mostage-slide,
+  .mostage-slide * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+  }
+}
