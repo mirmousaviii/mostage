@@ -4,7 +4,7 @@
   "contentPath": "./content.md",
   "urlHash": true,
   "transition": {
-    "type": "vertical",
+    "type": "horizontal",
     "duration": 600,
     "easing": "ease-in-out"
   },

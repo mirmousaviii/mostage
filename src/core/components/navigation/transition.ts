@@ -27,9 +27,9 @@ export class TransitionManager {
 
     const duration = this.transitionConfig.duration || 600;
 
-    // Set transition properties
-    fromSlide.style.transition = `all ${duration}ms ${this.transitionConfig.easing || "ease-in-out"}`;
-    toSlide.style.transition = `all ${duration}ms ${this.transitionConfig.easing || "ease-in-out"}`;
+    // Clear any existing transitions first
+    fromSlide.style.transition = "";
+    toSlide.style.transition = "";
 
     // Apply transition based on config
     switch (this.transitionConfig.type) {
@@ -96,8 +96,19 @@ export class TransitionManager {
     const direction = isNext ? "translateX(-100%)" : "translateX(100%)";
     const enterDirection = isNext ? "translateX(100%)" : "translateX(-100%)";
 
+    // Clear any existing transitions first
+    fromSlide.style.transition = "";
+    toSlide.style.transition = "";
+
     toSlide.style.display = "block";
     toSlide.style.transform = enterDirection;
+
+    // Force reflow to ensure initial positioning
+    toSlide.offsetHeight;
+
+    // Set transitions for smooth animation
+    fromSlide.style.transition = `transform ${duration}ms ${this.transitionConfig.easing || "ease-in-out"}`;
+    toSlide.style.transition = `transform ${duration}ms ${this.transitionConfig.easing || "ease-in-out"}`;
 
     setTimeout(() => {
       fromSlide.style.transform = direction;
@@ -107,6 +118,9 @@ export class TransitionManager {
         fromSlide.style.display = "none";
         fromSlide.style.transform = "";
         toSlide.style.transform = "";
+        // Clear transitions after animation
+        fromSlide.style.transition = "";
+        toSlide.style.transition = "";
       }, duration);
     }, 50);
   }
