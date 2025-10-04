@@ -1,5 +1,5 @@
 <h1>
-  <img src="images/logo.svg" alt="#" style="
+  <img src="./images/logo.svg" alt="#" style="
   display: inline;
   vertical-align: middle;
   width: 4.25rem;
@@ -7,8 +7,6 @@
   ">
 Mostage
 </h1>
-
-<!-- # Mostage -->
 
 ## Generate web slides by Markdown
 
