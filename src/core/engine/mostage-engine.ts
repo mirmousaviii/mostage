@@ -69,7 +69,7 @@ export class Mostage implements MostageInstance {
         theme: "light",
         transition: {
           type: "horizontal",
-          duration: 600,
+          duration: 300,
           easing: "ease-in-out",
         },
         scale: 1.0,
@@ -90,7 +90,7 @@ export class Mostage implements MostageInstance {
         theme: "light",
         transition: {
           type: "horizontal",
-          duration: 600,
+          duration: 300,
           easing: "ease-in-out",
         },
         scale: 1.0,
@@ -181,7 +181,7 @@ export class Mostage implements MostageInstance {
       if (typeof this.config.transition === "string") {
         this.config.transition = {
           type: this.config.transition as any,
-          duration: 600,
+          duration: 300,
           easing: "ease-in-out",
         };
       }

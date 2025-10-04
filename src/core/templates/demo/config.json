@@ -5,7 +5,7 @@
   "urlHash": true,
   "transition": {
     "type": "horizontal",
-    "duration": 600,
+    "duration": 300,
     "easing": "ease-in-out"
   },
   "centerContent": {

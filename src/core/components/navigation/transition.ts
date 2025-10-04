@@ -25,7 +25,7 @@ export class TransitionManager {
       return;
     }
 
-    const duration = this.transitionConfig.duration || 600;
+    const duration = this.transitionConfig.duration || 300;
 
     // Clear any existing transitions first
     fromSlide.style.transition = "";

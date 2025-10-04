@@ -19,7 +19,7 @@ export class ConfigService implements ConfigLoader, ConfigValidator {
     theme: "light",
     transition: {
       type: "horizontal",
-      duration: 600,
+      duration: 300,
       easing: "ease-in-out",
     },
     scale: 1.0,

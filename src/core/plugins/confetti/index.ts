@@ -76,7 +76,7 @@ export class ConfettiPlugin extends PluginBase {
       const currentSlide = event.currentSlide;
       if (this.confettiSlides.has(currentSlide)) {
         // Wait for slide transition to complete, then add a small delay
-        const transitionDuration = this.mo.config.transition?.duration || 600;
+        const transitionDuration = this.mo.config.transition?.duration || 300;
         const delay = transitionDuration + (this.config.delay || 100);
 
         setTimeout(() => {
