@@ -8,7 +8,7 @@ A simple presentation framework based on Markdown
 
 ## What is Mostage?
 
-Mostage is a modern presentation framework that allows you to create beautiful slides using Markdown and HTML.
+Mostage is a modern presentation framework that allows you to create slides using Markdown and HTML.
 
 ### Key Features
 

@@ -5,7 +5,7 @@ import pkg from "../../package.json";
 import { initCommand } from "./commands/init/index";
 import { exampleCommand } from "./commands/example/index";
 import { devCommand } from "./commands/dev/index";
-import { buildCommand } from "./commands/build/index";
+import { exportCommand } from "./commands/export/index";
 import { themeCommand } from "./commands/theme/index";
 import { pluginCommand } from "./commands/plugin/index";
 
@@ -61,12 +61,12 @@ program
   .option("-d, --dir <path>", "Project directory to serve", ".")
   .action(devCommand);
 
-// Initialize build command
+// Initialize export command
 program
-  .command("build")
-  .description("Build the project for production")
-  .option("-o, --output <dir>", "Output directory", "dist")
-  .action(buildCommand);
+  .command("export")
+  .description("Export the project as a self-contained HTML file")
+  .option("-o, --output <dir>", "Output directory", "export/html")
+  .action(exportCommand);
 
 // Initialize theme command
 program
@@ -86,7 +86,7 @@ program
   .option("-r, --remove <name>", "Remove a plugin")
   .action(pluginCommand);
 
-// TODO: Add commands for export, import
+// TODO: Add commands for import
 
 // Parse command line arguments
 program.parse();
