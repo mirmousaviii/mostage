@@ -111,7 +111,7 @@ Builds the CLI tool (`dist/cli/index.js`, `dist/cli/index.cjs`)
 npm run build:demo
 ```
 
-Builds the demo for GitHub Pages (`dist/demo/`)
+Builds the demo for GitHub Pages (`dist/demo/`) and exports it as a self-contained HTML file (`dist/demo/html/index.html`)
 
 #### Full Build
 
@@ -146,11 +146,38 @@ dist/
 │   └── types/              # TypeScript definitions
 │       └── index.d.ts
 └── demo/                   # Demo output (when built)
-    ├── index.html
+    ├── index.html          # Original demo HTML
     ├── content.md
     ├── config.json
-    └── assets/
+    ├── assets/
+    └── html/               # Exported self-contained HTML
+        └── index.html      # Self-contained demo (266KB)
 ```
+
+### Export Command
+
+The CLI includes a powerful export command that supports multiple formats:
+
+```bash
+# Export to different formats
+mostage export --format pdf
+mostage export --format pptx
+mostage export --format png
+mostage export --format jpg
+```
+
+**Export Features:**
+
+- **HTML**: Self-contained HTML with embedded assets
+- **PDF**: High-quality PDF with proper formatting
+- **PPTX**: PowerPoint presentation with images and styling
+- **PNG/JPG**: Individual slide images
+
+**Dependencies:**
+
+- `puppeteer`: For PDF and image generation
+- `pptxgenjs`: For PowerPoint export
+- `sharp`: For image processing
 
 ### Preview
 

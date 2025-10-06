@@ -14,6 +14,7 @@ Presentation framework based on **Markdown** (with HTML support) to web-based sl
 - **🔌 Plugin System** - Extensible with plugins (progress bar, slide numbers, confetti, etc.)
 - **🎭 Custom Backgrounds** - Support for images, colors, and animations
 - **🎪 Interactive Elements** - Support for interactive content and animations
+- **📤 Multi-format Export** - Export to HTML, PDF, PPTX, PNG, and JPG formats
 
 ## Quick Start
 
@@ -60,7 +61,7 @@ You can use these commands with `npx mostage@latest <command>`:
 | `mostage init`    | Create a new presentation project               | `--name`, `--content-path`, `--config-path`, `--theme`, `--plugins`, `--transition`, `--url-hash`, `--center-horizontal`, `--center-vertical` |
 | `mostage example` | Create a new presentation project from examples | `--template`                                                                                                                                  |
 | `mostage dev`     | Start development server with live reload       | `--port`, `--host`, `--dir`                                                                                                                   |
-| `mostage build`   | Build presentation for production               | `--output`, `--minify`                                                                                                                        |
+| `mostage export`  | Export presentation in various formats          | `--format`, `--output`                                                                                                                        |
 | `mostage theme`   | Manage themes (list, add, remove)               | `--list`, `--add`, `--remove`                                                                                                                 |
 | `mostage plugin`  | Manage plugins (list, add, remove)              | `--list`, `--add`, `--remove`                                                                                                                 |
 | `mostage help`    | Show help and command information               |                                                                                                                                               |
@@ -75,6 +76,19 @@ mostage init
 
 # Non-interactive mode with basic options
 mostage init --name my-presentation --theme dark --transition horizontal
+```
+
+#### Export Presentations
+
+The `mostage export` command allows you to export presentations in various formats:
+
+```bash
+mostage export # Export as single HTML (default)
+mostage export --format pdf
+mostage export --format pptx
+mostage export --format png
+mostage export --format jpg
+mostage export --format pdf --output ./my-exports
 ```
 
 For detailed CLI documentation, see the [CLI Commands](#cli-commands) section above.

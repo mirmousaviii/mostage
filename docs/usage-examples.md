@@ -371,6 +371,50 @@ Here's a complete configuration example with all available options:
 }
 ```
 
+## Export Examples
+
+### Export to Different Formats
+
+```bash
+# Export as HTML (default)
+mostage export
+
+# Export as PDF
+mostage export --format pdf
+
+# Export as PowerPoint
+mostage export --format pptx
+
+# Export as PNG images
+mostage export --format png
+
+# Export as JPG images
+mostage export --format jpg
+
+# Custom output directory
+mostage export --format pdf --output ./my-presentation-exports
+```
+
+### Export Output Structure
+
+```
+exports/
+├── html/
+│   └── index.html
+├── pdf/
+│   └── presentation.pdf
+├── pptx/
+│   └── presentation.pptx
+├── png/
+│   ├── slide-1.png
+│   ├── slide-2.png
+│   └── ...
+└── jpg/
+    ├── slide-1.jpg
+    ├── slide-2.jpg
+    └── ...
+```
+
 ## Plugin Development
 
 ### Plugin Interface
