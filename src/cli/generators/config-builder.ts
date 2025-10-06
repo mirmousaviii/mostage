@@ -1,4 +1,4 @@
-import { ProjectOptions, ConfigContent } from "../commands/init";
+import { ProjectOptions, ConfigContent } from "../commands/new";
 import { PLUGIN_CONFIGS, DEFAULT_VALUES } from "../utils/constants";
 
 export class ConfigBuilder {

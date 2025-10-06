@@ -1,15 +1,15 @@
-import { InitOptions, InitError } from "../commands/init";
+import { NewOptions, NewError } from "../commands/new";
 import { TEMPLATES, THEME_CHOICES, TRANSITION_CHOICES } from "./constants";
 
 export class ProjectValidator {
-  static validateOptions(options: InitOptions): void {
+  static validateOptions(options: NewOptions): void {
     // Template validation removed for init command (always uses custom)
 
     if (
       options.theme &&
       !THEME_CHOICES.some((theme) => theme.value === options.theme)
     ) {
-      throw new InitError(
+      throw new NewError(
         `Invalid theme: ${options.theme}. Available themes: ${THEME_CHOICES.map((t) => t.value).join(", ")}`,
         "INVALID_THEME"
       );
@@ -21,7 +21,7 @@ export class ProjectValidator {
         (transition) => transition.value === options.transition
       )
     ) {
-      throw new InitError(
+      throw new NewError(
         `Invalid transition: ${options.transition}. Available transitions: ${TRANSITION_CHOICES.map((t) => t.value).join(", ")}`,
         "INVALID_TRANSITION"
       );
@@ -40,7 +40,7 @@ export class ProjectValidator {
       );
 
       if (invalidPlugins.length > 0) {
-        throw new InitError(
+        throw new NewError(
           `Invalid plugins: ${invalidPlugins.join(", ")}. Available plugins: ${validPlugins.join(", ")}`,
           "INVALID_PLUGINS"
         );
@@ -50,7 +50,7 @@ export class ProjectValidator {
 
   static validatePath(path: string, fieldName: string): void {
     if (!path || !path.trim()) {
-      throw new InitError(`${fieldName} path is required`, "MISSING_PATH");
+      throw new NewError(`${fieldName} path is required`, "MISSING_PATH");
     }
   }
 

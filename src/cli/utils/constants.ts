@@ -3,7 +3,7 @@ import {
   ThemeChoice,
   PluginChoice,
   TransitionChoice,
-} from "../commands/init";
+} from "../commands/new";
 
 export const TEMPLATES = {
   CUSTOM: "custom",

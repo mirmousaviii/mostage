@@ -12,8 +12,10 @@ export interface ExampleOptions {
 
 export async function exampleCommand(options: ExampleOptions): Promise<void> {
   try {
-    console.log(chalk.blue("\nMostage CLI - example"));
-    console.log(chalk.gray("Create presentation project from examples.\n"));
+    console.log(chalk.blue.bold("\nMostage CLI - example\n"));
+    console.log(
+      chalk.gray("Create a new presentation project from examples.\n")
+    );
 
     // Validate template if provided
     if (options.template && !["basic", "demo"].includes(options.template)) {
@@ -48,15 +50,11 @@ export async function exampleCommand(options: ExampleOptions): Promise<void> {
     // Create project
     await createProject(template, options.output);
 
-    console.log(chalk.green("\n✅ Project created successfully!"));
-    console.log(chalk.gray("\nNext steps:"));
-    console.log(
-      chalk.gray("  1. Run `mostage dev` to start the development server")
-    );
-    console.log(
-      chalk.gray("  2. Open your browser and start editing your slides")
-    );
-    console.log(chalk.gray("  3. Run `mostage build` when ready to build"));
+    console.log(chalk.green.bold("\n✅ Project created successfully!\n"));
+    console.log(chalk.yellow("Next steps:"));
+    console.log("  1. Run `mostage dev` to start the development server");
+    console.log("  2. Open your browser and start editing your slides");
+    console.log("  3. Run `mostage export` when ready to export\n");
   } catch (error) {
     console.error(chalk.red(`❌ Error creating project: ${error}`));
     process.exit(1);

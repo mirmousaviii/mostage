@@ -9,7 +9,7 @@ export async function devCommand(options: any) {
 
     const port = parseInt(options.port);
     const host = options.host;
-    const projectDir = path.resolve(options.dir || ".");
+    const projectDir = path.resolve(options.source || ".");
 
     // Validate project directory
     if (!(await fs.pathExists(projectDir))) {

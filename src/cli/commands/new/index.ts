@@ -1,8 +1,8 @@
 import chalk from "chalk";
 import fs from "fs-extra";
 import path from "path";
-// CLI Init Command Types
-export interface InitOptions {
+// CLI New Command Types
+export interface NewOptions {
   name?: string;
   template?: string;
   contentPath?: string;
@@ -84,20 +84,20 @@ export interface ConfigContent {
   plugins: Record<string, any>;
 }
 
-export class InitError extends Error {
+export class NewError extends Error {
   constructor(
     message: string,
     public code: string
   ) {
     super(message);
-    this.name = "InitError";
+    this.name = "NewError";
   }
 }
 import { ProjectValidator } from "../../utils/validators";
 import { InteractivePrompts } from "../../utils/prompts";
 import { TemplateFactory } from "../../generators/template-strategies";
 
-export async function initCommand(options: InitOptions): Promise<void> {
+export async function newCommand(options: NewOptions): Promise<void> {
   try {
     // Validate input options
     ProjectValidator.validateOptions(options);
@@ -127,15 +127,13 @@ export async function initCommand(options: InitOptions): Promise<void> {
 }
 
 function showWelcomeMessage(): void {
-  console.log(chalk.blue.bold("\nMostage CLI - init\n"));
-  console.log(chalk.gray("Create presentation project step by step.\n"));
+  console.log(chalk.blue.bold("\nMostage CLI - new\n"));
+  console.log(chalk.gray("Create a new presentation project step by step.\n"));
 }
 
 // checkDirectorySafety function removed - replaced with determineProjectPath
 
-async function getProjectAnswers(
-  options: InitOptions
-): Promise<ProjectAnswers> {
+async function getProjectAnswers(options: NewOptions): Promise<ProjectAnswers> {
   // Check if we're in non-interactive mode (CI/CD)
   const isNonInteractive = isNonInteractiveMode(options);
 
@@ -151,7 +149,7 @@ async function getProjectAnswers(
   }
 }
 
-function isNonInteractiveMode(options: InitOptions): boolean {
+function isNonInteractiveMode(options: NewOptions): boolean {
   // Check if ALL required options are provided (complete non-interactive mode)
   // urlHash and center are optional, so we don't check them
   return !!(
@@ -162,7 +160,7 @@ function isNonInteractiveMode(options: InitOptions): boolean {
   );
 }
 
-function buildNonInteractiveAnswers(options: InitOptions): ProjectAnswers {
+function buildNonInteractiveAnswers(options: NewOptions): ProjectAnswers {
   // Parse plugins string if provided
   let parsedPlugins: string[] = [];
   if (options.plugins) {
@@ -190,7 +188,7 @@ function buildNonInteractiveAnswers(options: InitOptions): ProjectAnswers {
 }
 
 function mergeOptions(
-  options: InitOptions,
+  options: NewOptions,
   answers: ProjectAnswers
 ): ProjectAnswers {
   return {
@@ -221,11 +219,11 @@ function showSuccessMessage(): void {
   console.log(chalk.yellow("Next steps:"));
   console.log("  1. Run `mostage dev` to start the development server");
   console.log("  2. Open your browser and start editing your slides");
-  console.log("  3. Run `mostage build` when ready to build\n");
+  console.log("  3. Run `mostage export` when ready to export\n");
 }
 
 async function determineProjectPath(
-  options: InitOptions,
+  options: NewOptions,
   answers: ProjectAnswers
 ): Promise<string> {
   const currentDir = process.cwd();
@@ -278,7 +276,7 @@ async function createProjectFolder(
 }
 
 function handleError(error: unknown): void {
-  if (error instanceof InitError) {
+  if (error instanceof NewError) {
     console.error(chalk.red(`❌ ${error.message}`));
     process.exit(1);
   } else {

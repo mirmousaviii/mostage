@@ -1,7 +1,7 @@
 import inquirer from "inquirer";
 import fs from "fs-extra";
 import path from "path";
-import { InitOptions, ProjectAnswers } from "../commands/init";
+import { NewOptions, ProjectAnswers } from "../commands/new";
 import {
   THEME_CHOICES,
   PLUGIN_CHOICES,
@@ -10,7 +10,7 @@ import {
 } from "./constants";
 
 export class InteractivePrompts {
-  static async getAnswers(options: InitOptions): Promise<ProjectAnswers> {
+  static async getAnswers(options: NewOptions): Promise<ProjectAnswers> {
     const questions = await this.buildQuestions(options);
     const answers =
       questions.length > 0 ? await inquirer.prompt(questions) : {};
@@ -18,7 +18,7 @@ export class InteractivePrompts {
     return this.mergeAnswers(options, answers);
   }
 
-  private static async buildQuestions(options: InitOptions): Promise<any[]> {
+  private static async buildQuestions(options: NewOptions): Promise<any[]> {
     const questions = [];
 
     // Project name question
@@ -100,7 +100,7 @@ export class InteractivePrompts {
   }
 
   private static mergeAnswers(
-    options: InitOptions,
+    options: NewOptions,
     answers: any
   ): ProjectAnswers {
     return {

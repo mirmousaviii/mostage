@@ -2,7 +2,7 @@
 
 import { Command } from "commander";
 import pkg from "../../package.json";
-import { initCommand } from "./commands/init/index";
+import { newCommand } from "./commands/new/index";
 import { exampleCommand } from "./commands/example/index";
 import { devCommand } from "./commands/dev/index";
 import { exportCommand } from "./commands/export/index";
@@ -17,9 +17,9 @@ program.name("Mostage CLI").description(pkg.description).version(pkg.version);
 
 // Initialize commands
 
-// Initialize init command (custom template only)
+// Initialize new command (custom template only)
 program
-  .command("init")
+  .command("new")
   .description("Create a new custom Mostage project")
   .option("--name <name>", "Project name (creates a folder with this name)")
   .option("--content-path <path>", "Path to content file")
@@ -42,14 +42,14 @@ program
     "--center-vertical [boolean]",
     "Enable/disable vertical content centering"
   )
-  .action(initCommand);
+  .action(newCommand);
 
 // Initialize example command
 program
   .command("example")
   .description("Create a new Mostage project from examples")
   .option("--template <template>", "Example template to use (basic, demo)")
-  .option("--output <path>", "Output directory for the project")
+  .option("-o, --output <path>", "Output directory for the project")
   .action(exampleCommand);
 
 // Initialize dev command
@@ -57,8 +57,8 @@ program
   .command("dev")
   .description("Start development server")
   .option("-p, --port <port>", "Port to run the server on", "3000")
-  .option("-h, --host <host>", "Host to bind the server to", "localhost")
-  .option("-d, --dir <path>", "Project directory to serve", ".")
+  .option("--host <host>", "Host to bind the server to", "localhost")
+  .option("-s, --source <path>", "Source directory to serve", ".")
   .action(devCommand);
 
 // Initialize export command
@@ -67,6 +67,7 @@ program
   .description(
     "Export the project in various formats (HTML, PDF, PPTX, PNG, JPG)"
   )
+  .option("-s, --source <path>", "Source directory to export", ".")
   .option("-o, --output <dir>", "Base output directory", "exports")
   .option(
     "-f, --format <format>",

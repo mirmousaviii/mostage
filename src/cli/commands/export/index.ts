@@ -6,6 +6,7 @@ import PptxGenJS from "pptxgenjs";
 import sharp from "sharp";
 
 interface ExportOptions {
+  source?: string;
   output?: string;
   format?: string;
 }
@@ -45,7 +46,7 @@ export async function exportCommand(options: ExportOptions) {
 
     const baseOutputDir = options.output || DEFAULT_OUTPUT_DIR;
     const format = options.format || "html";
-    const projectDir = process.cwd();
+    const projectDir = path.resolve(options.source || ".");
 
     // Validate project directory
     await validateProjectDirectory(projectDir);

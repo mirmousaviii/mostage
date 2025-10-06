@@ -24,17 +24,17 @@ Presentation framework based on **Markdown** (with HTML support) to web-based sl
 
 ```bash
 # Create a new project
-npx mostage@latest init
+npx mostage@latest new
 
 # Start development server
 npx mostage@latest dev
 
 # Start development server for specific project
-npx mostage@latest dev --dir /path/to/project
+npx mostage@latest dev --source /path/to/project
 
 # Try demo presentation
 npx mostage@latest example --template demo
-npx mostage@latest dev --dir mostage-demo
+npx mostage@latest dev --source mostage-demo
 
 # Display help
 npx mostage@latest help
@@ -47,10 +47,10 @@ npx mostage@latest help
 npm install -g mostage
 
 # Create a new project
-mostage init
+mostage new
 ```
 
-> **Note:** You can use the interactive command (just run `mostage init` and follow the prompts), or provide options directly (e.g., `mostage init --template dracula --content content.md`) to create presentations.
+> **Note:** You can use the interactive command (just run `mostage new` and follow the prompts), or provide options directly (e.g., `mostage new --theme dracula --content-path content.md`) to create presentations.
 
 ### CLI Commands
 
@@ -58,24 +58,24 @@ You can use these commands with `npx mostage@latest <command>`:
 
 | Command           | Description                                     | Options                                                                                                                                       |
 | ----------------- | ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| `mostage init`    | Create a new presentation project               | `--name`, `--content-path`, `--config-path`, `--theme`, `--plugins`, `--transition`, `--url-hash`, `--center-horizontal`, `--center-vertical` |
+| `mostage new`     | Create a new presentation project               | `--name`, `--content-path`, `--config-path`, `--theme`, `--plugins`, `--transition`, `--url-hash`, `--center-horizontal`, `--center-vertical` |
 | `mostage example` | Create a new presentation project from examples | `--template`                                                                                                                                  |
-| `mostage dev`     | Start development server with live reload       | `--port`, `--host`, `--dir`                                                                                                                   |
-| `mostage export`  | Export presentation in various formats          | `--format`, `--output`                                                                                                                        |
+| `mostage dev`     | Start development server with live reload       | `--port`, `--host`, `--source`                                                                                                                |
+| `mostage export`  | Export presentation in various formats          | `--source`, `--format`, `--output`                                                                                                            |
 | `mostage theme`   | Manage themes (list, add, remove)               | `--list`, `--add`, `--remove`                                                                                                                 |
 | `mostage plugin`  | Manage plugins (list, add, remove)              | `--list`, `--add`, `--remove`                                                                                                                 |
 | `mostage help`    | Show help and command information               |                                                                                                                                               |
 
 #### Project Creation
 
-The `mostage init` command creates a new custom project:
+The `mostage new` command creates a new custom project:
 
 ```bash
 # Interactive mode
-mostage init
+mostage new
 
 # Non-interactive mode with basic options
-mostage init --name my-presentation --theme dark --transition horizontal
+mostage new --name my-presentation --theme dark --transition horizontal
 ```
 
 #### Export Presentations
@@ -88,7 +88,7 @@ mostage export --format pdf
 mostage export --format pptx
 mostage export --format png
 mostage export --format jpg
-mostage export --format pdf --output ./my-exports
+mostage export --source ./my-project --format pdf --output ./my-exports
 ```
 
 For detailed CLI documentation, see the [CLI Commands](#cli-commands) section above.

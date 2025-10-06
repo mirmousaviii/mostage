@@ -2,7 +2,7 @@ import fs from "fs-extra";
 import path from "path";
 import { fileURLToPath } from "url";
 import chalk from "chalk";
-import { ProjectOptions } from "../commands/init";
+import { ProjectOptions } from "../commands/new";
 import { ConfigBuilder } from "./config-builder";
 import { AssetCopier } from "./asset-copier";
 
