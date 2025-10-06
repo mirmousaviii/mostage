@@ -157,6 +157,14 @@
   padding: 0.5rem 1.5rem;
 }
 
+/* Enhanced inline code with syntax highlighting */
+.mostage-slide code.inline-code-highlighted {
+  background: rgba(255, 255, 255, 0.08);
+  display: inline-block;
+  border-radius: 3px;
+  padding: 0 5px;
+}
+
 /* Links */
 .mostage-slide a {
   color: inherit;

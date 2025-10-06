@@ -202,7 +202,7 @@ _Italic_, **Bold**, **_Bold Italic_**, ~~strikethrough~~, [Link](https://mo.js.o
 
 > This is an example of blockquote.
 
-**Inline Code:** `console.log('Hello, World!');`
+Inline `code` for test.
 
 ---
 
@@ -236,7 +236,7 @@ Here is example of **code**
 </div>
 ```
 
-**Inline Code:** `console.log('Hello, World!');`
+Inline `Code` for test: <code data-language="javascript">console.log('Hello, World!');</code>
 
 ---
 

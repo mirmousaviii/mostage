@@ -94,10 +94,37 @@ export class SyntaxHighlighter {
   highlightAll(container: HTMLElement): void {
     this.initialize();
 
+    // Highlight code blocks
     const codeBlocks = container.querySelectorAll<HTMLElement>(
       'pre code[class*="language-"]'
     );
     codeBlocks.forEach((block) => this.highlightCodeBlock(block));
+
+    // Highlight inline code elements
+    this.highlightInlineCode(container);
+  }
+
+  /**
+   * Highlight inline code elements with syntax highlighting
+   */
+  highlightInlineCode(container: HTMLElement): void {
+    const inlineCodeElements =
+      container.querySelectorAll<HTMLElement>("code:not(pre code)");
+
+    inlineCodeElements.forEach((element) => {
+      const code = element.textContent || "";
+      if (!code.trim()) return;
+
+      // Check if element has a data-language attribute
+      const dataLang = element.getAttribute("data-language");
+      try {
+        const highlighted = this.highlightCode(code, dataLang);
+        element.innerHTML = highlighted;
+        element.classList.add("inline-code-highlighted");
+      } catch (error) {
+        console.warn(`Failed to highlight inline code: ${code}`, error);
+      }
+    });
   }
 
   /**
