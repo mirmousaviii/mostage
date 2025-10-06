@@ -1,14 +1,25 @@
 {
   "name": "mostage",
   "version": "1.4.8",
-  "description": "Presentation framework based on markdown with HTML support.",
+  "description": "Presentation framework based on markdown with HTML support and multi-format export capabilities.",
   "keywords": [
-    "slides",
     "presentation",
     "markdown",
     "web-based",
-    "typescript",
-    "framework"
+    "slides",
+    "presentation-slides",
+    "presentation-framework",
+    "presentation-generator",
+    "markdown-presentation",
+    "markdown-slides",
+    "markdown-to-presentation",
+    "markdown-to-slides",
+    "markdown-to-pdf",
+    "markdown-to-pptx",
+    "markdown-to-png",
+    "markdown-to-jpg",
+    "markdown-to-html",
+    "pptx"
   ],
   "author": "mo.js.org",
   "license": "MIT",
@@ -41,7 +52,7 @@
     "build": "npm run clean && npm run build:core && npm run build:cli && npm run build:demo",
     "build:core": "vite build --config vite.build.core.config.ts && npm run copy:templates",
     "build:cli": "vite build --config vite.build.cli.config.ts",
-    "build:demo": "node dist/cli/index.js example --template demo --output dist/demo",
+    "build:demo": "node dist/cli/index.js example --template demo --output dist/demo && cd dist/demo && node ../../dist/cli/index.js export --format html --output .",
     "copy:templates": "cp -r src/core/templates dist/core",
     "test": "vitest",
     "lint": "eslint src --ext ts,tsx",
@@ -68,6 +79,9 @@
     "fs-extra": "^11.2.0",
     "inquirer": "^12.0.0",
     "marked": "^16.3.0",
-    "prismjs": "^1.30.0"
+    "prismjs": "^1.30.0",
+    "puppeteer": "^23.0.0",
+    "pptxgenjs": "^3.12.0",
+    "sharp": "^0.33.0"
   }
 }

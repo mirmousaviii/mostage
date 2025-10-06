@@ -80,6 +80,7 @@
     border: 1px solid #ddd !important;
     box-shadow: none !important;
     border-radius: 0 !important;
+    border: none !important;
   }
 
   /* Last slide should not have page break */

@@ -64,8 +64,15 @@ program
 // Initialize export command
 program
   .command("export")
-  .description("Export the project as a self-contained HTML file")
-  .option("-o, --output <dir>", "Output directory", "export/html")
+  .description(
+    "Export the project in various formats (HTML, PDF, PPTX, PNG, JPG)"
+  )
+  .option("-o, --output <dir>", "Base output directory", "exports")
+  .option(
+    "-f, --format <format>",
+    "Export format (html, pdf, pptx, png, jpg)",
+    "html"
+  )
   .action(exportCommand);
 
 // Initialize theme command
