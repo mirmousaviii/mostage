@@ -15,7 +15,7 @@ export default defineConfig({
 
   // Build configuration for development - both core and CLI
   build: {
-    outDir: "dist-dev",
+    outDir: "dist/dev",
     sourcemap: true,
     lib: {
       entry: {

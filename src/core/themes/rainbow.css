@@ -74,18 +74,10 @@
   color: var(--mostage-yellow-color);
 }
 
-.mostage-slide code {
-  background: #f1f5f9;
-  color: var(--mostage-red-color);
-  border: 1px solid var(--mostage-border-color);
-  border-radius: 4px;
-}
-
 .mostage-slide pre {
   background: #1e293b;
-  color: #f8fafc;
   border: 1px solid var(--mostage-border-color);
-  border-radius: 8px;
+  padding: 0.5rem 1.5rem;
 }
 
 .mostage-slide blockquote {

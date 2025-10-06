@@ -28,18 +28,39 @@ Mostage
 - **Simple & Familiar** — Use the same syntax you know from GitHub, documentation, and blogs
 - **Focus on Content** — Write content without worrying about design
 - **Interactive Environment** — Use HTML features inside slides
-- **Version Control Friendly** — Track changes with Git, collaborate easily
 - **Fast** — No complex editors or heavy applications needed
+- **Version Control Friendly** — Track changes with Git, collaborate easily
 
 ---
 
 ## Key Features
 
 - **Markdown & HTML** → Create slides with Markdown and HTML
+- **Library & CLI** — Use as a CLI tool or integrate as a library
 - **Web-based** → Presentations run in browser
 - **Configuration** → Easy to configure and customize
 - **Theme System** → Built-in and custom themes
 - **Plugin System** → Built-in and custom plugins
+
+---
+
+## CLI
+
+Create and manage presentations with ease
+
+```bash
+# Create a new project
+mostage new
+
+# Start development server
+mostage dev
+
+# Export to different formats
+mostage export --format pdf
+mostage export --format pptx
+mostage export --format png
+mostage export --format html
+```
 
 ---
 
@@ -231,19 +252,20 @@ Here is example of **code**
 
 ## Tables
 
-| TODO                | Status | Notes                                                |
+| Feature             | Status | Notes                                                |
 | ------------------- | :----: | ---------------------------------------------------- |
 | Markdown Parser     |   ✅   | Core feature: Parses and renders Markdown content    |
 | HTML Support        |   ✅   | Allows raw HTML for advanced customization           |
 | Theme System        |   ✅   | Supports light/dark and custom themes                |
 | Plugin System       |   ✅   | Extend functionality with plugins                    |
+| CLI Commands        |   ✅   | Create, develop, and export presentations            |
 | Keyboard Navigation |   ✅   | Navigate slides with keyboard shortcuts              |
 | Overview            |   ✅   | Slide overview/mini-map for quick navigation         |
 | Page Number         |   ✅   | Shows current/total slide number via plugin          |
 | Header & Footer     |   ✅   | Customizable header and footer for slides            |
+| Export Formats      |   ✅   | Export to HTML, PDF, PPTX, PNG, JPG                  |
 | Speaker Note        |   ⬜   | Planned: Add private notes for presenters            |
 | Presenter Mode      |   ⬜   | Planned: Dual-screen mode for presenter and audience |
-| Export              |   ⬜   | Export slides as PDF or images, etc.                 |
 
 ---
 

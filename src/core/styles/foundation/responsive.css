@@ -89,11 +89,6 @@
     -webkit-overflow-scrolling: touch !important;
   }
 
-  .mostage-slide code {
-    font-size: 12px !important;
-    padding: 0.2rem 0.4rem !important;
-  }
-
   /* Tables for mobile */
   .mostage-slide table {
     font-size: 12px !important;

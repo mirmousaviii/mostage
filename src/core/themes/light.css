@@ -53,16 +53,10 @@
   background-clip: text;
 }
 
-.mostage-slide code {
-  background: rgba(237, 242, 247, 0.8);
-  color: var(--mostage-accent-color);
-  border: 1px solid var(--mostage-border-color);
-}
-
 .mostage-slide pre {
   background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
-  color: var(--mostage-text-color);
   border: 1px solid var(--mostage-border-color);
+  padding: 0.5rem 1.5rem;
 }
 
 .mostage-slide blockquote {

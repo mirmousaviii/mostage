@@ -445,18 +445,20 @@ function generateHtmlTemplate(
     `<style>${css}</style>`
   );
 
-  const inlineScript = `
-    const config = ${config};
-    config.content = \`${content}\`;
-    config.element = "#app";
-    ${js}
-    const mostage = new Hn(config);
-    mostage.start();
-  `;
+  // Build inline script using concatenation to avoid template literal issues
+  const inlineScript =
+    `const config = ${config};\n` +
+    `config.content = \`${content}\`;\n` +
+    `config.element = "#app";\n` +
+    js +
+    "\n" +
+    `const mostage = new Mostage(config);\n` +
+    `mostage.start();`;
 
+  // Use replacement function to avoid issues with special characters in js
   result = result.replace(
     /<script[^>]*type=["']module["'][^>]*>[\s\S]*?<\/script>/g,
-    `<script type="module">${inlineScript}</script>`
+    () => '<script type="module">' + inlineScript + "</script>"
   );
 
   return result;

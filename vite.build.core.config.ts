@@ -28,6 +28,8 @@ export default defineConfig({
     },
     rollupOptions: {
       external: ["fs", "path", "url"],
+      // Preserve entry signatures to maintain class names
+      preserveEntrySignatures: "strict",
       output: {
         exports: "named",
         globals: {
@@ -39,8 +41,33 @@ export default defineConfig({
           if (assetInfo.name === "index.css") {
             return "mostage.css";
           }
-          return assetInfo.name;
+          return assetInfo.name || "asset";
         },
+      },
+      // Configure treeshaking
+      treeshake: {
+        moduleSideEffects: (id) => {
+          // Keep side effects for prismjs components (language registrations)
+          if (id.includes("prismjs")) {
+            return true;
+          }
+          return false;
+        },
+      },
+    },
+    // Disable minification for class names
+    minify: "terser",
+    terserOptions: {
+      mangle: {
+        // Preserve class names
+        keep_classnames: true,
+        keep_fnames: true,
+        reserved: ["Mostage", "SyntaxHighlighter"],
+      },
+      compress: {
+        // Keep class names during compression
+        keep_classnames: true,
+        keep_fnames: true,
       },
     },
   },

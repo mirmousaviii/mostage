@@ -152,17 +152,9 @@
 /* Code - Clamp-based responsive sizing with larger minimums and preferred sizes */
 .mostage-slide pre {
   width: fit-content;
-  font-family: "SF Mono", "Monaco", "Consolas", "Liberation Mono", monospace;
-  font-size: clamp(1.25rem, 1.5vw, 1.25rem);
-  line-height: 1.5;
-  padding: 0.5rem;
-  border-radius: 5px;
-  overflow-x: auto;
-  margin: 1.5rem 0;
-}
-
-.mostage-slide pre code {
-  border: none !important;
+  border-radius: 3px;
+  overflow: auto;
+  padding: 0.5rem 1.5rem;
 }
 
 /* Links */

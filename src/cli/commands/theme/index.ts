@@ -103,13 +103,6 @@ async function addTheme(themeName: string) {
   color: var(--mostage-accent-color);
 }
 
-.mostage-slide code {
-  background: var(--mostage-border-color);
-  color: var(--mostage-text-color);
-  padding: 0.2em 0.4em;
-  border-radius: 3px;
-}
-
 .mostage-slide pre {
   background: var(--mostage-border-color);
   border: 1px solid var(--mostage-border-color);
