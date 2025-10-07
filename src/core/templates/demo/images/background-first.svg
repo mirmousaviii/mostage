@@ -1,6 +1,5 @@
 <svg width="1920" height="1080" xmlns="http://www.w3.org/2000/svg">
   <style>
-   
     @keyframes gentleWobble {
       0% {
         transform: translate(0, 0) rotate(0deg) scale(1);
@@ -13,31 +12,28 @@
       }
     }
 
-
     polygon {
       animation-name: gentleWobble;
       animation-iteration-count: infinite; 
       animation-timing-function: ease-in-out;
-      transform-origin: center; 
+      transform-origin: 1920px 1080px;
     }
 
-
-
     .shape1 {
-      animation-duration: 10s;
+      animation-duration: 15s;
       animation-delay: 0s;
     }
     .shape2 {
-      animation-duration: 8s;
-      animation-delay: -4s; 
+      animation-duration: 18s;
+      animation-delay: -4s;
     }
     .shape3 {
-      animation-duration: 5s;
+      animation-duration: 20s;
       animation-delay: -2s;
     }
     .shape4 {
-      animation-duration: 6s;
-      animation-delay: -3s;
+      animation-duration: 16s;
+      animation-delay: -6s;
     }
   </style>
 

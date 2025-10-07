@@ -44,12 +44,23 @@ Mostage
 
 ---
 
+## Library with CLI
+
+- **CLI Tool** → Create and manage presentations from command line
+- **JavaScript Library** → Integrate into your web applications
+- **Framework Integration** → Use with React, Angular or any framework
+- **Static Site Generator** → Generate static presentation websites
+
+> Perfect for developers who want **full control** over their presentation!
+
+---
+
 ## CLI
 
-Create and manage presentations with ease
+Use CLI to create presentations
 
 ```bash
-# Create a new project
+# Create a new presentations
 mostage new
 
 # Start development server
@@ -60,6 +71,26 @@ mostage export --format pdf
 mostage export --format pptx
 mostage export --format png
 mostage export --format html
+```
+
+---
+
+## Library
+
+Use library in your web applications
+
+```javascript
+// Install via npm
+npm install mostage
+
+// Import and use
+import { Mostage } from 'mostage';
+
+const mostage = new Mostage({
+  element: '#app',
+  contentPath: './content.md',
+  theme: 'dark',
+});
 ```
 
 ---
