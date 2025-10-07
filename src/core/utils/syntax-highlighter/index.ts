@@ -116,7 +116,7 @@ export class SyntaxHighlighter {
       if (!code.trim()) return;
 
       // Check if element has a data-language attribute
-      const dataLang = element.getAttribute("data-language");
+      const dataLang = element.getAttribute("data-language") || "";
       try {
         const highlighted = this.highlightCode(code, dataLang);
         element.innerHTML = highlighted;

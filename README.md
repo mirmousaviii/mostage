@@ -3,9 +3,9 @@
 [![npm version](https://img.shields.io/npm/v/mostage.svg)](https://www.npmjs.com/package/mostage)
 [![Publish Package](https://github.com/mirmousaviii/mostage/actions/workflows/publish.yml/badge.svg)](https://github.com/mirmousaviii/mostage/actions/workflows/publish.yml)
 
-Presentation framework based on **Markdown** (with HTML support) to web-based slide.
+Presentation framework based on **Markdown** with HTML support (Core Library + CLI)
 
-#### [Demo](https://mo.js.org) | [Quick Start](#quick-start) | [Configuration](#configuration) | [API Reference](docs/api-reference.md) | [Usage Examples](docs/usage-examples.md) | [Development](docs/development.md)
+#### [Demo](https://mo.js.org) | [Quick Start](#quick-start) | [Configuration](#configuration) | [API Reference](docs/api-reference.md) | [Development](docs/development.md)
 
 ## Key Features
 
