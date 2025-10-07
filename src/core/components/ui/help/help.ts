@@ -19,8 +19,7 @@ const HELP_DATA = {
     {
       title: "Keyboard Shortcuts",
       items: [
-        { description: "Navigate", keys: ["←", "→"] },
-        { description: "Select", keys: ["Enter"] },
+        { description: "Navigate", keys: ["←", "→", "Enter"] },
         { description: "First slide", keys: ["Home"] },
         { description: "Last slide", keys: ["End"] },
         { description: "Exit", keys: ["Esc", "O"] },

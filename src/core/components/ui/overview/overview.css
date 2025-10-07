@@ -1,12 +1,15 @@
 /* Overview Mode Styles */
 
+/* ==========================================================================
+   BASE STYLES (Desktop First)
+   ========================================================================== */
+
 .mostage-overview {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  /* Use theme-aware background */
   background: var(--mostage-bg-color);
   color: var(--mostage-text-color);
   z-index: 2000;
@@ -33,74 +36,9 @@
   }
 }
 
-/* ==========================================================================
-   RESPONSIVE STYLES FOR OVERVIEW
-   ========================================================================== */
-
-/* Mobile devices */
-@media screen and (max-width: 768px) {
-  .mostage-overview {
-    padding: 40px 20px !important;
-    gap: 20px 15px !important;
-  }
-
-  .mostage-overview-slide {
-    width: 240px !important;
-    height: 180px !important;
-  }
-
-  .mostage-overview-slide-content {
-    padding: 15px !important;
-    font-size: 12px !important;
-  }
-
-  .mostage-overview-slide h1 {
-    font-size: 16px !important;
-  }
-
-  .mostage-overview-slide h2 {
-    font-size: 14px !important;
-  }
-
-  .mostage-overview-slide h3 {
-    font-size: 13px !important;
-  }
-}
-
-/* Small mobile devices */
-@media screen and (max-width: 480px) {
-  .mostage-overview {
-    padding: 30px 15px !important;
-    gap: 15px 10px !important;
-  }
-
-  .mostage-overview-slide {
-    width: 180px !important;
-    height: 150px !important;
-  }
-
-  .mostage-overview-slide-content {
-    padding: 12px !important;
-    font-size: 11px !important;
-  }
-
-  .mostage-overview-slide h1 {
-    font-size: 14px !important;
-  }
-
-  .mostage-overview-slide h2 {
-    font-size: 12px !important;
-  }
-
-  .mostage-overview-slide h3 {
-    font-size: 11px !important;
-  }
-}
-
 .mostage-overview-slide {
   width: 280px;
-  height: 210px;
-  /* Use theme-aware background */
+  height: 180px;
   background-color: var(--mostage-bg-color);
   color: var(--mostage-text-color);
   border-radius: 5px;
@@ -126,17 +64,11 @@
   left: 0;
   right: 0;
   bottom: 0;
-  /* background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.1) 0%,
-    rgba(255, 255, 255, 0.05) 100%
-  ); */
   border-radius: 5px;
   pointer-events: none;
 }
 
 .mostage-overview-slide:hover {
-  /* scale: 1.05; */
   border-color: var(--mostage-primary-color);
 }
 
@@ -146,6 +78,7 @@
 
 .mostage-overview-slide.selected {
   border-color: var(--mostage-primary-color);
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
 }
 
 .mostage-overview-slide-number {
@@ -164,31 +97,22 @@
 }
 
 .mostage-overview-slide-content {
-  width: 100%;
-  height: 100%;
+  width: 333.33%; /* Compensate for scale (100% / 0.3) */
+  height: 333.33%; /* Compensate for scale (100% / 0.3) */
   overflow: hidden;
   border-radius: 12px;
   position: relative;
   z-index: 1;
-}
-
-/* Overview mode typography - use transform scale to maintain exact hierarchy */
-.mostage-overview-slide-content {
   transform: scale(0.3);
   transform-origin: top left;
-  width: 333.33%; /* Compensate for scale (100% / 0.3) */
-  height: 333.33%; /* Compensate for scale (100% / 0.3) */
-  overflow: hidden;
-  padding: 2rem; /* Add padding to match normal slides */
+  padding: 2rem;
   box-sizing: border-box;
-  /* Ensure theme styles are inherited */
   background-color: inherit;
   color: inherit;
 }
 
 /* Ensure all content inside overview slides inherits theme styles */
 .mostage-overview-slide-content * {
-  /* Reset any conflicting styles and ensure theme inheritance */
   font-family: inherit;
   line-height: inherit;
   letter-spacing: inherit;
@@ -200,17 +124,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   position: absolute;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
-
   padding: 2rem;
   box-sizing: border-box;
-
-  /* Override transform-origin for centered content */
   transform-origin: center center;
 }
 
@@ -281,17 +201,38 @@
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
+/* ==========================================================================
+   RESPONSIVE STYLES
+   ========================================================================== */
+
+/* Tablet devices */
+@media screen and (min-width: 481px) and (max-width: 768px) {
   .mostage-overview {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    padding: 20px;
+    padding: 40px 20px;
+    gap: 20px 15px;
   }
 
   .mostage-overview-slide {
-    width: 200px;
-    height: 150px;
+    width: 100%;
+    aspect-ratio: 4/3;
+  }
+
+  .mostage-overview-slide-content {
+    padding: 15px;
+    font-size: 12px;
+  }
+
+  .mostage-overview-slide h1 {
+    font-size: 16px;
+  }
+
+  .mostage-overview-slide h2 {
+    font-size: 14px;
+  }
+
+  .mostage-overview-slide h3 {
+    font-size: 13px;
   }
 
   .mostage-overview-close {
@@ -303,31 +244,111 @@
   }
 
   .mostage-overview-help {
-    bottom: 20px;
-    right: 20px;
-    padding: 12px 16px;
-    font-size: 13px;
-    max-width: 250px;
+    display: none;
   }
 }
 
-@media (max-width: 480px) {
+/* Mobile devices */
+@media screen and (max-width: 480px) {
   .mostage-overview {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 15px;
-    padding: 15px;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 20px 10px;
+    gap: 12px 8px;
   }
 
   .mostage-overview-slide {
-    width: 150px;
-    height: 112px;
+    width: 100%;
+  }
+
+  .mostage-overview-slide-content {
+    padding: 12px;
+    font-size: 11px;
+  }
+
+  .mostage-overview-slide h1 {
+    font-size: 14px;
+  }
+
+  .mostage-overview-slide h2 {
+    font-size: 12px;
+  }
+
+  .mostage-overview-slide h3 {
+    font-size: 11px;
+  }
+
+  .mostage-overview-close {
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
   }
 
   .mostage-overview-help {
-    bottom: 15px;
-    right: 15px;
-    padding: 10px 12px;
-    font-size: 12px;
-    max-width: 180px;
+    display: none;
   }
+}
+
+/* Very small mobile devices - Single column */
+@media screen and (max-width: 360px) {
+  .mostage-overview {
+    grid-template-columns: 1fr;
+    padding: 15px 8px;
+    gap: 12px;
+  }
+
+  .mostage-overview-slide {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .mostage-overview-slide-content {
+    padding: 10px;
+    font-size: 10px;
+  }
+
+  .mostage-overview-slide h1 {
+    font-size: 12px;
+  }
+
+  .mostage-overview-slide h2 {
+    font-size: 11px;
+  }
+
+  .mostage-overview-slide h3 {
+    font-size: 10px;
+  }
+
+  .mostage-overview-close {
+    top: 15px;
+    right: 15px;
+    width: 35px;
+    height: 35px;
+    font-size: 18px;
+  }
+
+  .mostage-overview-help {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   ACCESSIBILITY & INTERACTIONS
+   ========================================================================== */
+
+/* Touch-friendly interactions */
+@media (hover: none) and (pointer: coarse) {
+  .mostage-overview button {
+    min-width: 44px;
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+}
+
+/* Focus indicators for keyboard navigation */
+.mostage-overview button:focus {
+  outline: 2px solid var(--mostage-primary-color, #667eea);
+  outline-offset: 2px;
 }
