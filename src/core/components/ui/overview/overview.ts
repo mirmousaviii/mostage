@@ -143,6 +143,12 @@ export class OverviewManager {
     if (footer) {
       footer.remove();
     }
+
+    // Remove close button
+    const closeButton = document.querySelector(".mostage-overview-close");
+    if (closeButton) {
+      closeButton.remove();
+    }
   }
 
   private nextOverviewSlide(): void {
@@ -202,9 +208,6 @@ export class OverviewManager {
       this.overviewContainer!.appendChild(thumbnail);
     });
 
-    const closeButton = this.createCloseButton();
-    this.overviewContainer.appendChild(closeButton);
-
     const helpComponent = this.createHelpComponent();
     this.helpComponent.addCloseButtonListener(helpComponent, () => {
       // Hide help with animation
@@ -219,8 +222,11 @@ export class OverviewManager {
 
     document.body.appendChild(this.overviewContainer);
 
-    const footer = this.createFooter();
-    document.body.appendChild(footer);
+    // it should be add to the body because it is fixed
+    document.body.appendChild(this.createCloseButton());
+
+    // it should be add to the body because it is fixed
+    document.body.appendChild(this.createFooter());
 
     // Set initial selection
     this.updateOverviewSelection();
