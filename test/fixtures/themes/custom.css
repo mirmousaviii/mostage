@@ -1,0 +1,65 @@
+/* Custom Test Theme */
+.mostage-container {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  font-family: "Arial", sans-serif;
+}
+
+.mostage-slide {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.mostage-slide h1 {
+  color: #ffd700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.mostage-slide h2 {
+  color: #87ceeb;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.mostage-slide h3 {
+  color: #98fb98;
+}
+
+.mostage-slide code {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #ffd700;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+.mostage-slide pre {
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 1px solid #666;
+  border-radius: 5px;
+  padding: 1rem;
+}
+
+.mostage-slide blockquote {
+  border-left: 4px solid #ffd700;
+  padding-left: 1rem;
+  font-style: italic;
+  color: #e0e0e0;
+}
+
+.mostage-slide table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.mostage-slide th,
+.mostage-slide td {
+  border: 1px solid #666;
+  padding: 8px;
+  text-align: left;
+}
+
+.mostage-slide th {
+  background-color: rgba(255, 215, 0, 0.2);
+  color: #ffd700;
+}

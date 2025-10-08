@@ -1,0 +1,38 @@
+{
+  "element": "#presentation",
+  "theme": "dark",
+  "content": "# Presentation with Plugins\n\nThis presentation includes various plugins.\n\n---\n\n## Slide 2\n\nProgress bar and slide numbers are enabled.\n\n---\n\n## Slide 3\n\nController plugin is also active.",
+  "transition": {
+    "type": "fade",
+    "duration": 500,
+    "easing": "ease-in-out"
+  },
+  "scale": 1.0,
+  "loop": false,
+  "plugins": {
+    "progressBar": {
+      "enabled": true,
+      "position": "bottom",
+      "color": "#007acc",
+      "height": "12px"
+    },
+    "slideNumber": {
+      "enabled": true,
+      "position": "bottom-right",
+      "format": "{current}/{total}"
+    },
+    "controller": {
+      "enabled": true,
+      "showPlayButton": true,
+      "showProgress": true,
+      "showFullscreen": true
+    }
+  },
+  "keyboard": true,
+  "touch": true,
+  "urlHash": false,
+  "centerContent": {
+    "vertical": true,
+    "horizontal": true
+  }
+}

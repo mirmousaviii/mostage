@@ -1,0 +1,14 @@
+{
+  "element": "#non-existent",
+  "theme": 123,
+  "scale": "invalid",
+  "transition": {
+    "type": "invalid-type",
+    "duration": -100
+  },
+  "plugins": "not-an-object",
+  "loop": "not-boolean",
+  "keyboard": "not-boolean",
+  "touch": "not-boolean",
+  "urlHash": "not-boolean"
+}

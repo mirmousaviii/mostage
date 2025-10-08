@@ -1,0 +1,20 @@
+{
+  "element": "#presentation",
+  "theme": "light",
+  "content": "# Basic Presentation\n\nThis is a basic presentation with minimal configuration.\n\n---\n\n## Slide 2\n\nThis is the second slide.\n\n---\n\n## Slide 3\n\nThis is the final slide.",
+  "transition": {
+    "type": "horizontal",
+    "duration": 300,
+    "easing": "ease-in-out"
+  },
+  "scale": 1.0,
+  "loop": false,
+  "plugins": {},
+  "keyboard": true,
+  "touch": true,
+  "urlHash": false,
+  "centerContent": {
+    "vertical": true,
+    "horizontal": true
+  }
+}
