@@ -1,6 +1,6 @@
 {
   "name": "mostage",
-  "version": "1.4.10",
+  "version": "1.4.11",
   "description": "Presentation framework based on markdown with HTML support and multi-format export capabilities.",
   "keywords": [
     "presentation",
@@ -48,7 +48,6 @@
     "dist"
   ],
   "scripts": {
-    "version": "node scripts/update-version.js",
     "dev": "vite --config vite.dev.config.ts",
     "build": "npm run clean && npm run build:core && npm run build:cli && npm run build:demo",
     "build:core": "vite build --config vite.build.core.config.ts && npm run copy:templates",

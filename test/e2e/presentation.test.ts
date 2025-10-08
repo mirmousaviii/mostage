@@ -509,6 +509,54 @@ function slide${i + 1}() {
     });
   });
 
+  describe("Overview Footer E2E", () => {
+    it("should display footer with version and GitHub link in overview mode", async () => {
+      const config = createMockConfig({
+        content: TEST_DATA.MARKDOWN.BASIC,
+        theme: "dark",
+      });
+
+      const mostage = new Mostage(config);
+      await mostage.start();
+
+      // Mock scrollIntoView to avoid test environment issues
+      Element.prototype.scrollIntoView = vi.fn();
+
+      // Enter overview mode
+      mostage.toggleOverview();
+
+      // Wait for overview to be created
+      await new Promise((resolve) => setTimeout(resolve, 100));
+
+      // Check if footer exists
+      const footer = document.querySelector(".mostage-overview-footer");
+      expect(footer).toBeTruthy();
+
+      // Check footer content
+      expect(footer?.innerHTML).toContain("Made with");
+      expect(footer?.innerHTML).toContain("Mostage");
+      expect(footer?.innerHTML).toMatch(/v\d+\.\d+\.\d+/);
+
+      // Check GitHub link
+      const githubLink = footer?.querySelector("a");
+      expect(githubLink).toBeTruthy();
+      expect(githubLink?.getAttribute("href")).toBe(
+        "https://github.com/mirmousaviii/mostage"
+      );
+      expect(githubLink?.getAttribute("target")).toBe("_blank");
+
+      // Exit overview mode
+      mostage.toggleOverview();
+
+      // Clean up
+      try {
+        mostage.destroy();
+      } catch (error) {
+        // Ignore cleanup errors in test environment
+      }
+    });
+  });
+
   describe("Memory Management E2E", () => {
     it("should not leak memory with multiple presentations", async () => {
       const configs = [

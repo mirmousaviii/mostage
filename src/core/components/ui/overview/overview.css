@@ -352,3 +352,26 @@
   outline: 2px solid var(--mostage-primary-color, #667eea);
   outline-offset: 2px;
 }
+
+/* Footer */
+.mostage-overview-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 10px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  z-index: 2001;
+  background: var(--mostage-bg-color);
+}
+
+.mostage-overview-footer a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.mostage-overview-footer a:hover {
+  text-decoration: underline;
+}

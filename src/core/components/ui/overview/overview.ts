@@ -1,4 +1,5 @@
 import { HelpComponent } from "../help/help";
+import pkg from "../../../../../package.json";
 
 export class OverviewManager {
   private container: HTMLElement;
@@ -136,6 +137,12 @@ export class OverviewManager {
       this.overviewContainer.remove();
       this.overviewContainer = null;
     }
+
+    // Remove footer
+    const footer = document.querySelector(".mostage-overview-footer");
+    if (footer) {
+      footer.remove();
+    }
   }
 
   private nextOverviewSlide(): void {
@@ -211,6 +218,9 @@ export class OverviewManager {
     });
 
     document.body.appendChild(this.overviewContainer);
+
+    const footer = this.createFooter();
+    document.body.appendChild(footer);
 
     // Set initial selection
     this.updateOverviewSelection();
@@ -353,6 +363,13 @@ export class OverviewManager {
 
   private createHelpComponent(): HTMLElement {
     return this.helpComponent.createHelpElement();
+  }
+
+  private createFooter(): HTMLElement {
+    const footer = document.createElement("div");
+    footer.className = "mostage-overview-footer";
+    footer.innerHTML = `Made with <a href="https://github.com/mirmousaviii/mostage" target="_blank" rel="noopener noreferrer">Mostage</a> v${pkg.version || "1"}`;
+    return footer;
   }
 
   // Hide overview help with fade-out animation
