@@ -61,16 +61,16 @@ Use CLI to create presentations
 
 ```bash
 # Create a new presentations
-mostage new
+npx mostage new
 
 # Start development server
-mostage dev
+npx mostage dev
 
 # Export to different formats
-mostage export --format pdf
-mostage export --format pptx
-mostage export --format png
-mostage export --format html
+npx mostage export --format pdf
+npx mostage export --format pptx
+npx mostage export --format png
+npx mostage export --format html
 ```
 
 ---
