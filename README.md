@@ -3,7 +3,10 @@
 [![npm version](https://img.shields.io/npm/v/mostage.svg)](https://www.npmjs.com/package/mostage)
 [![Publish Package](https://github.com/mirmousaviii/mostage/actions/workflows/publish.yml/badge.svg)](https://github.com/mirmousaviii/mostage/actions/workflows/publish.yml)
 
-Presentation framework based on **Markdown** with HTML support (Core Library + CLI)
+Presentation framework based on **Markdown** and **HTML** (Core Library + CLI)
+
+![CLI](./docs/cli.png)
+![Demo](./docs/demo.png)
 
 #### [Demo](https://mo.js.org) | [Quick Start](#quick-start) | [Configuration](#configuration) | [API Reference](docs/api-reference.md) | [Development](docs/development.md)
 
