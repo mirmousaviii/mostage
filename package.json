@@ -48,6 +48,7 @@
     "dist"
   ],
   "scripts": {
+    "version": "node scripts/update-version.js",
     "dev": "vite --config vite.dev.config.ts",
     "build": "npm run clean && npm run build:core && npm run build:cli && npm run build:demo",
     "build:core": "vite build --config vite.build.core.config.ts && npm run copy:templates",

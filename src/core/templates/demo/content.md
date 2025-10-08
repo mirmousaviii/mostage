@@ -283,20 +283,19 @@ Inline `Code` for test: <code data-language="javascript">console.log('Hello, Wor
 
 ## Tables
 
-| Feature             | Status | Notes                                                |
-| ------------------- | :----: | ---------------------------------------------------- |
-| Markdown Parser     |   ✅   | Core feature: Parses and renders Markdown content    |
-| HTML Support        |   ✅   | Allows raw HTML for advanced customization           |
-| Theme System        |   ✅   | Supports light/dark and custom themes                |
-| Plugin System       |   ✅   | Extend functionality with plugins                    |
-| CLI Commands        |   ✅   | Create, develop, and export presentations            |
-| Keyboard Navigation |   ✅   | Navigate slides with keyboard shortcuts              |
-| Overview            |   ✅   | Slide overview/mini-map for quick navigation         |
-| Page Number         |   ✅   | Shows current/total slide number via plugin          |
-| Header & Footer     |   ✅   | Customizable header and footer for slides            |
-| Export Formats      |   ✅   | Export to HTML, PDF, PPTX, PNG, JPG                  |
-| Speaker Note        |   ⬜   | Planned: Add private notes for presenters            |
-| Presenter Mode      |   ⬜   | Planned: Dual-screen mode for presenter and audience |
+|  x  | Feature         | Notes                                 |
+| :-: | --------------- | ------------------------------------- |
+| ✅  | Markdown & HTML | Markdown content with HTML support    |
+| ✅  | Theme System    | Supports light/dark and custom themes |
+| ✅  | Plugin System   | Extend functionality with plugins     |
+| ✅  | CLI Commands    | Create and manage presentations       |
+| ✅  | Navigation      | Navigate with keyboard shortcuts      |
+| ✅  | Overview        | Overview for quick navigation         |
+| ✅  | Page Number     | Shows slide number via plugin         |
+| ✅  | Header & Footer | Header and footer for slides          |
+| ✅  | Export Formats  | Export to HTML, PDF, PPTX, PNG, JPG   |
+| ⬜  | Speaker Note    | Add private notes for presenters      |
+| ⬜  | Presenter Mode  | Dual-screen mode for presenter        |
 
 ---
 
