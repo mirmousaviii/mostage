@@ -6,9 +6,10 @@
 // Base plugin interface
 export interface MoPlugin {
   name: string;
-  init: (mo: MostageInstance, config?: any) => void;
+  init: (mo: MostageInstance, config?: unknown) => void;
   destroy?: () => void;
   setEnabled?: (enabled: boolean) => void;
+  isEnabled?: () => boolean;
 }
 
 // Slide interface
@@ -178,4 +179,19 @@ export interface UIComponent extends Component {
   show(): void;
   hide(): void;
   toggle(): void;
+}
+
+// Test-specific types for accessing private properties
+export interface MostageTestAccess {
+  config: MoConfig;
+  overviewManager: {
+    toggleOverview: () => void;
+  };
+}
+
+// Plugin test access interface
+export interface PluginTestAccess {
+  setEnabled: (enabled: boolean) => void;
+  isEnabled: () => boolean;
+  style?: CSSStyleDeclaration;
 }

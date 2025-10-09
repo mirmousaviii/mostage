@@ -1,5 +1,6 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import { ProgressBarPlugin, ProgressBarConfig } from "./index";
+import { PluginTestAccess } from "../../types";
 
 // Mock CSS import
 vi.mock("./style.css?inline", () => ({
@@ -38,7 +39,7 @@ describe("ProgressBarPlugin", () => {
     });
 
     it("should be enabled by default", () => {
-      expect(plugin.isEnabled()).toBe(true);
+      expect((plugin as unknown as PluginTestAccess).isEnabled()).toBe(true);
     });
   });
 
@@ -72,7 +73,7 @@ describe("ProgressBarPlugin", () => {
       expect(progressBar?.classList.contains("mostage-progress-top")).toBe(
         true
       );
-      expect(progressBar?.style.height).toBe("20px");
+      expect((progressBar as HTMLElement)?.style.height).toBe("20px");
 
       const fill = progressBar?.querySelector(
         ".mostage-progress-fill"
@@ -263,7 +264,7 @@ describe("ProgressBarPlugin", () => {
       const progressBar = document.querySelector(
         ".mostage-progress-bar"
       ) as HTMLElement;
-      expect(progressBar?.style.height).toBe("15px");
+      expect((progressBar as HTMLElement)?.style.height).toBe("15px");
     });
 
     it("should use default values when config is not provided", () => {
@@ -279,7 +280,7 @@ describe("ProgressBarPlugin", () => {
       expect(progressBar?.classList.contains("mostage-progress-bottom")).toBe(
         true
       );
-      expect(progressBar?.style.height).toBe("12px");
+      expect((progressBar as HTMLElement)?.style.height).toBe("12px");
       expect(fill?.style.backgroundColor).toBe("rgb(0, 122, 204)");
     });
 
@@ -301,22 +302,22 @@ describe("ProgressBarPlugin", () => {
       expect(progressBar?.classList.contains("mostage-progress-bottom")).toBe(
         true
       ); // default
-      expect(progressBar?.style.height).toBe("12px"); // default
+      expect((progressBar as HTMLElement)?.style.height).toBe("12px"); // default
       expect(fill?.style.backgroundColor).toBe("rgb(255, 0, 0)"); // custom
     });
   });
 
   describe("Plugin State Management", () => {
     it("should set enabled state", () => {
-      plugin.setEnabled(false);
-      expect(plugin.isEnabled()).toBe(false);
+      (plugin as unknown as PluginTestAccess).setEnabled(false);
+      expect((plugin as unknown as PluginTestAccess).isEnabled()).toBe(false);
 
-      plugin.setEnabled(true);
-      expect(plugin.isEnabled()).toBe(true); // should be enabled after setting
+      (plugin as unknown as PluginTestAccess).setEnabled(true);
+      expect((plugin as unknown as PluginTestAccess).isEnabled()).toBe(true); // should be enabled after setting
     });
 
     it("should not initialize when disabled before init", () => {
-      plugin.setEnabled(false);
+      (plugin as unknown as PluginTestAccess).setEnabled(false);
       plugin.init(mockMo);
 
       const progressBar = document.querySelector(".mostage-progress-bar");

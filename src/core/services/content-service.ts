@@ -1,4 +1,4 @@
-import { MoSlide } from "../types";
+import { MoSlide } from "@/types";
 import { MarkdownParser } from "../utils/markdown-parser";
 
 /**

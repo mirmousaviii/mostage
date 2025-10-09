@@ -23,6 +23,7 @@
   ],
   "author": "mo.js.org",
   "license": "MIT",
+  "type": "module",
   "homepage": "https://mo.js.org",
   "repository": {
     "type": "git",
@@ -42,6 +43,10 @@
       "types": "./dist/core/types/index.d.ts",
       "import": "./dist/core/index.js",
       "require": "./dist/core/index.cjs"
+    },
+    "./cli": {
+      "import": "./dist/cli/index.js",
+      "require": "./dist/cli/index.cjs"
     }
   },
   "files": [

@@ -70,6 +70,9 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": resolve(__dirname, "src"),
+      "@/core": resolve(__dirname, "src/core"),
+      "@/cli": resolve(__dirname, "src/cli"),
+      "@/types": resolve(__dirname, "src/core/types"),
       // Alias for demo template assets
       "./assets/index.js": resolve(__dirname, "src/core/index.ts"),
     },

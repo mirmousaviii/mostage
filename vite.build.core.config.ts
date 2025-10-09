@@ -75,6 +75,8 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": resolve(__dirname, "src"),
+      "@/core": resolve(__dirname, "src/core"),
+      "@/types": resolve(__dirname, "src/core/types"),
     },
   },
 

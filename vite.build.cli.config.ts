@@ -55,6 +55,9 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": resolve(__dirname, "src"),
+      "@/core": resolve(__dirname, "src/core"),
+      "@/cli": resolve(__dirname, "src/cli"),
+      "@/types": resolve(__dirname, "src/core/types"),
     },
   },
 

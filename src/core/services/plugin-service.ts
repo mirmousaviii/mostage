@@ -1,4 +1,4 @@
-import { MoPlugin } from "../types";
+import { MoPlugin } from "@/types";
 
 /**
  * Enhanced Plugin Service - Auto-discovers and manages all plugins

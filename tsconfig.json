@@ -19,16 +19,29 @@
     "outDir": "./dist",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "@/core/*": ["src/core/*"],
+      "@/cli/*": ["src/cli/*"],
+      "@/types": ["src/core/types"],
+      "@/types/*": ["src/core/types/*"],
+      "@/services": ["src/core/services"],
+      "@/services/*": ["src/core/services/*"],
+      "@/components": ["src/core/components"],
+      "@/components/*": ["src/core/components/*"],
+      "@/plugins": ["src/core/plugins"],
+      "@/plugins/*": ["src/core/plugins/*"],
+      "@/utils": ["src/core/utils"],
+      "@/utils/*": ["src/core/utils/*"],
+      "@/engine": ["src/core/engine"],
+      "@/engine/*": ["src/core/engine/*"],
+      "@/cli-commands": ["src/cli/commands"],
+      "@/cli-commands/*": ["src/cli/commands/*"],
+      "@/cli-generators": ["src/cli/generators"],
+      "@/cli-generators/*": ["src/cli/generators/*"],
+      "@/cli-utils": ["src/cli/utils"],
+      "@/cli-utils/*": ["src/cli/utils/*"]
     }
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "**/*.test.ts"
-  ]
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "exclude": ["node_modules", "dist", "**/*.test.ts"]
 }

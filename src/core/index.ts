@@ -11,29 +11,21 @@
 // Import styles
 import "./styles/foundation/index.css";
 
+// Main engine export
 export { Mostage } from "./engine/mostage-engine";
-export type { Theme } from "./types";
-
-// Export services
-export { ContentService } from "./services/content-service";
-export { ThemeService } from "./services/theme-service";
-export { PluginService } from "./services/plugin-service";
-export { NavigationService } from "./services/navigation-service";
-export { ConfigService } from "./services/config-service";
-
-// Export components
-export { TransitionManager } from "./components/navigation/transition";
-export { OverviewManager } from "./components/ui/overview/overview";
-export { HelpManager } from "./components/ui/help/help";
-export { UrlHashManager } from "./components/navigation/url-hash";
-
-// Re-export commonly used functions for convenience
-export { plugins } from "./services/plugin-service";
-export {
-  themes,
-  loadTheme,
-  getAvailableThemes,
-} from "./services/theme-service";
-
-// Default export for easier importing
 export { Mostage as default } from "./engine/mostage-engine";
+
+// Re-export all types
+export * from "./types";
+
+// Re-export all services
+export * from "./services";
+
+// Re-export all components
+export * from "./components";
+
+// Re-export all plugins
+export * from "./plugins";
+
+// Re-export all utilities
+export * from "./utils";

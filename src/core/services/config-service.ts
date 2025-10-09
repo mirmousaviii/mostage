@@ -8,7 +8,7 @@ import {
   ConfigLoader,
   ConfigValidator,
   ConfigValidationResult,
-} from "../types";
+} from "@/types";
 
 /**
  * Enhanced Configuration Service

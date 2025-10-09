@@ -1,4 +1,4 @@
-import { PluginBase } from "../../plugin-base";
+import { PluginBase } from "@/core/plugin-base";
 import styles from "./style.css?inline";
 
 export interface SlideNumberConfig {

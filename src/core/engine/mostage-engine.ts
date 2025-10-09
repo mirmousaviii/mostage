@@ -16,7 +16,7 @@ import {
   MoSlideEvent,
   MostageInstance,
   TransitionConfig,
-} from "../types";
+} from "@/types";
 
 /**
  * Mostage Presentation Engine
@@ -310,7 +310,7 @@ export class Mostage implements MostageInstance {
           const finalConfig = pluginConfig || {};
 
           // Check if plugin is enabled (must be explicitly true)
-          const isEnabled = finalConfig.enabled === true;
+          const isEnabled = (finalConfig as any).enabled === true;
 
           if (!isEnabled) {
             return;
@@ -480,7 +480,7 @@ export class Mostage implements MostageInstance {
       : [this.config.background];
 
     // Apply all matching backgrounds
-    backgrounds.forEach((bg) => {
+    backgrounds.forEach((bg: any) => {
       if (this.shouldApplyBackground(bg, slideNumber)) {
         this.applyBackgroundStyles(slideElement, bg);
       }

@@ -2,12 +2,14 @@
 
 import { Command } from "commander";
 import pkg from "../../package.json";
-import { newCommand } from "./commands/new/index";
-import { exampleCommand } from "./commands/example/index";
-import { devCommand } from "./commands/dev/index";
-import { exportCommand } from "./commands/export/index";
-import { themeCommand } from "./commands/theme/index";
-import { pluginCommand } from "./commands/plugin/index";
+import {
+  newCommand,
+  exampleCommand,
+  devCommand,
+  exportCommand,
+  themeCommand,
+  pluginCommand,
+} from "./commands";
 
 // Initialize CLI
 const program = new Command();

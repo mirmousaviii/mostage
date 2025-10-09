@@ -47,46 +47,13 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": resolve(__dirname, "./src"),
+      "@/core": resolve(__dirname, "./src/core"),
+      "@/cli": resolve(__dirname, "./src/cli"),
+      "@/types": resolve(__dirname, "./src/core/types"),
       // Test helpers
       "@/test-helpers": resolve(__dirname, "./test/helpers/test-helpers"),
       "@/mock-factories": resolve(__dirname, "./test/helpers/mock-factories"),
       "@/test-data": resolve(__dirname, "./test/helpers/test-data"),
-      // For CLI tests, map to dist files
-      "../../src/cli/index": resolve(__dirname, "./dist/cli/index.js"),
-      "../commands/": resolve(__dirname, "./dist/cli/commands/"),
-      // Map utility imports to source files
-      "../../src/core/utils/markdown-parser": resolve(
-        __dirname,
-        "./src/core/utils/markdown-parser/index.ts"
-      ),
-      "../../src/core/utils/syntax-highlighter": resolve(
-        __dirname,
-        "./src/core/utils/syntax-highlighter/index.ts"
-      ),
-      "../../src/core/plugin-base": resolve(
-        __dirname,
-        "./src/core/plugin-base.ts"
-      ),
-      "../../src/core/plugins/progress-bar": resolve(
-        __dirname,
-        "./src/core/plugins/progress-bar/index.ts"
-      ),
-      "../../src/core/services/config-service": resolve(
-        __dirname,
-        "./src/core/services/config-service.ts"
-      ),
-      "../../src/core/services/content-service": resolve(
-        __dirname,
-        "./src/core/services/content-service.ts"
-      ),
-      "../../src/core/services/theme-service": resolve(
-        __dirname,
-        "./src/core/services/theme-service.ts"
-      ),
-      "../../src/core/engine/mostage-engine": resolve(
-        __dirname,
-        "./src/core/engine/mostage-engine.ts"
-      ),
     },
   },
   esbuild: {

@@ -3,7 +3,7 @@
  * Provides centralized navigation management with enhanced functionality
  */
 
-import { MoSlide } from "../types";
+import { MoSlide } from "@/types";
 
 /**
  * Enhanced Navigation Service

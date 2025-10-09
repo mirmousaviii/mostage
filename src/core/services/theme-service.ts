@@ -6,7 +6,7 @@ import overviewModeStylesCSS from "../components/ui/overview/overview.css?raw";
 import helpStylesCSS from "../components/ui/help/help.css?raw";
 import responsiveStylesCSS from "../styles/foundation/responsive.css?raw";
 import textContentStylesCSS from "../styles/foundation/text-content.css?raw";
-import { Theme } from "../types";
+import { Theme } from "@/types";
 
 // Combine all base styles into a single string
 const combinedBaseStyles = [

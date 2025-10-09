@@ -1,4 +1,4 @@
-import { MoSlide } from "../../types";
+import { MoSlide } from "@/types";
 
 export class NavigationManager {
   private container: HTMLElement;

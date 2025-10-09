@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import { Mostage } from "./mostage-engine";
-import { MoConfig } from "../types";
+import { MoConfig, MostageTestAccess } from "../types";
 
 // Mock dependencies
 vi.mock("../services/content-service", () => ({
@@ -131,7 +131,9 @@ describe("Mostage Engine", () => {
     it("should handle legacy transition string format", () => {
       const legacyConfig = { ...config, transition: "fade" };
       const mostage = new Mostage(legacyConfig);
-      expect(mostage.config.transition).toEqual({
+      expect(
+        (mostage as unknown as MostageTestAccess).config.transition
+      ).toEqual({
         type: "fade",
         duration: 600,
         easing: "ease-in-out",
@@ -141,8 +143,10 @@ describe("Mostage Engine", () => {
     it("should apply default configuration values", () => {
       const minimalConfig = { element: "#test-container", content: "test" };
       const mostage = new Mostage(minimalConfig);
-      expect(mostage.config.theme).toBe("light");
-      expect(mostage.config.scale).toBe(1.0);
+      expect((mostage as unknown as MostageTestAccess).config.theme).toBe(
+        "light"
+      );
+      expect((mostage as unknown as MostageTestAccess).config.scale).toBe(1.0);
     });
   });
 
@@ -309,11 +313,14 @@ describe("Mostage Engine", () => {
 
     it("should toggle overview mode", () => {
       // Mock overviewManager.toggleOverview method
-      mostage.overviewManager = {
+      (mostage as unknown as MostageTestAccess).overviewManager = {
         toggleOverview: vi.fn(),
-      } as any;
+      };
 
-      const toggleSpy = vi.spyOn(mostage.overviewManager, "toggleOverview");
+      const toggleSpy = vi.spyOn(
+        (mostage as unknown as MostageTestAccess).overviewManager,
+        "toggleOverview"
+      );
       mostage.toggleOverview();
       expect(toggleSpy).toHaveBeenCalled();
     });
@@ -363,7 +370,9 @@ describe("Mostage Engine", () => {
       const mostage = new Mostage(headerConfig);
       await mostage.start();
       // Mock implementation doesn't create DOM elements
-      expect(mostage.config.header).toBe("My Header");
+      expect((mostage as unknown as MostageTestAccess).config.header).toBe(
+        "My Header"
+      );
     });
 
     it("should render footer when configured", async () => {
@@ -371,7 +380,9 @@ describe("Mostage Engine", () => {
       const mostage = new Mostage(footerConfig);
       await mostage.start();
       // Mock implementation doesn't create DOM elements
-      expect(mostage.config.footer).toBe("My Footer");
+      expect((mostage as unknown as MostageTestAccess).config.footer).toBe(
+        "My Footer"
+      );
     });
 
     it("should load header from file when contentPath is provided", async () => {
@@ -388,7 +399,7 @@ describe("Mostage Engine", () => {
       const mostage = new Mostage(scaleConfig);
       await mostage.start();
       // Mock implementation doesn't apply styles
-      expect(mostage.config.scale).toBe(0.8);
+      expect((mostage as unknown as MostageTestAccess).config.scale).toBe(0.8);
     });
   });
 
