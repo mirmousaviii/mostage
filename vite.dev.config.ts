@@ -2,12 +2,11 @@ import { defineConfig } from "vite";
 import { resolve } from "path";
 
 export default defineConfig({
-  // Set root to demo template directory for development
-  root: "src/core/templates/demo",
+  // Root is set by changing to the template directory before running vite
 
   // Development server configuration for Mostage framework
   server: {
-    port: 3000,
+    port: 3000, // Default port, can be overridden via command line
     open: true,
     host: true, // Allow external connections
     cors: true,
