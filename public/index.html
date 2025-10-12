@@ -61,33 +61,6 @@
     <link rel="stylesheet" href="./css/main.css" />
   </head>
   <body>
-    <!-- Scroll Progress Bar -->
-    <div class="scroll-progress" id="scroll-progress"></div>
-
-    <!-- Scroll Indicators -->
-    <div class="scroll-indicators" id="scroll-indicators">
-      <div
-        class="scroll-indicator active"
-        data-section="Mostage"
-        data-target="hero"
-      ></div>
-      <div
-        class="scroll-indicator"
-        data-section="Why Mostage?"
-        data-target="why-section"
-      ></div>
-      <div
-        class="scroll-indicator"
-        data-section="Get Started"
-        data-target="getting-started"
-      ></div>
-      <div
-        class="scroll-indicator"
-        data-section="Live Demo"
-        data-target="demo"
-      ></div>
-    </div>
-
     <!-- Navigation -->
     <nav class="navbar" role="navigation" aria-label="Main navigation">
       <div class="nav-container">
@@ -100,8 +73,10 @@
 
         <!-- Desktop Navigation -->
         <div class="nav-links">
-          <a href="#getting-started" class="nav-link">Get Started</a>
+          <a href="#themes" class="nav-link">Themes</a>
+          <a href="#plugins" class="nav-link">Plugins</a>
           <a href="#demo" class="nav-link">Demo</a>
+          <a href="#getting-started" class="nav-link">Get Started</a>
           <a
             href="https://github.com/mirmousaviii/mostage"
             class="nav-link"
@@ -126,8 +101,10 @@
       <!-- Mobile Navigation -->
       <div class="mobile-nav" aria-hidden="true">
         <div class="mobile-nav-content">
-          <a href="#getting-started" class="mobile-nav-link">Get Started</a>
+          <a href="#themes" class="mobile-nav-link">Themes</a>
+          <a href="#plugins" class="mobile-nav-link">Plugins</a>
           <a href="#demo" class="mobile-nav-link">Demo</a>
+          <a href="#getting-started" class="mobile-nav-link">Get Started</a>
           <a
             href="https://github.com/mirmousaviii/mostage"
             class="mobile-nav-link"
@@ -154,8 +131,8 @@
             [Core Library + CLI]
           </p>
           <div class="hero-buttons">
-            <a href="#getting-started" class="btn btn-primary">Get Started</a>
-            <a href="#demo" class="btn btn-secondary">View Demo</a>
+            <a href="#getting-started" class="btn btn-secondary">Get Started</a>
+            <a href="#demo" class="btn btn-primary">View Demo</a>
           </div>
         </div>
         <div class="hero-visual">
@@ -195,13 +172,13 @@ Mostage is a modern presentation framework
     <!-- Why Section -->
     <section class="why-section">
       <div class="container">
-        <h2 class="section-title animate-on-scroll">Why Mostage?</h2>
-        <p class="section-subtitle animate-on-scroll">
+        <h2 class="section-title">Why Mostage?</h2>
+        <p class="section-subtitle">
           Discover the powerful features that make Mostage the perfect choice
           for your presentations
         </p>
         <div class="features-grid">
-          <div class="feature-card animate-on-scroll fade-in-left">
+          <div class="feature-card">
             <h3>
               <svg
                 width="24"
@@ -225,7 +202,7 @@ Mostage is a modern presentation framework
             </h3>
             <p>Write slides in Markdown - simple and familiar syntax</p>
           </div>
-          <div class="feature-card animate-on-scroll fade-in-right">
+          <div class="feature-card">
             <h3>
               <svg
                 width="24"
@@ -244,7 +221,7 @@ Mostage is a modern presentation framework
             </h3>
             <p>Use HTML when needed for advanced layouts and interactions</p>
           </div>
-          <div class="feature-card animate-on-scroll fade-in-left">
+          <div class="feature-card">
             <h3>
               <svg
                 width="24"
@@ -266,7 +243,7 @@ Mostage is a modern presentation framework
             </h3>
             <p>Runs in any modern browser - no installation required</p>
           </div>
-          <div class="feature-card animate-on-scroll fade-in-right">
+          <div class="feature-card">
             <h3>
               <svg
                 width="24"
@@ -287,7 +264,7 @@ Mostage is a modern presentation framework
             </h3>
             <p>Easy to configure and customize for your specific needs</p>
           </div>
-          <div class="feature-card animate-on-scroll fade-in-left">
+          <div class="feature-card">
             <h3>
               <svg
                 width="24"
@@ -305,7 +282,7 @@ Mostage is a modern presentation framework
             </h3>
             <p>Built-in themes and easy custom theme creation</p>
           </div>
-          <div class="feature-card animate-on-scroll fade-in-right">
+          <div class="feature-card">
             <h3>
               <svg
                 width="24"
@@ -329,173 +306,208 @@ Mostage is a modern presentation framework
       </div>
     </section>
 
-    <!-- Get Started Section -->
-    <section id="getting-started" class="cli-section">
+    <!-- Themes Section -->
+    <section id="themes" class="themes-section">
       <div class="container">
-        <h2 class="section-title animate-on-scroll">Get Started</h2>
-        <p class="section-subtitle animate-on-scroll">
-          Create presentations using CLI, Library, or other methods
+        <h2 class="section-title">Theme System</h2>
+        <p class="section-subtitle">
+          Choose from built-in themes or create your own custom themes
         </p>
-        <div class="terminals-grid">
-          <div class="terminal">
-            <div class="terminal-header">
-              <div class="terminal-dots">
-                <span class="dot red"></span>
-                <span class="dot yellow"></span>
-                <span class="dot green"></span>
-              </div>
-              <span class="terminal-title">Example Project</span>
-            </div>
-            <div class="terminal-content">
-              <div class="terminal-line">
-                <span class="prompt">$</span>
-                <span class="command">npx mostage example</span>
-              </div>
-              <div class="terminal-line">
-                <span class="output">Creating example project...</span>
-              </div>
-              <div class="terminal-line">
-                <span class="prompt">$</span>
-                <span class="command">cd example-project</span>
-              </div>
-              <div class="terminal-line">
-                <span class="output">Switched to example directory</span>
-              </div>
-              <div class="terminal-line">
-                <span class="prompt">$</span>
-                <span class="command">npx mostage dev</span>
-              </div>
-              <div class="terminal-line">
-                <span class="output"
-                  >Example running at http://localhost:3000</span
-                >
-              </div>
-              <div class="terminal-line">
-                <span class="prompt">$</span>
-                <span class="command">npx mostage export --format pdf</span>
-              </div>
-              <div class="terminal-line">
-                <span class="output">Example exported to example.pdf</span>
+        <div class="themes-grid">
+          <div class="theme-card">
+            <div class="theme-preview light-theme">
+              <div class="slide-content">
+                <h1>Light Theme</h1>
+                <h2>Classic Presentations</h2>
+                <h3>Clean and professional design</h3>
               </div>
             </div>
           </div>
+          <div class="theme-card">
+            <div class="theme-preview dark-theme">
+              <div class="slide-content">
+                <h1>Dark Theme</h1>
+                <h2>Code Presentations</h2>
+                <h3>Perfect for low-light conditions</h3>
+              </div>
+            </div>
+          </div>
+          <div class="theme-card">
+            <div class="theme-preview dracula-theme">
+              <div class="slide-content">
+                <h1>Dracula Theme</h1>
+                <h2>Vibrant Accents</h2>
+                <h3>Popular dark theme with vibrant colors</h3>
+              </div>
+            </div>
+          </div>
+          <div class="theme-card">
+            <div class="theme-preview ocean-theme">
+              <div class="slide-content">
+                <h1>Ocean Theme</h1>
+                <h2>Calm & Elegant</h2>
+                <h3>Inspired by the sea, refreshing design</h3>
+              </div>
+            </div>
+          </div>
+          <div class="theme-card">
+            <div class="theme-preview rainbow-theme">
+              <div class="slide-content">
+                <h1>Rainbow Theme</h1>
+                <h2>Colorful & Bright</h2>
+                <h3>Vibrant colors for creative presentations</h3>
+              </div>
+            </div>
+          </div>
+          <div class="theme-card">
+            <div class="theme-preview custom-theme">
+              <div class="slide-content">
+                <h1>Custom Theme</h1>
+                <h2>Your Style</h2>
+                <h3>Create themes that match your brand</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="theme-note">
+          <p>
+            <strong>Theme System:</strong> You can create your own custom
+            themes!
+          </p>
+        </div>
+      </div>
+    </section>
 
-          <div class="terminal">
-            <div class="terminal-header">
-              <div class="terminal-dots">
-                <span class="dot red"></span>
-                <span class="dot yellow"></span>
-                <span class="dot green"></span>
-              </div>
-              <span class="terminal-title">New Project</span>
-            </div>
-            <div class="terminal-content">
-              <div class="terminal-line">
-                <span class="prompt">$</span>
-                <span class="command">npx mostage new</span>
-              </div>
-              <div class="terminal-line">
-                <span class="output">Creating new presentation...</span>
-              </div>
-              <div class="terminal-line">
-                <span class="prompt">$</span>
-                <span class="command">cd my-presentation</span>
-              </div>
-              <div class="terminal-line">
-                <span class="output">Switched to project directory</span>
-              </div>
-              <div class="terminal-line">
-                <span class="prompt">$</span>
-                <span class="command">npx mostage dev</span>
-              </div>
-              <div class="terminal-line">
-                <span class="output"
-                  >Development server started at http://localhost:3000</span
-                >
-              </div>
-              <div class="terminal-line">
-                <span class="prompt">$</span>
-                <span class="command">npx mostage export --format pptx</span>
-              </div>
-              <div class="terminal-line">
-                <span class="output"
-                  >Presentation exported to my-presentation.pptx</span
-                >
-              </div>
-            </div>
+    <!-- Plugins Section -->
+    <section id="plugins" class="plugins-section">
+      <div class="container">
+        <h2 class="section-title">Plugin System</h2>
+        <p class="section-subtitle">
+          Extend Mostage functionality with built-in and custom plugins
+        </p>
+        <div class="plugins-grid">
+          <div class="plugin-card">
+            <h3>
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="9" y1="9" x2="15" y2="15"></line>
+                <line x1="15" y1="9" x2="9" y2="15"></line>
+              </svg>
+              ProgressBar
+            </h3>
+            <p>Shows presentation progress with visual indicator</p>
           </div>
-          <div class="terminal">
-            <div class="terminal-header">
-              <div class="terminal-dots">
-                <span class="dot red"></span>
-                <span class="dot yellow"></span>
-                <span class="dot green"></span>
-              </div>
-              <span class="terminal-title">Important Commands</span>
-            </div>
-            <div class="terminal-content">
-              <div class="terminal-line">
-                <span class="prompt">$</span>
-                <span class="command">npx mostage help</span>
-              </div>
-              <div class="terminal-line">
-                <span class="output">Displaying help information...</span>
-              </div>
-              <div class="terminal-line">
-                <span class="prompt">$</span>
-                <span class="command">npx mostage theme --list</span>
-              </div>
-              <div class="terminal-line">
-                <span class="output"
-                  >Available themes: dark, light, ocean, dracula, rainbow</span
-                >
-              </div>
-              <div class="terminal-line">
-                <span class="prompt">$</span>
-                <span class="command">npx mostage plugin --list</span>
-              </div>
-              <div class="terminal-line">
-                <span class="output"
-                  >Available plugins: progress-bar, slide-number, controller,
-                  confetti</span
-                >
-              </div>
-              <div class="terminal-line">
-                <span class="prompt">$</span>
-                <span class="command">npm install -g mostage</span>
-              </div>
-              <div class="terminal-line">
-                <span class="output">Installing Mostage globally...</span>
-              </div>
-            </div>
+          <div class="plugin-card">
+            <h3>
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12,6 12,12 16,14"></polyline>
+              </svg>
+              SlideNumber
+            </h3>
+            <p>Displays current slide number and total count</p>
           </div>
-
-          <div class="terminal">
-            <div class="terminal-header">
-              <div class="terminal-dots">
-                <span class="dot red"></span>
-                <span class="dot yellow"></span>
-                <span class="dot green"></span>
-              </div>
-              <span class="terminal-title">HTML Integration</span>
-            </div>
-            <div class="terminal-content">
-              <pre><code>&lt;html&gt;
-  &lt;head&gt;
-    &lt;title&gt;My Presentation&lt;/title&gt;
-    &lt;link rel="stylesheet" href="mostage.css" /&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-    &lt;div id="app"&gt;&lt;/div&gt;
-    &lt;script src="mostage.js"&gt;&lt;/script&gt;
-    &lt;script&gt;
-      const presentation = new Mostage("./config.json");
-      presentation.start();
-    &lt;/script&gt;
-  &lt;/body&gt;
-&lt;/html&gt;</code></pre>
-            </div>
+          <div class="plugin-card">
+            <h3>
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polygon points="5,3 19,12 5,21"></polygon>
+              </svg>
+              Controller
+            </h3>
+            <p>Navigation buttons for easy slide control</p>
           </div>
+          <div class="plugin-card">
+            <h3>
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+              </svg>
+              OverviewMode
+            </h3>
+            <p>Grid view with all slides for quick navigation</p>
+          </div>
+          <div class="plugin-card">
+            <h3>
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+              </svg>
+              Confetti
+            </h3>
+            <p>Celebration animations for special moments</p>
+          </div>
+          <div class="plugin-card">
+            <h3>
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                ></path>
+              </svg>
+              Custom Plugins
+            </h3>
+            <p>Create your own plugins easily</p>
+          </div>
+        </div>
+        <div class="plugin-note">
+          <p>
+            <strong>Plugin System:</strong> You can create your own custom
+            plugins!
+          </p>
         </div>
       </div>
     </section>
@@ -503,8 +515,8 @@ Mostage is a modern presentation framework
     <!-- Demo Section -->
     <section id="demo" class="demo-section">
       <div class="container">
-        <h2 class="section-title animate-on-scroll">Live Demo</h2>
-        <p class="section-subtitle animate-on-scroll">
+        <h2 class="section-title">Live Demo</h2>
+        <p class="section-subtitle">
           Try Mostage presentations directly in your browser
         </p>
         <div class="demo-grid">
@@ -544,6 +556,94 @@ Mostage is a modern presentation framework
                 class="demo-link"
                 >Open</a
               >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Get Started Section -->
+    <section id="getting-started" class="cli-section">
+      <div class="container">
+        <h2 class="section-title">Get Started</h2>
+        <p class="section-subtitle">
+          Create presentations using CLI, Library, or other methods
+        </p>
+        <div class="terminals-grid">
+          <div class="terminal">
+            <div class="terminal-header">
+              <div class="terminal-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <span class="terminal-title">Important Commands</span>
+            </div>
+            <div class="terminal-content">
+              <div class="terminal-line">
+                <span class="prompt">$</span>
+                <span class="command">npx mostage example</span>
+              </div>
+              <div class="terminal-line">
+                <span class="output">Creating example project...</span>
+              </div>
+              <div class="terminal-line">
+                <span class="prompt">$</span>
+                <span class="command">npx mostage new</span>
+              </div>
+              <div class="terminal-line">
+                <span class="output">Creating new presentation...</span>
+              </div>
+              <div class="terminal-line">
+                <span class="prompt">$</span>
+                <span class="command">npx mostage dev</span>
+              </div>
+              <div class="terminal-line">
+                <span class="output"
+                  >Example running at http://localhost:3000</span
+                >
+              </div>
+              <div class="terminal-line">
+                <span class="prompt">$</span>
+                <span class="command">npx mostage export --format pdf</span>
+              </div>
+              <div class="terminal-line">
+                <span class="output">Example exported to example.pdf</span>
+              </div>
+              <div class="terminal-line">
+                <span class="prompt">$</span>
+                <span class="command">npx mostage help</span>
+              </div>
+              <div class="terminal-line">
+                <span class="output">Displaying help information...</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="terminal">
+            <div class="terminal-header">
+              <div class="terminal-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <span class="terminal-title">HTML Integration</span>
+            </div>
+            <div class="terminal-content">
+              <pre><code>&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;My Presentation&lt;/title&gt;
+    &lt;link rel="stylesheet" href="mostage.css" /&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id="app"&gt;&lt;/div&gt;
+    &lt;script src="mostage.js"&gt;&lt;/script&gt;
+    &lt;script&gt;
+      const presentation = new Mostage("./config.json");
+      presentation.start();
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
             </div>
           </div>
         </div>

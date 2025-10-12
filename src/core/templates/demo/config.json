@@ -49,7 +49,7 @@
   "plugins": {
     "ProgressBar": {
       "enabled": true,
-      "position": "bottom",
+      "position": "top",
       "height": "12px"
     },
     "SlideNumber": {

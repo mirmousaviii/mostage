@@ -202,7 +202,7 @@ class CustomPlugin {
 
 This is an example of text.
 
-**Bold**, _Italic_, **_Bold Italic_**, ~~strikethrough~~
+**Bold**, _Italic_, ~~strikethrough~~
 
 [Link](https://mo.js.org)
 
@@ -248,8 +248,6 @@ Inline `code` for test.
     - Subitem 2.2
 - **Ordered List:**
   1. First item
-     1. Subitem 1.1
-     2. Subitem 1.2
   2. Second item
      1. Subitem 2.1
      2. Subitem 2.2

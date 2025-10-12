@@ -4,22 +4,13 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     e.preventDefault();
     const target = document.querySelector(this.getAttribute("href"));
     if (target) {
-      target.scrollIntoView({
+      const offsetTop = target.offsetTop - 70; // Account for navbar height
+      window.scrollTo({
+        top: offsetTop,
         behavior: "smooth",
-        block: "start",
       });
     }
   });
-});
-
-// Add scroll effect to navbar
-window.addEventListener("scroll", () => {
-  const navbar = document.querySelector(".navbar");
-  if (window.scrollY > 100) {
-    navbar.classList.add("scrolled");
-  } else {
-    navbar.classList.remove("scrolled");
-  }
 });
 
 // Mobile menu functionality
@@ -71,49 +62,9 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-// Scroll Effects
-const scrollProgress = document.getElementById("scroll-progress");
-const scrollIndicators = document.querySelectorAll(".scroll-indicator");
-const scrollIndicatorsContainer = document.querySelector(".scroll-indicators");
-const sections = document.querySelectorAll("section");
+// Navbar scroll effect
 const navbar = document.querySelector(".navbar");
 
-// Update scroll progress bar
-function updateScrollProgress() {
-  const scrollTop = window.pageYOffset;
-  const docHeight = document.body.scrollHeight - window.innerHeight;
-  const scrollPercent = (scrollTop / docHeight) * 100;
-  scrollProgress.style.width = scrollPercent + "%";
-}
-
-// Update active scroll indicator
-function updateActiveIndicator() {
-  const scrollTop = window.pageYOffset;
-  const windowHeight = window.innerHeight;
-
-  // Show scroll indicators after scrolling past the first section
-  if (scrollTop > windowHeight * 0.6) {
-    scrollIndicatorsContainer.classList.add("visible");
-  } else {
-    scrollIndicatorsContainer.classList.remove("visible");
-  }
-
-  sections.forEach((section, index) => {
-    const sectionTop = section.offsetTop - 100;
-    const sectionBottom = sectionTop + section.offsetHeight;
-
-    if (scrollTop >= sectionTop && scrollTop < sectionBottom) {
-      scrollIndicators.forEach((indicator) =>
-        indicator.classList.remove("active")
-      );
-      if (scrollIndicators[index]) {
-        scrollIndicators[index].classList.add("active");
-      }
-    }
-  });
-}
-
-// Navbar scroll effect
 function updateNavbar() {
   if (window.scrollY > 100) {
     navbar.classList.add("scrolled");
@@ -122,56 +73,8 @@ function updateNavbar() {
   }
 }
 
-// Scroll to section when indicator is clicked
-scrollIndicators.forEach((indicator, index) => {
-  indicator.addEventListener("click", () => {
-    const targetSection = sections[index];
-    if (targetSection) {
-      targetSection.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-  });
-});
+// Add scroll event listener for navbar
+window.addEventListener("scroll", updateNavbar);
 
-// Intersection Observer for animations
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: "0px 0px -50px 0px",
-};
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("animated");
-    }
-  });
-}, observerOptions);
-
-// Observe all animated elements
-document.querySelectorAll(".animate-on-scroll").forEach((el) => {
-  observer.observe(el);
-});
-
-// Throttled scroll event listener
-let ticking = false;
-function handleScroll() {
-  if (!ticking) {
-    requestAnimationFrame(() => {
-      updateScrollProgress();
-      updateActiveIndicator();
-      updateNavbar();
-      ticking = false;
-    });
-    ticking = true;
-  }
-}
-
-// Add scroll event listener
-window.addEventListener("scroll", handleScroll);
-
-// Initialize on load
-updateScrollProgress();
-updateActiveIndicator();
+// Initialize navbar on load
 updateNavbar();
