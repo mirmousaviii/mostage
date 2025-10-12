@@ -1,6 +1,6 @@
 {
   "element": "#app",
-  "theme": "dark",
+  "theme": "dracula",
   "contentPath": "./content.md",
   "urlHash": true,
   "transition": {
