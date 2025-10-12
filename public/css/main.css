@@ -46,7 +46,7 @@ body {
 /* Scroll Progress Bar */
 .scroll-progress {
   position: fixed;
-  top: 0;
+  bottom: 0;
   left: 0;
   width: 0%;
   height: 3px;
@@ -77,51 +77,71 @@ body {
 .scroll-indicators.visible {
   opacity: 1;
   visibility: visible;
+  animation: slideInFromRight 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
 }
 
 .scroll-indicator {
-  width: 12px;
-  height: 12px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
-  background: rgba(102, 126, 234, 0.3);
-  border: 2px solid rgba(102, 126, 234, 0.5);
+  background: rgba(102, 126, 234, 0.2);
+  border: 2px solid rgba(102, 126, 234, 0.4);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
+  backdrop-filter: blur(10px);
 }
 
 .scroll-indicator.active {
   background: var(--primary-color);
   border-color: var(--primary-color);
-  box-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
+  box-shadow: 0 0 20px rgba(102, 126, 234, 0.6);
+  transform: scale(1.1);
 }
 
 .scroll-indicator:hover {
-  background: var(--primary-color);
-  transform: scale(1.2);
+  background: rgba(102, 126, 234, 0.6);
+  border-color: var(--primary-color);
+  transform: scale(1.3);
+  box-shadow: 0 0 15px rgba(102, 126, 234, 0.4);
 }
 
 .scroll-indicator::after {
   content: attr(data-section);
   position: absolute;
-  right: 2rem;
+  right: 2.5rem;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(15, 15, 35, 0.9);
+  background: rgba(15, 15, 35, 0.95);
   color: var(--text-color);
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  font-size: 0.8rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
   white-space: nowrap;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3s ease;
-  border: 1px solid rgba(102, 126, 234, 0.2);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(102, 126, 234, 0.3);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .scroll-indicator:hover::after {
   opacity: 1;
   visibility: visible;
+  transform: translateY(-50%) translateX(-5px);
 }
 
 /* Scroll Animations */
@@ -209,6 +229,26 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 0.75rem;
+  }
+
+  .nav-container {
+    padding: 0 0.75rem;
+  }
+
+  .hero-container {
+    padding: 0 0.75rem;
+  }
 }
 
 /* Navigation */
@@ -1060,14 +1100,14 @@ section {
   }
 
   .scroll-indicator {
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
   }
 
   .scroll-indicator::after {
-    right: 1.5rem;
-    font-size: 0.7rem;
-    padding: 0.4rem 0.8rem;
+    right: 2rem;
+    font-size: 0.75rem;
+    padding: 0.5rem 1rem;
   }
 
   .nav-links {
@@ -1297,5 +1337,20 @@ section {
   section {
     min-height: 100vh;
     padding: 2rem 0;
+  }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 360px) {
+  .container {
+    padding: 0 0.5rem;
+  }
+
+  .nav-container {
+    padding: 0 0.5rem;
+  }
+
+  .hero-container {
+    padding: 0 0.5rem;
   }
 }
