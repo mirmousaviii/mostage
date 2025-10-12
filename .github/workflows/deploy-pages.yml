@@ -39,13 +39,29 @@ jobs:
       - name: Build demo for GitHub Pages
         run: npm run build:demo
 
+      - name: Build basic for GitHub Pages
+        run: npm run build:basic
+
+      - name: Create combined pages structure
+        run: |
+          mkdir -p dist/pages
+          mkdir -p dist/pages/demo
+          mkdir -p dist/pages/basic
+
+          # Copy demo and basic templates to their respective directories
+          cp -r dist/demo/html/* dist/pages/demo/
+          cp -r dist/basic/html/* dist/pages/basic/
+
+          # Copy all public directory contents
+          cp -r public/* dist/pages/
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: ./dist/demo/html
+          path: ./dist/pages
 
   deploy:
     runs-on: ubuntu-latest

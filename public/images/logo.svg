@@ -1,0 +1,11 @@
+<svg width="120" height="120" xmlns="http://www.w3.org/2000/svg">
+
+  <rect x="5" y="5" width="100" height="100" rx="3"
+        fill="#504f91" opacity="0.9"/>
+
+  <rect x="15" y="15" width="100" height="100" rx="3"
+        fill="#6480e1" opacity="1"/>
+
+  <text x="65" y="95" font-size="80" text-anchor="middle"
+        font-family="monospace" fill="white">#</text>
+</svg>

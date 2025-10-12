@@ -53,9 +53,10 @@
     "dist"
   ],
   "scripts": {
-    "dev": "npm run dev:demo & npm run dev:basic",
-    "dev:demo": "cd src/core/templates/demo && vite --config ../../../../vite.dev.config.ts --port 3000",
-    "dev:basic": "cd src/core/templates/basic && vite --config ../../../../vite.dev.config.ts --port 3001",
+    "dev": "npm run dev:site & npm run dev:basic & npm run dev:demo",
+    "dev:site": "cd public && npx vite --port 3000",
+    "dev:basic": "VITE_ROOT=src/core/templates/basic vite --config vite.dev.config.ts --port 3001",
+    "dev:demo": "VITE_ROOT=src/core/templates/demo vite --config vite.dev.config.ts --port 3002",
     "build": "npm run clean && npm run build:core && npm run build:cli && npm run build:demo",
     "build:core": "vite build --config vite.build.core.config.ts && npm run copy:templates",
     "build:cli": "vite build --config vite.build.cli.config.ts",
