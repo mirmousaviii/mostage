@@ -61,6 +61,33 @@
     <link rel="stylesheet" href="./css/main.css" />
   </head>
   <body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scroll-progress"></div>
+
+    <!-- Scroll Indicators -->
+    <div class="scroll-indicators" id="scroll-indicators">
+      <div
+        class="scroll-indicator active"
+        data-section="Mostage"
+        data-target="hero"
+      ></div>
+      <div
+        class="scroll-indicator"
+        data-section="Why Mostage?"
+        data-target="why-section"
+      ></div>
+      <div
+        class="scroll-indicator"
+        data-section="Get Started"
+        data-target="getting-started"
+      ></div>
+      <div
+        class="scroll-indicator"
+        data-section="Live Demo"
+        data-target="demo"
+      ></div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar" role="navigation" aria-label="Main navigation">
       <div class="nav-container">
@@ -112,7 +139,7 @@
       </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Mostage Section -->
     <section class="hero">
       <div class="hero-container">
         <div class="hero-content">
@@ -124,7 +151,7 @@
           <p class="hero-description">
             Presentation framework based on markdown and HTML
             <br />
-            (Core Library + CLI)
+            [Core Library + CLI]
           </p>
           <div class="hero-buttons">
             <a href="#getting-started" class="btn btn-primary">Get Started</a>
@@ -168,140 +195,132 @@ Mostage is a modern presentation framework
     <!-- Why Section -->
     <section class="why-section">
       <div class="container">
-        <h2 class="section-title">Why Mostage?</h2>
+        <h2 class="section-title animate-on-scroll">Why Mostage?</h2>
+        <p class="section-subtitle animate-on-scroll">
+          Discover the powerful features that make Mostage the perfect choice
+          for your presentations
+        </p>
         <div class="features-grid">
-          <div class="feature-card">
+          <div class="feature-card animate-on-scroll fade-in-left">
             <h3>
-              <div class="feature-icon">
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path
-                    d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
-                  ></path>
-                  <polyline points="14,2 14,8 20,8"></polyline>
-                  <line x1="16" y1="13" x2="8" y2="13"></line>
-                  <line x1="16" y1="17" x2="8" y2="17"></line>
-                  <polyline points="10,9 9,9 8,9"></polyline>
-                </svg>
-              </div>
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                ></path>
+                <polyline points="14,2 14,8 20,8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10,9 9,9 8,9"></polyline>
+              </svg>
               Markdown Support
             </h3>
             <p>Write slides in Markdown - simple and familiar syntax</p>
           </div>
-          <div class="feature-card">
+          <div class="feature-card animate-on-scroll fade-in-right">
             <h3>
-              <div class="feature-icon">
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <polyline points="16,18 22,12 16,6"></polyline>
-                  <polyline points="8,6 2,12 8,18"></polyline>
-                </svg>
-              </div>
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="16,18 22,12 16,6"></polyline>
+                <polyline points="8,6 2,12 8,18"></polyline>
+              </svg>
               HTML Support
             </h3>
             <p>Use HTML when needed for advanced layouts and interactions</p>
           </div>
-          <div class="feature-card">
+          <div class="feature-card animate-on-scroll fade-in-left">
             <h3>
-              <div class="feature-icon">
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <line x1="2" y1="12" x2="22" y2="12"></line>
-                  <path
-                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
-                  ></path>
-                </svg>
-              </div>
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path
+                  d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                ></path>
+              </svg>
               Web-based
             </h3>
             <p>Runs in any modern browser - no installation required</p>
           </div>
-          <div class="feature-card">
+          <div class="feature-card animate-on-scroll fade-in-right">
             <h3>
-              <div class="feature-icon">
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <circle cx="12" cy="12" r="3"></circle>
-                  <path
-                    d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"
-                  ></path>
-                </svg>
-              </div>
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="3"></circle>
+                <path
+                  d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"
+                ></path>
+              </svg>
               Configuration
             </h3>
             <p>Easy to configure and customize for your specific needs</p>
           </div>
-          <div class="feature-card">
+          <div class="feature-card animate-on-scroll fade-in-left">
             <h3>
-              <div class="feature-icon">
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
-                </svg>
-              </div>
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+              </svg>
               Theme System
             </h3>
             <p>Built-in themes and easy custom theme creation</p>
           </div>
-          <div class="feature-card">
+          <div class="feature-card animate-on-scroll fade-in-right">
             <h3>
-              <div class="feature-icon">
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                  <line x1="8" y1="21" x2="16" y2="21"></line>
-                  <line x1="12" y1="17" x2="12" y2="21"></line>
-                </svg>
-              </div>
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
               Plugin System
             </h3>
             <p>Extend functionality with built-in and custom plugins</p>
@@ -313,8 +332,8 @@ Mostage is a modern presentation framework
     <!-- Get Started Section -->
     <section id="getting-started" class="cli-section">
       <div class="container">
-        <h2 class="section-title">Get Started</h2>
-        <p class="section-subtitle">
+        <h2 class="section-title animate-on-scroll">Get Started</h2>
+        <p class="section-subtitle animate-on-scroll">
           Create presentations using CLI, Library, or other methods
         </p>
         <div class="terminals-grid">
@@ -484,25 +503,46 @@ Mostage is a modern presentation framework
     <!-- Demo Section -->
     <section id="demo" class="demo-section">
       <div class="container">
-        <h2 class="section-title">Live Demo</h2>
-        <div class="demo-showcase">
-          <div class="demo-grid">
-            <div class="demo-card">
-              <iframe
-                src="https://mo.js.org/demo/"
-                class="demo-iframe"
-              ></iframe>
-              <a href="https://mo.js.org/demo/" target="_blank"
-                >Demo Example - Try or Click to open</a
+        <h2 class="section-title animate-on-scroll">Live Demo</h2>
+        <p class="section-subtitle animate-on-scroll">
+          Try Mostage presentations directly in your browser
+        </p>
+        <div class="demo-grid">
+          <div class="demo-card">
+            <iframe
+              src="https://mo.js.org/demo/"
+              class="demo-iframe"
+              title="Demo Example"
+            ></iframe>
+            <div class="demo-info">
+              <div class="demo-info-content">
+                <h3>Demo Example</h3>
+                <p>Complete presentation with all features</p>
+              </div>
+              <a
+                href="https://mo.js.org/demo/"
+                target="_blank"
+                class="demo-link"
+                >Open</a
               >
             </div>
-            <div class="demo-card">
-              <iframe
-                src="https://mo.js.org/basic/"
-                class="demo-iframe"
-              ></iframe>
-              <a href="https://mo.js.org/basic/" target="_blank"
-                >Basic Example - Try or Click to open</a
+          </div>
+          <div class="demo-card">
+            <iframe
+              src="https://mo.js.org/basic/"
+              class="demo-iframe"
+              title="Basic Example"
+            ></iframe>
+            <div class="demo-info">
+              <div class="demo-info-content">
+                <h3>Basic Example</h3>
+                <p>Simple presentation template</p>
+              </div>
+              <a
+                href="https://mo.js.org/basic/"
+                target="_blank"
+                class="demo-link"
+                >Open</a
               >
             </div>
           </div>
@@ -516,7 +556,7 @@ Mostage is a modern presentation framework
         <div class="footer-content">
           <div class="footer-logo">
             <div>
-              <span>Mostage</span>
+              <a href="https://mo.js.org/" class="footer-logo-link">Mostage</a>
               <p>Modern stage as a Presentation Framework</p>
             </div>
           </div>
@@ -534,104 +574,6 @@ Mostage is a modern presentation framework
       </div>
     </footer>
 
-    <script>
-      // Smooth scrolling for navigation links
-      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
-          const target = document.querySelector(this.getAttribute("href"));
-          if (target) {
-            target.scrollIntoView({
-              behavior: "smooth",
-              block: "start",
-            });
-          }
-        });
-      });
-
-      // Add scroll effect to navbar
-      window.addEventListener("scroll", () => {
-        const navbar = document.querySelector(".navbar");
-        if (window.scrollY > 100) {
-          navbar.classList.add("scrolled");
-        } else {
-          navbar.classList.remove("scrolled");
-        }
-      });
-
-      // Mobile menu functionality
-      const mobileMenuToggle = document.querySelector(".mobile-menu-toggle");
-      const mobileNav = document.querySelector(".mobile-nav");
-      const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
-
-      mobileMenuToggle.addEventListener("click", () => {
-        const isExpanded =
-          mobileMenuToggle.getAttribute("aria-expanded") === "true";
-
-        // Toggle aria-expanded
-        mobileMenuToggle.setAttribute("aria-expanded", !isExpanded);
-
-        // Toggle mobile nav visibility
-        mobileNav.setAttribute("aria-hidden", isExpanded);
-        mobileNav.classList.toggle("active");
-
-        // Prevent body scroll when menu is open
-        document.body.style.overflow = !isExpanded ? "hidden" : "";
-      });
-
-      // Close mobile menu when clicking on links
-      mobileNavLinks.forEach((link) => {
-        link.addEventListener("click", () => {
-          mobileMenuToggle.setAttribute("aria-expanded", "false");
-          mobileNav.setAttribute("aria-hidden", "true");
-          mobileNav.classList.remove("active");
-          document.body.style.overflow = "";
-        });
-      });
-
-      // Close mobile menu when clicking outside
-      document.addEventListener("click", (e) => {
-        if (
-          !mobileNav.contains(e.target) &&
-          !mobileMenuToggle.contains(e.target)
-        ) {
-          mobileMenuToggle.setAttribute("aria-expanded", "false");
-          mobileNav.setAttribute("aria-hidden", "true");
-          mobileNav.classList.remove("active");
-          document.body.style.overflow = "";
-        }
-      });
-
-      // Close mobile menu on escape key
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && mobileNav.classList.contains("active")) {
-          mobileMenuToggle.setAttribute("aria-expanded", "false");
-          mobileNav.setAttribute("aria-hidden", "true");
-          mobileNav.classList.remove("active");
-          document.body.style.overflow = "";
-        }
-      });
-
-      // Animate elements on scroll
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px",
-      };
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("animate-in");
-          }
-        });
-      }, observerOptions);
-
-      // Observe all feature cards and sections
-      document
-        .querySelectorAll(".feature-card, .feature-item, .step")
-        .forEach((el) => {
-          observer.observe(el);
-        });
-    </script>
+    <script src="./js/main.js"></script>
   </body>
 </html>
