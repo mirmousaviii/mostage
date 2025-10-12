@@ -48,16 +48,15 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(15, 15, 35, 0.95);
-  backdrop-filter: blur(10px);
+  background: #151535;
   border-bottom: 1px solid var(--border-color);
-  z-index: 1000;
+  z-index: 1002;
   transition: all 0.3s ease;
 }
 
 .navbar.scrolled {
-  background: rgba(15, 15, 35, 0.98);
-  box-shadow: var(--shadow);
+  /* background: rgba(15, 15, 35, 0.98);
+  box-shadow: var(--shadow); */
 }
 
 .nav-container {
@@ -68,6 +67,10 @@ body {
   justify-content: space-between;
   align-items: center;
   height: 70px;
+  background: #151535;
+  /* border-bottom: 1px solid var(--border-color); */
+  z-index: 1003;
+  position: relative;
 }
 
 .nav-logo {
@@ -142,7 +145,8 @@ body {
   border: none;
   cursor: pointer;
   padding: 0;
-  z-index: 1002;
+  z-index: 1004;
+  position: relative;
 }
 
 .hamburger-line {
@@ -173,13 +177,12 @@ body {
   left: 0;
   right: 0;
   background: rgba(15, 15, 35, 0.98);
-  backdrop-filter: blur(20px);
-  border-top: 1px solid var(--border-color);
+  /* border-top: 1px solid var(--border-color); */
   transform: translateY(-100%);
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease;
-  z-index: 1001;
+  z-index: 1000;
 }
 
 .mobile-nav.active {
@@ -189,10 +192,11 @@ body {
 }
 
 .mobile-nav-content {
-  padding: 2rem;
+  /* padding: 2rem; */
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  /* gap: 1.5rem; */
+  border-bottom: 1px solid var(--border-color);
 }
 
 .mobile-nav-link {
@@ -204,11 +208,6 @@ body {
   border-bottom: 1px solid rgba(74, 85, 104, 0.3);
   transition: all 0.3s ease;
   position: relative;
-}
-
-.mobile-nav-link:hover {
-  color: var(--primary-color);
-  padding-left: 1rem;
 }
 
 .mobile-nav-link:last-child {
@@ -841,7 +840,7 @@ section {
 
 .demo-iframe {
   width: 100%;
-  height: 400px;
+  height: 500px;
   border: none;
   display: block;
 }
@@ -1260,12 +1259,8 @@ section {
     grid-template-columns: 1fr;
   }
 
-  .mobile-nav-content {
-    padding: 1.5rem;
-  }
-
   .mobile-nav-link {
     font-size: 1rem;
-    padding: 1rem 0;
+    padding: 1.5rem;
   }
 }
