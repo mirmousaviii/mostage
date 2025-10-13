@@ -61,6 +61,31 @@
     <link rel="stylesheet" href="./css/main.css" />
   </head>
   <body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scroll-progress"></div>
+
+      <!-- Section Indicators -->
+      <div class="scroll-indicators" id="scroll-indicators">
+        <div class="scroll-indicator" data-section="Mostage" data-target=".hero">
+          <div class="progress-bar"></div>
+        </div>
+        <div class="scroll-indicator" data-section="Why Mostage?" data-target=".why-section">
+          <div class="progress-bar"></div>
+        </div>
+        <div class="scroll-indicator" data-section="Themes" data-target="#themes">
+          <div class="progress-bar"></div>
+        </div>
+        <div class="scroll-indicator" data-section="Plugins" data-target="#plugins">
+          <div class="progress-bar"></div>
+        </div>
+        <div class="scroll-indicator" data-section="Demo" data-target="#demo">
+          <div class="progress-bar"></div>
+        </div>
+        <div class="scroll-indicator" data-section="Get Started" data-target="#getting-started">
+          <div class="progress-bar"></div>
+        </div>
+      </div>
+
     <!-- Navigation -->
     <nav class="navbar" role="navigation" aria-label="Main navigation">
       <div class="nav-container">
@@ -125,12 +150,22 @@
             Mostage
           </h1>
           <h2 class="hero-subtitle">
-            Presentation framework based on<br /> Markdown and HTML!
+            Presentation framework based on <br />Markdown and HTML
           </h2>
-          <p class="hero-description">Available as a <strong>core library</strong> and <strong>CLI</strong></strong></p>
+          <p class="hero-description">Available as a <strong>Core Library</strong> and <strong>CLI</strong></strong></p>
           <div class="hero-buttons">
             <a href="#getting-started" class="btn btn-secondary">Get Started</a>
             <a href="#demo" class="btn btn-primary">View Demo</a>
+          </div>
+          
+          <!-- Scroll Hint -->
+          <div class="scroll-hint">
+            <div class="scroll-hint-arrow">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 5v14"></path>
+                <path d="M19 12l-7 7-7-7"></path>
+              </svg>
+            </div>
           </div>
         </div>
         <div class="hero-visual">
@@ -169,14 +204,14 @@ Mostage is a modern presentation framework
 
     <!-- Why Section -->
     <section class="why-section">
-      <div class="container">
-        <h2 class="section-title">Why Mostage?</h2>
-        <p class="section-subtitle">
+    <div class="container">
+        <h2 class="section-title animate-on-scroll">Why Mostage?</h2>
+        <p class="section-subtitle animate-on-scroll delay-1">
           Discover the powerful features that make Mostage the perfect choice
           for your presentations
         </p>
         <div class="features-grid">
-          <div class="feature-card">
+          <div class="feature-card animate-on-scroll delay-2">
             <h3>
               <svg
                 width="24"
@@ -200,7 +235,7 @@ Mostage is a modern presentation framework
             </h3>
             <p>Write slides in Markdown - simple and familiar syntax</p>
           </div>
-          <div class="feature-card">
+          <div class="feature-card animate-on-scroll delay-2">
             <h3>
               <svg
                 width="24"
@@ -219,7 +254,7 @@ Mostage is a modern presentation framework
             </h3>
             <p>Use HTML when needed for advanced layouts and interactions</p>
           </div>
-          <div class="feature-card">
+          <div class="feature-card animate-on-scroll delay-3">
             <h3>
               <svg
                 width="24"
@@ -241,7 +276,7 @@ Mostage is a modern presentation framework
             </h3>
             <p>Runs in any modern browser - no installation required</p>
           </div>
-          <div class="feature-card">
+          <div class="feature-card animate-on-scroll delay-3">
             <h3>
               <svg
                 width="24"
@@ -262,7 +297,7 @@ Mostage is a modern presentation framework
             </h3>
             <p>Easy to configure and customize for your specific needs</p>
           </div>
-          <div class="feature-card">
+          <div class="feature-card animate-on-scroll delay-4">
             <h3>
               <svg
                 width="24"
@@ -280,7 +315,7 @@ Mostage is a modern presentation framework
             </h3>
             <p>Built-in themes and easy custom theme creation</p>
           </div>
-          <div class="feature-card">
+          <div class="feature-card animate-on-scroll delay-4">
             <h3>
               <svg
                 width="24"
@@ -307,12 +342,12 @@ Mostage is a modern presentation framework
     <!-- Themes Section -->
     <section id="themes" class="themes-section">
       <div class="container">
-        <h2 class="section-title">Theme System</h2>
-        <p class="section-subtitle">
+        <h2 class="section-title animate-on-scroll">Theme System</h2>
+        <p class="section-subtitle animate-on-scroll delay-1">
           Choose from built-in themes or create your own custom themes
         </p>
         <div class="themes-grid">
-          <div class="theme-card">
+          <div class="theme-card animate-on-scroll delay-2">
             <div class="theme-preview light-theme">
               <div class="slide-content">
                 <h1>Light Theme</h1>
@@ -321,7 +356,7 @@ Mostage is a modern presentation framework
               </div>
             </div>
           </div>
-          <div class="theme-card">
+          <div class="theme-card animate-on-scroll delay-2">
             <div class="theme-preview dark-theme">
               <div class="slide-content">
                 <h1>Dark Theme</h1>
@@ -330,7 +365,7 @@ Mostage is a modern presentation framework
               </div>
             </div>
           </div>
-          <div class="theme-card">
+          <div class="theme-card animate-on-scroll delay-2">
             <div class="theme-preview dracula-theme">
               <div class="slide-content">
                 <h1>Dracula Theme</h1>
@@ -339,7 +374,7 @@ Mostage is a modern presentation framework
               </div>
             </div>
           </div>
-          <div class="theme-card">
+          <div class="theme-card animate-on-scroll delay-3">
             <div class="theme-preview ocean-theme">
               <div class="slide-content">
                 <h1>Ocean Theme</h1>
@@ -348,7 +383,7 @@ Mostage is a modern presentation framework
               </div>
             </div>
           </div>
-          <div class="theme-card">
+          <div class="theme-card animate-on-scroll delay-3">
             <div class="theme-preview rainbow-theme">
               <div class="slide-content">
                 <h1>Rainbow Theme</h1>
@@ -357,7 +392,7 @@ Mostage is a modern presentation framework
               </div>
             </div>
           </div>
-          <div class="theme-card">
+          <div class="theme-card animate-on-scroll delay-3">
             <div class="theme-preview custom-theme">
               <div class="slide-content">
                 <h1>Custom Theme</h1>
@@ -366,8 +401,8 @@ Mostage is a modern presentation framework
               </div>
             </div>
           </div>
-        </div>
-        <div class="theme-note">
+      </div>
+        <div class="theme-note animate-on-scroll delay-4">
           <p>
             <strong>Theme System:</strong> You can create your own custom
             themes!
@@ -379,12 +414,12 @@ Mostage is a modern presentation framework
     <!-- Plugins Section -->
     <section id="plugins" class="plugins-section">
       <div class="container">
-        <h2 class="section-title">Plugin System</h2>
-        <p class="section-subtitle">
+        <h2 class="section-title animate-on-scroll">Plugin System</h2>
+        <p class="section-subtitle animate-on-scroll delay-1">
           Extend Mostage functionality with built-in and custom plugins
         </p>
         <div class="plugins-grid">
-          <div class="plugin-card">
+          <div class="plugin-card animate-on-scroll delay-2">
             <h3>
               <svg
                 width="24"
@@ -404,7 +439,7 @@ Mostage is a modern presentation framework
             </h3>
             <p>Shows presentation progress with visual indicator</p>
           </div>
-          <div class="plugin-card">
+          <div class="plugin-card animate-on-scroll delay-2">
             <h3>
               <svg
                 width="24"
@@ -423,7 +458,7 @@ Mostage is a modern presentation framework
             </h3>
             <p>Displays current slide number and total count</p>
           </div>
-          <div class="plugin-card">
+          <div class="plugin-card animate-on-scroll delay-2">
             <h3>
               <svg
                 width="24"
@@ -441,7 +476,7 @@ Mostage is a modern presentation framework
             </h3>
             <p>Navigation buttons for easy slide control</p>
           </div>
-          <div class="plugin-card">
+          <div class="plugin-card animate-on-scroll delay-3">
             <h3>
               <svg
                 width="24"
@@ -462,7 +497,7 @@ Mostage is a modern presentation framework
             </h3>
             <p>Grid view with all slides for quick navigation</p>
           </div>
-          <div class="plugin-card">
+          <div class="plugin-card animate-on-scroll delay-3">
             <h3>
               <svg
                 width="24"
@@ -480,7 +515,7 @@ Mostage is a modern presentation framework
             </h3>
             <p>Celebration animations for special moments</p>
           </div>
-          <div class="plugin-card">
+          <div class="plugin-card animate-on-scroll delay-3">
             <h3>
               <svg
                 width="24"
@@ -501,7 +536,7 @@ Mostage is a modern presentation framework
             <p>Create your own plugins easily</p>
           </div>
         </div>
-        <div class="plugin-note">
+        <div class="plugin-note animate-on-scroll delay-4">
           <p>
             <strong>Plugin System:</strong> You can create your own custom
             plugins!
@@ -513,49 +548,14 @@ Mostage is a modern presentation framework
     <!-- Demo Section -->
     <section id="demo" class="demo-section">
       <div class="container">
-        <h2 class="section-title">Live Demo</h2>
-        <p class="section-subtitle">
-          Try Mostage presentations directly in your browser
+        <h2 class="section-title animate-on-scroll">Live Demo</h2>
+        <p class="section-subtitle animate-on-scroll delay-1">
+          Example of a Mostage presentation showcasing all features and plugins
         </p>
-        <div class="demo-grid">
-          <div class="demo-card">
-            <iframe
-              src="https://mo.js.org/demo/"
-              class="demo-iframe"
-              title="Demo Example"
-            ></iframe>
-            <div class="demo-info">
-              <div class="demo-info-content">
-                <h3>Demo Example</h3>
-                <p>Complete presentation with all features</p>
-              </div>
-              <a
-                href="https://mo.js.org/demo/"
-                target="_blank"
-                class="demo-link"
-                >Open</a
-              >
-            </div>
-          </div>
-          <div class="demo-card">
-            <iframe
-              src="https://mo.js.org/basic/"
-              class="demo-iframe"
-              title="Basic Example"
-            ></iframe>
-            <div class="demo-info">
-              <div class="demo-info-content">
-                <h3>Basic Example</h3>
-                <p>Simple presentation template</p>
-              </div>
-              <a
-                href="https://mo.js.org/basic/"
-                target="_blank"
-                class="demo-link"
-                >Open</a
-              >
-            </div>
-          </div>
+        <div class="demo-showcase animate-on-scroll delay-2">
+          <a href="https://mo.js.org/demo/" target="_blank" class="demo-image-container">
+            <img src="images/demo.png" alt="Mostage Demo Screenshot" class="demo-image" />
+          </a>
         </div>
       </div>
     </section>
@@ -563,12 +563,12 @@ Mostage is a modern presentation framework
     <!-- Get Started Section -->
     <section id="getting-started" class="cli-section">
       <div class="container">
-        <h2 class="section-title">Get Started</h2>
-        <p class="section-subtitle">
+        <h2 class="section-title animate-on-scroll">Get Started</h2>
+        <p class="section-subtitle animate-on-scroll delay-1">
           Create presentations using CLI, Library, or other methods
         </p>
         <div class="terminals-grid">
-          <div class="terminal">
+          <div class="terminal animate-on-scroll delay-2">
             <div class="terminal-header">
               <div class="terminal-dots">
                 <span class="dot red"></span>
@@ -618,7 +618,7 @@ Mostage is a modern presentation framework
             </div>
           </div>
 
-          <div class="terminal">
+          <div class="terminal animate-on-scroll delay-3">
             <div class="terminal-header">
               <div class="terminal-dots">
                 <span class="dot red"></span>
@@ -687,8 +687,8 @@ Mostage is a modern presentation framework
         </div>
         <div class="footer-bottom">
           <p>&copy; 2025 Mostage. MIT License.</p>
-        </div>
       </div>
+    </div>
     </footer>
 
     <script src="./js/main.js"></script>
