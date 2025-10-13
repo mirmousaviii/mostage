@@ -5,13 +5,43 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     const target = document.querySelector(this.getAttribute("href"));
     if (target) {
       const offsetTop = target.offsetTop - 70; // Account for navbar height
-      window.scrollTo({
-        top: offsetTop,
-        behavior: "smooth",
+
+      // Use requestAnimationFrame for better performance
+      requestAnimationFrame(() => {
+        window.scrollTo({
+          top: offsetTop,
+          behavior: "smooth",
+        });
       });
     }
   });
 });
+
+// Handle footer scrolling - prevent snap back
+let isScrollingToFooter = false;
+const footer = document.querySelector(".footer");
+
+if (footer) {
+  // Detect when user scrolls to footer
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          isScrollingToFooter = true;
+          // Temporarily disable scroll snap
+          document.documentElement.style.scrollSnapType = "none";
+        } else {
+          isScrollingToFooter = false;
+          // Re-enable scroll snap
+          document.documentElement.style.scrollSnapType = "y proximity";
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+
+  observer.observe(footer);
+}
 
 // Mobile menu functionality
 const mobileMenuToggle = document.querySelector(".mobile-menu-toggle");

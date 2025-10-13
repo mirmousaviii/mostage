@@ -8,6 +8,7 @@
 html {
   scroll-behavior: smooth;
   scroll-snap-type: y proximity;
+  scroll-padding-top: 70px;
 }
 
 * {
@@ -503,7 +504,7 @@ section {
   padding: 5rem 0;
   position: relative;
   scroll-snap-align: start;
-  scroll-snap-stop: normal;
+  scroll-snap-stop: always;
 }
 
 .section-title {
@@ -1099,10 +1100,6 @@ section {
     /* gap: 0; */
   }
 
-  .theme-card {
-    /* padding: 0; */
-  }
-
   .theme-preview {
     /* height: 120px; */
     width: unset;
@@ -1154,7 +1151,10 @@ section {
   color: var(--text-color);
   padding: 3rem 0 1rem;
   border-top: 1px solid var(--border-color);
-  scroll-snap-align: none;
+  min-height: auto;
+  position: relative;
+  z-index: 1;
+  margin-top: 0;
 }
 
 .footer-content {
