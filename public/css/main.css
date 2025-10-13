@@ -371,14 +371,14 @@ body {
 .hero-subtitle {
   font-size: 1.5rem;
   font-weight: 300;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   opacity: 0.9;
   color: #cbd5e0;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .hero-description {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin-bottom: 2.5rem;
   opacity: 0.9;
   line-height: 1.7;
@@ -1306,7 +1306,7 @@ section {
   }
 
   .hero-subtitle {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     margin-bottom: 1.5rem;
   }
 
