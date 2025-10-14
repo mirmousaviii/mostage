@@ -263,15 +263,13 @@ body {
   left: 0;
   right: 0;
   height: var(--navbar-height);
-  background: var(--color-bg-overlay);
-  backdrop-filter: blur(20px);
+  background: var(--color-bg-overlay-hover);
   z-index: var(--z-navbar);
   transition: var(--transition-normal);
 }
 
 .navbar.scrolled {
   background: var(--color-bg-overlay-hover);
-  backdrop-filter: blur(25px);
   border-bottom: 1px solid var(--color-primary-border);
   box-shadow: var(--shadow-navbar);
 }
@@ -286,7 +284,7 @@ body {
   height: 100%;
   z-index: 1003;
   position: relative;
-  background-color: var(--color-bg-overlay);
+  background-color: var(--color-bg-overlay-hover);
 }
 
 .nav-logo {
