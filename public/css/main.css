@@ -545,11 +545,11 @@ body {
 
 .btn {
   display: inline-block;
-  padding: var(--space-4) var(--space-8);
+  padding: var(--space-3) var(--space-6);
   border-radius: var(--radius-sm);
   text-decoration: none;
   font-weight: var(--font-weight-semibold);
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-base);
   transition: var(--transition-normal);
   border: 2px solid transparent;
   cursor: pointer;
@@ -1781,7 +1781,9 @@ section {
 
   .btn {
     width: 100%;
-    max-width: 280px;
+    max-width: 240px;
+    padding: var(--space-3) var(--space-6);
+    font-size: var(--font-size-base);
   }
 
   .code-preview {
@@ -1999,6 +2001,11 @@ section {
     font-size: var(--font-size-lg);
   }
 
+  .btn {
+    padding: var(--space-3) var(--space-5);
+    font-size: var(--font-size-sm);
+  }
+
   .code-preview {
     max-width: 550px;
   }
@@ -2038,6 +2045,12 @@ section {
     font-size: var(--font-size-base);
   }
 
+  .btn {
+    max-width: 200px;
+    padding: var(--space-2) var(--space-5);
+    font-size: var(--font-size-sm);
+  }
+
   .section-title {
     font-size: var(--font-size-3xl);
   }
@@ -2059,5 +2072,11 @@ section {
 
   .hero-container {
     padding: 0 var(--space-2);
+  }
+
+  .btn {
+    max-width: 180px;
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--font-size-xs);
   }
 }
