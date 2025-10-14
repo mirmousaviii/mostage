@@ -81,17 +81,17 @@ function initScrollEffects() {
     }
   }
 
-  // Manage footer accessibility on mobile
+  // Manage footer accessibility
   function manageFooterAccess() {
-    if (!isMobile || !footer) return;
+    if (!footer) return;
 
     const footerTop = footer.offsetTop;
     const viewportHeight = window.innerHeight;
     const scrollTop = window.pageYOffset;
     const distanceToFooter = footerTop - scrollTop;
 
-    // If user is close to footer (within 400px), temporarily disable scroll snap
-    if (distanceToFooter < 400 && distanceToFooter > -100) {
+    // If user is close to footer (within 500px), temporarily disable scroll snap
+    if (distanceToFooter < 500 && distanceToFooter > -200) {
       document.documentElement.style.scrollSnapType = "none";
       // Also disable scroll-snap-stop for sections
       sections.forEach((section) => {
