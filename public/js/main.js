@@ -15,6 +15,8 @@ function initScrollEffects() {
   const sections = document.querySelectorAll("section");
   const navbar = document.querySelector(".navbar");
   const scrollHint = document.querySelector(".scroll-hint");
+  const footer = document.querySelector(".footer");
+  const isMobile = window.innerWidth <= 768;
 
   // Update scroll progress
   function updateScrollProgress() {
@@ -79,6 +81,23 @@ function initScrollEffects() {
     }
   }
 
+  // Manage footer accessibility on mobile
+  function manageFooterAccess() {
+    if (!isMobile || !footer) return;
+
+    const footerTop = footer.offsetTop;
+    const viewportHeight = window.innerHeight;
+    const scrollTop = window.pageYOffset;
+    const distanceToFooter = footerTop - scrollTop;
+
+    // If user is close to footer (within 200px), temporarily disable scroll snap
+    if (distanceToFooter < 200 && distanceToFooter > -100) {
+      document.documentElement.style.scrollSnapType = "none";
+    } else {
+      document.documentElement.style.scrollSnapType = "y proximity";
+    }
+  }
+
   // Update active nav link
   function updateActiveNavLink() {
     const navLinks = document.querySelectorAll(".nav-link");
@@ -137,15 +156,21 @@ function initScrollEffects() {
     }
   }
 
-  // Throttled scroll handler
+  // Throttled scroll handler with mobile optimization
   let ticking = false;
+  let lastScrollTime = 0;
+  const scrollThrottle = isMobile ? 100 : 16; // Slower for mobile
+
   function handleScroll() {
-    if (!ticking) {
+    const now = Date.now();
+
+    if (!ticking && now - lastScrollTime >= scrollThrottle) {
       requestAnimationFrame(() => {
         updateScrollProgress();
         updateActiveIndicator();
         updateNavbar();
         updateActiveNavLink();
+        manageFooterAccess();
 
         // Show scroll indicators after scrolling past first section
         if (scrollIndicatorsContainer) {
@@ -176,6 +201,7 @@ function initScrollEffects() {
         }
 
         ticking = false;
+        lastScrollTime = now;
       });
       ticking = true;
     }

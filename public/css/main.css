@@ -1729,8 +1729,8 @@ section {
 
   .hero {
     min-height: var(--section-min-height);
-    padding: var(--space-6) 0;
-    padding-top: calc(var(--navbar-height) + var(--space-6));
+    padding: var(--space-8) 0;
+    padding-top: calc(var(--navbar-height) + var(--space-1));
   }
 
   .hero-container {
