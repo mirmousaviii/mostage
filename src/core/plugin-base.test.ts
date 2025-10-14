@@ -89,7 +89,7 @@ describe("PluginBase", () => {
       (plugin as any).injectStyles(styles, dataAttribute);
 
       const styleElement = document.querySelector(
-        `style[data-mostage-${dataAttribute}]`
+        `style[data-mostage-${dataAttribute}]`,
       );
       expect(styleElement).toBeTruthy();
       expect(styleElement?.textContent).toBe(styles);
@@ -104,7 +104,7 @@ describe("PluginBase", () => {
       (plugin as any).injectStyles(styles, dataAttribute);
 
       const styleElements = document.querySelectorAll(
-        `style[data-mostage-${dataAttribute}]`
+        `style[data-mostage-${dataAttribute}]`,
       );
       expect(styleElements).toHaveLength(1);
     });
@@ -118,10 +118,10 @@ describe("PluginBase", () => {
       (plugin as any).injectStyles(styles2, "styles2");
 
       const styleElement1 = document.querySelector(
-        "style[data-mostage-styles1]"
+        "style[data-mostage-styles1]",
       );
       const styleElement2 = document.querySelector(
-        "style[data-mostage-styles2]"
+        "style[data-mostage-styles2]",
       );
 
       expect(styleElement1).toBeTruthy();
@@ -140,13 +140,13 @@ describe("PluginBase", () => {
       (plugin as any).injectStyles(styles, dataAttribute);
 
       let styleElement = document.querySelector(
-        `style[data-mostage-${dataAttribute}]`
+        `style[data-mostage-${dataAttribute}]`,
       );
       expect(styleElement).toBeTruthy();
       (plugin as any).cleanupStyles();
 
       styleElement = document.querySelector(
-        `style[data-mostage-${dataAttribute}]`
+        `style[data-mostage-${dataAttribute}]`,
       );
       expect(styleElement).toBeFalsy();
     });

@@ -3,7 +3,7 @@
 interface ImportMeta {
   readonly glob: (
     pattern: string,
-    options?: { eager?: boolean }
+    options?: { eager?: boolean },
   ) => Record<string, () => Promise<any>>;
 }
 

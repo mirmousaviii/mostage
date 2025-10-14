@@ -5,6 +5,28 @@ import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+// Helper function to resolve asset paths that work in both dev and published environments
+function resolveAssetPath(relativePath: string): string {
+  // In built CLI: __dirname = dist/cli/, so we need dist/core/ (../core/)
+  // In development: __dirname = src/cli/generators/, so we need src/core/ (../../src/core/)
+
+  // Try published package path first (dist/core/)
+  const publishedPath = path.resolve(__dirname, "../core", relativePath);
+
+  // Try development path (src/core/)
+  const devPath = path.resolve(__dirname, "../../src/core", relativePath);
+
+  // Check which path exists and return it
+  if (fs.existsSync(publishedPath)) {
+    return publishedPath;
+  } else if (fs.existsSync(devPath)) {
+    return devPath;
+  } else {
+    // Fallback to published path (will throw error if not found)
+    return publishedPath;
+  }
+}
+
 export class AssetCopier {
   static async copyLocalAssets(projectPath: string): Promise<void> {
     try {
@@ -12,11 +34,8 @@ export class AssetCopier {
       const assetsDir = path.join(projectPath, "assets");
       await fs.ensureDir(assetsDir);
 
-      // Get the path to the Mostage project root
-      const mostageProjectRoot = path.resolve(__dirname, "../../../mostage");
-
-      // Copy CSS file from Mostage project dist directory
-      const cssSource = path.join(mostageProjectRoot, "dist/core/mostage.css");
+      // Copy CSS file from Mostage project
+      const cssSource = resolveAssetPath("mostage.css");
       const cssDest = path.join(assetsDir, "mostage.css");
       if (await fs.pathExists(cssSource)) {
         await fs.copy(cssSource, cssDest);
@@ -24,8 +43,8 @@ export class AssetCopier {
         console.log(chalk.yellow(`⚠️  CSS file not found: ${cssSource}`));
       }
 
-      // Copy JS file from Mostage project dist directory
-      const jsSource = path.join(mostageProjectRoot, "dist/core/index.js");
+      // Copy JS file from Mostage project
+      const jsSource = resolveAssetPath("index.js");
       const jsDest = path.join(assetsDir, "index.js");
       if (await fs.pathExists(jsSource)) {
         await fs.copy(jsSource, jsDest);
@@ -34,17 +53,24 @@ export class AssetCopier {
       }
 
       // Copy JS source map file
-      const jsMapSource = path.join(
-        mostageProjectRoot,
-        "dist/core/index.js.map"
-      );
+      const jsMapSource = resolveAssetPath("index.js.map");
       const jsMapDest = path.join(assetsDir, "index.js.map");
       if (await fs.pathExists(jsMapSource)) {
         await fs.copy(jsMapSource, jsMapDest);
       }
 
-      // Copy all theme-loader files from Mostage project dist directory
-      const distDir = path.join(mostageProjectRoot, "dist");
+      // Copy all theme-loader files from Mostage project
+      const coreDir = path.resolve(__dirname, "../../core");
+      const devCoreDir = path.resolve(__dirname, "../../src/core");
+
+      let distDir: string;
+      if (await fs.pathExists(coreDir)) {
+        distDir = path.resolve(__dirname, "../..");
+      } else if (await fs.pathExists(devCoreDir)) {
+        distDir = path.resolve(__dirname, "../../../dist");
+      } else {
+        distDir = path.resolve(__dirname, "../..");
+      }
 
       if (await fs.pathExists(distDir)) {
         // Find all theme-loader files in dist directory

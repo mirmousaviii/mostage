@@ -90,11 +90,19 @@ function initScrollEffects() {
     const scrollTop = window.pageYOffset;
     const distanceToFooter = footerTop - scrollTop;
 
-    // If user is close to footer (within 200px), temporarily disable scroll snap
-    if (distanceToFooter < 200 && distanceToFooter > -100) {
+    // If user is close to footer (within 400px), temporarily disable scroll snap
+    if (distanceToFooter < 400 && distanceToFooter > -100) {
       document.documentElement.style.scrollSnapType = "none";
+      // Also disable scroll-snap-stop for sections
+      sections.forEach((section) => {
+        section.style.scrollSnapStop = "normal";
+      });
     } else {
       document.documentElement.style.scrollSnapType = "y proximity";
+      // Re-enable scroll-snap-stop for sections
+      sections.forEach((section) => {
+        section.style.scrollSnapStop = "normal";
+      });
     }
   }
 
@@ -159,12 +167,26 @@ function initScrollEffects() {
   // Throttled scroll handler with mobile optimization
   let ticking = false;
   let lastScrollTime = 0;
-  const scrollThrottle = isMobile ? 100 : 16; // Slower for mobile
+  let lastScrollPosition = 0;
+  let scrollDirection = "down";
+  const scrollThrottle = isMobile ? 50 : 16; // Moderate throttling for mobile
 
   function handleScroll() {
     const now = Date.now();
+    const currentScrollPosition = window.pageYOffset;
 
-    if (!ticking && now - lastScrollTime >= scrollThrottle) {
+    // Detect scroll direction
+    if (currentScrollPosition > lastScrollPosition) {
+      scrollDirection = "down";
+    } else if (currentScrollPosition < lastScrollPosition) {
+      scrollDirection = "up";
+    }
+
+    // For mobile, add extra throttling based on scroll speed
+    const scrollDelta = Math.abs(currentScrollPosition - lastScrollPosition);
+    const mobileThrottle = isMobile && scrollDelta > 100 ? 100 : scrollThrottle;
+
+    if (!ticking && now - lastScrollTime >= mobileThrottle) {
       requestAnimationFrame(() => {
         updateScrollProgress();
         updateActiveIndicator();
@@ -202,6 +224,7 @@ function initScrollEffects() {
 
         ticking = false;
         lastScrollTime = now;
+        lastScrollPosition = currentScrollPosition;
       });
       ticking = true;
     }
@@ -210,14 +233,14 @@ function initScrollEffects() {
   // Event listeners
   window.addEventListener("scroll", handleScroll, { passive: true });
 
-  // Show scroll hint after 2 seconds if at top
+  // Show scroll hint after 0.5 seconds if at top
   setTimeout(() => {
     if (scrollHint && window.pageYOffset <= 10) {
       scrollHint.style.opacity = "1";
       scrollHint.style.transform = "translateX(-50%) translateY(0)";
       scrollHint.style.pointerEvents = "auto";
     }
-  }, 2000);
+  }, 500);
 
   // Scroll hint click handler
   if (scrollHint) {

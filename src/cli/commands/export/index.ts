@@ -4,6 +4,9 @@ import path from "path";
 import puppeteer from "puppeteer";
 import PptxGenJS from "pptxgenjs";
 import sharp from "sharp";
+import { fileURLToPath } from "url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 interface ExportOptions {
   source?: string;
@@ -191,7 +194,7 @@ async function readCssFile(projectDir: string): Promise<string> {
   }
 
   // Fallback: try to get from dist
-  const distCssPath = path.join(__dirname, "../../../dist/core/mostage.css");
+  const distCssPath = path.resolve(__dirname, "../core/mostage.css");
   if (await fs.pathExists(distCssPath)) {
     return await fs.readFile(distCssPath, "utf-8");
   }
@@ -209,7 +212,7 @@ async function readJsFile(projectDir: string): Promise<string> {
   }
 
   // Fallback: try to get from dist
-  const distJsPath = path.join(__dirname, "../../../dist/core/index.js");
+  const distJsPath = path.resolve(__dirname, "../core/index.js");
   if (await fs.pathExists(distJsPath)) {
     return await fs.readFile(distJsPath, "utf-8");
   }

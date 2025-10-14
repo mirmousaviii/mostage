@@ -8,6 +8,36 @@ import { AssetCopier } from "./asset-copier";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+// Helper function to resolve template paths that work in both dev and published environments
+function resolveTemplatePath(templateName: string): string {
+  // In built CLI: __dirname = dist/cli/, so we need dist/core/templates/ (../core/templates/)
+  // In development: __dirname = src/cli/generators/, so we need src/core/templates/ (../../src/core/templates/)
+
+  // Try published package path first (dist/core/templates/)
+  const publishedPath = path.resolve(
+    __dirname,
+    "../core/templates",
+    templateName
+  );
+
+  // Try development path (src/core/templates/)
+  const devPath = path.resolve(
+    __dirname,
+    "../../src/core/templates",
+    templateName
+  );
+
+  // Check which path exists and return it
+  if (fs.existsSync(publishedPath)) {
+    return publishedPath;
+  } else if (fs.existsSync(devPath)) {
+    return devPath;
+  } else {
+    // Fallback to published path (will throw error if not found)
+    return publishedPath;
+  }
+}
+
 export interface TemplateStrategy {
   create(projectPath: string, options: ProjectOptions): Promise<void>;
 }
@@ -17,10 +47,7 @@ export class BasicTemplateStrategy implements TemplateStrategy {
     // Ensure project directory exists
     await fs.ensureDir(projectPath);
 
-    const templatePath = path.resolve(
-      __dirname,
-      "../../src/core/templates/basic"
-    );
+    const templatePath = resolveTemplatePath("basic");
 
     // Copy content.md only if createContentFile is true
     if (options.createContentFile) {
@@ -107,10 +134,7 @@ export class DemoTemplateStrategy implements TemplateStrategy {
     // Ensure project directory exists
     await fs.ensureDir(projectPath);
 
-    const templatePath = path.resolve(
-      __dirname,
-      "../../src/core/templates/demo"
-    );
+    const templatePath = resolveTemplatePath("demo");
 
     // Copy content.md only if createContentFile is true
     if (options.createContentFile) {
@@ -279,10 +303,7 @@ export class CustomTemplateStrategy implements TemplateStrategy {
     // Ensure project directory exists
     await fs.ensureDir(projectPath);
 
-    const templatePath = path.resolve(
-      __dirname,
-      "../../src/core/templates/custom"
-    );
+    const templatePath = resolveTemplatePath("custom");
 
     // Copy content.md only if createContentFile is true
     if (options.createContentFile) {

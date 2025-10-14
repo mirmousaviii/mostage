@@ -207,8 +207,8 @@
   --z-toast: 1080;
 
   /* Custom Z-Index */
-  --z-navbar: var(--navbar-z-index);
-  --z-mobile-nav: 1000;
+  --z-navbar: 1002;
+  --z-mobile-nav: 1001;
   --z-mobile-toggle: 1004;
   --z-scroll-progress: 1005;
   --z-scroll-indicators: 1006;
@@ -228,7 +228,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: var(--navbar-height);
+  scroll-padding-top: var(--navbar-height + --space-4);
   scroll-snap-type: y proximity;
 }
 
@@ -286,6 +286,7 @@ body {
   height: 100%;
   z-index: 1003;
   position: relative;
+  background-color: var(--color-bg-overlay);
 }
 
 .nav-logo {
@@ -661,8 +662,8 @@ body {
   opacity: 0;
   cursor: pointer;
   transition:
-    opacity 0.3s ease-out,
-    transform 0.3s ease-out;
+    opacity 0.1s ease-out,
+    transform 0.1s ease-out;
   z-index: var(--z-scroll-indicators);
   pointer-events: none;
 }
@@ -1281,11 +1282,12 @@ section {
 
 .terminals-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: var(--space-8);
   width: 100%;
   max-width: var(--container-max-width);
   margin: var(--space-6) auto 0;
+  justify-items: center;
 }
 
 .terminal {
@@ -1294,7 +1296,6 @@ section {
   overflow: hidden;
   box-shadow: var(--shadow-lg);
   width: 100%;
-  max-width: 600px;
 }
 
 .terminal-header {
@@ -1360,6 +1361,13 @@ section {
 .code {
   color: var(--color-text-primary);
   font-family: var(--font-family-mono);
+}
+
+.js-code {
+  background: rgba(102, 126, 234, 0.1);
+  border-left: 3px solid var(--color-primary);
+  padding-left: var(--space-3);
+  margin: var(--space-1) 0;
 }
 
 /* ========================================
@@ -1711,6 +1719,10 @@ section {
     scroll-snap-type: y proximity;
   }
 
+  section {
+    scroll-snap-stop: normal;
+  }
+
   .container {
     padding: 0 var(--space-4);
   }
@@ -1730,7 +1742,7 @@ section {
   .hero {
     min-height: var(--section-min-height);
     padding: var(--space-8) 0;
-    padding-top: calc(var(--navbar-height) + var(--space-1));
+    padding-top: calc(var(--navbar-height));
   }
 
   .hero-container {

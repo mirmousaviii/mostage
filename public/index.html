@@ -596,15 +596,6 @@ Mostage is a modern presentation framework
               </div>
               <div class="terminal-line">
                 <span class="prompt">$</span>
-                <span class="command">npx mostage dev</span>
-              </div>
-              <div class="terminal-line">
-                <span class="output"
-                  >Example running at http://localhost:3000</span
-                >
-              </div>
-              <div class="terminal-line">
-                <span class="prompt">$</span>
                 <span class="command">npx mostage export --format pdf</span>
               </div>
               <div class="terminal-line">
@@ -617,33 +608,13 @@ Mostage is a modern presentation framework
               <div class="terminal-line">
                 <span class="output">Displaying help information...</span>
               </div>
-            </div>
-          </div>
-
-          <div class="terminal animate-on-scroll delay-3">
-            <div class="terminal-header">
-              <div class="terminal-dots">
-                <span class="dot red"></span>
-                <span class="dot yellow"></span>
-                <span class="dot green"></span>
+              <div class="terminal-line">
+                <span class="comment">// Or use it as a library</span>
               </div>
-              <span class="terminal-title">HTML Integration</span>
-            </div>
-            <div class="terminal-content">
-              <pre><code>&lt;html&gt;
-  &lt;head&gt;
-    &lt;title&gt;My Presentation&lt;/title&gt;
-    &lt;link rel="stylesheet" href="mostage.css" /&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-    &lt;div id="app"&gt;&lt;/div&gt;
-    &lt;script src="mostage.js"&gt;&lt;/script&gt;
-    &lt;script&gt;
-      const presentation = new Mostage("./config.json");
-      presentation.start();
-    &lt;/script&gt;
-  &lt;/body&gt;
-&lt;/html&gt;</code></pre>
+              <div class="terminal-line js-code">
+                <pre><code class="code">const mo = new Mostage('./conf.json');
+mo.start();</code></pre>
+              </div>
             </div>
           </div>
         </div>
