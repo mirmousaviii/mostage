@@ -81,9 +81,9 @@ function initScrollEffects() {
     }
   }
 
-  // Manage footer accessibility
+  // Manage footer accessibility on mobile
   function manageFooterAccess() {
-    if (!footer) return;
+    if (!isMobile || !footer) return;
 
     const footerTop = footer.offsetTop;
     const viewportHeight = window.innerHeight;

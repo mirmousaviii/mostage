@@ -1719,6 +1719,11 @@ section {
     scroll-snap-type: y proximity;
   }
 
+  .footer {
+    scroll-snap-align: none;
+    scroll-snap-stop: normal;
+  }
+
   section {
     scroll-snap-stop: normal;
   }
