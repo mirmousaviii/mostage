@@ -61,9 +61,6 @@
     <link rel="stylesheet" href="./css/main.css" />
   </head>
   <body>
-    <!-- Scroll Progress Bar -->
-    <div class="scroll-progress" id="scroll-progress"></div>
-
       <!-- Section Indicators -->
       <div class="scroll-indicators" id="scroll-indicators">
         <div class="scroll-indicator" data-section="Mostage" data-target=".hero">
@@ -577,7 +574,7 @@ Mostage is a modern presentation framework
                 <span class="dot yellow"></span>
                 <span class="dot green"></span>
               </div>
-              <span class="terminal-title">Important Commands</span>
+              <span class="terminal-title">Important CLI Commands</span>
             </div>
             <div class="terminal-content">
               <div class="terminal-line">
@@ -596,10 +593,17 @@ Mostage is a modern presentation framework
               </div>
               <div class="terminal-line">
                 <span class="prompt">$</span>
+                <span class="command">npx mostage export</span>
+              </div>
+              <div class="terminal-line">
+                <span class="output">Export to a single HTML file</span>
+              </div>
+              <div class="terminal-line">
+              <span class="prompt">$</span>
                 <span class="command">npx mostage export --format pdf</span>
               </div>
               <div class="terminal-line">
-                <span class="output">Example exported to example.pdf</span>
+                <span class="output">Export to a PDF file</span>
               </div>
               <div class="terminal-line">
                 <span class="prompt">$</span>
@@ -608,12 +612,40 @@ Mostage is a modern presentation framework
               <div class="terminal-line">
                 <span class="output">Displaying help information...</span>
               </div>
+            </div>
+          </div>
+          <div class="terminal animate-on-scroll delay-3">
+            <div class="terminal-header">
+              <div class="terminal-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <span class="terminal-title">Library Usage</span>
+            </div>
+            <div class="terminal-content">
               <div class="terminal-line">
-                <span class="comment">// Or use it as a library</span>
+                <span class="comment">Install the package in your project</span>
+              </div>
+              <div class="terminal-line">
+                <span class="prompt">$</span>
+                <span class="command">npm install mostage</span>
+              </div>
+              <div class="terminal-line">
+                <span class="output">Package installing...</span>
+              </div>
+              <div class="terminal-line">
+                <span class="comment">Use it in your project</span>
               </div>
               <div class="terminal-line js-code">
-                <pre><code class="code">const mo = new Mostage('./conf.json');
-mo.start();</code></pre>
+                <pre><code class="code">
+import { Mostage } from 'mostage';
+
+const mo = new Mostage('./conf.json');  
+
+mo.start();
+
+</code></pre>
               </div>
             </div>
           </div>

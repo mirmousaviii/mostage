@@ -229,7 +229,6 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: var(--navbar-height + --space-4);
-  scroll-snap-type: y proximity;
 }
 
 body {
@@ -700,8 +699,6 @@ section {
   align-items: center;
   padding: var(--section-padding) 0;
   position: relative;
-  scroll-snap-align: start;
-  scroll-snap-stop: normal;
 }
 
 .section-title {
@@ -1280,7 +1277,7 @@ section {
 
 .terminals-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--space-8);
   width: 100%;
   max-width: var(--container-max-width);
@@ -1371,20 +1368,6 @@ section {
 /* ========================================
    SCROLL EFFECTS
    ======================================== */
-
-/* Scroll Progress Bar */
-.scroll-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: var(--gradient-primary);
-  transform-origin: left;
-  transform: scaleX(0);
-  z-index: var(--z-scroll-progress);
-  transition: transform 0.1s ease-out;
-}
 
 /* Section Indicators */
 .scroll-indicators {
@@ -1579,8 +1562,6 @@ section {
   position: relative;
   z-index: 1;
   margin-top: 0;
-  scroll-snap-align: none;
-  scroll-snap-stop: normal;
 }
 
 .footer-content {
@@ -1713,19 +1694,6 @@ section {
 
 /* Mobile Styles */
 @media (max-width: 768px) {
-  html {
-    scroll-snap-type: y proximity;
-  }
-
-  .footer {
-    scroll-snap-align: none;
-    scroll-snap-stop: normal;
-  }
-
-  section {
-    scroll-snap-stop: normal;
-  }
-
   .container {
     padding: 0 var(--space-4);
   }
@@ -1980,10 +1948,6 @@ section {
     font-size: var(--font-size-xs);
   }
 
-  .scroll-progress {
-    height: 2px;
-  }
-
   .scroll-hint {
     bottom: var(--space-4);
   }
@@ -2030,6 +1994,7 @@ section {
   }
 
   .terminals-grid {
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--space-6);
   }
 }

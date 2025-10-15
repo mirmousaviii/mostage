@@ -8,7 +8,6 @@
 // ========================================
 
 function initScrollEffects() {
-  const scrollProgress = document.getElementById("scroll-progress");
   const scrollIndicatorsContainer =
     document.getElementById("scroll-indicators");
   const scrollIndicators = document.querySelectorAll(".scroll-indicator");
@@ -17,18 +16,6 @@ function initScrollEffects() {
   const scrollHint = document.querySelector(".scroll-hint");
   const footer = document.querySelector(".footer");
   const isMobile = window.innerWidth <= 768;
-
-  // Update scroll progress
-  function updateScrollProgress() {
-    const scrollTop = window.pageYOffset;
-    const docHeight =
-      document.documentElement.scrollHeight - window.innerHeight;
-    const scrollPercent = (scrollTop / docHeight) * 100;
-
-    if (scrollProgress) {
-      scrollProgress.style.transform = `scaleX(${scrollPercent / 100})`;
-    }
-  }
 
   // Update active indicator
   function updateActiveIndicator() {
@@ -78,31 +65,6 @@ function initScrollEffects() {
       navbar.classList.add("scrolled");
     } else {
       navbar.classList.remove("scrolled");
-    }
-  }
-
-  // Manage footer accessibility on mobile
-  function manageFooterAccess() {
-    if (!isMobile || !footer) return;
-
-    const footerTop = footer.offsetTop;
-    const viewportHeight = window.innerHeight;
-    const scrollTop = window.pageYOffset;
-    const distanceToFooter = footerTop - scrollTop;
-
-    // If user is close to footer (within 500px), temporarily disable scroll snap
-    if (distanceToFooter < 500 && distanceToFooter > -200) {
-      document.documentElement.style.scrollSnapType = "none";
-      // Also disable scroll-snap-stop for sections
-      sections.forEach((section) => {
-        section.style.scrollSnapStop = "normal";
-      });
-    } else {
-      document.documentElement.style.scrollSnapType = "y proximity";
-      // Re-enable scroll-snap-stop for sections
-      sections.forEach((section) => {
-        section.style.scrollSnapStop = "normal";
-      });
     }
   }
 
@@ -188,11 +150,9 @@ function initScrollEffects() {
 
     if (!ticking && now - lastScrollTime >= mobileThrottle) {
       requestAnimationFrame(() => {
-        updateScrollProgress();
         updateActiveIndicator();
         updateNavbar();
         updateActiveNavLink();
-        manageFooterAccess();
 
         // Show scroll indicators after scrolling past first section
         if (scrollIndicatorsContainer) {
@@ -267,7 +227,6 @@ function initScrollEffects() {
   });
 
   // Initial calls
-  updateScrollProgress();
   updateActiveIndicator();
   updateNavbar();
 }
