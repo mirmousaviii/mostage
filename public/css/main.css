@@ -1167,6 +1167,51 @@ section {
   font-weight: var(--font-weight-semibold);
 }
 
+.getting-started-note {
+  margin-top: var(--space-12);
+  text-align: center;
+  padding: var(--space-6);
+  background: var(--color-primary-light);
+  border: 1px solid var(--color-primary-border);
+  border-radius: var(--radius-sm);
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.getting-started-note p {
+  color: var(--color-text-primary);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  margin: 0;
+}
+
+.getting-started-note strong {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.getting-started-note a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+.getting-started-note a:hover {
+  color: var(--color-primary-hover);
+  text-decoration: underline;
+}
+
+.getting-started-note code {
+  background: var(--color-bg-card);
+  color: var(--color-primary);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-sm);
+  border: 1px solid var(--color-primary-border);
+}
+
 /* ========================================
    DEMO SECTION
    ======================================== */
@@ -1871,6 +1916,12 @@ section {
   }
 
   .plugin-note {
+    margin-top: var(--space-6);
+    padding: var(--space-3);
+    font-size: var(--font-size-sm);
+  }
+
+  .getting-started-note {
     margin-top: var(--space-6);
     padding: var(--space-3);
     font-size: var(--font-size-sm);
