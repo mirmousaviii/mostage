@@ -38,31 +38,54 @@
    RESPONSIVE STYLES
    ========================================================================== */
 
-/* Tablet devices */
-@media screen and (min-width: 481px) and (max-width: 768px) {
+/* Base responsive styles - always applied */
+.mostage-slide-number {
+  bottom: 0.5rem;
+  width: 40px;
+  height: 28px;
+  font-size: 12px;
+}
+
+.mostage-slide-number-bottom-right {
+  right: 0.5rem;
+}
+
+.mostage-slide-number-bottom-left {
+  left: 0.5rem;
+}
+
+/* Small screens and embedded mode */
+@media screen and (max-width: 768px) {
   .mostage-slide-number {
-    bottom: 1rem;
-    width: 60px;
-    height: 50px;
-    font-size: 12px;
+    bottom: 0.4rem;
+    width: 35px;
+    height: 24px;
+    font-size: 10px;
   }
 
   .mostage-slide-number-bottom-right {
-    right: 1rem;
+    right: 0.4rem;
   }
 
   .mostage-slide-number-bottom-left {
-    left: 1rem;
+    left: 0.4rem;
   }
 }
 
-/* Mobile devices */
-@media screen and (max-width: 480px) {
+/* Very small screens - Hide slide number to avoid collision */
+@media screen and (max-width: 360px) {
+  .mostage-slide-number {
+    display: none;
+  }
+}
+
+/* Medium screens */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
   .mostage-slide-number {
     bottom: 0.8rem;
-    width: 55px;
-    height: 44px;
-    font-size: 11px;
+    width: 50px;
+    height: 35px;
+    font-size: 14px;
   }
 
   .mostage-slide-number-bottom-right {
@@ -74,20 +97,31 @@
   }
 }
 
-/* Very small mobile devices - Hide slide number to avoid collision */
-@media screen and (max-width: 360px) {
+/* Large screens - full viewport mode */
+@media screen and (min-width: 1025px) {
   .mostage-slide-number {
-    display: none;
+    bottom: 1.5rem;
+    width: 70px;
+    height: 50px;
+    font-size: 16px;
+  }
+
+  .mostage-slide-number-bottom-right {
+    right: 1.5rem;
+  }
+
+  .mostage-slide-number-bottom-left {
+    left: 1.5rem;
   }
 }
 
-/* Desktop devices */
-@media screen and (min-width: 1024px) {
+/* Extra large screens */
+@media screen and (min-width: 1440px) {
   .mostage-slide-number {
     bottom: 2rem;
     width: 80px;
-    height: 65px;
-    font-size: 16px;
+    height: 60px;
+    font-size: 18px;
   }
 
   .mostage-slide-number-bottom-right {
