@@ -18,6 +18,9 @@ import {
   TransitionConfig,
 } from "@/types";
 
+// Global variable to preserve slide position across instances
+let globalCurrentSlideIndex = 0;
+
 /**
  * Mostage Presentation Engine
  *
@@ -283,12 +286,18 @@ export class Mostage implements MostageInstance {
       // Setup URL hash navigation if enabled
       this.urlHashManager.setupUrlHashNavigation();
 
-      // Render initial slide
+      // Determine target slide before rendering
+      const urlSlide = this.urlHashManager.getInitialSlideFromUrl();
+      const targetSlide = urlSlide !== 0 ? urlSlide : globalCurrentSlideIndex;
+
+      // Set current slide index before rendering
+      this.currentSlideIndex = targetSlide;
+
+      // Render slides
       await this.renderSlides();
 
-      // Go to initial slide (from URL hash if available)
-      const initialSlide = this.urlHashManager.getInitialSlideFromUrl();
-      this.goToSlide(initialSlide);
+      // Show the target slide without transition
+      this.transitionManager.showSlide(targetSlide);
 
       // Initialize plugins AFTER DOM is ready
       this.initializePlugins();
@@ -496,7 +505,8 @@ export class Mostage implements MostageInstance {
       }
 
       slideElement.appendChild(contentWrapper);
-      slideElement.style.display = index === 0 ? "block" : "none";
+      // Initially hide all slides, will be shown by goToSlide
+      slideElement.style.display = "none";
       slidesContainer.appendChild(slideElement);
     });
 
@@ -720,6 +730,9 @@ export class Mostage implements MostageInstance {
 
     const previousIndex = this.currentSlideIndex;
     this.currentSlideIndex = index;
+
+    // Update global slide index to preserve position across instances
+    globalCurrentSlideIndex = index;
 
     // Update URL hash if enabled
     this.urlHashManager.updateUrlHash(index, this.slides.length);
