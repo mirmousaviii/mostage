@@ -134,6 +134,9 @@ export class HelpComponent {
   }
 }
 
+// Global flag to track if initial help has been shown in this session
+let globalHasShownInitialHelp = false;
+
 // HelpManager - Help visibility management
 export class HelpManager {
   private isHelpVisible = false;
@@ -141,8 +144,10 @@ export class HelpManager {
   private wasHelpVisibleBeforeOverview = false;
   private helpComponent: HelpComponent;
   private autoHideTimeout: number | null = null;
+  private container: HTMLElement;
 
-  constructor() {
+  constructor(container: HTMLElement) {
+    this.container = container;
     this.helpComponent = new HelpComponent("normal");
   }
 
@@ -156,6 +161,12 @@ export class HelpManager {
 
   // Show help on initial load with auto-hide after 3 seconds
   showInitialHelp(): void {
+    // Only show initial help once per session
+    if (globalHasShownInitialHelp) {
+      return;
+    }
+
+    globalHasShownInitialHelp = true;
     this.showHelp();
     this.scheduleAutoHide();
   }
@@ -201,7 +212,7 @@ export class HelpManager {
 
     this.isHelpVisible = true;
     this.helpContainer = this.createHelpComponent();
-    document.body.appendChild(this.helpContainer);
+    this.container.appendChild(this.helpContainer);
 
     // Trigger fade-in animation
     requestAnimationFrame(() => {
