@@ -80,7 +80,7 @@ export class Mostage implements MostageInstance {
         plugins: {},
         keyboard: true,
         touch: true,
-        urlHash: false,
+        urlHash: true,
         centerContent: {
           vertical: true,
           horizontal: true,
@@ -101,7 +101,7 @@ export class Mostage implements MostageInstance {
         plugins: {},
         keyboard: true,
         touch: true,
-        urlHash: false,
+        urlHash: true,
         centerContent: {
           vertical: true,
           horizontal: true,
@@ -582,7 +582,7 @@ export class Mostage implements MostageInstance {
     headerElement.className = "mostage-header";
 
     // Add position class
-    const position = this.config.header.position || "top-center";
+    const position = this.config.header.position || "top-left";
     headerElement.classList.add(`mostage-header-${position.replace("-", "-")}`);
 
     let content = "";
@@ -615,10 +615,10 @@ export class Mostage implements MostageInstance {
 
     this.container.appendChild(headerElement);
 
-    // Hide header on first slide if showOnFirstSlide is false (default behavior)
+    // Hide header on first slide if showOnFirstSlide is explicitly false
     if (
       this.currentSlideIndex === 0 &&
-      this.config.header.showOnFirstSlide !== true
+      this.config.header.showOnFirstSlide === false
     ) {
       headerElement.style.display = "none";
     }
@@ -664,10 +664,10 @@ export class Mostage implements MostageInstance {
 
     this.container.appendChild(footerElement);
 
-    // Hide footer on first slide if showOnFirstSlide is false (default behavior)
+    // Hide footer on first slide if showOnFirstSlide is explicitly false
     if (
       this.currentSlideIndex === 0 &&
-      this.config.footer.showOnFirstSlide !== true
+      this.config.footer.showOnFirstSlide === false
     ) {
       footerElement.style.display = "none";
     }
@@ -682,7 +682,7 @@ export class Mostage implements MostageInstance {
       if (headerElement) {
         if (
           this.currentSlideIndex === 0 &&
-          this.config.header.showOnFirstSlide !== true
+          this.config.header.showOnFirstSlide === false
         ) {
           headerElement.style.display = "none";
         } else {
@@ -699,7 +699,7 @@ export class Mostage implements MostageInstance {
       if (footerElement) {
         if (
           this.currentSlideIndex === 0 &&
-          this.config.footer.showOnFirstSlide !== true
+          this.config.footer.showOnFirstSlide === false
         ) {
           footerElement.style.display = "none";
         } else {
