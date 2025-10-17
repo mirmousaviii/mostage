@@ -120,6 +120,9 @@ export class Mostage implements MostageInstance {
     this.container = this.resolveElement(this.config.element || document.body);
     this.container.classList.add("mostage-container");
 
+    // Auto-detect container mode and apply appropriate positioning
+    this.applyAutoDetection();
+
     // Initialize services
     this.contentService = new ContentService();
     this.navigationService = new NavigationService(
@@ -136,11 +139,34 @@ export class Mostage implements MostageInstance {
       () => this.onExitOverview(),
       () => this.onEnterOverview()
     );
-    this.helpManager = new HelpManager();
+    this.helpManager = new HelpManager(this.container);
     this.centerContentManager = new CenterContentManager(this.container);
 
     // Initialize config-dependent managers
     this.initializeConfigDependentManagers();
+  }
+
+  /**
+   * Auto-detect container mode and apply appropriate positioning
+   * If parent is body -> standalone mode (absolute positioning)
+   * If parent is not body -> embedded mode (relative positioning)
+   */
+  private applyAutoDetection(): void {
+    const isStandalone = this.container === document.body;
+
+    if (isStandalone) {
+      // Standalone mode: use absolute positioning for full viewport
+      this.container.style.position = "absolute";
+      this.container.style.width = "100vw";
+      this.container.style.height = "100vh";
+      this.container.style.top = "0";
+      this.container.style.left = "0";
+    } else {
+      // Embedded mode: use relative positioning for container
+      this.container.style.position = "relative";
+      this.container.style.width = "100%";
+      this.container.style.height = "100%";
+    }
   }
 
   /**
@@ -330,6 +356,20 @@ export class Mostage implements MostageInstance {
   }
 
   private handleKeyboard(event: KeyboardEvent): void {
+    // Check if focus is on an input element (textarea, input, contenteditable)
+    const activeElement = document.activeElement as HTMLElement;
+    const isInputFocused =
+      activeElement &&
+      (activeElement.tagName === "INPUT" ||
+        activeElement.tagName === "TEXTAREA" ||
+        activeElement.contentEditable === "true" ||
+        activeElement.isContentEditable);
+
+    // If user is typing in an input field, don't handle keyboard navigation
+    if (isInputFocused) {
+      return;
+    }
+
     // Delegate to overview manager if in overview mode
     if (this.overviewManager.isInOverviewMode()) {
       this.overviewManager.handleOverviewKeyboard(event);

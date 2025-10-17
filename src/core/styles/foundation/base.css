@@ -17,8 +17,9 @@ body {
 
 /* Container - Clamp-based responsive sizing with larger minimums and preferred sizes */
 .mostage-container {
-  width: 100vw;
-  height: 100vh;
+  /* Auto-detection will override these values based on parent element */
+  width: 100%;
+  height: 100%;
   position: relative;
   overflow: hidden;
   font-size: clamp(18px, 2vw, 18px);

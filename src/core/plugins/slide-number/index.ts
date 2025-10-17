@@ -11,8 +11,10 @@ export class SlideNumberPlugin extends PluginBase {
   name = "SlideNumber";
   private slideNumberElement: HTMLElement | null = null;
   private config!: SlideNumberConfig;
+  private container: HTMLElement | null = null;
 
   init(mo: any, config: SlideNumberConfig = {}): void {
+    this.container = mo.getContainer();
     this.config = {
       enabled: true,
       position: "bottom-right",
@@ -37,7 +39,9 @@ export class SlideNumberPlugin extends PluginBase {
   private createSlideNumber(): void {
     this.slideNumberElement = document.createElement("div");
     this.slideNumberElement.className = `mostage-slide-number mostage-slide-number-${this.config.position}`;
-    document.body.appendChild(this.slideNumberElement);
+    if (this.container) {
+      this.container.appendChild(this.slideNumberElement);
+    }
   }
 
   private updateSlideNumber(current: number, total: number): void {

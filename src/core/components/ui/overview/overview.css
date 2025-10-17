@@ -5,11 +5,11 @@
    ========================================================================== */
 
 .mostage-overview {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background: var(--mostage-bg-color);
   color: var(--mostage-text-color);
   z-index: 2000;
@@ -177,15 +177,16 @@
 }
 
 .mostage-overview-close {
-  position: fixed;
+  position: absolute;
   top: 30px;
   right: 30px;
   width: 50px;
   height: 50px;
   border: none;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
+  background: rgba(255, 255, 255, 0.5);
+  color: var(--mostage-text-color);
+  border: 1px solid var(--mostage-border-color);
   font-size: 24px;
   font-weight: bold;
   cursor: pointer;
@@ -198,7 +199,7 @@
 }
 
 .mostage-overview-close:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 /* ==========================================================================
@@ -355,7 +356,7 @@
 
 /* Footer */
 .mostage-overview-footer {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
@@ -365,10 +366,12 @@
   color: rgba(255, 255, 255, 0.7);
   z-index: 2001;
   background: var(--mostage-bg-color);
+  backdrop-filter: blur(10px);
+  color: var(--mostage-text-color);
 }
 
 .mostage-overview-footer a {
-  color: #ffffff;
+  color: var(--mostage-primary-color);
   text-decoration: none;
 }
 

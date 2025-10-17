@@ -5,7 +5,7 @@
    ========================================================================== */
 
 .mostage-controller {
-  position: fixed;
+  position: absolute;
   z-index: 1000;
   display: flex;
   gap: 10px;

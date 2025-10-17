@@ -137,18 +137,6 @@ export class OverviewManager {
       this.overviewContainer.remove();
       this.overviewContainer = null;
     }
-
-    // Remove footer
-    const footer = document.querySelector(".mostage-overview-footer");
-    if (footer) {
-      footer.remove();
-    }
-
-    // Remove close button
-    const closeButton = document.querySelector(".mostage-overview-close");
-    if (closeButton) {
-      closeButton.remove();
-    }
   }
 
   private nextOverviewSlide(): void {
@@ -220,13 +208,11 @@ export class OverviewManager {
       helpComponent.classList.add("fade-in");
     });
 
-    document.body.appendChild(this.overviewContainer);
+    this.container.appendChild(this.overviewContainer);
 
-    // it should be add to the body because it is fixed
-    document.body.appendChild(this.createCloseButton());
-
-    // it should be add to the body because it is fixed
-    document.body.appendChild(this.createFooter());
+    // Add close button and footer to the overview container
+    this.overviewContainer.appendChild(this.createCloseButton());
+    this.overviewContainer.appendChild(this.createFooter());
 
     // Set initial selection
     this.updateOverviewSelection();

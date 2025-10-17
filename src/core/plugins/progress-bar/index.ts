@@ -12,8 +12,10 @@ export class ProgressBarPlugin extends PluginBase {
   name = "ProgressBar";
   private progressBar: HTMLElement | null = null;
   private config!: ProgressBarConfig;
+  private container: HTMLElement | null = null;
 
   init(mo: any, config: ProgressBarConfig = {}): void {
+    this.container = mo.getContainer();
     this.config = {
       enabled: true,
       position: "bottom",
@@ -53,7 +55,9 @@ export class ProgressBarPlugin extends PluginBase {
       fill.style.height = "100%";
     }
 
-    document.body.appendChild(this.progressBar);
+    if (this.container) {
+      this.container.appendChild(this.progressBar);
+    }
   }
 
   private updateProgress(current: number, total: number): void {

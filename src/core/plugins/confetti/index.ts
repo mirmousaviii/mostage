@@ -19,8 +19,10 @@ export class ConfettiPlugin extends PluginBase {
   private mo: any;
   private confettiSlides: Set<number> = new Set();
   private config!: ConfettiConfig;
+  private container: HTMLElement | null = null;
 
   init(mo: any, config: ConfettiConfig = {}): void {
+    this.container = mo.getContainer();
     this.mo = mo;
     this.config = {
       enabled: true,
@@ -58,7 +60,9 @@ export class ConfettiPlugin extends PluginBase {
     this.confettiContainer = document.createElement("div");
     this.confettiContainer.className = "mostage-confetti-container";
     this.confettiContainer.style.pointerEvents = "none";
-    document.body.appendChild(this.confettiContainer);
+    if (this.container) {
+      this.container.appendChild(this.confettiContainer);
+    }
   }
 
   private parseSlidesForConfetti(): void {
@@ -125,7 +129,9 @@ export class ConfettiPlugin extends PluginBase {
     const minSize = this.config.size?.min || 5;
     const maxSize = this.config.size?.max || 15;
     const size = Math.random() * (maxSize - minSize) + minSize;
-    const startX = Math.random() * window.innerWidth;
+    const containerWidth = this.container?.offsetWidth || window.innerWidth;
+    const containerHeight = this.container?.offsetHeight || window.innerHeight;
+    const startX = Math.random() * containerWidth;
     const endX = startX + (Math.random() - 0.5) * 200; // -100 to +100 from start
     const rotation = Math.random() * 360;
     const rotationSpeed = (Math.random() - 0.5) * 720; // -360 to +360 degrees
@@ -145,7 +151,7 @@ export class ConfettiPlugin extends PluginBase {
 
     // Animate particle
     requestAnimationFrame(() => {
-      particle.style.transform = `translate(${endX - startX}px, ${window.innerHeight + 20}px) rotate(${rotation + rotationSpeed}deg)`;
+      particle.style.transform = `translate(${endX - startX}px, ${containerHeight + 20}px) rotate(${rotation + rotationSpeed}deg)`;
     });
   }
 

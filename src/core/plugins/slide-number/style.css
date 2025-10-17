@@ -5,7 +5,7 @@
    ========================================================================== */
 
 .mostage-slide-number {
-  position: fixed;
+  position: absolute;
   z-index: 999; /* Lower than controller (1000) */
   width: 80px;
   height: 60px;

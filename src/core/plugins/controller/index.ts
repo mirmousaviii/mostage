@@ -15,8 +15,10 @@ export class ControllerPlugin extends PluginBase {
   private nextBtn: HTMLButtonElement | null = null;
   private lastBtn: HTMLButtonElement | null = null;
   private config!: ControllerConfig;
+  private container: HTMLElement | null = null;
 
   init(mo: any, config: ControllerConfig = {}): void {
+    this.container = mo.getContainer();
     this.config = {
       enabled: true,
       position: "bottom-center",
@@ -77,7 +79,9 @@ export class ControllerPlugin extends PluginBase {
     // Set initial button states
     this.updateButtonStates(mo.getCurrentSlide(), mo.getTotalSlides());
 
-    document.body.appendChild(this.controller);
+    if (this.container) {
+      this.container.appendChild(this.controller);
+    }
   }
 
   private updateButtonStates(currentSlide: number, totalSlides: number): void {
