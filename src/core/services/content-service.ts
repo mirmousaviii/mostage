@@ -110,6 +110,17 @@ export class ContentService {
    * @returns Array of slides
    */
   private parseMarkdown(content: string): MoSlide[] {
+    // Handle empty content
+    if (!content || content.trim().length === 0) {
+      return [
+        {
+          id: "slide-0",
+          content: "",
+          html: "<div class='empty-slide'>Start typing your presentation content here...</div>",
+        },
+      ];
+    }
+
     const slideContents = content
       .split(/^---\s*$/gm)
       .filter((slide) => slide.trim());
@@ -138,16 +149,19 @@ export class ContentService {
       throw new ContentValidationError("Content must be a non-empty string");
     }
 
-    if (content.trim().length === 0) {
-      throw new ContentValidationError("Content cannot be empty");
-    }
+    // if (content.trim().length === 0) {
+    //   throw new ContentValidationError("Content cannot be empty");
+    // }
 
-    // Check for minimum content length
-    if (content.length < 10) {
-      throw new ContentValidationError(
-        "Content is too short to be a valid presentation"
-      );
-    }
+    // // Check for minimum content length
+    // if (content.length < 10) {
+    //   throw new ContentValidationError(
+    //     "Content is too short to be a valid presentation"
+    //   );
+    // }
+
+    // Allow any content length for live editing scenarios
+    // No minimum length validation needed
   }
 }
 
