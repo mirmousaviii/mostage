@@ -726,7 +726,17 @@ export class Mostage implements MostageInstance {
   }
 
   goToSlide(index: number): void {
-    if (index < 0 || index >= this.slides.length) return;
+    // Validate slide index and adjust if necessary
+    if (index < 0) {
+      index = 0;
+    } else if (index >= this.slides.length) {
+      index = Math.max(0, this.slides.length - 1);
+    }
+
+    // If no slides exist, return early
+    if (this.slides.length === 0) {
+      return;
+    }
 
     const previousIndex = this.currentSlideIndex;
     this.currentSlideIndex = index;
@@ -822,6 +832,70 @@ export class Mostage implements MostageInstance {
   // Overview control
   toggleOverview(): void {
     this.overviewManager.toggleOverview();
+  }
+
+  /**
+   * Updates the presentation content and re-renders slides
+   * @param newContent - New markdown content
+   */
+  async updateContent(newContent: string): Promise<void> {
+    try {
+      // Parse new content
+      const newSlides = this.contentService.parseContent(newContent);
+
+      // Update slides
+      this.slides = newSlides;
+
+      // Adjust current slide index if necessary
+      if (this.slides.length === 0) {
+        this.currentSlideIndex = 0;
+      } else if (this.currentSlideIndex >= this.slides.length) {
+        // If current slide is beyond the new slide count, go to last slide
+        this.currentSlideIndex = this.slides.length - 1;
+      }
+
+      // Update navigation service with new slides
+      this.navigationService.setSlides(this.slides);
+
+      // Re-render slides
+      await this.renderSlides();
+
+      // Show the current slide
+      this.transitionManager.showSlide(this.currentSlideIndex);
+
+      // Update header and footer visibility
+      this.updateHeaderFooterVisibility();
+
+      // Update navigation service
+      this.navigationService.setCurrentSlideIndex(this.currentSlideIndex);
+      this.overviewManager.setCurrentSlideIndex(this.currentSlideIndex);
+
+      // Clean up existing plugins before re-initializing
+      this.plugins.forEach((plugin) => {
+        try {
+          if (plugin.destroy) {
+            plugin.destroy();
+          }
+        } catch (error) {
+          console.error(`Failed to destroy plugin: ${plugin.name}`, error);
+        }
+      });
+      this.plugins = [];
+
+      // Re-initialize plugins after content update
+      this.initializePlugins();
+
+      // Emit content update event
+      this.emit("contentupdate", {
+        type: "contentupdate",
+        currentSlide: this.currentSlideIndex,
+        totalSlides: this.slides.length,
+        slide: this.slides[this.currentSlideIndex],
+      });
+    } catch (error) {
+      console.error("Failed to update content:", error);
+      throw error;
+    }
   }
 
   // Cleanup
