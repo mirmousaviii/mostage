@@ -95,7 +95,10 @@
         <div class="scroll-indicator" data-section="Demo" data-target="#demo">
           <div class="progress-bar"></div>
         </div>
-        <div class="scroll-indicator" data-section="Get Started" data-target="#getting-started">
+        <div class="scroll-indicator" data-section="CLI" data-target="#cli">
+          <div class="progress-bar"></div>
+        </div>
+        <div class="scroll-indicator" data-section="Editor" data-target="#editor">
           <div class="progress-bar"></div>
         </div>
       </div>
@@ -116,7 +119,8 @@
           <a href="#themes" class="nav-link">Themes</a>
           <a href="#plugins" class="nav-link">Plugins</a>
           <a href="#demo" class="nav-link">Demo</a>
-          <a href="#getting-started" class="nav-link">Get Started</a>
+          <a href="#cli" class="nav-link">CLI</a>
+          <a href="#editor" class="nav-link">Editor</a>
           <a
             href="https://github.com/mirmousaviii/mostage"
             class="nav-link"
@@ -145,7 +149,8 @@
           <a href="#themes" class="mobile-nav-link">Themes</a>
           <a href="#plugins" class="mobile-nav-link">Plugins</a>
           <a href="#demo" class="mobile-nav-link">Demo</a>
-          <a href="#getting-started" class="mobile-nav-link">Get Started</a>
+          <a href="#cli" class="mobile-nav-link">CLI</a>
+          <a href="#editor" class="mobile-nav-link">Editor</a>
           <a
             href="https://github.com/mirmousaviii/mostage"
             class="mobile-nav-link"
@@ -168,9 +173,12 @@
           <h2 class="hero-subtitle">
             Presentation framework based on <br />Markdown and HTML
           </h2>
-          <p class="hero-description">Available as a <strong>Core Library</strong> and <strong>CLI</strong></strong></p>
+          <!-- Available as a npm package and CLI and Editor -->
+          <p class="hero-description">Available as a <strong>NPM Package</strong>, <strong>CLI</strong> and <strong>Editor</strong></strong></p>
           <div class="hero-buttons">
-            <a href="#getting-started" class="btn btn-secondary">Get Started</a>
+            <a href="#cli" class="btn btn-secondary">CLI</a>
+            <a href="#editor" class="btn btn-secondary">Editor</a>
+            <a href="#demo" class="btn btn-secondary">Demo</a>
             <a href="https://github.com/mirmousaviii/mostage" class="btn btn-primary" target="_blank" rel="noopener noreferrer">GitHub</a>
           </div>
 
@@ -577,9 +585,9 @@ Mostage is a modern presentation framework
     </section>
 
     <!-- Get Started Section -->
-    <section id="getting-started" class="cli-section">
+    <section id="cli" class="cli-section">
       <div class="container">
-        <h2 class="section-title animate-on-scroll">Get Started</h2>
+        <h2 class="section-title animate-on-scroll">CLI</h2>
         <p class="section-subtitle animate-on-scroll delay-1">
           Create presentations using CLI, Library, or other methods
         </p>
@@ -673,6 +681,24 @@ mo.start();
           </p>
         </div>
 
+      </div>
+    </section>
+
+    <!-- Online Editor Section -->
+    <section id="editor" class="editor-section">
+      <div class="container">
+        <h2 class="section-title animate-on-scroll">
+          Online Editor
+          <span class="beta-badge">Beta Version</span>
+        </h2>
+        <p class="section-subtitle animate-on-scroll delay-1">
+          Create and edit presentations directly in your browser with our online editor
+        </p>
+        <div class="editor-showcase animate-on-scroll delay-2">
+          <a href="https://mirmousaviii.github.io/mostage-editor/" target="_blank" class="demo-image-container">
+            <img src="images/editor.png" alt="Mostage Online Editor Screenshot" class="demo-image" />
+          </a>
+        </div>
       </div>
     </section>
 

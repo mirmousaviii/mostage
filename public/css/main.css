@@ -537,13 +537,14 @@ body {
 
 .hero-buttons {
   display: flex;
-  gap: var(--space-4);
+  gap: var(--space-3);
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .btn {
   display: inline-block;
-  padding: var(--space-3) var(--space-6);
+  padding: var(--space-3) var(--space-5);
   border-radius: var(--radius-sm);
   text-decoration: none;
   font-weight: var(--font-weight-semibold);
@@ -551,6 +552,9 @@ body {
   transition: var(--transition-normal);
   border: 2px solid transparent;
   cursor: pointer;
+  min-width: 100px;
+  flex: 1;
+  max-width: 140px;
 }
 
 .btn-primary {
@@ -1802,16 +1806,18 @@ section {
   }
 
   .hero-buttons {
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: var(--space-3);
-    align-items: center;
+    max-width: 400px;
+    margin: 0 auto;
   }
 
   .btn {
     width: 100%;
-    max-width: 240px;
-    padding: var(--space-3) var(--space-6);
-    font-size: var(--font-size-base);
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--font-size-sm);
+    text-align: center;
   }
 
   .code-preview {
@@ -2110,4 +2116,50 @@ section {
     padding: var(--space-2) var(--space-4);
     font-size: var(--font-size-xs);
   }
+}
+
+/* Editor Section Styles */
+.editor-section {
+  background: linear-gradient(
+    135deg,
+    var(--color-bg-primary) 0%,
+    rgba(15, 15, 35, 0.98) 50%,
+    var(--color-bg-secondary) 100%
+  );
+  position: relative;
+}
+
+.editor-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at 50% 30%,
+    rgba(251, 182, 206, 0.05) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+.beta-badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: var(--space-1) var(--space-3);
+  border-radius: 15px;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  margin-left: var(--space-3);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.editor-showcase {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: var(--space-8);
 }

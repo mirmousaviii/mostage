@@ -5,7 +5,10 @@
 
 Presentation framework based on **Markdown** and **HTML** (Core Library + CLI)
 
+Available as a NPM Package, CLI and Editor
+
 ![CLI](./docs/cli.png)
+![Editor](./docs/editor.png)
 ![Demo](./docs/demo.png)
 
 #### [Demo](https://mo.js.org) | [Quick Start](#quick-start) | [Configuration](#configuration) | [API Reference](docs/api-reference.md) | [Development](docs/development.md)
