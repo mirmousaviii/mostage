@@ -5,6 +5,9 @@ export interface CenterContentConfig {
 
 export class CenterContentManager {
   private centerContentConfig: CenterContentConfig | null = null;
+  private observer: MutationObserver | null = null;
+  private isUpdating = false; // re-entrancy guard to avoid observer feedback loops
+  private scheduled = false; // coalesce multiple mutations into one update frame
 
   constructor(private container: HTMLElement) {}
 
@@ -27,6 +30,7 @@ export class CenterContentManager {
     }
 
     this.setupCenterContentObserver();
+    // Initial apply after DOM settles
     setTimeout(() => this.updateCurrentSlideCentering(), 100);
   }
 
@@ -35,14 +39,31 @@ export class CenterContentManager {
   }
 
   private setupCenterContentObserver(): void {
-    const observer = new MutationObserver(() => {
-      this.updateCurrentSlideCentering();
+    // Disconnect any existing observer first
+    if (this.observer) {
+      this.observer.disconnect();
+      this.observer = null;
+    }
+
+    this.observer = new MutationObserver(() => {
+      // Ignore mutations triggered by our own style writes
+      if (this.isUpdating) return;
+
+      // Debounce within a frame to prevent tight loops
+      if (this.scheduled) return;
+      this.scheduled = true;
+      requestAnimationFrame(() => {
+        this.scheduled = false;
+        this.updateCurrentSlideCentering();
+      });
     });
 
     if (this.container) {
-      observer.observe(this.container, {
+      this.observer.observe(this.container, {
         childList: true,
         subtree: true,
+        // attributes true can cause feedback loops when we also set styles.
+        // We keep it enabled but guard with isUpdating + rAF scheduling.
         attributes: true,
         attributeFilter: ["style"],
       });
@@ -51,6 +72,7 @@ export class CenterContentManager {
 
   private updateCurrentSlideCentering(): void {
     if (!this.centerContentConfig) return;
+    this.isUpdating = true;
 
     const slides = document.querySelectorAll(".mostage-slide");
     slides.forEach((slide: Element) => {
@@ -96,6 +118,8 @@ export class CenterContentManager {
         }
       }
     });
+
+    this.isUpdating = false;
   }
 
   cleanup(): void {
@@ -104,5 +128,11 @@ export class CenterContentManager {
     slides.forEach((slide: Element) => {
       slide.classList.remove("mostage-slide-centered");
     });
+
+    // Disconnect observer
+    if (this.observer) {
+      this.observer.disconnect();
+      this.observer = null;
+    }
   }
 }
