@@ -49,8 +49,8 @@ jobs:
           mkdir -p dist/pages/basic
 
           # Copy demo and basic templates to their respective directories
-          cp -r dist/demo/html/* dist/pages/demo/
-          cp -r dist/basic/html/* dist/pages/basic/
+          cp -r dist/demo/* dist/pages/demo/
+          cp -r dist/basic/* dist/pages/basic/
 
           # Copy all public directory contents
           cp -r public/* dist/pages/
