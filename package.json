@@ -53,15 +53,12 @@
     "dist"
   ],
   "scripts": {
-    "dev": "npm run dev:site & npm run dev:basic & npm run dev:demo",
-    "dev:site": "cd public && npx vite --port 3000",
+    "dev": "npm run dev:basic & npm run dev:demo",
     "dev:basic": "VITE_ROOT=src/core/templates/basic vite --config vite.dev.config.ts --port 3001",
     "dev:demo": "VITE_ROOT=src/core/templates/demo vite --config vite.dev.config.ts --port 3002",
-    "build": "npm run clean && npm run build:core && npm run build:cli && npm run build:demo",
+    "build": "npm run clean && npm run build:core && npm run build:cli",
     "build:core": "vite build --config vite.build.core.config.ts && npm run copy:templates",
     "build:cli": "vite build --config vite.build.cli.config.ts",
-    "build:demo": "node dist/cli/index.js example --template demo --output dist/demo && cd dist/demo && node ../../dist/cli/index.js export --format html --output .",
-    "build:basic": "node dist/cli/index.js example --template basic --output dist/basic && cd dist/basic && node ../../dist/cli/index.js export --format html --output .",
     "copy:templates": "cp -r src/core/templates dist/core",
     "test": "vitest",
     "test:run": "vitest run",
