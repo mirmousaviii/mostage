@@ -14,11 +14,13 @@
   },
   "header": {
     "contentPath": "./header.html",
-    "position": "top-left"
+    "position": "top-left",
+    "showOnFirstSlide": false
   },
   "footer": {
     "content": "### Demo",
-    "position": "bottom-left"
+    "position": "bottom-left",
+    "showOnFirstSlide": false
   },
   "background": [
     {
