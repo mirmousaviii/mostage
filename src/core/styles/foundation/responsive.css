@@ -133,9 +133,13 @@
     white-space: nowrap;
   }
 
+  .mostage-header {
+    top: 2rem;
+    z-index: 1000;
+  }
+
   .mostage-footer {
-    bottom: 4rem;
-    position: fixed;
+    bottom: 2rem;
     z-index: 1000;
   }
 
@@ -211,8 +215,9 @@
 
   .mostage-header,
   .mostage-footer {
-    font-size: 11px;
-    padding: 0.3rem 1.2rem;
+    /* font-size: 11px;
+    padding: 0.3rem 1.2rem; */
+    display: none !important;
   }
 }
 

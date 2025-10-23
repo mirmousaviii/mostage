@@ -78,6 +78,7 @@ body {
   font-size: clamp(0.9rem, 1.3vw, 1.1rem);
   line-height: 1.4;
   color: inherit;
+  margin-bottom: 2rem;
 }
 
 /* Header and Footer Typography */
