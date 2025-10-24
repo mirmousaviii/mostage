@@ -372,4 +372,6 @@ For development guidelines, contribution instructions, and CI/CD pipeline inform
 
 ## License
 
-MIT License - see [LICENSE](LICENSE) file for details.
+This project is licensed under the GNU General Public License v3.0 (GPL-3.0-or-later) with additional attribution requirements.
+
+See the [LICENSE](LICENSE) file for the complete license text.
