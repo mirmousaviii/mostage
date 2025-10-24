@@ -134,8 +134,19 @@ export class TransitionManager {
     const direction = isNext ? "translateY(-100%)" : "translateY(100%)";
     const enterDirection = isNext ? "translateY(100%)" : "translateY(-100%)";
 
+    // Clear any existing transitions first
+    fromSlide.style.transition = "";
+    toSlide.style.transition = "";
+
     toSlide.style.display = "block";
     toSlide.style.transform = enterDirection;
+
+    // Force reflow to ensure initial positioning
+    toSlide.offsetHeight;
+
+    // Set transitions for smooth animation
+    fromSlide.style.transition = `transform ${duration}ms ${this.transitionConfig.easing || "ease-in-out"}`;
+    toSlide.style.transition = `transform ${duration}ms ${this.transitionConfig.easing || "ease-in-out"}`;
 
     setTimeout(() => {
       fromSlide.style.transform = direction;
@@ -145,6 +156,9 @@ export class TransitionManager {
         fromSlide.style.display = "none";
         fromSlide.style.transform = "";
         toSlide.style.transform = "";
+        // Clear transitions after animation
+        fromSlide.style.transition = "";
+        toSlide.style.transition = "";
       }, duration);
     }, 50);
   }
