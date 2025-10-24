@@ -74,15 +74,33 @@ export class TransitionManager {
     toSlide: HTMLElement,
     duration: number
   ): void {
-    fromSlide.style.opacity = "0";
+    // Clear any existing transitions first
+    fromSlide.style.transition = "";
+    toSlide.style.transition = "";
+
+    // Set up initial states
+    fromSlide.style.opacity = "1";
     toSlide.style.display = "block";
     toSlide.style.opacity = "0";
 
+    // Force reflow to ensure initial positioning
+    toSlide.offsetHeight;
+
+    // Set transitions for smooth animation
+    fromSlide.style.transition = `opacity ${duration}ms ${this.transitionConfig.easing || "ease-in-out"}`;
+    toSlide.style.transition = `opacity ${duration}ms ${this.transitionConfig.easing || "ease-in-out"}`;
+
     setTimeout(() => {
+      fromSlide.style.opacity = "0";
       toSlide.style.opacity = "1";
+
       setTimeout(() => {
         fromSlide.style.display = "none";
         fromSlide.style.opacity = "1";
+        toSlide.style.opacity = "1";
+        // Clear transitions after animation
+        fromSlide.style.transition = "";
+        toSlide.style.transition = "";
       }, duration);
     }, 50);
   }
