@@ -5,22 +5,22 @@
 
 Presentation framework based on **Markdown** and **HTML** (Core Library + CLI)
 
-Available as a NPM Package, CLI and Editor
+Available as a [NPM Package](https://img.shields.io/npm/v/mostage.svg), [CLI](https://mo.js.org) and [Editor](https://mostage.js.org)
+
+#### [Website](https://mo.js.org) | [Demo](https://mo.js.org/demo) | [Quick Start](#quick-start) | [Development](docs/development.md)
 
 ![CLI](./docs/cli.png)
 ![Editor](./docs/editor.png)
 ![Demo](./docs/demo.png)
 
-#### [Demo](https://mo.js.org) | [Quick Start](#quick-start) | [Configuration](#configuration) | [API Reference](docs/api-reference.md) | [Development](docs/development.md)
-
 ## Key Features
 
-- **📝 Markdown based** - Write slides in Markdown with HTML support
-- **🎨 Multiple Themes** - Built-in themes: light, dark, dracula, ocean, rainbow
-- **🔌 Plugin System** - Extensible with plugins (progress bar, slide numbers, confetti, etc.)
-- **🎭 Custom Backgrounds** - Support for images, colors, and animations
-- **🎪 Interactive Elements** - Support for interactive content and animations
-- **📤 Multi-format Export** - Export to HTML, PDF, PPTX, PNG, and JPG formats
+- **Markdown based** - Write slides in Markdown with HTML support
+- **Multiple Themes** - Built-in themes: light, dark, dracula, ocean, rainbow
+- **Plugin System** - Extensible with plugins (progress bar, slide numbers, confetti, etc.)
+- **Custom Backgrounds** - Support for images, colors, and animations
+- **Interactive Elements** - Support for interactive content and animations
+- **Multi-format Export** - Export to HTML, PDF, PPTX, PNG, and JPG formats
 
 ## Quick Start
 
