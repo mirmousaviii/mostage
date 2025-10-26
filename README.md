@@ -5,7 +5,7 @@
 
 Presentation framework based on **Markdown** and **HTML** (Core Library + CLI)
 
-Available as a [NPM Package](https://img.shields.io/npm/v/mostage.svg), [CLI](https://mo.js.org) and [Editor](https://mostage.js.org)
+Available as a [NPM Package](https://www.npmjs.com/package/mostage), [CLI](https://mo.js.org) and [Editor](https://mostage.js.org)
 
 #### [Website](https://mo.js.org) | [Demo](https://mo.js.org/demo) | [Quick Start](#quick-start) | [Development](docs/development.md)
 
