@@ -7,7 +7,7 @@ Presentation framework based on **Markdown** and **HTML** (Core Library + CLI)
 
 Available as a [NPM Package](https://www.npmjs.com/package/mostage), [CLI](https://mo.js.org) and [Editor](https://mostage.js.org)
 
-#### [Website](https://mo.js.org) | [Demo](https://mo.js.org/demo) | [Quick Start](#quick-start) | [Development](docs/development.md)
+#### [Website](https://mostage.js.org) | [Web App](https://mostage.app) | [Quick Start](#quick-start) | [Development](docs/development.md)
 
 ![CLI](./docs/cli.png)
 ![Editor](./docs/editor.png)
